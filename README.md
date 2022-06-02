@@ -7,7 +7,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo {N}
 
 * **Integrante 1** - [Carlos Castillo](https://github.com/carlosecp)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
+* **Integrante 2** - [Pablo Andres Dealbera](https://github.com/pablo1107)
 * **Integrante 3** - [integrante3](https://github.com/integrante3)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 
