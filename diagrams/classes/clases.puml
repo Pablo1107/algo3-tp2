@@ -1,0 +1,31 @@
+@startuml
+
+class Juego {
+	+ jugar()
+	+ enCurso(posicionJugador : Posicion) : bool
+}
+
+Juego --> Jugador
+Juego --> Mapa
+
+class Jugador {
+	- posicionActual : Posicion
+
+	+ turno(mapa : Mapa)
+	+ obtenerDireccion() : Direccion
+	+ actualizarPosicionActual(nuevaPosicion : Posicion)
+}
+
+Jugador --> Moto
+
+class Moto {
+	+ mover(mapa : Mapa, direccion : Direccion)
+}
+
+class Mapa {
+	- dimensiones : Dimension
+
+	+ posicionEstaDentroDeLimites(posicion : Posicion)
+}
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+
+actor Usuario
+participant Juego
+participant Jugador
+participant Moto
+participant "mapa: Mapa" as mapa
+
+Usuario -> Juego ++ : jugar()
+loop enCurso
+	Juego -> Jugador ++ : turno(mapa)
+	Jugador -> Jugador ++ : obtenerDireccion()
+	return direccion
+	Jugador -> Moto ++ : mover(mapa, direccion)
+
+	note right of Moto
+		nuevaPosicion = posicionActual + direccion
+	end note
+
+	Moto -> mapa ++ : posicionEstaDentroDeLimites(nuevaPosicion)
+	return true
+	' Igual hay que cambiar esto porque antes de que el jugador utilice
+	' `nuevaPosicion` para actualizar su posicion, debemos (no en este caso de
+	' uso pero si a futuro) considerar lo de las penalizaciones si es una moto o
+	' no.
+	' NOTE: Es el jugador y no el vehiculo quien lleva control de la posicion,
+	' porque recordemos que los vehiculos son intercambiables.
+	return nuevaPosicion
+
+	Jugador -> Jugador : actualizarPosicionActual(nuevaPosicion)
+	return posicionJugador
+
+	Juego -> Juego ++ : enCurso(posicionJugador)
+	return true / false
+
+end
+
+return
+
+' NOTE: Agregar el retorno de los movimientos luego de mover un vehiculo.
+
+@enduml
