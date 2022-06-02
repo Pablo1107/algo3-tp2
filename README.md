@@ -4,7 +4,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 22
 
 * **Integrante 1** - [Carlos Castillo](https://github.com/carlosecp)
 * **Integrante 2** - [Pablo Andres Dealbera](https://github.com/pablo1107)
