@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 1** - [Carlos Castillo](https://github.com/carlosecp)
 * **Integrante 2** - [Pablo Andres Dealbera](https://github.com/pablo1107)
 * **Integrante 3** - [Ramiro Recchia](https://github.com/RamiroRecchia)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 4** - [Luciano Duarte](https://github.com/LuloDuarte)
 
 Corrector: **{Corrector}**
 
