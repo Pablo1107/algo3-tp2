@@ -1,0 +1,68 @@
+@startuml
+
+actor Usuario
+participant Juego
+participant Jugador
+participant Moto
+participant "mapa: Mapa" as mapa
+participant "elementoEnPosicion: Pozo" as pozo
+
+Usuario -> Juego ++ : jugar()
+loop enCurso
+	Juego -> Juego ++ : obtenerDireccion()
+	' direccion = new Coordenada(...), esto es lo que obtendriamos del input.
+	return direccion
+
+	Juego -> Jugador ++ : mover(self.mapa, direccion)
+	' nuevaPosicion = jugador.posicion.moverEnDireccion(direccion)
+	Jugador -> mapa ++ : posicionEstaDentroDeLimites(nuevaPosicion)
+	return true
+
+	Jugador -> Jugador : setPosicion(nuevaPosicion)
+	Jugador -> Moto ++ : evaluarPenalizacion(self.posicion, mapa)
+	' evaluarPenalizacion() a falta de un mejor nombre...
+	Moto -> mapa ++ : elementoEnPosicion(posicion)
+	return elementoEnPosicion
+
+	' De alguna forma ya sea desde mapa o desde moto (tiene mas sentido desde
+	' moto), la moto se da cuenta de que obstaculo tiene abajo y evalua su
+	' penalizacion. (Ahorita solo estoy pensando en las penalizaciones, luego veo
+	' todo lo de recompensas).
+	'
+	' Igual ahora que se me ocurre cada obstaculo puede tener un metodo tipo:
+	' Pozo.penalizacionMoto() o algo asi.
+	' Asi llamamos a este metodo:
+	' Moto.evaluarPenalizacion() {
+	' 	elementoEnPosicion = Pozo()....
+	' 	elementoEnPosicion.penalizacionMoto()
+	' }
+	'
+	' Auto.evaluarPenalizacion() {
+	' 	elementoEnPosicion = Piquete()....
+	' 	elementoEnPosicion.penalizacionAuto()
+	' }
+	'
+	' Igual va a tener que cambiar cuando metamos los boosters, porque pues, aqui
+	' estamos llamando a un metodo para penalizaciones, asi que pues no tiene
+	' sentido tener dos metodos por tipo de vehiculo, todos metidos en un
+	' obstaculo. Pero por ahora me basta.
+	
+	Moto -> pozo ++ : penalizacionMoto()
+	return 3
+
+	' Penalizacion tambien puede ser 0.
+	return penalizacion
+
+	Jugador -> Jugador : agregarMovimientos(penalizacion)
+
+	return
+
+	Juego -> Juego ++ : estaEnCurso()
+	' Aqui se ve si el jugador ya llego a la meta.
+	return true/false
+end
+return
+
+' NOTE: Agregar el retorno de los movimientos luego de mover un vehiculo.
+
+@enduml
