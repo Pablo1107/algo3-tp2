@@ -11,6 +11,6 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 *.iml
 .direnv/
-.classpath/
-.project/
+.classpath
+.project
 .settings/
