@@ -47,6 +47,14 @@ public class JugadorTest {
 
         assertEquals(iPosInicial, jugador.iPos);
         assertEquals(jPosInicial, jugador.jPos);
+
+        for (int i = 0; i < 11; i++) {
+            jugador.mover("derecha");
+            jugador.mover("abajo");
+        }
+
+        assertEquals(9, jugador.iPos);
+        assertEquals(9, jugador.jPos);
     }
 }
 
