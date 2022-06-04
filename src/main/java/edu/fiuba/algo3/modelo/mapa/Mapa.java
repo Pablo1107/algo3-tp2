@@ -1,9 +1,12 @@
 package edu.fiuba.algo3.modelo.mapa;
 
+import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.mapa.obstaculo.ObstaculoNulo;
+
 public class Mapa {
 	int ancho;
 	int alto;
-	Elemento[][] elementos;
+	Obstaculo[][] elementos;
 
     public Mapa(int unAncho, int unAlto) {
 		if (unAncho <= 0 || unAlto <= 0) {
@@ -12,10 +15,16 @@ public class Mapa {
 
 		ancho = unAncho;
 		alto = unAlto;
-		elementos = new Elemento[ancho][alto];
+		elementos = new Obstaculo[ancho][alto];
+
+		for (int x = 0; x < unAncho; x++) {
+			for (int y = 0; y < unAlto; y++) {
+				elementos[x][y] = new ObstaculoNulo();
+			}
+		}
     }
 
-	public void setElementoEnPosicion(Elemento elemento, Posicion posicion) {
+	public void setElementoEnPosicion(Obstaculo elemento, Posicion posicion) {
 		if (!posicionEstaDentroDelMapa(posicion)) {
 			throw new RuntimeException("No se puede posicionar un elemento fuera del mapa");
 		}
@@ -28,12 +37,12 @@ public class Mapa {
 	}
 
 	private boolean hayElementoEnPosicion(Posicion posicion) {
-		return elementos[posicion.getX()][posicion.getY()] != null;
+		return elementos[posicion.getX()][posicion.getY()].getClass() != ObstaculoNulo.class;
 	}
 
-	public Elemento getElementoEnPosicion(Posicion posicion) {
+	public Obstaculo getElementoEnPosicion(Posicion posicion) {
 		if (!posicionEstaDentroDelMapa(posicion)) {
-			return null;
+			return new ObstaculoNulo();
 		}
 
 		return elementos[posicion.getX()][posicion.getY()];
