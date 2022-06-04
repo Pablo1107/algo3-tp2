@@ -24,8 +24,16 @@ public class MapaTest {
 		int ancho = 20;
 		int alto = 20;
 		Mapa mapa = new Mapa(ancho, alto);
-		Posicion posicion = new Posicion(30, 30);
 
+		// Debido a las pruebas de code coverage, se deben hacer pruebas
+		// con multiples combinaciones para cubrir todas las coordenadas.
+		Posicion posicion = new Posicion(30, 5);
+		assertFalse(mapa.validar(posicion));
+
+		posicion = new Posicion(5, 30);
+		assertFalse(mapa.validar(posicion));
+
+		posicion = new Posicion(30, 30);
 		assertFalse(mapa.validar(posicion));
 	}
 }

@@ -20,11 +20,22 @@ public class PosicionTest {
 	@Test
 	public void noSePuedeCrearUnaPosicionConCoordenadasNegativas() {
 		Exception excepcion = assertThrows(RuntimeException.class, () -> {
-			new Posicion(-10, -10);
+			new Posicion(-10, 10);
 		});
 
 		String mensajeRecibido = excepcion.getMessage();
 		String mensajeEsperado = "No se puede crear una posicion con coordenadas negativas";
+
+		assertEquals(mensajeRecibido, mensajeEsperado, "Se lanza la excepcion correcta al intentar crear una posicion con coordenadas negativas");
+
+		// Debido a la pruebas de code coverage, se deben hacer verificaciones
+		// para ambas coordenadas.
+		excepcion = assertThrows(RuntimeException.class, () -> {
+			new Posicion(10, -10);
+		});
+
+		mensajeRecibido = excepcion.getMessage();
+		mensajeEsperado = "No se puede crear una posicion con coordenadas negativas";
 
 		assertEquals(mensajeRecibido, mensajeEsperado, "Se lanza la excepcion correcta al intentar crear una posicion con coordenadas negativas");
 	}
