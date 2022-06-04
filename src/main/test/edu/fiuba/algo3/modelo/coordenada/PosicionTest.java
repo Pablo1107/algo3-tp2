@@ -62,6 +62,11 @@ public class PosicionTest {
 		posicion2 = new Posicion(4, 12);
 
 		assertNotEquals(posicion1, posicion2, "Dos posiciones con coordenadas completamente diferentes no son la misma posicion");
+
+		posicion1 = new Posicion(4, 5);
+		posicion2 = new Posicion(4, 12);
+
+		assertNotEquals(posicion1, posicion2, "Dos posiciones con tan solo una coordenada diferente no son la misma posicion");
 	}
 
 	@Test
