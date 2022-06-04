@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.coordenada.Coordenada;
+import edu.fiuba.algo3.modelo.coordenada.Direccion;
+import edu.fiuba.algo3.modelo.coordenada.Posicion;
 
 public class JugadorTest {
 	@Test
 	public void alCrearAlJugadorEsteEstaUbicadoEnLaPosicionEspecificada() {
-		Coordenada posicionInicial = new Coordenada(10, 10);
+		Posicion posicionInicial = new Posicion(10, 10);
 		Jugador jugador = new Jugador(posicionInicial);
 
 		assertEquals(posicionInicial, jugador.getPosicion(), "La coordenada inicial en del jugador es la esperada");
@@ -19,10 +20,10 @@ public class JugadorTest {
 
 	@Test
 	public void alMoverAlJugadorDePosicionLaNuevaPosicionDelJugadorEsLaEsperada() {
-		Coordenada posicionInicial = new Coordenada(0, 0);
+		Posicion posicionInicial = new Posicion(0, 0);
 		Jugador jugador = new Jugador(posicionInicial);
-		Coordenada direccion = new Coordenada(1, 1);
-		Coordenada posicionEsperada = new Coordenada(1, 1);
+		Direccion direccion = new Direccion(1, 1);
+		Posicion posicionEsperada = new Posicion(1, 1);
 
 		// TODO: No me gasta esta forma en la que jugador tambien depende de mapa solo para moverse.
 		Mapa mapa = new Mapa(10, 10);
@@ -33,9 +34,9 @@ public class JugadorTest {
 
 	@Test
 	public void alIntentarMoverAlJugadorFueraDelMapaEsteQuedaEnLaMismaPosicionQueTeniaAntes() {
-		Coordenada posicionInicial = new Coordenada(9, 9);
+		Posicion posicionInicial = new Posicion(9, 9);
 		Jugador jugador = new Jugador(posicionInicial);
-		Coordenada direccion = new Coordenada(10, 10);
+		Direccion direccion = new Direccion(10, 10);
 
 		Mapa mapa = new Mapa(10, 10);
 		jugador.mover(direccion, mapa);

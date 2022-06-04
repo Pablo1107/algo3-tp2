@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import edu.fiuba.algo3.modelo.coordenada.Coordenada;
+import edu.fiuba.algo3.modelo.coordenada.Posicion;
 
-public class Mapa {
+public class Mapa implements IValidadorDePosicion {
 	int ancho;
 	int alto;
 
@@ -11,9 +11,7 @@ public class Mapa {
 		alto = unAlto;
     }
 
-	public boolean posicionEstaDentroDeLosLimites(Coordenada posicion) {
-		boolean xEstaDentroDeLimites = 0 <= posicion.getX() && posicion.getX() < ancho;
-		boolean yEstaDentroDeLimites = 0 <= posicion.getY() && posicion.getY() < alto;
-		return xEstaDentroDeLimites && yEstaDentroDeLimites;
+	public boolean validar(Posicion posicion) {
+		return (posicion.getX() < ancho) && (posicion.getY() < alto);
 	}
 }

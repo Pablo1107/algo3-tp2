@@ -1,23 +1,24 @@
 package edu.fiuba.algo3.modelo.jugador;
 
-import edu.fiuba.algo3.modelo.coordenada.Coordenada;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.coordenada.Direccion;
+import edu.fiuba.algo3.modelo.coordenada.Posicion;
+import edu.fiuba.algo3.modelo.mapa.IValidadorDePosicion;
 
 public class Jugador {
-	Coordenada posicion;
+	Posicion posicion;
 
-    public Jugador(Coordenada posicionInicial) {
+    public Jugador(Posicion posicionInicial) {
 		posicion = posicionInicial;
     }
 
-	public Coordenada getPosicion() {
+	public Posicion getPosicion() {
 		return posicion;
 	}
 
-	public void mover(Coordenada direccion, Mapa mapa) {
-		Coordenada nuevaPosicion = posicion.desplazar(direccion);
+	public void mover(Direccion direccion, IValidadorDePosicion validadorPosicion) {
+		Posicion nuevaPosicion = posicion.desplazar(direccion);
 
-		if (!mapa.posicionEstaDentroDeLosLimites(nuevaPosicion)) {
+		if (!validadorPosicion.validar(nuevaPosicion)) {
 			return;
 		}
 

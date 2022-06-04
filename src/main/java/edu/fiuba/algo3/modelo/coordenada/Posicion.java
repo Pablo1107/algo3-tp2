@@ -1,10 +1,15 @@
 package edu.fiuba.algo3.modelo.coordenada;
 
-public class Coordenada {
+public class Posicion implements ICoordenada {
 	private int x;
 	private int y;
 
-	public Coordenada(int unaX, int unaY) {
+	public Posicion(int unaX, int unaY) {
+		if (unaX < 0 || unaY < 0) {
+			// TODO: No se si esta bien tirar una excepcion aqui???
+			throw new RuntimeException("No se puede crear una posicion con coordenadas negativas");
+		}
+
 		x = unaX;
 		y = unaY;
 	}
@@ -17,10 +22,10 @@ public class Coordenada {
 		return y;
 	}
 	
-	public Coordenada desplazar(Coordenada direccion) {
+	public Posicion desplazar(Direccion direccion) {
 		int nuevoX = x + direccion.getX();
 		int nuevoY = y + direccion.getY();
-		return new Coordenada(nuevoX, nuevoY);
+		return new Posicion(nuevoX, nuevoY);
 	}
 
 	@Override
@@ -29,11 +34,11 @@ public class Coordenada {
 			return true;
 		}
 
-		if (!(o instanceof Coordenada)) {
+		if (!(o instanceof Posicion)) {
 			return false;
 		}
 
-		Coordenada otraCoordenada = (Coordenada)o;
+		Posicion otraCoordenada = (Posicion)o;
 		return x == otraCoordenada.getX() && y == otraCoordenada.getY();
 	}
 }
