@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.coordenada.Direccion;
 import edu.fiuba.algo3.modelo.coordenada.Posicion;
-import edu.fiuba.algo3.modelo.mapa.IValidadorDePosicion;
 
 public class Jugador {
 	Posicion posicion;
@@ -15,13 +14,7 @@ public class Jugador {
 		return posicion;
 	}
 
-	public void mover(Direccion direccion, IValidadorDePosicion validadorPosicion) {
-		Posicion nuevaPosicion = posicion.desplazar(direccion);
-
-		if (!validadorPosicion.validar(nuevaPosicion)) {
-			return;
-		}
-
-		posicion = nuevaPosicion;
+	public void mover(Direccion direccion) {
+		posicion = posicion.desplazar(direccion);
 	}
 }

@@ -7,33 +7,66 @@ import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.coordenada.Posicion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
 
 public class MapaTest {
 	@Test
 	public void dadaUnaPosicionCuyasCooordenadasEstanDentroDeLosLimitesDelMapaEsaPosicionEstaDentroDelMapa() {
-		int ancho = 20;
-		int alto = 20;
-		Mapa mapa = new Mapa(ancho, alto);
+		Mapa mapa = new Mapa(20, 20);
 		Posicion posicion = new Posicion(10, 10);
 
-		assertTrue(mapa.validar(posicion));
+		assertTrue(mapa.posicionEstaDentroDelMapa(posicion));
 	}
 
 	@Test
 	public void dadaUnaCoordenadaCuyasComponentesExcedenLosLimitesDelMapaEsaPosicionEstaDentroDelMapa() {
-		int ancho = 20;
-		int alto = 20;
-		Mapa mapa = new Mapa(ancho, alto);
+		Mapa mapa = new Mapa(20, 20);
 
-		// Debido a las pruebas de code coverage, se deben hacer pruebas
-		// con multiples combinaciones para cubrir todas las coordenadas.
-		Posicion posicion = new Posicion(30, 5);
-		assertFalse(mapa.validar(posicion));
+		Posicion posicionInvalidaEnX = new Posicion(30, 5);
+		assertFalse(mapa.posicionEstaDentroDelMapa(posicionInvalidaEnX));
 
-		posicion = new Posicion(5, 30);
-		assertFalse(mapa.validar(posicion));
+		Posicion posicionInvalidaEnY = new Posicion(5, 30);
+		assertFalse(mapa.posicionEstaDentroDelMapa(posicionInvalidaEnY));
 
-		posicion = new Posicion(30, 30);
-		assertFalse(mapa.validar(posicion));
+		Posicion posicionInvalidaEnXY = new Posicion(30, 30);
+		assertFalse(mapa.posicionEstaDentroDelMapa(posicionInvalidaEnXY));
+	}
+
+	@Test
+	public void sePuedePosicionarUnElementoEnUnaPosicionVaciaDelMapaCorrectamente() {
+		Mapa mapa = new Mapa(20, 20);
+		Elemento elemento = new Elemento();
+		Posicion posicion = new Posicion(5, 5);
+		
+		mapa.setElementoEnPosicion(elemento, posicion);
+
+		assertTrue(mapa.getElementoEnPosicion(posicion) == elemento);
+	}
+
+	@Test
+	public void noSePuedePosicionarUnElementoEnUnaPosicionDelMapaQueYaEsteOcupada() {
+		Mapa mapa = new Mapa(20, 20);
+		Posicion posicion = new Posicion(10, 10);
+		Elemento elemento = new Elemento();
+
+		mapa.setElementoEnPosicion(elemento, posicion);
+
+		mapa.setElementoEnPosicion(new Elemento(), posicion);
+
+		assertTrue(mapa.getElementoEnPosicion(posicion) == elemento);
+	}
+
+	@Test
+	public void alIntentarObtenerUnElementoEnUnaPosicionVaciaSeRetornaNull() {
+		Mapa mapa = new Mapa(20, 20);
+
+		assertTrue(mapa.getElementoEnPosicion(new Posicion(10, 10)) == null);
+	}
+
+	@Test
+	public void alIntentarObtenerUnElementoEnUnaPosicionFueraDelMapaSeRetornaNull() {
+		Mapa mapa = new Mapa(10, 10);
+
+		assertTrue(mapa.getElementoEnPosicion(new Posicion(20, 20)) == null);
 	}
 }
