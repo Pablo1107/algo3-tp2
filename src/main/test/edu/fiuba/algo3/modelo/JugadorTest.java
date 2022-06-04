@@ -1,61 +1,45 @@
 package edu.fiuba.algo3.modelo;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.coordenada.Coordenada;
+
 public class JugadorTest {
+	@Test
+	public void alCrearAlJugadorEsteEstaUbicadoEnLaPosicionEspecificada() {
+		Coordenada posicionInicial = new Coordenada(10, 10);
+		Jugador jugador = new Jugador(posicionInicial);
 
-    @Test
-    public void moverJugador() {
-        Ciudad ciudad = new Ciudad();
-        Jugador jugador = new Jugador(ciudad);
+		assertEquals(posicionInicial, jugador.getPosicion(), "La coordenada inicial en del jugador es la esperada");
+	}
 
-        int iPosInicial = jugador.iPos;
-        int jPosInicial = jugador.jPos;
+	@Test
+	public void alMoverAlJugadorDePosicionLaNuevaPosicionDelJugadorEsLaEsperada() {
+		Coordenada posicionInicial = new Coordenada(0, 0);
+		Jugador jugador = new Jugador(posicionInicial);
+		Coordenada direccion = new Coordenada(1, 1);
+		Coordenada posicionEsperada = new Coordenada(1, 1);
 
-        jugador.mover("derecha");
+		// TODO: No me gasta esta forma en la que jugador tambien depende de mapa solo para moverse.
+		Mapa mapa = new Mapa(10, 10);
+		jugador.mover(direccion, mapa);
 
-        assertEquals(iPosInicial + 1, jugador.iPos);
-        assertEquals(jPosInicial, jugador.jPos);
+		assertEquals(posicionEsperada, jugador.getPosicion(), "La coordenada del jugador luego de moverse es la esperada");
+	}
 
-        jugador.mover("izquierda");
+	@Test
+	public void alIntentarMoverAlJugadorFueraDelMapaEsteQuedaEnLaMismaPosicionQueTeniaAntes() {
+		Coordenada posicionInicial = new Coordenada(9, 9);
+		Jugador jugador = new Jugador(posicionInicial);
+		Coordenada direccion = new Coordenada(10, 10);
 
-        assertEquals(iPosInicial, jugador.iPos);
-        assertEquals(jPosInicial, jugador.jPos);
+		Mapa mapa = new Mapa(10, 10);
+		jugador.mover(direccion, mapa);
 
-        jugador.mover("abajo");
-
-        assertEquals(iPosInicial, jugador.iPos);
-        assertEquals(jPosInicial + 1, jugador.jPos);
-
-        jugador.mover("arriba");
-
-        assertEquals(iPosInicial, jugador.iPos);
-        assertEquals(jPosInicial, jugador.jPos);
-
-        jugador.mover("izquierda");
-
-        assertEquals(iPosInicial, jugador.iPos);
-        assertEquals(jPosInicial, jugador.jPos);
-
-        jugador.mover("arriba");
-
-        assertEquals(iPosInicial, jugador.iPos);
-        assertEquals(jPosInicial, jugador.jPos);
-
-        jugador.mover("direccion-no-existente");
-
-        assertEquals(iPosInicial, jugador.iPos);
-        assertEquals(jPosInicial, jugador.jPos);
-
-        for (int i = 0; i < 11; i++) {
-            jugador.mover("derecha");
-            jugador.mover("abajo");
-        }
-
-        assertEquals(9, jugador.iPos);
-        assertEquals(9, jugador.jPos);
-    }
+		assertEquals(jugador.getPosicion(), posicionInicial, "La posicion actual del jugador coincide con la que tenia antes");
+	}
 }
-
-
