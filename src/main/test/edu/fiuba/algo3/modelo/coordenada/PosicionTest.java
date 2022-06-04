@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.coordenada;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -37,5 +38,30 @@ public class PosicionTest {
 		Posicion posicionLlegada = posicionInicial.desplazar(direccion);
 
 		assertEquals(posicionLlegada, posicionEsperada, "La posicion a la que se llego luego de desplazarse es la esperada");
+	}
+
+	@Test
+	public void dadasDosPosicionesEstasSonComparablesEntreSi() {
+		Posicion posicion1 = new Posicion(10, 10);
+		Posicion posicion2 = new Posicion(10, 10);
+
+		assertEquals(posicion1, posicion2, "Dos posiciones con las mismas coordenadas son efectivamente iguales");
+
+		posicion1 = new Posicion(10, 5);
+		posicion2 = new Posicion(4, 12);
+
+		assertNotEquals(posicion1, posicion2, "Dos posiciones con coordenadas completamente diferentes no son la misma posicion");
+	}
+
+	@Test
+	public void dadaUnaPosicionYOtroObjetoCualqueiraNoSonComparablesEntreSi() {
+		// Este test lo hago porque Java cuando se hace override del metodo `equals`,
+		// pide como argumento un objeto del tipo `Object`, asi que si, se puede
+		// comparar una `Posicion` con cualquier objeto.
+
+		Posicion posicion = new Posicion(10, 10);
+		Direccion direccion = new Direccion(10, 10);
+
+		assertNotEquals(posicion, direccion, "Una posicion y direccion, aunque tengan las mismas coordenadas, no son efectivamente iguales");
 	}
 }

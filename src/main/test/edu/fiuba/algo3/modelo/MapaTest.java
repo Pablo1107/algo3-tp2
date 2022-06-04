@@ -24,7 +24,7 @@ public class MapaTest {
 		int ancho = 20;
 		int alto = 20;
 		Mapa mapa = new Mapa(ancho, alto);
-		Posicion posicion = new Posicion(30, 10);
+		Posicion posicion = new Posicion(30, 30);
 
 		assertFalse(mapa.validar(posicion));
 	}
