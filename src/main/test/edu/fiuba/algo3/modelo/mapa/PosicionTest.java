@@ -12,8 +12,8 @@ public class PosicionTest {
 		int xEsperado = 10;
 		int yEsperado = 10;
 
-		assertEquals(posicion.getX(), xEsperado, "La coordenada X de la posicion coincide con el esperado");
-		assertEquals(posicion.getY(), yEsperado, "La coordenada Y de la posicion coincide con el esperado");
+		assertEquals(posicion.getX(), xEsperado);
+		assertEquals(posicion.getY(), yEsperado);
 	}
 
 	@Test
@@ -24,25 +24,22 @@ public class PosicionTest {
 
 		Posicion posicionLlegada = posicionInicial.desplazar(direccion);
 
-		assertEquals(posicionLlegada, posicionEsperada, "La posicion a la que se llego luego de desplazarse es la esperada");
+		assertEquals(posicionLlegada, posicionEsperada);
 	}
 
 	@Test
 	public void dadasDosPosicionesEstasSonComparablesEntreSi() {
 		Posicion posicion1 = new Posicion(10, 10);
 		Posicion posicion2 = new Posicion(10, 10);
-
-		assertEquals(posicion1, posicion2, "Dos posiciones con las mismas coordenadas son efectivamente iguales");
+		assertEquals(posicion1, posicion2);
 
 		posicion1 = new Posicion(10, 5);
 		posicion2 = new Posicion(4, 12);
-
-		assertNotEquals(posicion1, posicion2, "Dos posiciones con coordenadas completamente diferentes no son la misma posicion");
+		assertNotEquals(posicion1, posicion2);
 
 		posicion1 = new Posicion(4, 5);
 		posicion2 = new Posicion(4, 12);
-
-		assertNotEquals(posicion1, posicion2, "Dos posiciones con tan solo una coordenada diferente no son la misma posicion");
+		assertNotEquals(posicion1, posicion2);
 	}
 
 	@Test
@@ -50,6 +47,6 @@ public class PosicionTest {
 		Posicion posicion = new Posicion(10, 10);
 		Direccion direccion = new Direccion(10, 10);
 
-		assertNotEquals(posicion, direccion, "Una posicion y direccion, aunque tengan las mismas coordenadas, no son efectivamente iguales");
+		assertNotEquals(posicion, direccion);
 	}
 }

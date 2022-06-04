@@ -14,7 +14,7 @@ public class JugadorTest {
 		Posicion posicionInicial = new Posicion(10, 10);
 		Jugador jugador = new Jugador(posicionInicial);
 
-		assertEquals(posicionInicial, jugador.getPosicion(), "La coordenada inicial en del jugador es la esperada");
+		assertEquals(jugador.getPosicion(), posicionInicial);
 	}
 
 	@Test
@@ -27,7 +27,7 @@ public class JugadorTest {
 
 		jugador.mover(direccion, mapa);
 
-		assertEquals(posicionEsperada, jugador.getPosicion(), "La coordenada del jugador luego de moverse es la esperada");
+		assertEquals(jugador.getPosicion(), posicionEsperada);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ public class JugadorTest {
 
 		jugador.mover(new Direccion(10, 10), mapa);
 
-		assertEquals(posicionInicial, jugador.getPosicion(), "La posicion actual del jugador coincide con la que tenia antes");
+		assertEquals(jugador.getPosicion(), posicionInicial);
 	}
 
 	@Test
