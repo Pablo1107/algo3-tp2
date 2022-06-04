@@ -1,12 +1,11 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.jugador;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.coordenada.Direccion;
-import edu.fiuba.algo3.modelo.coordenada.Posicion;
+import edu.fiuba.algo3.modelo.mapa.Direccion;
+import edu.fiuba.algo3.modelo.mapa.Posicion;
 
 public class JugadorTest {
 	@Test

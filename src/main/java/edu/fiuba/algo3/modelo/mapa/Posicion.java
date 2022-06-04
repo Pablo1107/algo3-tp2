@@ -1,15 +1,10 @@
-package edu.fiuba.algo3.modelo.coordenada;
+package edu.fiuba.algo3.modelo.mapa;
 
-public class Posicion implements ICoordenada {
+public class Posicion {
 	private int x;
 	private int y;
 
 	public Posicion(int unaX, int unaY) {
-		if (unaX < 0 || unaY < 0) {
-			// TODO: No se si esta bien tirar una excepcion aqui???
-			throw new RuntimeException("No se puede crear una posicion con coordenadas negativas");
-		}
-
 		x = unaX;
 		y = unaY;
 	}

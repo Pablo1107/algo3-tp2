@@ -1,8 +1,7 @@
-package edu.fiuba.algo3.modelo.coordenada;
+package edu.fiuba.algo3.modelo.mapa;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,29 +14,6 @@ public class PosicionTest {
 
 		assertEquals(posicion.getX(), xEsperado, "La coordenada X de la posicion coincide con el esperado");
 		assertEquals(posicion.getY(), yEsperado, "La coordenada Y de la posicion coincide con el esperado");
-	}
-
-	@Test
-	public void noSePuedeCrearUnaPosicionConCoordenadasNegativas() {
-		Exception excepcion = assertThrows(RuntimeException.class, () -> {
-			new Posicion(-10, 10);
-		});
-
-		String mensajeRecibido = excepcion.getMessage();
-		String mensajeEsperado = "No se puede crear una posicion con coordenadas negativas";
-
-		assertEquals(mensajeRecibido, mensajeEsperado, "Se lanza la excepcion correcta al intentar crear una posicion con coordenadas negativas");
-
-		// Debido a la pruebas de code coverage, se deben hacer verificaciones
-		// para ambas coordenadas.
-		excepcion = assertThrows(RuntimeException.class, () -> {
-			new Posicion(10, -10);
-		});
-
-		mensajeRecibido = excepcion.getMessage();
-		mensajeEsperado = "No se puede crear una posicion con coordenadas negativas";
-
-		assertEquals(mensajeRecibido, mensajeEsperado, "Se lanza la excepcion correcta al intentar crear una posicion con coordenadas negativas");
 	}
 
 	@Test
@@ -71,10 +47,6 @@ public class PosicionTest {
 
 	@Test
 	public void dadaUnaPosicionYOtroObjetoCualqueiraNoSonComparablesEntreSi() {
-		// Este test lo hago porque Java cuando se hace override del metodo `equals`,
-		// pide como argumento un objeto del tipo `Object`, asi que si, se puede
-		// comparar una `Posicion` con cualquier objeto.
-
 		Posicion posicion = new Posicion(10, 10);
 		Direccion direccion = new Direccion(10, 10);
 
