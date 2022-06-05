@@ -1,15 +1,12 @@
 package edu.fiuba.algo3.modelo.mapa.obstaculo;
 
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
 
 public abstract class Obstaculo {
-	public int getPenalizacion(Moto moto) {
-		return 0;
-	}
+	public abstract int getPenalizacion(Moto moto);
 
-//	public int getPenalizacion(Auto auto) {
-//		return 0;
-//	}
+	public abstract int getPenalizacion(Auto auto);
 
 //	public int getPenalizacion(CuatroXCuatro cuatroXCuatro) {
 //		return 0;

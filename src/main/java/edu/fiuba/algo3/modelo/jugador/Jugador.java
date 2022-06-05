@@ -12,10 +12,10 @@ public class Jugador {
 	Vehiculo vehiculo;
 	int movimientos;
 
-    public Jugador(Posicion posicionInicial) {
-		posicion = posicionInicial;
-		vehiculo = new Moto();
-		movimientos = 0;
+    public Jugador(Posicion posicionInicial, Vehiculo vehiculo) {
+		this.posicion = posicionInicial;
+		this.vehiculo = vehiculo;
+		this.movimientos = 0;
     }
 
 	// TODO: El tener que pasarle el mapa al jugador me hace ruido.
