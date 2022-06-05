@@ -1,0 +1,21 @@
+package edu.fiuba.algo3.modelo.vehiculo;
+
+import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
+
+public abstract class Vehiculo {
+	protected int penalizaciones;
+
+	public Vehiculo() {
+		this.penalizaciones = 0;
+	}
+
+	public abstract void pisar(Obstaculo obstaculo);
+
+	public void reducirPena() {
+		this.penalizaciones--;
+	}
+
+	public int getPenalizaciones() {
+		return this.penalizaciones;
+	}
+}
