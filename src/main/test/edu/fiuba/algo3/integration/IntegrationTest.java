@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import org.junit.jupiter.api.Test;
 
@@ -60,6 +61,22 @@ public class IntegrationTest {
         assertEquals(1, jugador.getPenalizaciones());
 
         jugador.mover(derecha,mapa);
+        assertEquals(0, jugador.getPenalizaciones());
+    }
+
+    @Test
+    public void unaCuatroXCutroAtraviesaLaCiudadYSeEncuentraConUnPozoNoEsPenalizada() {
+        Mapa mapa = new Mapa(10, 10);
+        CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
+        Jugador jugador = new Jugador(new Posicion(0,0), cuatroXCuatro);
+        Pozo pozo = new Pozo();
+        Direccion derecha = new Direccion(1,0);
+
+        assertEquals(0, jugador.getPenalizaciones());
+
+        mapa.setElementoEnPosicion(pozo, new Posicion(1,0));
+        jugador.mover(derecha, mapa);
+
         assertEquals(0, jugador.getPenalizaciones());
     }
 }
