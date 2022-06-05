@@ -2,11 +2,20 @@ package edu.fiuba.algo3.modelo.vehiculo;
 
 import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
 
-public class Moto implements IVehiculo {
+public class Moto extends Vehiculo {
 	public Moto() {
+		this.penalizaciones = 0;
 	}
 
-	public int getPenalizacionObstaculo(Obstaculo obstaculo) {
-		return obstaculo.getPenalizacionMoto();
+	public void pisar(Obstaculo obstaculo) {
+		this.penalizaciones += obstaculo.getPenalizacion(this);
+	}
+
+	public void reducirPena() {
+		this.penalizaciones--;
+	}
+
+	public int getPenalizaciones() {
+		return this.penalizaciones;
 	}
 }

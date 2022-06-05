@@ -9,17 +9,20 @@ import edu.fiuba.algo3.modelo.mapa.obstaculo.Pozo;
 
 public class MotoTest {
 	@Test
-	public void alPosicionarUnaMotoSobreUnPozoSeRetornaLaPenalizacionCorrespondiente() {
+	public void alPosicionarUnaMotoSobreUnPozoAumentaSuPenalizacionEnTres() {
 		Moto moto = new Moto();
 		Pozo pozo = new Pozo();
 
-		assertEquals(moto.getPenalizacionObstaculo(pozo), 3);
+		moto.pisar(pozo);
+		assertEquals(3, moto.getPenalizaciones());
 	}
 
 	@Test
 	public void alPosicionarUnaMotoSobreUnaPosicionVaciaSeRetornaLaPenalizacionCorrespondiente() {
 		Moto moto = new Moto();
+		int penalizacionInicial = moto.getPenalizaciones();
 
-		assertEquals(moto.getPenalizacionObstaculo(new ObstaculoNulo()), 0);
+		moto.pisar(new ObstaculoNulo());
+		assertEquals(penalizacionInicial, moto.getPenalizaciones());
 	}
 }

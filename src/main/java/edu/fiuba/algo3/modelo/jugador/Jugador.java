@@ -4,12 +4,12 @@ import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
-import edu.fiuba.algo3.modelo.vehiculo.IVehiculo;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
+import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
 	Posicion posicion;
-	IVehiculo vehiculo;
+	Vehiculo vehiculo;
 	int movimientos;
 
     public Jugador(Posicion posicionInicial) {
@@ -20,24 +20,33 @@ public class Jugador {
 
 	// TODO: El tener que pasarle el mapa al jugador me hace ruido.
 	public void mover(Direccion direccion, Mapa mapa) {
+		if (this.vehiculo.getPenalizaciones() > 0) {
+			this.vehiculo.reducirPena();
+			return;
+		}
+
 		Posicion nuevaPosicion = posicion.desplazar(direccion);
 
 		if (!mapa.posicionEstaDentroDelMapa(nuevaPosicion)) {
 			return;
 		}
 
-		posicion = posicion.desplazar(direccion);
-		movimientos += 1;
+		this.posicion = nuevaPosicion;
+		this.movimientos++;
 
-		Obstaculo obstaculoEnPosicion = mapa.getElementoEnPosicion(posicion);
-		movimientos += vehiculo.getPenalizacionObstaculo(obstaculoEnPosicion);
+		Obstaculo obstaculo = mapa.getElementoEnPosicion(posicion);
+		this.vehiculo.pisar(obstaculo);
+	}
+
+	public int getPenalizaciones() {
+		return this.vehiculo.getPenalizaciones();
 	}
 
 	public Posicion getPosicion() {
-		return posicion;
+		return this.posicion;
 	}
 
 	public int getMovimientos() {
-		return movimientos;
+		return this.movimientos;
 	}
 }
