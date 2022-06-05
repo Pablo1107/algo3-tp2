@@ -8,9 +8,9 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
-	Posicion posicion;
-	Vehiculo vehiculo;
-	int movimientos;
+	private Posicion posicion;
+	private Vehiculo vehiculo;
+	private int movimientos;
 
     public Jugador(Posicion posicionInicial, Vehiculo vehiculo) {
 		this.posicion = posicionInicial;
