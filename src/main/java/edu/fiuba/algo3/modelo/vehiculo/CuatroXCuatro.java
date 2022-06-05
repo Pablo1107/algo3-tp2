@@ -10,10 +10,10 @@ public class CuatroXCuatro extends Vehiculo {
         this.penalizaciones += obstaculo.getPenalizacion(this);
     }
 
-    public void pisar(Pozo pozo) {
-        this.pozosPisados++;
-        if (this.pozosPisados < 3) return;
-        this.penalizaciones += pozo.getPenalizacion(this);
-        this.pozosPisados = 0;
-    }
+//    public void pisar(Pozo pozo) {
+//        this.pozosPisados++;
+//        if (this.pozosPisados < 3) return;
+//        this.penalizaciones += pozo.getPenalizacion(this);
+//        this.pozosPisados = 0;
+//    }
 }
