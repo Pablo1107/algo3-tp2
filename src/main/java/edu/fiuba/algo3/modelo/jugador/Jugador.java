@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
-import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
@@ -18,10 +17,9 @@ public class Jugador {
 		this.movimientos = 0;
     }
 
-	// TODO: El tener que pasarle el mapa al jugador me hace ruido.
 	public void mover(Direccion direccion, Mapa mapa) {
-		if (this.vehiculo.getPenalizaciones() > 0) {
-			this.vehiculo.reducirPena();
+		if (this.vehiculo.tienePenalizaciones()) {
+			this.vehiculo.reducirPenalizaciones();
 			return;
 		}
 

@@ -11,11 +11,15 @@ public abstract class Vehiculo {
 
 	public abstract void pisar(Obstaculo obstaculo);
 
-	public void reducirPena() {
+	public void reducirPenalizaciones() {
 		this.penalizaciones--;
 	}
 
 	public int getPenalizaciones() {
 		return this.penalizaciones;
+	}
+
+	public boolean tienePenalizaciones() {
+		return this.penalizaciones > 0;
 	}
 }
