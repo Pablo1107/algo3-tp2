@@ -36,10 +36,6 @@ public class Jugador {
 		this.vehiculo.pisar(obstaculo);
 	}
 
-	public int getPenalizaciones() {
-		return this.vehiculo.getPenalizaciones();
-	}
-
 	public Posicion getPosicion() {
 		return this.posicion;
 	}

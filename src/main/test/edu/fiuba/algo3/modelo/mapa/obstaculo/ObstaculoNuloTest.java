@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.mapa.obstaculo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
+import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import org.junit.jupiter.api.Test;
 
@@ -17,13 +19,13 @@ public class ObstaculoNuloTest {
 	public void laPenalizacionDeUnObstaculoNuloParaUnAutoEsCero() {
 		ObstaculoNulo obstaculo = new ObstaculoNulo();
 
-//		assertEquals(0, obstaculo.getPenalizacionAuto());
+		assertEquals(0, obstaculo.getPenalizacion(new Auto()));
 	}
 
 	@Test
 	public void laPenalizacionDeUnObstaculoNuloParaUnCuatroXCuatroEsCero() {
 		ObstaculoNulo obstaculo = new ObstaculoNulo();
 
-//		assertEquals(0, obstaculo.getPenalizacionCuatroXCuatro());
+		assertEquals(0, obstaculo.getPenalizacion(new CuatroXCuatro()));
 	}
 }
