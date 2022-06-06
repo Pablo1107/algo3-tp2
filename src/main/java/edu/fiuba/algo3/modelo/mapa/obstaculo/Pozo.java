@@ -14,6 +14,6 @@ public class Pozo extends Obstaculo {
 	}
 
 	public int getPenalizacion(CuatroXCuatro cuatroXCuatro) {
-		return 0;
+		return 2;
 	}
 }
