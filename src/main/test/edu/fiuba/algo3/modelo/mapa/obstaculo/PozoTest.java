@@ -9,8 +9,9 @@ public class PozoTest {
 	@Test
 	public void laPenalizacionDeUnPozoParaUnaMotoEsCero() {
 		Pozo obstaculo = new Pozo();
+		Moto moto = new Moto();
 
-		assertEquals(3, obstaculo.getPenalizacion(new Moto()));
+		assertEquals(3, obstaculo.aplicarPenalizacion(moto, 0));
 	}
 
 	@Test

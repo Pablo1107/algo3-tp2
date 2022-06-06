@@ -10,7 +10,7 @@ public class ObstaculoNuloTest {
 	public void laPenalizacionDeUnObstaculoNuloParaUnaMotoEsCero() {
 		ObstaculoNulo obstaculo = new ObstaculoNulo();
 
-		assertEquals(0, obstaculo.getPenalizacion(new Moto()));
+		assertEquals(0, obstaculo.aplicarPenalizacion(new Moto(), 0));
 	}
 
 	@Test

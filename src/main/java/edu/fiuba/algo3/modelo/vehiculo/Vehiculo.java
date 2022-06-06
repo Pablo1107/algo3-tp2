@@ -9,7 +9,7 @@ public abstract class Vehiculo {
 		this.penalizaciones = 0;
 	}
 
-	public abstract void pisar(Obstaculo obstaculo);
+	public abstract boolean pisar(Obstaculo obstaculo);
 
 	public void reducirPena() {
 		this.penalizaciones--;

@@ -31,11 +31,12 @@ public class Jugador {
 			return;
 		}
 
-		this.posicion = nuevaPosicion;
-		this.movimientos++;
+		Obstaculo obstaculo = mapa.getElementoEnPosicion(nuevaPosicion);
+		if(this.vehiculo.pisar(obstaculo)) {
+			this.posicion = nuevaPosicion;
+			this.movimientos++;
+		}
 
-		Obstaculo obstaculo = mapa.getElementoEnPosicion(posicion);
-		this.vehiculo.pisar(obstaculo);
 	}
 
 	public int getPenalizaciones() {

@@ -6,8 +6,13 @@ import edu.fiuba.algo3.modelo.mapa.obstaculo.Pozo;
 public class CuatroXCuatro extends Vehiculo {
     private int pozosPisados;
 
-    public void pisar(Obstaculo obstaculo) {
-        this.penalizaciones += obstaculo.getPenalizacion(this);
+    public boolean pisar(Obstaculo obstaculo) {
+        //this.penalizaciones += obstaculo.getPenalizacion(this);
+        if(obstaculo.puedePasar(obstaculo)) {
+            this.penalizaciones = obstaculo.aplicarPenalizacion(this, this.penalizaciones);
+            return true;
+        }
+        return false;
     }
 
 //    public void pisar(Pozo pozo) {
