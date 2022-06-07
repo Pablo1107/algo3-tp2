@@ -12,20 +12,20 @@ public class ObstaculoNuloTest {
 	public void laPenalizacionDeUnObstaculoNuloParaUnaMotoEsCero() {
 		ObstaculoNulo obstaculo = new ObstaculoNulo();
 
-		assertEquals(0, obstaculo.getPenalizacion(new Moto()));
+		assertEquals(0, obstaculo.aplicarPenalizacion(new Moto()));
 	}
 
 	@Test
 	public void laPenalizacionDeUnObstaculoNuloParaUnAutoEsCero() {
 		ObstaculoNulo obstaculo = new ObstaculoNulo();
 
-		assertEquals(0, obstaculo.getPenalizacion(new Auto()));
+		assertEquals(0, obstaculo.aplicarPenalizacion(new Auto()));
 	}
 
 	@Test
 	public void laPenalizacionDeUnObstaculoNuloParaUnCuatroXCuatroEsCero() {
 		ObstaculoNulo obstaculo = new ObstaculoNulo();
 
-		assertEquals(0, obstaculo.getPenalizacion(new CuatroXCuatro()));
+		assertEquals(0, obstaculo.aplicarPenalizacion(new CuatroXCuatro()));
 	}
 }

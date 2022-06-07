@@ -5,15 +5,15 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class ObstaculoNulo extends Obstaculo {
-    public int getPenalizacion(Moto moto) {
+    public int aplicarPenalizacion(Moto moto) {
         return 0;
     }
 
-    public int getPenalizacion(Auto auto) {
+    public int aplicarPenalizacion(Auto auto) {
         return 0;
     }
 
-    public int getPenalizacion(CuatroXCuatro auto) {
+    public int aplicarPenalizacion(CuatroXCuatro auto) {
         return 0;
     }
 }
