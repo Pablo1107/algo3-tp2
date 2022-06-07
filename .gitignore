@@ -16,3 +16,5 @@ buildNumber.properties
 .settings/
 .attach_pid*
 .envrc
+*.bbl
+*.tex

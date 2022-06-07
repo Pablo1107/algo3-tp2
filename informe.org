@@ -1,0 +1,220 @@
+#+LANGUAGE: es
+#+OPTIONS: toc:nil title:nil
+
+#+LATEX_CLASS_OPTIONS: [titlepage,a4paper]
+#+LATEX_HEADER_EXTRA: \hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true}
+#+LATEX_HEADER_EXTRA: \usepackage{a4wide}
+#+LATEX_HEADER_EXTRA: \usepackage{bookmark}
+#+LATEX_HEADER_EXTRA: \usepackage{fancyhdr}
+#+LATEX_HEADER_EXTRA: \usepackage[spanish]{babel}
+#+LATEX_HEADER_EXTRA: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER_EXTRA: \usepackage[T1]{fontenc}
+#+LATEX_HEADER_EXTRA: \usepackage{graphicx}
+#+LATEX_HEADER_EXTRA: \usepackage{float}
+#+LATEX_HEADER_EXTRA: \usepackage{minted}
+#+LATEX_HEADER_EXTRA: \usepackage{svg}
+#+LATEX_HEADER_EXTRA: \pagestyle{fancy}
+#+LATEX_HEADER_EXTRA: \fancyhf{}
+#+LATEX_HEADER_EXTRA: \fancyhead[L]{TP3 - Grupo 1}
+#+LATEX_HEADER_EXTRA: \fancyhead[R]{Teoria de Algoritmos I - FIUBA}
+#+LATEX_HEADER_EXTRA: \renewcommand{\headrulewidth}{0.4pt}
+#+LATEX_HEADER_EXTRA: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER_EXTRA: \renewcommand{\footrulewidth}{0.4pt}
+#+LATEX_HEADER_EXTRA: \usemintedstyle{stata-light}
+#+LATEX_HEADER_EXTRA: \newminted{c}{bgcolor={rgb}{0.95,0.95,0.95}}
+#+LATEX_HEADER_EXTRA: \usepackage{color}
+#+LATEX_HEADER_EXTRA: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER_EXTRA: \usepackage{fancyvrb}
+#+LATEX_HEADER_EXTRA: \fvset{framesep=1mm,fontfamily=courier,fontsize=\scriptsize,numbers=left,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
+#+LATEX_HEADER_EXTRA: \usepackage[nottoc]{tocbibind}
+
+#+NAME: setup
+#+BEGIN_SRC emacs-lisp :results silent :exports none
+  (setq org-latex-minted-options
+    '(("bgcolor" "bg")))
+#+END_SRC
+
+#+BEGIN_EXPORT latex
+\begin{titlepage}
+    \hfill\includegraphics[width=6cm]{assets/logofiuba.jpg}
+    \centering
+    \vfill
+    \Huge \textbf{Trabajo Práctico 2 — GPS Challenge}
+    \vskip2cm
+    \Large [75.07/95.02] Algoritmos y Programación III \\
+    Primer cuatrimestre de 2022\\
+    \vfill
+    \begin{tabular}{ | l | l | l | }
+      \hline
+      Alumno & Padron & Email \\ \hline
+      CASTILLO, Carlos & 1XXXXX & ccastillo@fi.uba.ar \\ \hline
+      DEALBERA, Pablo Andres & 106585 & pdealbera@fi.uba.ar \\ \hline
+      DUARTE, Luciano & 105604 & lduarte@fi.uba.ar \\ \hline
+      RECCHIA, Ramiro & 99289 & rrecchia@fi.uba.ar \\ \hline
+    \end{tabular}
+    \vfill
+    \begin{tabular}{ | l | l | }
+      \hline
+      Corrector & Email \\ \hline
+      GOMEZ, Joaquin & gjoaquin@fi.uba.ar \\ \hline
+      VALDEZ, Santiago & vsantiago@fi.uba.ar \\ \hline
+    \end{tabular}
+    \vfill
+    \begin{tabular}{ | l | l | }
+      \hline
+      Entrega: & 1 \\ \hline
+      Fecha: & Martes 07 de Junio del 2022 \\ \hline
+    \end{tabular}
+    \vfill
+    \vfill
+\end{titlepage}
+\tableofcontents
+\newpage
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+#+END_EXPORT
+
+* Supuestos
+# Documentar todos los supuestos hechos sobre el enunciado. Asegurarse de validar con los docentes.
+
+* Diagramas de clases
+# Varios diagramas de clases, mostrando la relación estática entre las clases. Pueden agregar todo el texto necesario para aclarar y explicar su diseño de manera tal que el modelo logre comunicarse de manera efectiva.
+
+#+begin_src plantuml :file assets/diagrama-clases.png
+class Juego {
+	+ jugar()
+	+ obtenerDireccion() : Coordenada
+	+ estaEnCurso() : bool
+}
+
+Juego --> Jugador
+Juego --> Mapa
+
+class Jugador {
+	- movimientosRealizados : int
+
+	' Igual podemos ver si un movimiento puede ser una clase. Asi por ejemplo
+	' podriamos reconstruir el camino recorrido, porque cada movimiento en vez
+	' de solo ser un valor, podria guardar su direccion y todo.
+	+ agregarMovimientos(penalizacion : int)
+	+ mover(mapa : Mapa, direccion : Coordenada)
+	+ setPosicion(nuevaPosicion : Posicion)
+}
+
+Jugador -> Coordenada
+Jugador --> Moto
+
+class Moto {
+	+ mover(mapa : Mapa)
+}
+
+class Mapa {
+	+ elementoEnPosicion(posicion : Posicion) : Pozo
+	+ posicionEstaDentroDeLimites(posicion : Posicion)
+}
+
+class Coordenada {
+	- x : int
+	- y : int
+
+	+ getX() : int
+	+ getY() : int
+}
+
+class Pozo {
+	+ penalizacionMoto() : int
+}
+
+Mapa "1" *-- "*" Pozo
+#+end_src
+
+#+RESULTS:
+[[file:assets/diagrama-clases.png]]
+
+* Diagramas de secuencia
+# Varios diagramas de secuencia, mostrando la relación dinámica entre distintos objetos planteando una gran cantidad de escenarios que contemplen las secuencias más interesantes del modelo.
+
+#+begin_src plantuml :file assets/diagrama-secuencia.png
+actor Usuario
+participant Juego
+participant Jugador
+participant Moto
+participant "mapa: Mapa" as mapa
+participant "elementoEnPosicion: Pozo" as pozo
+
+Usuario -> Juego ++ : jugar()
+loop enCurso
+	Juego -> Juego ++ : obtenerDireccion()
+	' direccion = new Coordenada(...), esto es lo que obtendriamos del input.
+	return direccion
+
+	Juego -> Jugador ++ : mover(self.mapa, direccion)
+	' nuevaPosicion = jugador.posicion.moverEnDireccion(direccion)
+	Jugador -> mapa ++ : posicionEstaDentroDeLimites(nuevaPosicion)
+	return true
+
+	Jugador -> Jugador : setPosicion(nuevaPosicion)
+	Jugador -> Moto ++ : evaluarPenalizacion(self.posicion, mapa)
+	' evaluarPenalizacion() a falta de un mejor nombre...
+	Moto -> mapa ++ : elementoEnPosicion(posicion)
+	return elementoEnPosicion
+
+	' De alguna forma ya sea desde mapa o desde moto (tiene mas sentido desde
+	' moto), la moto se da cuenta de que obstaculo tiene abajo y evalua su
+	' penalizacion. (Ahorita solo estoy pensando en las penalizaciones, luego veo
+	' todo lo de recompensas).
+	'
+	' Igual ahora que se me ocurre cada obstaculo puede tener un metodo tipo:
+	' Pozo.penalizacionMoto() o algo asi.
+	' Asi llamamos a este metodo:
+	' Moto.evaluarPenalizacion() {
+	' 	elementoEnPosicion = Pozo()....
+	' 	elementoEnPosicion.penalizacionMoto()
+	' }
+	'
+	' Auto.evaluarPenalizacion() {
+	' 	elementoEnPosicion = Piquete()....
+	' 	elementoEnPosicion.penalizacionAuto()
+	' }
+	'
+	' Igual va a tener que cambiar cuando metamos los boosters, porque pues, aqui
+	' estamos llamando a un metodo para penalizaciones, asi que pues no tiene
+	' sentido tener dos metodos por tipo de vehiculo, todos metidos en un
+	' obstaculo. Pero por ahora me basta.
+	
+	Moto -> pozo ++ : penalizacionMoto()
+	return 3
+
+	' Penalizacion tambien puede ser 0.
+	return penalizacion
+
+	Jugador -> Jugador : agregarMovimientos(penalizacion)
+
+	return
+
+	Juego -> Juego ++ : estaEnCurso()
+	' Aqui se ve si el jugador ya llego a la meta.
+	return true/false
+end
+return
+
+' NOTE: Agregar el retorno de los movimientos luego de mover un vehiculo.
+#+end_src
+
+#+RESULTS:
+[[file:assets/diagrama-secuencia.png]]
+
+* Diagrama de paquetes
+# Incluir un diagrama de paquetes UML para mostrar el acoplamiento de su trabajo.
+
+* Diagramas de estado
+# Incluir diagramas de estados, mostrando tanto los estados como  las distintas transiciones para varias entidades del modelo.
+
+* Detalles de implementación
+# Deben detallar/explicar qué estrategias utilizaron para resolver todos los puntos más conflictivos del trabajo práctico. Justificar el uso de herencia vs. delegación, mencionar que principio de diseño aplicaron en qué caso y mencionar qué patrones de diseño fueron utilizados y por qué motivos.
+
+# IMPORTANTE
+# No describir el concepto de herencia, delegación, principio de diseño o patrón de diseño. Solo justificar su utilización.
+
+* Excepciones
+# Explicar las excepciones creadas, con qué fin fueron creadas y cómo y dónde se las atrapa explicando qué acciones se toman al respecto una vez capturadas.
+
