@@ -33,7 +33,7 @@ public class Jugador {
 		this.movimientos++;
 
 		Obstaculo obstaculo = mapa.getElementoEnPosicion(posicion);
-		this.vehiculo.pisar(obstaculo);
+		obstaculo.chocarCon(this.vehiculo);
 	}
 
 	public Posicion getPosicion() {
