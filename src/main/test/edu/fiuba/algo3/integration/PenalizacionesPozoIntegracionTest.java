@@ -17,7 +17,7 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class PenalizacionesPozoIntegracionTest {
 	@Test
-	public void unaMotoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTrunos() {
+	public void unaMotoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTurnos() {
 		Moto moto = new Moto();
 		Jugador jugador = new Jugador(new Posicion(0, 0), moto);
 		Mapa mapa = new Mapa(10, 10);
@@ -40,7 +40,7 @@ public class PenalizacionesPozoIntegracionTest {
 	}
 
 	@Test
-	public void unAutoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTrunos() {
+	public void unAutoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTurnos() {
 		Auto auto = new Auto();
 		Jugador jugador = new Jugador(new Posicion(0, 0), auto);
 		Mapa mapa = new Mapa(10, 10);
@@ -80,7 +80,7 @@ public class PenalizacionesPozoIntegracionTest {
 	}
 
 	@Test
-	public void unCuatroXCuatroSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteDosTrunos() {
+	public void unCuatroXCuatroSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteDosTurnos() {
 		CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
 		Jugador jugador = new Jugador(new Posicion(0, 0), cuatroXCuatro);
 		Mapa mapa = new Mapa(10, 10);
