@@ -97,11 +97,9 @@ public class PenalizacionesPozoIntegracionTest {
 
 		jugador.mover(new Direccion(1, 0), mapa);
 		assertTrue(cuatroXCuatro.tienePenalizaciones());
-		assertEquals(2, cuatroXCuatro.getPenalizaciones());
 
 		jugador.mover(new Direccion(1, 0), mapa);
 		assertTrue(cuatroXCuatro.tienePenalizaciones());
-		assertEquals(1, cuatroXCuatro.getPenalizaciones());
 
 		jugador.mover(new Direccion(1, 0), mapa);
 		assertFalse(cuatroXCuatro.tienePenalizaciones());

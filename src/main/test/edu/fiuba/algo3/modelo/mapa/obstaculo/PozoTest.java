@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.mapa.obstaculo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
+import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import org.junit.jupiter.api.Test;
 
@@ -10,22 +12,20 @@ public class PozoTest {
 	public void laPenalizacionDeUnPozoParaUnaMotoEsCero() {
 		Pozo obstaculo = new Pozo();
 
-		assertEquals(3, obstaculo.getPenalizacion(new Moto()));
+		assertEquals(3, obstaculo.aplicarPenalizacion(new Moto()));
 	}
 
 	@Test
 	public void laPenalizacionDeUnPozoParaUnAutoEsCero() {
 		Pozo obstaculo = new Pozo();
 
-		// Aqui realmente deberia depender de la cantidad de pozos que se
-		// hayan pasado antes, pero no se ha implementado eso aun.
-//		assertEquals(3, obstaculo.getPenalizacionAuto());
+		assertEquals(3, obstaculo.aplicarPenalizacion(new Auto()));
 	}
 
 	@Test
 	public void laPenalizacionDeUnPozoParaUnCuatroXCuatroEsCero() {
 		Pozo obstaculo = new Pozo();
 
-//		assertEquals(2, obstaculo.getPenalizacionCuatroXCuatro());
+		assertEquals(2, obstaculo.aplicarPenalizacion(new CuatroXCuatro()));
 	}
 }
