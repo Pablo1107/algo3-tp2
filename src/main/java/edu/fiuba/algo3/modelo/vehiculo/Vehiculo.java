@@ -27,4 +27,8 @@ public abstract class Vehiculo {
 	public boolean tienePenalizaciones() {
 		return this.penalizaciones > 0;
 	}
+
+	public int getPenalizaciones() {
+		return this.penalizaciones;
+	}
 }

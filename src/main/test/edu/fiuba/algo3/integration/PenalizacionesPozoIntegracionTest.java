@@ -80,28 +80,29 @@ public class PenalizacionesPozoIntegracionTest {
 	}
 
 	@Test
-	public void unCuatroXCuatroSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteDosTurnos() {
+	public void unCuatroXCuatroPisaTresPozosYNoSePuedeMoverPorLosSiguienteDosTurnos() {
 		CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
 		Jugador jugador = new Jugador(new Posicion(0, 0), cuatroXCuatro);
 		Mapa mapa = new Mapa(10, 10);
+		Direccion derecha = new Direccion(1,0);
 
 		mapa.setElementoEnPosicion(new Pozo(), new Posicion(1, 0));
 		mapa.setElementoEnPosicion(new Pozo(), new Posicion(2, 0));
 		mapa.setElementoEnPosicion(new Pozo(), new Posicion(3, 0));
 
-		jugador.mover(new Direccion(1, 0), mapa);
+		jugador.mover(derecha, mapa);
 		assertFalse(cuatroXCuatro.tienePenalizaciones());
 
-		jugador.mover(new Direccion(1, 0), mapa);
+		jugador.mover(derecha, mapa);
 		assertFalse(cuatroXCuatro.tienePenalizaciones());
 
-		jugador.mover(new Direccion(1, 0), mapa);
+		jugador.mover(derecha, mapa);
 		assertTrue(cuatroXCuatro.tienePenalizaciones());
 
-		jugador.mover(new Direccion(1, 0), mapa);
+		jugador.mover(derecha, mapa);
 		assertTrue(cuatroXCuatro.tienePenalizaciones());
 
-		jugador.mover(new Direccion(1, 0), mapa);
+		jugador.mover(derecha, mapa);
 		assertFalse(cuatroXCuatro.tienePenalizaciones());
 
 		assertEquals(new Posicion(3, 0), jugador.getPosicion());
