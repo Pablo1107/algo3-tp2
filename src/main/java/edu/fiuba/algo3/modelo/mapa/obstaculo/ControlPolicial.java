@@ -12,6 +12,10 @@ public class ControlPolicial extends Obstaculo {
 		vehiculo.pisar(this);
 	}
 
+	private int aplicarPenalizacionConProbabilidad(int probabilidad) {
+		return this.esPenalizado(probabilidad) ? 3 : 0;
+	}
+
 	public int aplicarPenalizacion(Moto moto) {
 		return this.aplicarPenalizacionConProbabilidad(8);
 	}
@@ -24,12 +28,8 @@ public class ControlPolicial extends Obstaculo {
 		return this.aplicarPenalizacionConProbabilidad(3);
 	}
 
-	private int aplicarPenalizacionConProbabilidad(int probabilidad) {
-		return this.esPenalizado(probabilidad) ? 3 : 0;
-	}
-
 	private boolean esPenalizado(int probabilidad) {
 		Random random = new Random();
-		return (random.nextInt(probabilidad) == 0) ? true : false;
+		return random.nextInt(probabilidad) == 0;
 	}
 }

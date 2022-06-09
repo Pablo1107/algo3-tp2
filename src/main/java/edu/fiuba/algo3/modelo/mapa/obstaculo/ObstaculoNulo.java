@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class ObstaculoNulo extends Obstaculo {
     public void chocarCon(Vehiculo vehiculo) {
-        return;
+        vehiculo.pisar(this);
     }
 
     public int aplicarPenalizacion(Moto moto) {
