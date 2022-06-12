@@ -18,6 +18,7 @@ public class Jugador {
     }
 
 	public void mover(Direccion direccion, Mapa mapa) {
+        // Idea: que obstaculo retorne una nueva posicion. El vehiculo conoce sus penalizaciones.
 		if (this.vehiculo.tienePenalizaciones()) {
 			this.vehiculo.reducirPenalizaciones();
 			return;
@@ -32,7 +33,7 @@ public class Jugador {
 		this.posicion = nuevaPosicion;
 		this.movimientos++;
 
-		IChocable elemento = mapa.getElementoEnPosicion(posicion);
+		Elemento elemento = mapa.getElementoEnPosicion(posicion);
 
 		//elemento.chocarCon(this.vehiculo);
 		elemento.chocarCon(this);
