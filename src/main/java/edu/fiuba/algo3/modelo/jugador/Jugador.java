@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.mapa.Direccion;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.elemento.IChocable;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {

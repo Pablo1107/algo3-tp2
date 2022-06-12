@@ -3,8 +3,8 @@ package edu.fiuba.algo3.modelo.mapa;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.ObstaculoNulo;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
+import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
 
 public class Mapa {
 	int limiteX;
@@ -48,8 +48,8 @@ public class Mapa {
         return true;
 	}
 
-	public Obstaculo getElementoEnPosicion(Posicion posicion) {
-        return new ObstaculoNulo();
+	public Elemento getElementoEnPosicion(Posicion posicion) {
+        return new ElementoNulo(posicion);
 	}
 
 	public boolean posicionEstaDentroDelMapa(Posicion posicion) {
