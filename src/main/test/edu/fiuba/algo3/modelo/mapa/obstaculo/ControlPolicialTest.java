@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class ControlPolicialTest {
-	@Test
+	/*@Test
 	public void laPenalizacionDeUnPozoParaUnaMotoEsCeroOTres() {
 		ControlPolicial controlPolicial = new ControlPolicial();
 
@@ -32,5 +32,5 @@ public class ControlPolicialTest {
 
 		int penalizacion = controlPolicial.aplicarPenalizacion(new CuatroXCuatro());
 		assertTrue(penalizacion == 3 || penalizacion == 0);
-	}
+	}*/
 }

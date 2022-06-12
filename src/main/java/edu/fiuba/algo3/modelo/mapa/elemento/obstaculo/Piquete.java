@@ -1,35 +1,34 @@
-package edu.fiuba.algo3.modelo.mapa.elemento;
+package edu.fiuba.algo3.modelo.mapa.elemento.obstaculo;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
-public class ElementoNulo extends Elemento {
-    public ElementoNulo(Posicion posicion) {
+public class Piquete extends Obstaculo {
+    public Piquete(Posicion posicion) {
         super(posicion);
     }
-
-    /*public void chocarCon(Vehiculo vehiculo) {
-        vehiculo.pisar(this);
-    }*/
+	/*public void chocarCon(Vehiculo vehiculo) {
+		vehiculo.pisar(this);
+	}*/
 
     @Override
     public void chocarCon(Jugador jugador) {
-        return;
+        jugador.getVehiculo().pisar(this);
     }
 
     public int aplicarPenalizacion(Moto moto) {
-        return 0;
+        return 2;
     }
 
     public int aplicarPenalizacion(Auto auto) {
         return 0;
     }
 
-    public int aplicarPenalizacion(CuatroXCuatro auto) {
+    public int aplicarPenalizacion(CuatroXCuatro cuatroXCuatro) {
         return 0;
     }
+
 }
