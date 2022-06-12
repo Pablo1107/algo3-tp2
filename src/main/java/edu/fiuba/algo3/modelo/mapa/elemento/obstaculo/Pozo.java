@@ -1,13 +1,19 @@
-package edu.fiuba.algo3.modelo.mapa.obstaculo;
+package edu.fiuba.algo3.modelo.mapa.elemento.obstaculo;
 
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Pozo extends Obstaculo {
-	public void chocarCon(Vehiculo vehiculo) {
+	/*public void chocarCon(Vehiculo vehiculo) {
 		vehiculo.pisar(this);
+	}*/
+
+	@Override
+	public void chocarCon(Jugador jugador) {
+		jugador.getVehiculo().pisar(this);
 	}
 
 	public int aplicarPenalizacion(Moto moto) {

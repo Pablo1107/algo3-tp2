@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.mapa.obstaculo;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.ControlPolicial;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
