@@ -30,14 +30,12 @@ public class Jugador {
 			return;
 		}
 
-		this.posicion = nuevaPosicion;
 		this.movimientos++;
-
+		this.posicion = nuevaPosicion;
 		Elemento elemento = mapa.getElementoEnPosicion(posicion);
 
 		//elemento.chocarCon(this.vehiculo);
 		elemento.chocarCon(this);
-
 	}
 
 	public Posicion getPosicion() {

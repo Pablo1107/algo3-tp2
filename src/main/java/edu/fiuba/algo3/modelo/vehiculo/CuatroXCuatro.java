@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.vehiculo;
 
 import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Piquete;
 import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
 
 public class CuatroXCuatro extends Vehiculo {
@@ -21,6 +22,11 @@ public class CuatroXCuatro extends Vehiculo {
 		this.pisar((Obstaculo)pozo);
 		this.pozosPisados = 0;
    }
+
+	@Override
+	public void pisar(Piquete piquete) {
+
+	}
 
 	public void pisar(ControlPolicial controlPolicial) {
 		this.pisar((Obstaculo)controlPolicial);
