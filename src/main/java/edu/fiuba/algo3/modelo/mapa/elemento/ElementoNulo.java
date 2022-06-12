@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
-public class ElementoNulo implements IChocable {
+public class ElementoNulo extends Elemento {
     /*public void chocarCon(Vehiculo vehiculo) {
         vehiculo.pisar(this);
     }*/
