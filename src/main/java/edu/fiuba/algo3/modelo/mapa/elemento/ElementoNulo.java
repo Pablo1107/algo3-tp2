@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.mapa.obstaculo;
+package edu.fiuba.algo3.modelo.mapa.elemento.obstaculo;
 
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
