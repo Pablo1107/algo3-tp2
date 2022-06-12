@@ -39,17 +39,15 @@ public class Mapa {
 			throw new RuntimeException("No se puede posicionar un elemento fuera del mapa");
 		}
 
-		if (hayElementoEnPosicion(posicion)) {
-			return;
-		}
-	}
-
-	private boolean hayElementoEnPosicion(Posicion posicion) {
-        return true;
 	}
 
 	public Elemento getElementoEnPosicion(Posicion posicion) {
-        return new ElementoNulo(posicion);
+        for(Elemento e : this.elementos) {
+			if(e.estaEnLaMismaPosicion(posicion)) {
+				return e;
+			}
+		}
+		return new ElementoNulo(posicion);
 	}
 
 	public boolean posicionEstaDentroDelMapa(Posicion posicion) {

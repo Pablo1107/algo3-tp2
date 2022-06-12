@@ -37,6 +37,7 @@ public class Jugador {
 
 		//elemento.chocarCon(this.vehiculo);
 		elemento.chocarCon(this);
+
 	}
 
 	public Posicion getPosicion() {
@@ -49,7 +50,11 @@ public class Jugador {
 
 	public Vehiculo getVehiculo() {return this.vehiculo; }
 
-	public void premioMovimientos() {
-		this.movimientos = (int) (this.movimientos - this.movimientos*0.2);
+	public void premioMovimientos(double porcentajePremio) {
+		this.movimientos = (int) (this.movimientos - this.movimientos * porcentajePremio);
+	}
+
+	public void castigoMovimientos(double porcentajeCastigo) {
+		this.movimientos = (int) (this.movimientos + this.movimientos * porcentajeCastigo);
 	}
 }

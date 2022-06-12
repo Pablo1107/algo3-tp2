@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import org.junit.jupiter.api.Test;
 
 public class PozoTest {
-	@Test
+	/*@Test
 	public void laPenalizacionDeUnPozoParaUnaMotoEsCero() {
 		Pozo obstaculo = new Pozo();
 
@@ -28,5 +28,5 @@ public class PozoTest {
 		Pozo obstaculo = new Pozo();
 
 		assertEquals(2, obstaculo.aplicarPenalizacion(new CuatroXCuatro()));
-	}
+	}*/
 }
