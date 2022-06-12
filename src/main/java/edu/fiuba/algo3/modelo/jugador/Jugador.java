@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.mapa.elemento.IChocable;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
@@ -32,8 +32,10 @@ public class Jugador {
 		this.posicion = nuevaPosicion;
 		this.movimientos++;
 
-		Obstaculo obstaculo = mapa.getElementoEnPosicion(posicion);
-		obstaculo.chocarCon(this.vehiculo);
+		IChocable elemento = mapa.getElementoEnPosicion(posicion);
+
+		//elemento.chocarCon(this.vehiculo);
+		elemento.chocarCon(this);
 	}
 
 	public Posicion getPosicion() {
@@ -42,5 +44,11 @@ public class Jugador {
 
 	public int getMovimientos() {
 		return this.movimientos;
+	}
+
+	public Vehiculo getVehiculo() {return this.vehiculo; }
+
+	public void premioMovimientos() {
+		this.movimientos = (int) (this.movimientos - this.movimientos*0.2);
 	}
 }

@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo.vehiculo;
 
-import edu.fiuba.algo3.modelo.mapa.obstaculo.ControlPolicial;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.ObstaculoNulo;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.ControlPolicial;
+import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.mapa.elemento.sorpresa.Desfavorable;
+import edu.fiuba.algo3.modelo.mapa.elemento.sorpresa.Favorable;
 
 public abstract class Vehiculo {
 	protected int penalizaciones;
@@ -11,7 +13,7 @@ public abstract class Vehiculo {
 		this.penalizaciones = 0;
 	}
 
-	public void pisar(ObstaculoNulo obstaculoNulo) {
+	public void pisar(ElementoNulo elementoNulo) {
 		return;
 	}
 
@@ -31,4 +33,14 @@ public abstract class Vehiculo {
 	public int getPenalizaciones() {
 		return this.penalizaciones;
 	}
+
+	public void pisar(Favorable favorable) {
+
+	}
+
+	public void pisar(Desfavorable desfavorable) {
+
+	}
+
+
 }

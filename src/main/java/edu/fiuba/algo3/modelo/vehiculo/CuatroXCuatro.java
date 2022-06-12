@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.vehiculo;
 
-import edu.fiuba.algo3.modelo.mapa.obstaculo.ControlPolicial;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.Obstaculo;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.ObstaculoNulo;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.ControlPolicial;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
 
 public class CuatroXCuatro extends Vehiculo {
     private int pozosPisados;

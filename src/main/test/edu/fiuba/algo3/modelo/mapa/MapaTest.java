@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.mapa.obstaculo.ObstaculoNulo;
-import edu.fiuba.algo3.modelo.mapa.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
 
 public class MapaTest {
 	@Test
@@ -77,7 +77,7 @@ public class MapaTest {
 	@Test
 	public void sePuedePosicionarUnElementoEnUnaPosicionVaciaDelMapaCorrectamente() {
 		Mapa mapa = new Mapa(20, 20);
-		ObstaculoNulo elemento = new ObstaculoNulo();
+		ElementoNulo elemento = new ElementoNulo();
 		Posicion posicion = new Posicion(5, 5);
 		
 		mapa.setElementoEnPosicion(elemento, posicion);
@@ -90,7 +90,7 @@ public class MapaTest {
 		Mapa mapa = new Mapa(2, 2);
 
 		Exception excepcion = assertThrows(RuntimeException.class, () -> {
-			mapa.setElementoEnPosicion(new ObstaculoNulo(), new Posicion(5, 5));
+			mapa.setElementoEnPosicion(new ElementoNulo(), new Posicion(5, 5));
 		});
 
 		String mensajeRecibido = excepcion.getMessage();
@@ -107,7 +107,7 @@ public class MapaTest {
 
 		mapa.setElementoEnPosicion(elemento, posicion);
 
-		mapa.setElementoEnPosicion(new ObstaculoNulo(), posicion);
+		mapa.setElementoEnPosicion(new ElementoNulo(), posicion);
 
 		assertTrue(mapa.getElementoEnPosicion(posicion) == elemento);
 	}
@@ -116,13 +116,13 @@ public class MapaTest {
 	public void alIntentarObtenerUnElementoEnUnaPosicionVaciaSeRetornaUnObstaculoNulo() {
 		Mapa mapa = new Mapa(20, 20);
 
-		assertEquals(mapa.getElementoEnPosicion(new Posicion(10, 10)).getClass(), ObstaculoNulo.class);
+		assertEquals(mapa.getElementoEnPosicion(new Posicion(10, 10)).getClass(), ElementoNulo.class);
 	}
 
 	@Test
 	public void alIntentarObtenerUnElementoEnUnaPosicionFueraDelMapaSeRetornaUnObstaculoNull() {
 		Mapa mapa = new Mapa(10, 10);
 
-		assertEquals(mapa.getElementoEnPosicion(new Posicion(20, 20)).getClass(), ObstaculoNulo.class);
+		assertEquals(mapa.getElementoEnPosicion(new Posicion(20, 20)).getClass(), ElementoNulo.class);
 	}
 }
