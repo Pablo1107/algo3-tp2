@@ -2,10 +2,6 @@ package edu.fiuba.algo3.modelo.mapa.elemento.sorpresa;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.vehiculo.Auto;
-import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
-import edu.fiuba.algo3.modelo.vehiculo.Moto;
-import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Favorable extends Sorpresa {
     private static final double PORCENAJE_PREMIO = 0.2;

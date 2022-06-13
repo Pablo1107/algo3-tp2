@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.vehiculo;
 
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
 import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Piquete;
@@ -34,4 +35,5 @@ public abstract class Vehiculo {
 		return this.penalizaciones;
 	}
 
+	public abstract void retroceder(Jugador jugador);
 }

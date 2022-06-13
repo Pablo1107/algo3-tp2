@@ -8,11 +8,13 @@ import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
 	private Posicion posicion;
+	private Posicion posicionAnterior;
 	private Vehiculo vehiculo;
 	private int movimientos;
 
     public Jugador(Posicion posicionInicial, Vehiculo vehiculo) {
 		this.posicion = posicionInicial;
+		this.posicionAnterior = posicionInicial;
 		this.vehiculo = vehiculo;
 		this.movimientos = 0;
     }
@@ -32,14 +34,23 @@ public class Jugador {
 
 		this.movimientos++;
 		this.posicion = nuevaPosicion;
+
 		Elemento elemento = mapa.getElementoEnPosicion(posicion);
 
-		//elemento.chocarCon(this.vehiculo);
 		elemento.chocarCon(this);
+
 	}
 
 	public Posicion getPosicion() {
 		return this.posicion;
+	}
+
+	public void setPosicion(Posicion posicion) {
+		this.posicion = posicion;
+	}
+
+	public Posicion getPosicionAnterior() {
+		return this.posicionAnterior;
 	}
 
 	public int getMovimientos() {
