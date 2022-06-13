@@ -3,7 +3,8 @@ package edu.fiuba.algo3.modelo.mapa;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MapaTest {
     @Test
@@ -67,13 +68,26 @@ public class MapaTest {
     @Test
     public void noSePuedePosicionarUnElementoFueraDelMapa() {
         Mapa mapa = new Mapa(2, 2);
-        Posicion posicion = new Posicion(5, 5);
-        Elemento elemento = new Pozo(posicion);
 
+        Posicion posicionExcedenteEnX = new Posicion(5, 1);
+        Elemento elemento = new Pozo(posicionExcedenteEnX);
         mapa.agregarElemento(elemento);
 
-        Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
+        Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicionExcedenteEnX);
+        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
 
+        Posicion posicionExcedenteEnY = new Posicion(1, 5);
+        elemento = new Pozo(posicionExcedenteEnY);
+        mapa.agregarElemento(elemento);
+
+        elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicionExcedenteEnX);
+        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
+
+        Posicion posicionExcedenteEnXeY = new Posicion(5, 5);
+        elemento = new Pozo(posicionExcedenteEnXeY);
+        mapa.agregarElemento(elemento);
+
+        elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicionExcedenteEnXeY);
         assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
     }
 

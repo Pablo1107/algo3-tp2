@@ -6,9 +6,9 @@ import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
+    private final Vehiculo vehiculo;
     private Posicion posicion;
     private Posicion posicionAnterior;
-    private Vehiculo vehiculo;
     private int movimientos;
 
     public Jugador(Posicion posicionInicial, Vehiculo vehiculo) {
@@ -41,12 +41,12 @@ public class Jugador {
         return this.movimientos;
     }
 
-    public void retroceder() {
-        this.posicion = this.posicionAnterior;
-    }
-
     public void setMovimientos(int movimientos) {
         this.movimientos = movimientos;
+    }
+
+    public void retroceder() {
+        this.posicion = this.posicionAnterior;
     }
 
     public Vehiculo getVehiculo() {
