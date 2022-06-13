@@ -1,24 +1,36 @@
 package edu.fiuba.algo3.modelo.mapa.obstaculo;
 
-public class PozoTest {
-	/*@Test
-	public void laPenalizacionDeUnPozoParaUnaMotoEsCero() {
-		Pozo obstaculo = new Pozo();
+import edu.fiuba.algo3.modelo.mapa.Posicion;
+import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
+import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.modelo.vehiculo.Moto;
+import org.junit.jupiter.api.Test;
 
-		assertEquals(3, obstaculo.aplicarPenalizacion(new Moto()));
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PozoTest {
+	@Test
+	public void laPenalizacionDeUnPozoParaUnaMotoEsCero() {
+        Posicion posicion = new Posicion(5, 5);
+		Pozo pozo = new Pozo(posicion);
+
+		assertEquals(3, pozo.aplicarPenalizacion(new Moto()));
 	}
 
 	@Test
 	public void laPenalizacionDeUnPozoParaUnAutoEsCero() {
-		Pozo obstaculo = new Pozo();
+		Posicion posicion = new Posicion(5, 5);
+		Pozo pozo = new Pozo(posicion);
 
-		assertEquals(3, obstaculo.aplicarPenalizacion(new Auto()));
+		assertEquals(3, pozo.aplicarPenalizacion(new Auto()));
 	}
 
 	@Test
 	public void laPenalizacionDeUnPozoParaUnCuatroXCuatroEsCero() {
-		Pozo obstaculo = new Pozo();
+		Posicion posicion = new Posicion(5, 5);
+		Pozo pozo = new Pozo(posicion);
 
-		assertEquals(2, obstaculo.aplicarPenalizacion(new CuatroXCuatro()));
-	}*/
+		assertEquals(2, pozo.aplicarPenalizacion(new CuatroXCuatro()));
+	}
 }
