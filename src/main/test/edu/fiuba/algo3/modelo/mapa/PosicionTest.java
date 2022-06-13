@@ -14,9 +14,9 @@ public class PosicionTest {
         Mapa mapa = new Mapa(20, 20);
 
         Posicion posicionEsperada = new Posicion(15, 17);
-        Posicion posicionLlegada = posicionInicial.desplazar(direccion, mapa);
+        Posicion posicionActual = posicionInicial.desplazar(direccion, mapa);
 
-        assertEquals(posicionLlegada, posicionEsperada);
+        assertEquals(posicionEsperada, posicionActual);
     }
 
     @Test
@@ -37,9 +37,8 @@ public class PosicionTest {
     @Test
     public void dadaUnaPosicionYOtroObjetoCualqueiraNoSonComparablesEntreSi() {
         Posicion posicion = new Posicion(10, 10);
-        Direccion direccion = new Direccion(10, 10);
+        Posicion direccion = new Posicion(10, 10);
 
         assertNotEquals(posicion, direccion);
     }
-
 }

@@ -1,16 +1,17 @@
 package edu.fiuba.algo3.modelo.vehiculo;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.ControlPolicial;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Obstaculo;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Piquete;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 
 public class Auto extends Vehiculo {
     private void pisar(Obstaculo obstaculo) {
         this.penalizaciones += obstaculo.aplicarPenalizacion(this);
     }
 
+    @Override
     public void pisar(Pozo pozo) {
         this.pisar((Obstaculo) pozo);
     }
@@ -20,6 +21,7 @@ public class Auto extends Vehiculo {
         this.pisar((Obstaculo) piquete);
     }
 
+    @Override
     public void pisar(ControlPolicial controlPolicial) {
         this.pisar((Obstaculo) controlPolicial);
     }

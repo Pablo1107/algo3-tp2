@@ -17,13 +17,13 @@ public class PenalizacionesObstaculoNuloIntegracionTest {
         Jugador jugador = new Jugador(new Posicion(0, 0), moto);
         Mapa mapa = new Mapa(10, 10);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(moto.tienePenalizaciones());
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(moto.tienePenalizaciones());
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(moto.tienePenalizaciones());
     }
 
@@ -33,13 +33,13 @@ public class PenalizacionesObstaculoNuloIntegracionTest {
         Jugador jugador = new Jugador(new Posicion(0, 0), auto);
         Mapa mapa = new Mapa(10, 10);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(auto.tienePenalizaciones());
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(auto.tienePenalizaciones());
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(auto.tienePenalizaciones());
     }
 
@@ -49,13 +49,13 @@ public class PenalizacionesObstaculoNuloIntegracionTest {
         Jugador jugador = new Jugador(new Posicion(0, 0), cuatroXCuatro);
         Mapa mapa = new Mapa(10, 10);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(cuatroXCuatro.tienePenalizaciones());
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(cuatroXCuatro.tienePenalizaciones());
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertFalse(cuatroXCuatro.tienePenalizaciones());
     }
 }
