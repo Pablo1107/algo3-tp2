@@ -14,7 +14,7 @@ public class Favorable extends Sorpresa {
     public void chocarCon(Jugador jugador) {
         int movimientosJugador = jugador.getMovimientos();
         double movimientosDescontados = this.calcularMovimientosDescontados(movimientosJugador);
-        int movimientosActuales = (int)(movimientosJugador - movimientosDescontados);
+        int movimientosActuales = (int) (movimientosJugador - movimientosDescontados);
 
         jugador.setMovimientos(movimientosActuales);
     }
