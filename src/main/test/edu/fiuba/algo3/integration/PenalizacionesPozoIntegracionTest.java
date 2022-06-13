@@ -1,23 +1,10 @@
 package edu.fiuba.algo3.integration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.Direccion;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
-import edu.fiuba.algo3.modelo.vehiculo.Auto;
-import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
-import edu.fiuba.algo3.modelo.vehiculo.Moto;
-
 public class PenalizacionesPozoIntegracionTest {
-	@Test
-	public void unaMotoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTurnos() {
+    @Test
+    public void unaMotoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTurnos() {
         // 		Moto moto = new Moto();
         // 		Jugador jugador = new Jugador(new Posicion(0, 0), moto);
         // 		Mapa mapa = new Mapa(10, 10);
@@ -37,10 +24,10 @@ public class PenalizacionesPozoIntegracionTest {
         // 		assertFalse(moto.tienePenalizaciones());
         // 
         // 		assertEquals(new Posicion(1, 0), jugador.getPosicion());
-	}
+    }
 
-	@Test
-	public void unAutoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTurnos() {
+    @Test
+    public void unAutoSePosicionaSobreUnPozoYNoSePuedeMoverPorLosSiguienteTresTurnos() {
         // 		Auto auto = new Auto();
         // 		Jugador jugador = new Jugador(new Posicion(0, 0), auto);
         // 		Mapa mapa = new Mapa(10, 10);
@@ -60,10 +47,10 @@ public class PenalizacionesPozoIntegracionTest {
         // 		assertFalse(auto.tienePenalizaciones());
         // 
         // 		assertEquals(new Posicion(1, 0), jugador.getPosicion());
-	}
+    }
 
-	@Test
-	public void unCuatroXCuatroSePosicionaSobreUnPozoPorPrimeraYSegundaVezYNoRecibePenalizacion() {
+    @Test
+    public void unCuatroXCuatroSePosicionaSobreUnPozoPorPrimeraYSegundaVezYNoRecibePenalizacion() {
         // 		CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
         // 		Jugador jugador = new Jugador(new Posicion(0, 0), cuatroXCuatro);
         // 		Mapa mapa = new Mapa(10, 10);
@@ -77,10 +64,10 @@ public class PenalizacionesPozoIntegracionTest {
         // 		assertFalse(cuatroXCuatro.tienePenalizaciones());
         // 
         // 		assertEquals(new Posicion(2, 0), jugador.getPosicion());
-	}
+    }
 
-	@Test
-	public void unCuatroXCuatroPisaTresPozosYNoSePuedeMoverPorLosSiguienteDosTurnos() {
+    @Test
+    public void unCuatroXCuatroPisaTresPozosYNoSePuedeMoverPorLosSiguienteDosTurnos() {
         // 		CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
         // 		Jugador jugador = new Jugador(new Posicion(0, 0), cuatroXCuatro);
         // 		Mapa mapa = new Mapa(10, 10);
@@ -106,5 +93,5 @@ public class PenalizacionesPozoIntegracionTest {
         // 		assertFalse(cuatroXCuatro.tienePenalizaciones());
         // 
         // 		assertEquals(new Posicion(3, 0), jugador.getPosicion());
-	}
+    }
 }

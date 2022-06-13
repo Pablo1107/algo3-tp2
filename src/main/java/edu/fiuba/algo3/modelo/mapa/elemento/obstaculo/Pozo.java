@@ -7,27 +7,28 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class Pozo extends Obstaculo {
-	private final static int PENALIZACION_MOTO = 3;
-	private final static int PENALIZACION_AUTO = 3;
-	private final static int PENALIZACION_CUATROXCUATRO = 2;
-	public Pozo(Posicion posicion) {
-		super(posicion);
-	}
+    private final static int PENALIZACION_MOTO = 3;
+    private final static int PENALIZACION_AUTO = 3;
+    private final static int PENALIZACION_CUATROXCUATRO = 2;
 
-	@Override
-	public void chocarCon(Jugador jugador) {
-		jugador.getVehiculo().pisar(this);
-	}
+    public Pozo(Posicion posicion) {
+        super(posicion);
+    }
 
-	public int aplicarPenalizacion(Moto moto) {
-		return Pozo.PENALIZACION_MOTO;
-	}
+    @Override
+    public void chocarCon(Jugador jugador) {
+        jugador.getVehiculo().pisar(this);
+    }
 
-	public int aplicarPenalizacion(Auto auto) {
-		return Pozo.PENALIZACION_AUTO;
-	}
+    public int aplicarPenalizacion(Moto moto) {
+        return Pozo.PENALIZACION_MOTO;
+    }
 
-	public int aplicarPenalizacion(CuatroXCuatro cuatroXCuatro) {
-		return Pozo.PENALIZACION_CUATROXCUATRO;
-	}
+    public int aplicarPenalizacion(Auto auto) {
+        return Pozo.PENALIZACION_AUTO;
+    }
+
+    public int aplicarPenalizacion(CuatroXCuatro cuatroXCuatro) {
+        return Pozo.PENALIZACION_CUATROXCUATRO;
+    }
 }

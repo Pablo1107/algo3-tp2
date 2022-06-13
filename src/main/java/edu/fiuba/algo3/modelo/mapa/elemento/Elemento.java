@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.modelo.mapa;
+package edu.fiuba.algo3.modelo.mapa.elemento;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.mapa.Posicion;
 
 public abstract class Elemento {
     protected Posicion posicion;
@@ -17,5 +19,9 @@ public abstract class Elemento {
 
     public boolean estaEnLaMismaPosicion(Posicion posicion) {
         return this.posicion.equals(posicion);
+    }
+
+    public boolean estaEnLaMismaPosicion(Elemento elemento) {
+        return this.posicion.equals(elemento.posicion);
     }
 }

@@ -1,59 +1,55 @@
 package edu.fiuba.algo3.modelo.mapa;
 
+import edu.fiuba.algo3.modelo.mapa.elemento.Elemento;
+import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.mapa.Elemento;
-import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
-
 public class Mapa {
-	int limiteX;
-	int limiteY;
-	List<Elemento> elementos;
+    int limiteX;
+    int limiteY;
+    List<Elemento> elementos;
 
     public Mapa(int limiteX, int limiteY) {
-		if (limiteX <= 0 || limiteY <= 0) {
-			throw new RuntimeException("No se puede crear un mapa con dimensiones menores o iguales a 0");
-		}
+        if (limiteX <= 0 || limiteY <= 0) {
+            throw new RuntimeException("Dimensiones menores o iguales a cero");
+        }
 
-		this.limiteX = limiteX;
-		this.limiteY = limiteY;
-		this.elementos = new ArrayList<>();
+        this.limiteX = limiteX;
+        this.limiteY = limiteY;
+        this.elementos = new ArrayList<>();
     }
 
     public void agregarElemento(Elemento elemento) {
-        // Okay aqui puedo hacer dos cosas, o hago que directamente no
-        // se puedan crear elementos fuera del mapa (para lo cual
-        // necesitaria conocer el mapa al crear cada elemento), o
-        // hago que no se puedan agregar elementos que fueron creados
-        // fuera del mapa. Voy por la segunda ahora.
-
         if (!elemento.estaDentroDelMapa(this)) {
+            return;
+        }
+
+        if (this.hayElementoEnMismaPosicion(elemento)) {
+            return;
         }
 
         this.elementos.add(elemento);
     }
 
-	public void setElementoEnPosicion(Elemento elemento, Posicion posicion) {
-		if (!posicionEstaDentroDelMapa(posicion)) {
-			throw new RuntimeException("No se puede posicionar un elemento fuera del mapa");
-		}
+    private boolean hayElementoEnMismaPosicion(Elemento elemento) {
+        for (Elemento e : this.elementos) {
+            if (e.estaEnLaMismaPosicion(elemento)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	}
-
-	public Elemento getElementoEnPosicion(Posicion posicion) {
-        for(Elemento e : this.elementos) {
-			if(e.estaEnLaMismaPosicion(posicion)) {
-				return e;
-			}
-		}
-		return new ElementoNulo(posicion);
-	}
-
-	public boolean posicionEstaDentroDelMapa(Posicion posicion) {
-		return (0 <= posicion.getX() && posicion.getX() < limiteX) &&
-			(0 <= posicion.getY() && posicion.getY() < limiteY);
-	}
+    public Elemento obtenerElementoEnPosicion(Posicion posicion) {
+        for (Elemento e : this.elementos) {
+            if (e.estaEnLaMismaPosicion(posicion)) {
+                return e;
+            }
+        }
+        return new ElementoNulo(posicion);
+    }
 
     public int getLimiteX() {
         return this.limiteX;
