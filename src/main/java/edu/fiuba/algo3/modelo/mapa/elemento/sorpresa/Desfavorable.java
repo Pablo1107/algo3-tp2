@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.mapa.Posicion;
 
 public class Desfavorable extends Sorpresa {
     private static final double PORCENAJE_CASTIGO = 0.25;
+
     public Desfavorable(Posicion posicion) {
         super(posicion);
     }

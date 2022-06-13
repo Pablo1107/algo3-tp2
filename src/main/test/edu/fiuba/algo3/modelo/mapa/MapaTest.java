@@ -1,128 +1,97 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
-
+import edu.fiuba.algo3.modelo.mapa.elemento.Elemento;
 import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
 import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MapaTest {
-	@Test
-	public void noSePuedeCrearUnMapaConDimensionesNegativasNiNulas() {
-		Exception excepcion = assertThrows(RuntimeException.class, () -> {
-			new Mapa(-10, 10);
-		});
+    @Test
+    public void noSePuedeCrearUnMapaConDimensionesNegativas() {
+        Exception excepcion = assertThrows(RuntimeException.class, () -> {
+            new Mapa(-10, 10);
+        });
 
-		String mensajeRecibido = excepcion.getMessage();
-		String mensajeEsperado = "No se puede crear un mapa con dimensiones menores o iguales a 0";
-		assertEquals(mensajeRecibido, mensajeEsperado);
+        String mensajeRecibido = excepcion.getMessage();
+        String mensajeEsperado = "Dimensiones menores o iguales a cero";
 
-		excepcion = assertThrows(RuntimeException.class, () -> {
-			new Mapa(10, -10);
-		});
+        assertEquals(mensajeRecibido, mensajeEsperado);
 
-		mensajeRecibido = excepcion.getMessage();
-		mensajeEsperado = "No se puede crear un mapa con dimensiones menores o iguales a 0";
-		assertEquals(mensajeRecibido, mensajeEsperado);
+        excepcion = assertThrows(RuntimeException.class, () -> {
+            new Mapa(10, -10);
+        });
 
-		excepcion = assertThrows(RuntimeException.class, () -> {
-			new Mapa(-10, -10);
-		});
+        mensajeRecibido = excepcion.getMessage();
+        mensajeEsperado = "Dimensiones menores o iguales a cero";
 
-		mensajeRecibido = excepcion.getMessage();
-		mensajeEsperado = "No se puede crear un mapa con dimensiones menores o iguales a 0";
-		assertEquals(mensajeRecibido, mensajeEsperado);
-	}
+        assertEquals(mensajeRecibido, mensajeEsperado);
+    }
 
-	@Test
-	public void dadaUnaPosicionCuyasCooordenadasEstanDentroDeLosLimitesDelMapaEsaPosicionEstaDentroDelMapa() {
-		Mapa mapa = new Mapa(20, 20);
-		Posicion posicion = new Posicion(10, 10);
+    @Test
+    public void noSePuedeCrearUnMapaConDimensionesNulas() {
+        Exception excepcion = assertThrows(RuntimeException.class, () -> {
+            new Mapa(0, 0);
+        });
 
-		assertTrue(mapa.posicionEstaDentroDelMapa(posicion));
-	}
+        String mensajeRecibido = excepcion.getMessage();
+        String mensajeEsperado = "Dimensiones menores o iguales a cero";
 
-	@Test
-	public void dadaUnaPosicionConComponentesNegativasEsaPosicionNoEstaDentroDelMapa() {
-		Mapa mapa = new Mapa(20, 20);
+        assertEquals(mensajeRecibido, mensajeEsperado);
+    }
 
-		Posicion posicionNegativaEnX = new Posicion(-10, 10);
-		assertFalse(mapa.posicionEstaDentroDelMapa(posicionNegativaEnX));
+    @Test
+    public void sePuedeAgregarUnElementoCorrectamente() {
+        Mapa mapa = new Mapa(10, 10);
 
-		Posicion posicionNegativaEnY = new Posicion(10, -10);
-		assertFalse(mapa.posicionEstaDentroDelMapa(posicionNegativaEnY));
+        Posicion posicion = new Posicion(5, 5);
+        Elemento elemento = new ElementoNulo(posicion);
 
-		Posicion posicionNegativaEnXY = new Posicion(-10, -10);
-		assertFalse(mapa.posicionEstaDentroDelMapa(posicionNegativaEnXY));
-	}
+        mapa.agregarElemento(elemento);
 
-	@Test
-	public void dadaUnaPosicionCuyasComponentesExcedenLosLimitesDelMapaEsaPosicionNoEstaDentroDelMapa() {
-		Mapa mapa = new Mapa(20, 20);
+        assertEquals(mapa.obtenerElementoEnPosicion(posicion), elemento);
+    }
 
-		Posicion posicionInvalidaEnX = new Posicion(30, 5);
-		assertFalse(mapa.posicionEstaDentroDelMapa(posicionInvalidaEnX));
+    @Test
+    public void noSePuedePosicionarUnElementoFueraDelMapa() {
+        Mapa mapa = new Mapa(2, 2);
+        Posicion posicion = new Posicion(5, 5);
+        Elemento elemento = new Pozo(posicion);
 
-		Posicion posicionInvalidaEnY = new Posicion(5, 30);
-		assertFalse(mapa.posicionEstaDentroDelMapa(posicionInvalidaEnY));
+        mapa.agregarElemento(elemento);
 
-		Posicion posicionInvalidaEnXY = new Posicion(30, 30);
-		assertFalse(mapa.posicionEstaDentroDelMapa(posicionInvalidaEnXY));
-	}
+        Elemento elementoEnPosicionAgregada = mapa.obtenerElementoEnPosicion(posicion);
 
-	@Test
-	public void sePuedePosicionarUnElementoEnUnaPosicionVaciaDelMapaCorrectamente() {
-        // 		Mapa mapa = new Mapa(20, 20);
-        // 		ElementoNulo elemento = new ElementoNulo();
-        // 		Posicion posicion = new Posicion(5, 5);
-        // 		
-        // 		mapa.setElementoEnPosicion(elemento, posicion);
-        // 
-        // 		assertTrue(mapa.getElementoEnPosicion(posicion) == elemento);
-	}
+        assertEquals(elementoEnPosicionAgregada.getClass(), ElementoNulo.class);
+    }
 
-	@Test
-	public void noSePuedePosicionarUnElementoFueraDelMapa() {
-        // 		Mapa mapa = new Mapa(2, 2);
-        // 
-        // 		Exception excepcion = assertThrows(RuntimeException.class, () -> {
-        // 			mapa.setElementoEnPosicion(new ElementoNulo(), new Posicion(5, 5));
-        // 		});
-        // 
-        // 		String mensajeRecibido = excepcion.getMessage();
-        // 		String mensajeEsperado = "No se puede posicionar un elemento fuera del mapa";
-        // 
-        // 		assertEquals(mensajeRecibido, mensajeEsperado);
-	}
+    @Test
+    public void noSePuedePosicionarUnElementoEnUnaPosicionQueYaEsteOcupada() {
+        Mapa mapa = new Mapa(20, 20);
+        Posicion posicion = new Posicion(10, 10);
+        Elemento elementoQueYaEstaba = new Pozo(posicion);
 
-	@Test
-	public void noSePuedePosicionarUnElementoEnUnaPosicionDelMapaQueYaEsteOcupada() {
-        // 		Mapa mapa = new Mapa(20, 20);
-        // 		Posicion posicion = new Posicion(10, 10);
-        // 		Pozo elemento = new Pozo();
-        // 
-        // 		mapa.setElementoEnPosicion(elemento, posicion);
-        // 
-        // 		mapa.setElementoEnPosicion(new ElementoNulo(posicion), posicion);
-        // 
-        // 		assertTrue(mapa.getElementoEnPosicion(posicion) == elemento);
-	}
+        Elemento nuevoElemento = new Pozo(posicion);
 
-	@Test
-	public void alIntentarObtenerUnElementoEnUnaPosicionVaciaSeRetornaUnObstaculoNulo() {
-		Mapa mapa = new Mapa(20, 20);
+        mapa.agregarElemento(elementoQueYaEstaba);
+        mapa.agregarElemento(nuevoElemento);
 
-		assertEquals(mapa.getElementoEnPosicion(new Posicion(10, 10)).getClass(), ElementoNulo.class);
-	}
+        assertEquals(mapa.obtenerElementoEnPosicion(posicion), elementoQueYaEstaba);
+    }
 
-	@Test
-	public void alIntentarObtenerUnElementoEnUnaPosicionFueraDelMapaSeRetornaUnObstaculoNull() {
-		Mapa mapa = new Mapa(10, 10);
+    @Test
+    public void alIntentarObtenerUnElementoEnUnaPosicionVaciaSeRetornaUnElementoNulo() {
+        Mapa mapa = new Mapa(20, 20);
 
-		assertEquals(mapa.getElementoEnPosicion(new Posicion(20, 20)).getClass(), ElementoNulo.class);
-	}
+        assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(10, 10)).getClass(), ElementoNulo.class);
+    }
+
+    @Test
+    public void alIntentarObtenerUnElementoEnUnaPosicionFueraDelMapaSeRetornaUnElementoNulo() {
+        Mapa mapa = new Mapa(10, 10);
+
+        assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(20, 20)).getClass(), ElementoNulo.class);
+    }
 }

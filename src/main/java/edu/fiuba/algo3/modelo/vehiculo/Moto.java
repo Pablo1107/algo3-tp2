@@ -10,17 +10,18 @@ public class Moto extends Vehiculo {
     private void pisar(Obstaculo obstaculo) {
         this.penalizaciones += obstaculo.aplicarPenalizacion(this);
     }
+
     public void pisar(Pozo pozo) {
-        this.pisar((Obstaculo)pozo);
+        this.pisar((Obstaculo) pozo);
     }
 
     @Override
     public void pisar(Piquete piquete) {
-        this.pisar((Obstaculo)piquete);
+        this.pisar((Obstaculo) piquete);
     }
 
     public void pisar(ControlPolicial controlPolicial) {
-        this.pisar((Obstaculo)controlPolicial);
+        this.pisar((Obstaculo) controlPolicial);
     }
 
     @Override
