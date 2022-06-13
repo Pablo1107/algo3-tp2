@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class JugadorSorpresasTest {
+public class JugadorYSorpresasTest {
     @Test
     public void cuandoUnJugadorChocaConUnaSopresaFavorableSusMovimentosSeReducenEnUn25PorCierto() {
         Posicion posicionInicial = new Posicion(0, 0);

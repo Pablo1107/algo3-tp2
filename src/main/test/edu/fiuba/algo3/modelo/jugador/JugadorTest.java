@@ -105,7 +105,7 @@ public class JugadorTest {
 
     @Test
     public void alRetrocederUnJugadorSuPosicionVuelveASerLaAnterior() {
-        Posicion posicionInicial = new Posicion(5, 5);
+        Posicion posicionInicial = new Posicion(4, 5);
         Vehiculo vehiculo = new Moto();
 
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
@@ -113,6 +113,7 @@ public class JugadorTest {
         Mapa mapa = new Mapa(10, 10);
         Posicion direccion = new Posicion(1, 0);
 
+        jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa);
 
         Posicion posicionEsperada = new Posicion(6, 5);
@@ -122,7 +123,7 @@ public class JugadorTest {
 
         jugador.retroceder();
 
-        posicionEsperada = posicionInicial;
+        posicionEsperada = new Posicion(5, 5);
         posicionActual = jugador.getPosicion();
 
         assertEquals(posicionEsperada, posicionActual);

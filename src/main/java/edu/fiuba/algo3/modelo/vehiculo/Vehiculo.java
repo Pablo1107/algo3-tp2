@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.vehiculo;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.ElementoNulo;
+import edu.fiuba.algo3.modelo.mapa.ObstaculoNulo;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
@@ -13,7 +13,7 @@ public abstract class Vehiculo {
         this.penalizaciones = 0;
     }
 
-    public void pisar(ElementoNulo elementoNulo) {
+    public void pisar(ObstaculoNulo obstaculoNulo) {
         return;
     }
 
