@@ -19,6 +19,7 @@ public class Jugador {
     }
 
     public void mover(Posicion direccion, Mapa mapa) {
+        // TODO: Intentar mover a vehiculo (no es necesario para esta entrega).
         if (this.vehiculo.tienePenalizaciones()) {
             this.vehiculo.reducirPenalizaciones();
             return;

@@ -56,12 +56,14 @@ public class JugadorTest {
     }
 
     @Test
-    public void alMoverUnJugadorHaciaUnaPosicionVaciaSuCantidadDeMovimientosAumentaEnUno() {
+    public void alMoverUnJugadorSuCantidadDeMovimientosAumentaEnUno() {
         Jugador jugador = new Jugador(new Posicion(0, 0), new Moto());
         Mapa mapa = new Mapa(5, 5);
 
-        // jugador.mover(new Direccion(1, 1), mapa);
+        Posicion direccion = new Posicion(1, 0);
 
-        // assertEquals(jugador.getMovimientos(), 1);
+        jugador.mover(direccion, mapa);
+
+        assertEquals(jugador.getMovimientos(), 1);
     }
 }
