@@ -31,6 +31,7 @@ public abstract class Vehiculo {
         return this.penalizaciones > 0;
     }
 
+    // Esto se tiene que ir, es un getter que solo esta ahi para las pruebas.
     public int getPenalizaciones() {
         return this.penalizaciones;
     }

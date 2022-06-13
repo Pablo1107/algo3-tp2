@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.integration;
+package edu.fiuba.algo3.casos_de_uso;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Mapa;

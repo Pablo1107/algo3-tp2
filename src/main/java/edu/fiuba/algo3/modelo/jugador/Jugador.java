@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.jugador;
 
+import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
@@ -50,13 +50,5 @@ public class Jugador {
 
     public Vehiculo getVehiculo() {
         return this.vehiculo;
-    }
-
-    public void premioMovimientos(double porcentajePremio) {
-        this.movimientos = (int) (this.movimientos - this.movimientos * porcentajePremio);
-    }
-
-    public void castigoMovimientos(double porcentajeCastigo) {
-        this.movimientos = (int) (this.movimientos + this.movimientos * porcentajeCastigo);
     }
 }
