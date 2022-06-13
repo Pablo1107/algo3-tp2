@@ -13,12 +13,13 @@ public class Favorable extends Sorpresa {
     @Override
     public void chocarCon(Jugador jugador) {
         int movimientosJugador = jugador.getMovimientos();
-        int movimientosDescontados = this.calcularMovimientosDescontados(movimientosJugador);
+        double movimientosDescontados = this.calcularMovimientosDescontados(movimientosJugador);
+        int movimientosActuales = (int)(movimientosJugador - movimientosDescontados);
 
-        jugador.setMovimientos(movimientosJugador - movimientosDescontados);
+        jugador.setMovimientos(movimientosActuales);
     }
 
-    private int calcularMovimientosDescontados(int movimientosJugador) {
-        return (int)(movimientosJugador * Favorable.FACTOR_REDUCCION_MOVIMIENTOS);
+    private double calcularMovimientosDescontados(int movimientosJugador) {
+        return movimientosJugador * Favorable.FACTOR_REDUCCION_MOVIMIENTOS;
     }
 }

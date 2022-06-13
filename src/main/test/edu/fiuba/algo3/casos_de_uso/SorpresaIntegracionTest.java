@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.integration;
+package edu.fiuba.algo3.casos_de_uso;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

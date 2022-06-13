@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
+import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MapaTest {
     @Test
@@ -50,7 +52,20 @@ public class MapaTest {
 
         mapa.agregarElemento(elemento);
 
-        assertEquals(mapa.obtenerElementoEnPosicion(posicion), elemento);
+        Elemento elementoEsperado = elemento;
+        Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
+
+        assertEquals(elementoEsperado, elementoEnPosicion);
+    }
+
+    @Test
+    public void alIntentarObtenerUnElementoEnUnaPosicionVaciaSeRetornaUnElementoNulo() {
+        Mapa mapa = new Mapa(20, 20);
+        Posicion posicion = new Posicion(10, 10);
+
+        Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
+
+        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
     }
 
     @Test
@@ -61,30 +76,26 @@ public class MapaTest {
 
         mapa.agregarElemento(elemento);
 
-        Elemento elementoEnPosicionAgregada = mapa.obtenerElementoEnPosicion(posicion);
+        Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
 
-        assertEquals(elementoEnPosicionAgregada.getClass(), ElementoNulo.class);
+        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
     }
 
     @Test
     public void noSePuedePosicionarUnElementoEnUnaPosicionQueYaEsteOcupada() {
         Mapa mapa = new Mapa(20, 20);
         Posicion posicion = new Posicion(10, 10);
-        Elemento elementoQueYaEstaba = new Pozo(posicion);
 
+        Elemento elementoQueYaEstaba = new Pozo(posicion);
         Elemento nuevoElemento = new Pozo(posicion);
 
         mapa.agregarElemento(elementoQueYaEstaba);
         mapa.agregarElemento(nuevoElemento);
 
-        assertEquals(mapa.obtenerElementoEnPosicion(posicion), elementoQueYaEstaba);
-    }
+        Elemento elementoEsperado = elementoQueYaEstaba;
+        Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
 
-    @Test
-    public void alIntentarObtenerUnElementoEnUnaPosicionVaciaSeRetornaUnElementoNulo() {
-        Mapa mapa = new Mapa(20, 20);
-
-        assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(10, 10)).getClass(), ElementoNulo.class);
+        assertEquals(elementoEsperado, elementoEnPosicion);
     }
 
     @Test
@@ -93,4 +104,5 @@ public class MapaTest {
 
         assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(20, 20)).getClass(), ElementoNulo.class);
     }
+
 }

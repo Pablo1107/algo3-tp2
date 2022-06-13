@@ -37,8 +37,8 @@ public class PosicionTest {
     @Test
     public void dadaUnaPosicionYOtroObjetoCualqueiraNoSonComparablesEntreSi() {
         Posicion posicion = new Posicion(10, 10);
-        Posicion direccion = new Posicion(10, 10);
+        Mapa otroObjeto = new Mapa(5, 5);
 
-        assertNotEquals(posicion, direccion);
+        assertNotEquals(posicion, otroObjeto);
     }
 }
