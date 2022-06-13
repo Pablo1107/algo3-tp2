@@ -13,10 +13,6 @@ public abstract class Vehiculo {
         this.penalizaciones = 0;
     }
 
-    public void pisar(ObstaculoNulo obstaculoNulo) {
-        return;
-    }
-
     public abstract void pisar(Pozo pozo);
 
     public abstract void pisar(Piquete piquete);
@@ -29,11 +25,6 @@ public abstract class Vehiculo {
 
     public boolean tienePenalizaciones() {
         return this.penalizaciones > 0;
-    }
-
-    // Esto se tiene que ir, es un getter que solo esta ahi para las pruebas.
-    public int getPenalizaciones() {
-        return this.penalizaciones;
     }
 
     public abstract void retroceder(Jugador jugador);
