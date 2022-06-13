@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Piquete;
 import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
 
 public class CuatroXCuatro extends Vehiculo {
+    private static final int LIMITE_POZOS_PISADOS = 3;
+
     private int pozosPisados;
 
     public CuatroXCuatro() {
@@ -19,11 +21,15 @@ public class CuatroXCuatro extends Vehiculo {
 
     public void pisar(Pozo pozo) {
         this.pozosPisados++;
-        if (this.pozosPisados < 3) {
+        if (!pasoElLimiteDePozosPisados()) {
             return;
         }
         this.pisar((Obstaculo) pozo);
         this.pozosPisados = 0;
+    }
+
+    private boolean pasoElLimiteDePozosPisados() {
+        return this.pozosPisados >= CuatroXCuatro.LIMITE_POZOS_PISADOS;
     }
 
     @Override
@@ -31,6 +37,7 @@ public class CuatroXCuatro extends Vehiculo {
         this.pisar((Obstaculo) piquete);
     }
 
+    @Override
     public void pisar(ControlPolicial controlPolicial) {
         this.pisar((Obstaculo) controlPolicial);
     }

@@ -9,15 +9,13 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import java.util.Random;
 
 public class ControlPolicial extends Obstaculo {
+    private static final double PROBABILIDAD_MOTO = 0.8;
+    private static final double PROBABILIDAD_AUTO = 0.5;
+    private static final double PROBABILIDAD_CUATROxCUATRO = 0.3;
+    private static final int PENALIZACION = 3;
+
     public ControlPolicial(Posicion posicion) {
         super(posicion);
-    }
-	/*public void chocarCon(Vehiculo vehiculo) {
-		vehiculo.pisar(this);
-	}*/
-
-    private int aplicarPenalizacionConProbabilidad(int probabilidad) {
-        return this.esPenalizado(probabilidad) ? 3 : 0;
     }
 
     @Override
@@ -26,19 +24,23 @@ public class ControlPolicial extends Obstaculo {
     }
 
     public int aplicarPenalizacion(Moto moto) {
-        return this.aplicarPenalizacionConProbabilidad(8);
+        return this.calcularPenalizacion(ControlPolicial.PROBABILIDAD_MOTO);
     }
 
     public int aplicarPenalizacion(Auto auto) {
-        return this.aplicarPenalizacionConProbabilidad(5);
+        return this.calcularPenalizacion(ControlPolicial.PROBABILIDAD_AUTO);
     }
 
     public int aplicarPenalizacion(CuatroXCuatro cuatroXCuatro) {
-        return this.aplicarPenalizacionConProbabilidad(3);
+        return this.calcularPenalizacion(ControlPolicial.PROBABILIDAD_CUATROxCUATRO);
     }
 
-    private boolean esPenalizado(int probabilidad) {
+    private int calcularPenalizacion(double probabilidad) {
+        return this.esPenalizado(probabilidad) ? ControlPolicial.PENALIZACION : 0;
+    }
+
+    private boolean esPenalizado(double probabilidad) {
         Random random = new Random();
-        return random.nextInt(probabilidad) == 0;
+        return random.nextDouble() < probabilidad;
     }
 }

@@ -13,15 +13,15 @@ public abstract class Vehiculo {
         this.penalizaciones = 0;
     }
 
-    public void pisar(ElementoNulo elementoNulo) {
-        return;
-    }
-
     public abstract void pisar(Pozo pozo);
 
     public abstract void pisar(Piquete piquete);
 
     public abstract void pisar(ControlPolicial controlPolicial);
+
+    public void pisar(ElementoNulo elementoNulo) {
+        return;
+    }
 
     public void reducirPenalizaciones() {
         this.penalizaciones--;
