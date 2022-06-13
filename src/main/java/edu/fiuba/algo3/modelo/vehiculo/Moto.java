@@ -11,6 +11,7 @@ public class Moto extends Vehiculo {
         this.penalizaciones += obstaculo.aplicarPenalizacion(this);
     }
 
+    @Override
     public void pisar(Pozo pozo) {
         this.pisar((Obstaculo) pozo);
     }
@@ -20,6 +21,7 @@ public class Moto extends Vehiculo {
         this.pisar((Obstaculo) piquete);
     }
 
+    @Override
     public void pisar(ControlPolicial controlPolicial) {
         this.pisar((Obstaculo) controlPolicial);
     }

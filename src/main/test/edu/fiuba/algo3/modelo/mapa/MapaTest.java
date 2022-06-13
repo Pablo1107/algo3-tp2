@@ -1,10 +1,6 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
-import edu.fiuba.algo3.modelo.vehiculo.Auto;
-import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
-import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,7 +44,7 @@ public class MapaTest {
         Mapa mapa = new Mapa(10, 10);
 
         Posicion posicion = new Posicion(5, 5);
-        Elemento elemento = new ElementoNulo(posicion);
+        Elemento elemento = new ObstaculoNulo(posicion);
 
         mapa.agregarElemento(elemento);
 
@@ -65,7 +61,7 @@ public class MapaTest {
 
         Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
 
-        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
+        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
     }
 
     @Test
@@ -78,7 +74,7 @@ public class MapaTest {
 
         Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
 
-        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
+        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
     }
 
     @Test
@@ -102,7 +98,7 @@ public class MapaTest {
     public void alIntentarObtenerUnElementoEnUnaPosicionFueraDelMapaSeRetornaUnElementoNulo() {
         Mapa mapa = new Mapa(10, 10);
 
-        assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(20, 20)).getClass(), ElementoNulo.class);
+        assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(20, 20)).getClass(), ObstaculoNulo.class);
     }
 
 }

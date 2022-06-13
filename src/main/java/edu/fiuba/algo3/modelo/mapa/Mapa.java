@@ -45,7 +45,7 @@ public class Mapa {
                 return e;
             }
         }
-        return new ElementoNulo(posicion);
+        return new ObstaculoNulo(posicion);
     }
 
     public int getLimiteX() {

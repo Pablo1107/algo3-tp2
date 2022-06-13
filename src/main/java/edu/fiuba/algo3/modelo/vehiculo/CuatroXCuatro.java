@@ -19,6 +19,7 @@ public class CuatroXCuatro extends Vehiculo {
         this.penalizaciones += obstaculo.aplicarPenalizacion(this);
     }
 
+    @Override
     public void pisar(Pozo pozo) {
         this.pozosPisados++;
         if (!pasoElLimiteDePozosPisados()) {
@@ -26,10 +27,6 @@ public class CuatroXCuatro extends Vehiculo {
         }
         this.pisar((Obstaculo) pozo);
         this.pozosPisados = 0;
-    }
-
-    private boolean pasoElLimiteDePozosPisados() {
-        return this.pozosPisados >= CuatroXCuatro.LIMITE_POZOS_PISADOS;
     }
 
     @Override
@@ -45,5 +42,9 @@ public class CuatroXCuatro extends Vehiculo {
     @Override
     public void retroceder(Jugador jugador) {
         jugador.retroceder();
+    }
+
+    private boolean pasoElLimiteDePozosPisados() {
+        return this.pozosPisados >= CuatroXCuatro.LIMITE_POZOS_PISADOS;
     }
 }

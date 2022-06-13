@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.casos_de_uso;
+package edu.fiuba.algo3.integracion;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class PenalizacionesObstaculoNuloIntegracionTest {
+public class JugadorYObstaculoNuloTest {
     @Test
     public void unaMotoSePosicionaSobreUnObstaculoNuloYNoRecibePenalizacion() {
         Moto moto = new Moto();

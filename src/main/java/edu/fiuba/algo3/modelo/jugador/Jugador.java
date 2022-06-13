@@ -26,6 +26,7 @@ public class Jugador {
         }
 
         this.movimientos++;
+        this.posicionAnterior = this.posicion;
         this.posicion = posicion.desplazar(direccion, mapa);
 
         Elemento elemento = mapa.obtenerElementoEnPosicion(posicion);
