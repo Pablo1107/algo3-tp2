@@ -1,17 +1,18 @@
 package edu.fiuba.algo3.integration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.elemento.Elemento;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Piquete;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PenalizacionesPiqueteIntegracionTest {
     @Test
@@ -24,13 +25,13 @@ public class PenalizacionesPiqueteIntegracionTest {
 
         assertEquals(vehiculo.getPenalizaciones(), 0);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 2);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 1);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 0);
     }
 
@@ -44,15 +45,15 @@ public class PenalizacionesPiqueteIntegracionTest {
 
         assertEquals(vehiculo.getPenalizaciones(), 0);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 0);
         assertEquals(jugador.getPosicion(), new Posicion(0, 0));
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 0);
         assertEquals(jugador.getPosicion(), new Posicion(0, 0));
 
-        jugador.mover(new Posicion(0, 1), mapa);
+        jugador.avanzar(new Posicion(0, 1), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 0);
         assertEquals(jugador.getPosicion(), new Posicion(0, 1));
     }
@@ -67,15 +68,15 @@ public class PenalizacionesPiqueteIntegracionTest {
 
         assertEquals(vehiculo.getPenalizaciones(), 0);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 0);
         assertEquals(jugador.getPosicion(), new Posicion(0, 0));
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 0);
         assertEquals(jugador.getPosicion(), new Posicion(0, 0));
 
-        jugador.mover(new Posicion(0, 1), mapa);
+        jugador.avanzar(new Posicion(0, 1), mapa);
         assertEquals(vehiculo.getPenalizaciones(), 0);
         assertEquals(jugador.getPosicion(), new Posicion(0, 1));
     }

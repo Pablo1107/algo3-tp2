@@ -1,13 +1,14 @@
 package edu.fiuba.algo3.modelo.mapa.obstaculo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PozoTest {
 	@Test

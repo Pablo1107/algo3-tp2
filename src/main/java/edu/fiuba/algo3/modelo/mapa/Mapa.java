@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import edu.fiuba.algo3.modelo.mapa.elemento.Elemento;
-import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
-
 import java.util.ArrayList;
 import java.util.List;
 

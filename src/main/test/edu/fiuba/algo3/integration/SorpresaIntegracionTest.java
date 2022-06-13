@@ -1,15 +1,16 @@
 package edu.fiuba.algo3.integration;
 
-import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.elemento.Elemento;
-import edu.fiuba.algo3.modelo.mapa.elemento.sorpresa.Favorable;
-import edu.fiuba.algo3.modelo.vehiculo.Moto;
-import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
+import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.mapa.Posicion;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable;
+import edu.fiuba.algo3.modelo.vehiculo.Moto;
+import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class SorpresaIntegracionTest {
     @Test
@@ -22,19 +23,19 @@ public class SorpresaIntegracionTest {
 
         assertEquals(jugador.getMovimientos(), 0);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 1);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 2);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 3);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 4);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 4);
     }
 
@@ -48,16 +49,16 @@ public class SorpresaIntegracionTest {
 
         assertEquals(jugador.getMovimientos(), 0);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 1);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 2);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 3);
 
-        jugador.mover(new Posicion(1, 0), mapa);
+        jugador.avanzar(new Posicion(1, 0), mapa);
         assertEquals(jugador.getMovimientos(), 3);
     }
 }

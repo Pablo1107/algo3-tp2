@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.mapa.obstaculo;
 
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
+import edu.fiuba.algo3.modelo.mapa.ElementoNulo;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ObstaculoNuloTest {
+public class ElementoNuloTest {
     @Test
     public void laPenalizacionDeUnObstaculoNuloParaUnaMotoEsCero() {
         Posicion posicion = new Posicion(0, 0);

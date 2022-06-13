@@ -1,12 +1,11 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import edu.fiuba.algo3.modelo.mapa.elemento.Elemento;
-import edu.fiuba.algo3.modelo.mapa.elemento.ElementoNulo;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 
 public class MapaTest {
     @Test

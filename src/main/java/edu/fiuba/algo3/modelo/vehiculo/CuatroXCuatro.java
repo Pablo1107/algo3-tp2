@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo.vehiculo;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.ControlPolicial;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Obstaculo;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Piquete;
-import edu.fiuba.algo3.modelo.mapa.elemento.obstaculo.Pozo;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 
 public class CuatroXCuatro extends Vehiculo {
     private static final int LIMITE_POZOS_PISADOS = 3;
