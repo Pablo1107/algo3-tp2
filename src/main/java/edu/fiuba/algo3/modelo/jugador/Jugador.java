@@ -3,10 +3,11 @@ package edu.fiuba.algo3.modelo.jugador;
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
-    private final Vehiculo vehiculo;
+    private Vehiculo vehiculo;
     private Posicion posicion;
     private Posicion posicionAnterior;
     private int movimientos;
@@ -51,5 +52,9 @@ public class Jugador {
 
     public Vehiculo getVehiculo() {
         return this.vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 }

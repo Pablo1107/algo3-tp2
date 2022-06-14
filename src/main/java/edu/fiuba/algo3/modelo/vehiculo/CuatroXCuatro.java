@@ -44,6 +44,11 @@ public class CuatroXCuatro extends Vehiculo {
         jugador.retroceder();
     }
 
+    @Override
+    public Vehiculo cambio() {
+        return new Moto();
+    }
+
     private boolean pasoElLimiteDePozosPisados() {
         return this.pozosPisados >= CuatroXCuatro.LIMITE_POZOS_PISADOS;
     }
