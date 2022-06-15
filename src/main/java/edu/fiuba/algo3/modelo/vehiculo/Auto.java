@@ -30,4 +30,9 @@ public class Auto extends Vehiculo {
     public void retroceder(Jugador jugador) {
         jugador.retroceder();
     }
+
+    @Override
+    public Vehiculo cambio() {
+        return new CuatroXCuatro();
+    }
 }

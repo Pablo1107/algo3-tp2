@@ -27,4 +27,5 @@ public abstract class Vehiculo {
     }
 
     public abstract void retroceder(Jugador jugador);
+    public abstract Vehiculo cambio();
 }
