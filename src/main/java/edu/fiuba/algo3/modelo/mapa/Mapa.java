@@ -18,6 +18,7 @@ public class Mapa {
         this.elementos = new ArrayList<>();
     }
 
+    // TODO: getters del mapa
     public void agregarElemento(Elemento elemento) {
         if (!elemento.estaDentroDelMapa(this)) {
             return;
@@ -39,13 +40,12 @@ public class Mapa {
         return false;
     }
 
-    public Elemento obtenerElementoEnPosicion(Posicion posicion) {
+    public void cocharConElemento(Jugador jugador, Posicion posicion) {
         for (Elemento e : this.elementos) {
             if (e.estaEnLaMismaPosicion(posicion)) {
-                return e;
+                e.chocarCon(jugador);
             }
         }
-        return new ObstaculoNulo(posicion);
     }
 
     public int getLimiteX() {
