@@ -3,6 +3,8 @@ package edu.fiuba.algo3.modelo.mapa;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+
 public class Mapa {
     int limiteX;
     int limiteY;
@@ -18,7 +20,6 @@ public class Mapa {
         this.elementos = new ArrayList<>();
     }
 
-    // TODO: getters del mapa
     public void agregarElemento(Elemento elemento) {
         if (!elemento.estaDentroDelMapa(this)) {
             return;
@@ -40,7 +41,8 @@ public class Mapa {
         return false;
     }
 
-    public void cocharConElemento(Jugador jugador, Posicion posicion) {
+    public void chocarConElemento(Jugador jugador) {
+        Posicion posicion = jugador.getPosicion();
         for (Elemento e : this.elementos) {
             if (e.estaEnLaMismaPosicion(posicion)) {
                 e.chocarCon(jugador);

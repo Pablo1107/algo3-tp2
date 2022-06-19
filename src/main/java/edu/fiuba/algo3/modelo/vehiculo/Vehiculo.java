@@ -12,11 +12,15 @@ public abstract class Vehiculo {
         this.penalizaciones = 0;
     }
 
-    public abstract void pisar(Pozo pozo);
+    public abstract Vehiculo siguienteVehiculo();
+
+    public abstract void pisar(ControlPolicial controlPolicial);
 
     public abstract void pisar(Piquete piquete);
 
-    public abstract void pisar(ControlPolicial controlPolicial);
+    public abstract void pisar(Pozo pozo);
+
+    public abstract void retroceder(Jugador jugador);
 
     public void reducirPenalizaciones() {
         this.penalizaciones--;
@@ -25,7 +29,4 @@ public abstract class Vehiculo {
     public boolean tienePenalizaciones() {
         return this.penalizaciones > 0;
     }
-
-    public abstract void retroceder(Jugador jugador);
-    public abstract Vehiculo cambio();
 }

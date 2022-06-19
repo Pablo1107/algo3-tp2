@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo.jugador;
 
-import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
@@ -29,9 +27,7 @@ public class Jugador {
         this.posicionAnterior = this.posicion;
         this.posicion = posicion.desplazar(direccion, mapa);
 
-//        Elemento elemento = mapa.obtenerElementoEnPosicion(posicion);
-//        elemento.chocarCon(this);
-        mapa.chocarConElemento(this, this.posicion);
+        mapa.chocarConElemento(this);
     }
 
     public Posicion getPosicion() {
@@ -52,6 +48,10 @@ public class Jugador {
     }
 
     public void cambiarVehiculo() {
-        this.vehiculo.cambio();
+        this.vehiculo = this.vehiculo.siguienteVehiculo();
+    }
+
+    public Vehiculo getVehiculo() {
+        return this.vehiculo;
     }
 }
