@@ -1,0 +1,15 @@
+@startuml
+
+actor Jugador
+participant Obstaculo
+participant Vehiculo
+
+Jugador -> Obstaculo ++ : chocarCon(this)
+Obstaculo -> Jugador : getVehiculo()
+Jugador --> Obstaculo : vehiculo
+Obstaculo -> Vehiculo ++ : pisar(this)
+Vehiculo -> Obstaculo : aplicarPenalizaciones(this)
+Obstaculo --> Vehiculo : penalizacion
+deactivate Obstaculo
+
+@enduml

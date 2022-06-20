@@ -3,7 +3,6 @@ package edu.fiuba.algo3.integracion;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.mapa.obstaculos.PiqueteTest;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable;

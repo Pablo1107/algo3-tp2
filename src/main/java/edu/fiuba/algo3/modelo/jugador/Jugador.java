@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo.jugador;
 
-import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
@@ -20,7 +18,6 @@ public class Jugador {
     }
 
     public void avanzar(Posicion direccion, Mapa mapa) {
-        // TODO: Intentar mover a vehiculo (no es necesario para esta entrega).
         if (this.vehiculo.tienePenalizaciones()) {
             this.vehiculo.reducirPenalizaciones();
             return;
@@ -30,8 +27,7 @@ public class Jugador {
         this.posicionAnterior = this.posicion;
         this.posicion = posicion.desplazar(direccion, mapa);
 
-        Elemento elemento = mapa.obtenerElementoEnPosicion(posicion);
-        elemento.chocarCon(this);
+        mapa.chocarConElemento(this);
     }
 
     public Posicion getPosicion() {
@@ -42,6 +38,7 @@ public class Jugador {
         return this.movimientos;
     }
 
+    // PREGUNTA: Getters de movimento. Ref.: Favorable.java
     public void setMovimientos(int movimientos) {
         this.movimientos = movimientos;
     }
@@ -50,12 +47,12 @@ public class Jugador {
         this.posicion = this.posicionAnterior;
     }
 
-    public Vehiculo getVehiculo() {
-        return this.vehiculo;
+    public void cambiarVehiculo() {
+        this.vehiculo = this.vehiculo.siguienteVehiculo();
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public Vehiculo getVehiculo() {
+        return this.vehiculo;
     }
 
     //public void finalizoJuego() {
