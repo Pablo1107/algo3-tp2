@@ -45,7 +45,7 @@ public class MapaTest {
         Mapa mapa = new Mapa(10, 10);
 
         Posicion posicion = new Posicion(5, 5);
-        Elemento elemento = new ObstaculoNulo(posicion);
+        Elemento elemento = new ElementoNulo(posicion);
 
         mapa.agregarElemento(elemento);
 
@@ -62,7 +62,7 @@ public class MapaTest {
 
         Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicion);
 
-        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
+        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
     }
 
     @Test
@@ -74,21 +74,21 @@ public class MapaTest {
         mapa.agregarElemento(elemento);
 
         Elemento elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicionExcedenteEnX);
-        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
+        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
 
         Posicion posicionExcedenteEnY = new Posicion(1, 5);
         elemento = new Pozo(posicionExcedenteEnY);
         mapa.agregarElemento(elemento);
 
         elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicionExcedenteEnX);
-        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
+        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
 
         Posicion posicionExcedenteEnXeY = new Posicion(5, 5);
         elemento = new Pozo(posicionExcedenteEnXeY);
         mapa.agregarElemento(elemento);
 
         elementoEnPosicion = mapa.obtenerElementoEnPosicion(posicionExcedenteEnXeY);
-        assertEquals(ObstaculoNulo.class, elementoEnPosicion.getClass());
+        assertEquals(ElementoNulo.class, elementoEnPosicion.getClass());
     }
 
     @Test
@@ -112,7 +112,7 @@ public class MapaTest {
     public void alIntentarObtenerUnElementoEnUnaPosicionFueraDelMapaSeRetornaUnElementoNulo() {
         Mapa mapa = new Mapa(10, 10);
 
-        assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(20, 20)).getClass(), ObstaculoNulo.class);
+        assertEquals(mapa.obtenerElementoEnPosicion(new Posicion(20, 20)).getClass(), ElementoNulo.class);
     }
 
 }

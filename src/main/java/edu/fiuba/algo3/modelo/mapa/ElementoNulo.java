@@ -5,8 +5,8 @@ import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
-public class ObstaculoNulo extends Elemento {
-    public ObstaculoNulo(Posicion posicion) {
+public class ElementoNulo extends Elemento {
+    public ElementoNulo(Posicion posicion) {
         super(posicion);
     }
 

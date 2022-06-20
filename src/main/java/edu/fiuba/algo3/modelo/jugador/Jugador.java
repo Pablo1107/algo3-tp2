@@ -57,4 +57,8 @@ public class Jugador {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
+
+    //public void finalizoJuego() {
+        //corriendo = false;
+    //}
 }
