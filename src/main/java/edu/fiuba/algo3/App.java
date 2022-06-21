@@ -1,36 +1,56 @@
 package edu.fiuba.algo3;
 
 import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
-import static edu.fiuba.algo3.modelo.Juego.corriendo;
-
-/**
- * JavaFX App
- */
 public class App extends Application {
-
-    public static void main(String[] args) {
-        launch();
-    }
-
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+        FileInputStream imageFile = null;
+        try {
+            imageFile = new FileInputStream("src/main/java/edu/fiuba/algo3/vista/recursos/jugador.png");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        Image image = new Image(imageFile);
+        ImageView imageView = new ImageView(image);
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        Parent root = new Group(imageView);
+        Scene scene = new Scene(root);
+
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case RIGHT:
+                    imageView.setX(imageView.getX() + 10);
+                    break;
+                case LEFT:
+                    imageView.setX(imageView.getX() - 10);
+                    break;
+                case UP:
+                    imageView.setY(imageView.getY() - 10);
+                    break;
+                case DOWN:
+                    imageView.setY(imageView.getY() + 10);
+                    break;
+                default:
+                    break;
+            }
+            System.out.printf("Posicion: (%s,%s)\n", imageView.getX(), imageView.getY());
+        });
+
         stage.setScene(scene);
         stage.show();
-
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

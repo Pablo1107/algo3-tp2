@@ -54,8 +54,4 @@ public class Jugador {
     public Vehiculo getVehiculo() {
         return this.vehiculo;
     }
-
-    //public void finalizoJuego() {
-        //corriendo = false;
-    //}
 }
