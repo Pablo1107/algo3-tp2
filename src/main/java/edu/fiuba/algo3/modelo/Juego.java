@@ -48,6 +48,10 @@ public class Juego {
         corriendo = mapa.sigueCorriendo(jugador.getPosicion());
     }
 
+    public void turno(Posicion direccion) {
+        this.jugador.avanzar(direccion, this.mapa);
+    }
+
 
     //Estro habria que pasarlo a Direccion o Posicion
     private Posicion transformar(String direccion) {

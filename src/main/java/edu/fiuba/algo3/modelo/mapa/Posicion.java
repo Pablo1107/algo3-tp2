@@ -23,6 +23,14 @@ public class Posicion {
         return (0 <= this.x && this.x < mapa.getLimiteX()) && (0 <= this.y && this.y < mapa.getLimiteY());
     }
 
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {
