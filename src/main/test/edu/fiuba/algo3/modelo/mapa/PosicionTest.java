@@ -7,6 +7,27 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class PosicionTest {
     @Test
+    public void alCrearUnaPosicionSeCreaConLasCoordenadasCorrectas() {
+        int coordenadaX = 10;
+        int coordenadaY = 10;
+
+        Posicion posicion = new Posicion(coordenadaX, coordenadaY);
+
+        assertEquals(coordenadaX, posicion.getX());
+        assertEquals(coordenadaY, posicion.getY());
+    }
+
+    @Test
+    public void dadasUnaPosicionYUnasCoordenadasSeLesPuedenSumarALaPosicion() {
+        Posicion posicion = new Posicion(0, 0);
+
+        Posicion posicionEsperada = new Posicion(10, 10);
+        Posicion posicionRecibida = posicion.sumar(10, 10);
+
+        assertEquals(posicionEsperada, posicionRecibida);
+    }
+
+    @Test
     public void dadasDosPosicionesEstasSonComparablesEntreSi() {
         Posicion posicion1 = new Posicion(10, 10);
         Posicion posicion2 = new Posicion(10, 10);

@@ -8,8 +8,8 @@ public class ControladorJuego {
     private ModeloJuego modelo;
     private static final Direccion DIR_DERECHA = new Direccion(1, 0);
     private static final Direccion DIR_IZQUIERDA = new Direccion(-1, 0);
-    private static final Direccion DIR_ARRIBA = new Direccion(-1, 0);
-    private static final Direccion DIR_ABAJO = new Direccion(1, 0);
+    private static final Direccion DIR_ARRIBA = new Direccion(0, -1);
+    private static final Direccion DIR_ABAJO = new Direccion(0, 1);
 
     public ControladorJuego(ModeloJuego modelo) {
         this.modelo = modelo;

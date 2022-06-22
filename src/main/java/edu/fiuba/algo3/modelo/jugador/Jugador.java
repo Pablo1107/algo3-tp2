@@ -19,6 +19,7 @@ public class Jugador {
    }
 
     public void avanzar(Direccion direccion, Mapa mapa) {
+        // TODO: Delegar esta responsablidad a `Vehiculo`.
         if (this.vehiculo.tienePenalizaciones()) {
             this.vehiculo.reducirPenalizaciones();
             return;

@@ -9,16 +9,6 @@ public class Posicion {
         this.y = y;
     }
 
-    public Posicion desplazar(Posicion direccion, Mapa mapa) {
-        Posicion nuevaPosicion = new Posicion(this.x + direccion.x, this.y + direccion.y);
-
-        if (!nuevaPosicion.estaDentroDelMapa(mapa)) {
-            return this;
-        }
-
-        return nuevaPosicion;
-    }
-
     public boolean estaDentroDelMapa(Mapa mapa) {
         return (0 <= this.x && this.x < mapa.getLimiteX()) && (0 <= this.y && this.y < mapa.getLimiteY());
     }

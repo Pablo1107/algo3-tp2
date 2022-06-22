@@ -15,6 +15,8 @@ public class App extends Application {
         VistaJuego vista = new VistaJuego(controlador, modelo);
 
         Scene scene = new Scene(vista.asParent());
+        vista.inicializarMovimiento(scene);
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }

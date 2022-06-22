@@ -24,4 +24,19 @@ public class ModeloJuego {
     public void turno(Direccion direccion) {
         this.jugador.avanzar(direccion, this.mapa);
     }
+
+    // FIX: Bueno esta esta horrible claramente tener este doble getter pero
+    // por el momento es la unica manera que se con javafx (por lo poco que se)
+    // de mostrar el jugador a traves del modelo desde la vista.
+    public Posicion getPosicionJugador() {
+        return this.jugador.getPosicion();
+    }
+
+    public Jugador getJugador() {
+        return this.jugador;
+    }
+
+    public Mapa getMapa() {
+        return this.mapa;
+    }
 }

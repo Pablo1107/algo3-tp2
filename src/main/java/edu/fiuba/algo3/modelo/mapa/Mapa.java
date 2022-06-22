@@ -57,14 +57,4 @@ public class Mapa {
     public int getLimiteY() {
         return this.limiteY;
     }
-
-    public boolean sigueCorriendo(Posicion posicion) {
-        //return !(this.elementos.get(this.elementos.size() - 1) instanceof Meta);
-        for (Elemento e : this.elementos) {
-            if ((e instanceof Meta) & (e.estaEnLaMismaPosicion(posicion))) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
