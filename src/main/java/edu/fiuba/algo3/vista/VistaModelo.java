@@ -7,11 +7,15 @@ import javafx.stage.Stage;
 
 public class VistaModelo {
     private VistaJugador vistaJugador;
+    private VistaMapa vistaMapa;
+    private Mapa mapa;
 
     private Scene scene;
 
     public VistaModelo(Mapa mapa, Stage stage) {
         this.vistaJugador = VistaJugador.crear();
+        this.vistaMapa = new VistaMapa(mapa);
+        this.mapa = mapa;
 
         // Aqui probablemente no queremos que la root sea el jugador,
         // pero por el momento solo quiero que funcione.

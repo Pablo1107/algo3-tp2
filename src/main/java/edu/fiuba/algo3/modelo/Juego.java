@@ -27,20 +27,6 @@ public class Juego {
     }
 
     public void jugar() {
-        Scanner input = new Scanner(System.in);
-        while(corriendo) {
-            String direccion = input.nextLine();
-            //System.out.println(direccion);
-            Posicion dir = this.transformar(direccion);
-            //Posicion dir = new Posicion(1, 0);
-
-            this.jugador.avanzar(dir, this.mapa);
-            this.sigueCorriendo(this.mapa); //Si llego a la meta termina el juego
-
-        }
-        this.puntuaciones.add(this.jugador.getMovimientos());
-
-        input.close();
     }
 
     public void turno(Posicion direccion) {
