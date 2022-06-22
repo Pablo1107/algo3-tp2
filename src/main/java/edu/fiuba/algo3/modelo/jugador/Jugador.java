@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.jugador;
 
+import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
@@ -15,9 +16,9 @@ public class Jugador {
         this.posicionAnterior = posicionInicial;
         this.vehiculo = vehiculo;
         this.movimientos = 0;
-    }
+   }
 
-    public void avanzar(Posicion direccion, Mapa mapa) {
+    public void avanzar(Direccion direccion, Mapa mapa) {
         if (this.vehiculo.tienePenalizaciones()) {
             this.vehiculo.reducirPenalizaciones();
             return;
@@ -25,7 +26,7 @@ public class Jugador {
 
         this.movimientos++;
         this.posicionAnterior = this.posicion;
-        this.posicion = posicion.desplazar(direccion, mapa);
+        this.posicion = direccion.desplazar(posicion, mapa);
 
         mapa.chocarConElemento(this);
     }

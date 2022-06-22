@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entregas;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
@@ -29,7 +30,7 @@ public class Semana2Test {
 
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
         jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa);
@@ -56,7 +57,7 @@ public class Semana2Test {
 
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
         jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa);
@@ -85,7 +86,7 @@ public class Semana2Test {
 
         mapa.agregarElemento(piquete);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         // Se encuentra con el piquete.
         jugador.avanzar(direccion, mapa); // penalizaciones: 2
@@ -117,7 +118,7 @@ public class Semana2Test {
 
         mapa.agregarElemento(piquete);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa); // Se encuentra con el piquete.
@@ -144,8 +145,7 @@ public class Semana2Test {
 
         mapa.agregarElemento(piquete);
 
-        Posicion direccion = new Posicion(1, 0);
-
+        Direccion direccion = new Direccion(1, 0);
         jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa); // Se encuentra con el piquete.
 

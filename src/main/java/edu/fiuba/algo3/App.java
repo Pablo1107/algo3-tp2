@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage stage) {
-        Mapa mapa = new Mapa(10, 10);
+        Mapa mapa = new Mapa(50, 50);
         // Si, esta medio feo, solo quiero que ande ahorita.
         new VistaModelo(mapa, stage);
         stage.show();

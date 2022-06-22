@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modelo.mapa.Posicion;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Juego {
     public static boolean corriendo;
@@ -44,30 +43,10 @@ public class Juego {
         input.close();
     }
 
+    public void turno(Posicion direccion) {
+    }
+
     private void sigueCorriendo(Mapa mapa) {
         corriendo = mapa.sigueCorriendo(jugador.getPosicion());
     }
-
-    public void turno(Posicion direccion) {
-        this.jugador.avanzar(direccion, this.mapa);
-    }
-
-
-    //Estro habria que pasarlo a Direccion o Posicion
-    private Posicion transformar(String direccion) {
-        if(direccion.equals("d")) {
-            return new Posicion(1, 0);
-        }
-        if(direccion.equals("w")) {
-            return new Posicion(0, 1);
-        }
-        if(direccion.equals("s")) {
-            return new Posicion(0, -1);
-        }
-        if(direccion.equals("a")) {
-            return new Posicion(-1, 0);
-        }
-        return null;
-    }
-
 }

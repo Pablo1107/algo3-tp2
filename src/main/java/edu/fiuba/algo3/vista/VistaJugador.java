@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
@@ -34,23 +35,25 @@ public class VistaJugador extends ImageView {
         }
     }
 
+    // Ahora que lo pienso todo esto no deberia ser reponsabilidad del controller????
+    // Bueno por ahora lo dejo asi para que funcione mas que nada.
     public void moverDerecha(Mapa mapa) {
-        this.jugador.avanzar(new Posicion(1, 0), mapa);
+        this.jugador.avanzar(new Direccion(1, 0), mapa);
         this.actualizarPosicion();
     }
 
     public void moverIzquierda(Mapa mapa) {
-        this.jugador.avanzar(new Posicion(-1, 0), mapa);
+        this.jugador.avanzar(new Direccion(-1, 0), mapa);
         this.actualizarPosicion();
     }
 
     public void moverArriba(Mapa mapa) {
-        this.jugador.avanzar(new Posicion(0, -1), mapa);
+        this.jugador.avanzar(new Direccion(0, -1), mapa);
         this.actualizarPosicion();
     }
 
     public void moverAbajo(Mapa mapa) {
-        this.jugador.avanzar(new Posicion(0, 1), mapa);
+        this.jugador.avanzar(new Direccion(0, 1), mapa);
         this.actualizarPosicion();
     }
 
