@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.integracion;
 
-import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;

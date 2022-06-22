@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entregas;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
@@ -27,7 +28,7 @@ public class Semana1Test {
 
         mapa.agregarElemento(pozo);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         // Se encuentra con el pozo.
         jugador.avanzar(direccion, mapa); // penalizaciones: 3
@@ -63,7 +64,7 @@ public class Semana1Test {
 
         mapa.agregarElemento(pozo);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         // Se encuentra con el pozo.
         jugador.avanzar(direccion, mapa); // penalizaciones: 3
@@ -103,7 +104,7 @@ public class Semana1Test {
         mapa.agregarElemento(pozo1);
         mapa.agregarElemento(pozo2);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         jugador.avanzar(direccion, mapa); // Se encuentra con el primer pozo.
         assertFalse(cuatroXCuatro.tienePenalizaciones());
@@ -137,7 +138,7 @@ public class Semana1Test {
         mapa.agregarElemento(pozo2);
         mapa.agregarElemento(pozo3);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         jugador.avanzar(direccion, mapa); // Se encuentra con el primer pozo, no es penalizado.
         jugador.avanzar(direccion, mapa); // Se encuentra con el segundo pozo, no es penalizado.
@@ -173,7 +174,7 @@ public class Semana1Test {
 
         mapa.agregarElemento(controlPolicial);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         jugador.avanzar(direccion, mapa);
 

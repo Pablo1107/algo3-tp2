@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.integracion;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo;
@@ -30,7 +31,7 @@ public class JugadorYSorpresasTest {
         mapa.agregarElemento(sorpresa);
         jugador.setMovimientos(19);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
         jugador.avanzar(direccion, mapa);
 
         int movimientosEsperados = 16;
@@ -53,7 +54,7 @@ public class JugadorYSorpresasTest {
         mapa.agregarElemento(sorpresa);
         jugador.setMovimientos(19);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
         jugador.avanzar(direccion, mapa);
 
         int movimientosEsperados = 25;
@@ -74,7 +75,7 @@ public class JugadorYSorpresasTest {
         mapa.agregarElemento(new CambioDeVehiculo(new Posicion(2,0)));
         mapa.agregarElemento(new CambioDeVehiculo(new Posicion(3,0)));
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
         assertTrue(jugador.getVehiculo() instanceof Moto);
 
         jugador.avanzar(direccion, mapa);

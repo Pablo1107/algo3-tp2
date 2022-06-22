@@ -10,7 +10,6 @@ import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 public class ModeloJuego {
     private static final Posicion POS_INICIAL_JUGADOR = new Posicion(0, 0);
     private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
-    // TODO: Realmente las dimensiones del mapa son dinamicas.
     private static final int MAPA_LIMITE_X = 20;
     private static final int MAPA_LIMITE_Y = 20;
 
