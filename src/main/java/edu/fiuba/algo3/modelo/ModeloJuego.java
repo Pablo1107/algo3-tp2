@@ -10,8 +10,9 @@ import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 public class ModeloJuego {
     private static final Posicion POS_INICIAL_JUGADOR = new Posicion(0, 0);
     private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
-    private static final int MAPA_LIMITE_X = 20;
-    private static final int MAPA_LIMITE_Y = 20;
+
+    private static final int MAPA_LIMITE_X = 10;
+    private static final int MAPA_LIMITE_Y = 10;
 
     private final Jugador jugador;
     private final Mapa mapa;
@@ -23,13 +24,6 @@ public class ModeloJuego {
 
     public void turno(Direccion direccion) {
         this.jugador.avanzar(direccion, this.mapa);
-    }
-
-    // FIX: Bueno esta esta horrible claramente tener este doble getter pero
-    // por el momento es la unica manera que se con javafx (por lo poco que se)
-    // de mostrar el jugador a traves del modelo desde la vista.
-    public Posicion getPosicionJugador() {
-        return this.jugador.getPosicion();
     }
 
     public Jugador getJugador() {

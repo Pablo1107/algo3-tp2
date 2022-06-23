@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class ControladorJuego {
@@ -16,21 +17,18 @@ public class ControladorJuego {
     }
 
     public void mover(KeyEvent evento) {
-        switch (evento.getCode()) {
-            case RIGHT:
-                this.moverDerecha();
-                break;
-            case LEFT:
-                this.moverIzquierda();
-                break;
-            case UP:
-                this.moverArriba();
-                break;
-            case DOWN:
-                this.moverAbajo();
-                break;
-            default:
-                break;
+        KeyCode tecla = evento.getCode();
+        if (tecla == KeyCode.RIGHT || tecla == KeyCode.D || tecla == KeyCode.L) {
+            this.moverDerecha();
+        }
+        else if (tecla == KeyCode.LEFT || tecla == KeyCode.A || tecla == KeyCode.H) {
+            this.moverIzquierda();
+        }
+        else if (tecla == KeyCode.UP || tecla == KeyCode.W || tecla == KeyCode.K) {
+            this.moverArriba();
+        }
+        else if (tecla == KeyCode.DOWN || tecla == KeyCode.S || tecla == KeyCode.J) {
+            this.moverAbajo();
         }
     }
 

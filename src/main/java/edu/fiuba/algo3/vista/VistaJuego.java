@@ -10,7 +10,7 @@ public class VistaJuego {
     private ControladorJuego controlador;
     private ModeloJuego modelo;
 
-    public final static double FACTOR_ESCALA = 10;
+    public final static double FACTOR_ESCALA = 100;
     private Group vista;
     private VistaJugador vistaJugador;
     private VistaMapa vistaMapa;

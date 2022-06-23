@@ -10,6 +10,7 @@ public class VistaMapa extends Rectangle {
 
         this.setWidth(mapa.getLimiteX() * VistaJuego.FACTOR_ESCALA);
         this.setHeight(mapa.getLimiteY() * VistaJuego.FACTOR_ESCALA);
+
         this.setFill(Color.LIGHTBLUE);
     }
 

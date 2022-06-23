@@ -5,35 +5,57 @@ import java.io.FileNotFoundException;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
+import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.modelo.vehiculo.Moto;
+import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class VistaJugador extends ImageView {
-    private static final String ARCHIVO_IMAGEN = "src/main/java/edu/fiuba/algo3/vista/recursos/jugador.png";
-    private static final int FACTOR_ESCALA = 10;
+    private static final String IMAGEN_MOTO = "src/main/resources/img/100px/moto.png";
+    private static final String IMAGEN_AUTO = "src/main/resources/img/100px/auto.png";
+    private static final String IMAGEN_CUATROXCUATRO = "src/main/resources/img/100px/cuatroxcuatro.png";
 
     private Jugador jugador;
 
-    private VistaJugador(Image image, Jugador jugador) {
-        super(image);
+    private VistaJugador(Jugador jugador) {
+        super();
+        this.setFitWidth(VistaJuego.FACTOR_ESCALA);
+        this.setFitHeight(VistaJuego.FACTOR_ESCALA);
         this.jugador = jugador;
     }
 
     public static VistaJugador crear(Jugador jugador) {
-        try {
-            FileInputStream archivoImage = new FileInputStream(ARCHIVO_IMAGEN);
-            return new VistaJugador(new Image(archivoImage), jugador);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        VistaJugador vista = new VistaJugador(jugador);
+        vista.cargarImagen(IMAGEN_MOTO);
+        return vista;
     }
 
     public void actualizarPosicion() {
         Posicion posicionActualJugador = this.jugador.getPosicion();
+        this.setX(posicionActualJugador.getX() * VistaJuego.FACTOR_ESCALA);
+        this.setY(posicionActualJugador.getY() * VistaJuego.FACTOR_ESCALA);
+        this.actualizarImagenVehiculo();
+    }
 
-        System.out.printf("PosicionJugador: (%s %s)\n", this.getX(), this.getY());
+    private void actualizarImagenVehiculo() {
+        Vehiculo vehiculoActual = jugador.getVehiculo();
+        if (vehiculoActual instanceof Moto) {
+            this.cargarImagen(IMAGEN_MOTO);
+        } else if (vehiculoActual instanceof Auto) {
+            this.cargarImagen(IMAGEN_AUTO);
+        } else if (vehiculoActual instanceof CuatroXCuatro) {
+            this.cargarImagen(IMAGEN_CUATROXCUATRO);
+        }
+    }
 
-        this.setX(posicionActualJugador.getX() * FACTOR_ESCALA);
-        this.setY(posicionActualJugador.getY() * FACTOR_ESCALA);
+    private void cargarImagen(String archivoImagen) {
+        try {
+            FileInputStream stream = new FileInputStream(archivoImagen);
+            this.setImage(new Image(stream));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

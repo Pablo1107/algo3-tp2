@@ -32,19 +32,6 @@ public class Jugador {
         mapa.chocarConElemento(this);
     }
 
-    public Posicion getPosicion() {
-        return this.posicion;
-    }
-
-    public int getMovimientos() {
-        return this.movimientos;
-    }
-
-    // PREGUNTA: Getters de movimento. Ref.: Favorable.java
-    public void setMovimientos(int movimientos) {
-        this.movimientos = movimientos;
-    }
-
     public void retroceder() {
         this.posicion = this.posicionAnterior;
     }
@@ -55,5 +42,17 @@ public class Jugador {
 
     public Vehiculo getVehiculo() {
         return this.vehiculo;
+    }
+
+    public Posicion getPosicion() {
+        return this.posicion;
+    }
+
+    public int getMovimientos() {
+        return this.movimientos;
+    }
+
+    public void setMovimientos(int movimientos) {
+        this.movimientos = movimientos;
     }
 }

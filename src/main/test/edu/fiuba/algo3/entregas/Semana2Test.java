@@ -128,8 +128,6 @@ public class Semana2Test {
         Posicion posicionEsperada = new Posicion(1, 0);
         Posicion posicionActual = jugador.getPosicion();
 
-        System.out.println(posicionActual);
-
         assertEquals(posicionEsperada, posicionActual);
     }
 
@@ -153,8 +151,6 @@ public class Semana2Test {
 
         Posicion posicionEsperada = new Posicion(1, 0);
         Posicion posicionActual = jugador.getPosicion();
-
-        System.out.println(posicionActual);
 
         assertEquals(posicionEsperada, posicionActual);
     }
