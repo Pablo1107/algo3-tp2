@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class VistaPozo extends ImageView {
-    private static final String IMAGEN = "src/main/resources/img/100px/pozo.png";
+    private static final String IMAGEN = "src/main/resources/img/mapa/pozo.png";
 
     public VistaPozo(Posicion posicion) {
         super();

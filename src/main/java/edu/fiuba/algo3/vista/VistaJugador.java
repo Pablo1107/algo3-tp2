@@ -13,9 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class VistaJugador extends ImageView {
-    private static final String IMAGEN_MOTO = "src/main/resources/img/100px/moto.png";
-    private static final String IMAGEN_AUTO = "src/main/resources/img/100px/auto.png";
-    private static final String IMAGEN_CUATROXCUATRO = "src/main/resources/img/100px/cuatroxcuatro.png";
+    private static final String IMAGEN_MOTO = "src/main/resources/img/vehiculos/moto.png";
+    private static final String IMAGEN_AUTO = "src/main/resources/img/vehiculos/auto.png";
+    private static final String IMAGEN_CUATROXCUATRO = "src/main/resources/img/vehiculos/cuatroxcuatro.png";
 
     private Jugador jugador;
 
