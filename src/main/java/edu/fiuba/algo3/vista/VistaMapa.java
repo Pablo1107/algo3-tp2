@@ -4,7 +4,6 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.mapa.Posicion;
 import javafx.scene.Group;
 
 public class VistaMapa extends Group {
@@ -13,15 +12,13 @@ public class VistaMapa extends Group {
     public VistaMapa(Mapa mapa) {
         super();
         this.mapa = mapa;
-        this.inicializarVista();
+        this.inicializar();
     }
 
-    private void inicializarVista() {
+    private void inicializar() {
         List<Elemento> elementos = this.mapa.getElementos();
         for (Elemento e : elementos) {
-            Posicion posicion = e.getPosicion();
-            VistaPozo vistaPozo = new VistaPozo(posicion);
-            this.getChildren().add(vistaPozo);
+            this.getChildren().add(new VistaObstaculo(e));
         }
     }
 }

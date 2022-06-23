@@ -6,9 +6,9 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public class Mapa {
-    int limiteX;
-    int limiteY;
-    List<Elemento> elementos;
+    private final int limiteX;
+    private final int limiteY;
+    private List<Elemento> elementos;
 
     public Mapa(int limiteX, int limiteY) {
         if (limiteX <= 0 || limiteY <= 0) {

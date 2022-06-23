@@ -37,7 +37,7 @@ public class VistaJuego {
         Button button = new Button("CAMBIAR VEHICULO");
         button.setOnAction(event -> {
             this.modelo.getJugador().cambiarVehiculo();
-            this.vistaJugador.actualizarPosicion();
+            this.vistaJugador.actualizar();
         });
         this.root.getChildren().add(button);
     }
@@ -57,6 +57,6 @@ public class VistaJuego {
     }
 
     private void actualizar() {
-        this.vistaJugador.actualizarPosicion();
+        this.vistaJugador.actualizar();
     }
 }
