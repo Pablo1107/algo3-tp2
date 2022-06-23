@@ -7,6 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MapaTest {
     @Test
+    public void alCrearUnMapaEsteNoTieneElementos() {
+        Mapa mapa = new Mapa(10, 10);
+
+        int cantidadElementosEsperada = 0;
+        int cantidadElementosRecibida = mapa.getElementos().size();
+
+        assertEquals(cantidadElementosEsperada, cantidadElementosRecibida);
+    }
+
+    @Test
     public void noSePuedeCrearUnMapaConDimensionesNegativas() {
         Exception excepcion = assertThrows(RuntimeException.class, () -> {
             new Mapa(-10, 10);
