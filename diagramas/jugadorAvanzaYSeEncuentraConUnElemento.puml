@@ -1,0 +1,37 @@
+@startuml
+
+actor TestCase
+participant "__:Jugador__" as Jugador
+participant Vehiculo
+participant "__:Posicion__" as Posicion
+participant "mapa : Mapa" as Mapa
+participant Elemento
+
+TestCase -> Jugador ++ : avazar(direccion, mapa)
+Jugador -> Vehiculo ++ : tienePenalizaciones()
+return false
+
+Jugador -> Posicion ++ : desplazar(direccion, mapa)
+Posicion -> Posicion ++ : estaDentroDelMapa(mapa)
+Posicion -> Mapa ++ : getLimiteX()
+return limiteX
+
+Posicion -> Mapa ++ : getLmiteY()
+return limiteY
+
+return true
+
+note left of Posicion
+	nuevaPosicion = posicion + direccion
+end note
+
+return nuevaPosicion
+
+Jugador -> Mapa ++ : obtenerElementoEnPosicion(this.posicion)
+Mapa -> Elemento ++ : estaEnLaMismaPosicion(posicion)
+return true
+return elementoEnPosicion
+
+Jugador -> Elemento : chocarCon(this)
+
+@enduml

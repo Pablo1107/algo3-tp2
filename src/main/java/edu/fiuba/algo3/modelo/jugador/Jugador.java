@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.modelo.jugador;
 
-import edu.fiuba.algo3.modelo.mapa.Elemento;
+import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
@@ -17,10 +16,10 @@ public class Jugador {
         this.posicionAnterior = posicionInicial;
         this.vehiculo = vehiculo;
         this.movimientos = 0;
-    }
+   }
 
-    public void avanzar(Posicion direccion, Mapa mapa) {
-        // TODO: Intentar mover a vehiculo (no es necesario para esta entrega).
+    public void avanzar(Direccion direccion, Mapa mapa) {
+        // TODO: Delegar esta responsablidad a `Vehiculo`.
         if (this.vehiculo.tienePenalizaciones()) {
             this.vehiculo.reducirPenalizaciones();
             return;
@@ -28,10 +27,21 @@ public class Jugador {
 
         this.movimientos++;
         this.posicionAnterior = this.posicion;
-        this.posicion = posicion.desplazar(direccion, mapa);
+        this.posicion = direccion.desplazar(posicion, mapa);
 
-        Elemento elemento = mapa.obtenerElementoEnPosicion(posicion);
-        elemento.chocarCon(this);
+        mapa.chocarConElemento(this);
+    }
+
+    public void retroceder() {
+        this.posicion = this.posicionAnterior;
+    }
+
+    public void cambiarVehiculo() {
+        this.vehiculo = this.vehiculo.siguienteVehiculo();
+    }
+
+    public Vehiculo getVehiculo() {
+        return this.vehiculo;
     }
 
     public Posicion getPosicion() {
@@ -44,17 +54,5 @@ public class Jugador {
 
     public void setMovimientos(int movimientos) {
         this.movimientos = movimientos;
-    }
-
-    public void retroceder() {
-        this.posicion = this.posicionAnterior;
-    }
-
-    public Vehiculo getVehiculo() {
-        return this.vehiculo;
-    }
-
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
     }
 }

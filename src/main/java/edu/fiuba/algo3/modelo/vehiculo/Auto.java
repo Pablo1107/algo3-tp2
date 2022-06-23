@@ -12,13 +12,8 @@ public class Auto extends Vehiculo {
     }
 
     @Override
-    public void pisar(Pozo pozo) {
-        this.pisar((Obstaculo) pozo);
-    }
-
-    @Override
-    public void pisar(Piquete piquete) {
-        this.pisar((Obstaculo) piquete);
+    public Vehiculo siguienteVehiculo() {
+        return new CuatroXCuatro();
     }
 
     @Override
@@ -27,12 +22,17 @@ public class Auto extends Vehiculo {
     }
 
     @Override
-    public void retroceder(Jugador jugador) {
-        jugador.retroceder();
+    public void pisar(Piquete piquete) {
+        this.pisar((Obstaculo) piquete);
     }
 
     @Override
-    public Vehiculo cambio() {
-        return new CuatroXCuatro();
+    public void pisar(Pozo pozo) {
+        this.pisar((Obstaculo) pozo);
+    }
+
+    @Override
+    public void retroceder(Jugador jugador) {
+        jugador.retroceder();
     }
 }

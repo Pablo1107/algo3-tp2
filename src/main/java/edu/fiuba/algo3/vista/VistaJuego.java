@@ -1,0 +1,51 @@
+package edu.fiuba.algo3.vista;
+
+import edu.fiuba.algo3.controlador.ControladorJuego;
+import edu.fiuba.algo3.modelo.ModeloJuego;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+
+public class VistaJuego {
+    private ControladorJuego controlador;
+    private ModeloJuego modelo;
+
+    public final static double FACTOR_ESCALA = 100;
+    private Group vista;
+    private VistaJugador vistaJugador;
+    private VistaMapa vistaMapa;
+
+    public VistaJuego(ControladorJuego controlador, ModeloJuego modelo) {
+        this.controlador = controlador;
+        this.modelo = modelo;
+
+        this.vista = new Group();
+
+        this.vistaMapa = VistaMapa.crear(this.modelo.getMapa());
+        this.vistaJugador = VistaJugador.crear(this.modelo.getJugador());
+
+        this.vista.getChildren().add(this.vistaMapa);
+        this.vista.getChildren().add(this.vistaJugador);
+
+        // Esto es solo para probar el cambio de vehiculo mientras no ponemos
+        // los obstaculos.
+        Button button = new Button("CAMBIAR VEHICULO");
+        button.setOnAction(event -> {
+            this.modelo.getJugador().cambiarVehiculo();
+            this.vistaJugador.actualizarPosicion();
+        });
+        this.vista.getChildren().add(button);
+    }
+
+    public Parent asParent() {
+        return this.vista;
+    }
+
+    public void inicializarMovimiento(Scene scene) {
+        scene.setOnKeyPressed(evento -> {
+            this.controlador.mover(evento);
+            this.vistaJugador.actualizarPosicion();
+        });
+    }
+}

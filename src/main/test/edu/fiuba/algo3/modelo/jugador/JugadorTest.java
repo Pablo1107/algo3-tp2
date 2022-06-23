@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.jugador;
 
+import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
@@ -55,7 +56,7 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
 
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
         Mapa mapa = new Mapa(10, 10);
 
         jugador.avanzar(direccion, mapa);
@@ -74,7 +75,7 @@ public class JugadorTest {
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(5, 5);
-        Posicion direccion = new Posicion(10, 10);
+        Direccion direccion = new Direccion(10, 10);
 
         jugador.avanzar(direccion, mapa);
 
@@ -92,7 +93,7 @@ public class JugadorTest {
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(5, 5);
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         jugador.avanzar(direccion, mapa);
 
@@ -110,7 +111,7 @@ public class JugadorTest {
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(10, 10);
-        Posicion direccion = new Posicion(1, 0);
+        Direccion direccion = new Direccion(1, 0);
 
         jugador.avanzar(direccion, mapa);
         jugador.avanzar(direccion, mapa);

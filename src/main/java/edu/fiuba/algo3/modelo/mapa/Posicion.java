@@ -9,18 +9,12 @@ public class Posicion {
         this.y = y;
     }
 
-    public Posicion desplazar(Posicion direccion, Mapa mapa) {
-        Posicion nuevaPosicion = new Posicion(this.x + direccion.x, this.y + direccion.y);
-
-        if (!nuevaPosicion.estaDentroDelMapa(mapa)) {
-            return this;
-        }
-
-        return nuevaPosicion;
-    }
-
     public boolean estaDentroDelMapa(Mapa mapa) {
         return (0 <= this.x && this.x < mapa.getLimiteX()) && (0 <= this.y && this.y < mapa.getLimiteY());
+    }
+
+    public Posicion sumar(int x, int y) {
+        return new Posicion(this.x + x, this.y + y);
     }
 
     @Override
@@ -35,5 +29,13 @@ public class Posicion {
 
         Posicion posicion = (Posicion) o;
         return x == posicion.x && y == posicion.y;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
     }
 }

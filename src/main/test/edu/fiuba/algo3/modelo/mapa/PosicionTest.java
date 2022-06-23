@@ -7,16 +7,24 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class PosicionTest {
     @Test
-    public void alDesplazarUnaPosicionEnUnaDireccionDadaSeLlegaALaPosicionEsperada() {
-        Posicion posicionInicial = new Posicion(10, 10);
-        Posicion direccion = new Posicion(5, 7);
+    public void alCrearUnaPosicionSeCreaConLasCoordenadasCorrectas() {
+        int coordenadaX = 10;
+        int coordenadaY = 10;
 
-        Mapa mapa = new Mapa(20, 20);
+        Posicion posicion = new Posicion(coordenadaX, coordenadaY);
 
-        Posicion posicionEsperada = new Posicion(15, 17);
-        Posicion posicionActual = posicionInicial.desplazar(direccion, mapa);
+        assertEquals(coordenadaX, posicion.getX());
+        assertEquals(coordenadaY, posicion.getY());
+    }
 
-        assertEquals(posicionEsperada, posicionActual);
+    @Test
+    public void dadasUnaPosicionYUnasCoordenadasSeLesPuedenSumarALaPosicion() {
+        Posicion posicion = new Posicion(0, 0);
+
+        Posicion posicionEsperada = new Posicion(10, 10);
+        Posicion posicionRecibida = posicion.sumar(10, 10);
+
+        assertEquals(posicionEsperada, posicionRecibida);
     }
 
     @Test

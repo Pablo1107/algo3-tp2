@@ -22,4 +22,8 @@ public abstract class Elemento {
     public boolean estaEnLaMismaPosicion(Posicion posicion) {
         return this.posicion.equals(posicion);
     }
+
+    public Posicion getPosicion() {
+        return this.posicion;
+    }
 }
