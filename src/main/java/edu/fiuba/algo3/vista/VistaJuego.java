@@ -8,25 +8,29 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 public class VistaJuego {
+    public final static double FACTOR_ESCALA = 100;
+
     private ControladorJuego controlador;
     private ModeloJuego modelo;
 
-    public final static double FACTOR_ESCALA = 100;
-    private Group vista;
+    private Group root;
     private VistaJugador vistaJugador;
     private VistaMapa vistaMapa;
 
     public VistaJuego(ControladorJuego controlador, ModeloJuego modelo) {
         this.controlador = controlador;
         this.modelo = modelo;
+        this.root = new Group();
 
-        this.vista = new Group();
+        this.vistaMapa = new VistaMapa(this.modelo.getMapa());
+        this.vistaJugador = new VistaJugador(this.modelo.getJugador());
 
-        this.vistaMapa = VistaMapa.crear(this.modelo.getMapa());
-        this.vistaJugador = VistaJugador.crear(this.modelo.getJugador());
+        this.inicializarVista();
+    }
 
-        this.vista.getChildren().add(this.vistaMapa);
-        this.vista.getChildren().add(this.vistaJugador);
+    private void inicializarVista() {
+        this.root.getChildren().add(this.vistaMapa);
+        this.root.getChildren().add(this.vistaJugador);
 
         // Esto es solo para probar el cambio de vehiculo mientras no ponemos
         // los obstaculos.
@@ -35,17 +39,24 @@ public class VistaJuego {
             this.modelo.getJugador().cambiarVehiculo();
             this.vistaJugador.actualizarPosicion();
         });
-        this.vista.getChildren().add(button);
+        this.root.getChildren().add(button);
     }
 
     public Parent asParent() {
-        return this.vista;
+        return this.root;
     }
 
     public void inicializarMovimiento(Scene scene) {
+        // Basicamente cada tick de nuestro event loop va a estar determinado
+        // por cuando el jugador avance. No va a pasar nada mientras el jugador
+        // no avance, asi que no es necesario mantener otro event loop.
         scene.setOnKeyPressed(evento -> {
             this.controlador.mover(evento);
-            this.vistaJugador.actualizarPosicion();
+            this.actualizar();
         });
+    }
+
+    private void actualizar() {
+        this.vistaJugador.actualizarPosicion();
     }
 }

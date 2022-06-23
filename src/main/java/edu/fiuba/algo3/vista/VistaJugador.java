@@ -19,23 +19,18 @@ public class VistaJugador extends ImageView {
 
     private Jugador jugador;
 
-    private VistaJugador(Jugador jugador) {
+    public VistaJugador(Jugador jugador) {
         super();
         this.setFitWidth(VistaJuego.FACTOR_ESCALA);
         this.setFitHeight(VistaJuego.FACTOR_ESCALA);
         this.jugador = jugador;
-    }
-
-    public static VistaJugador crear(Jugador jugador) {
-        VistaJugador vista = new VistaJugador(jugador);
-        vista.cargarImagen(IMAGEN_MOTO);
-        return vista;
+        this.cargarImagen(IMAGEN_MOTO);
     }
 
     public void actualizarPosicion() {
-        Posicion posicionActualJugador = this.jugador.getPosicion();
-        this.setX(posicionActualJugador.getX() * VistaJuego.FACTOR_ESCALA);
-        this.setY(posicionActualJugador.getY() * VistaJuego.FACTOR_ESCALA);
+        Posicion posicionJugador = this.jugador.getPosicion();
+        this.setX(posicionJugador.getX() * VistaJuego.FACTOR_ESCALA);
+        this.setY(posicionJugador.getY() * VistaJuego.FACTOR_ESCALA);
         this.actualizarImagenVehiculo();
     }
 

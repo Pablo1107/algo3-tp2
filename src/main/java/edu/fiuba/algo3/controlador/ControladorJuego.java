@@ -18,16 +18,16 @@ public class ControladorJuego {
 
     public void mover(KeyEvent evento) {
         KeyCode tecla = evento.getCode();
-        if (tecla == KeyCode.RIGHT || tecla == KeyCode.D || tecla == KeyCode.L) {
+        if (tecla == KeyCode.D || tecla == KeyCode.L) {
             this.moverDerecha();
         }
-        else if (tecla == KeyCode.LEFT || tecla == KeyCode.A || tecla == KeyCode.H) {
+        else if (tecla == KeyCode.A || tecla == KeyCode.H) {
             this.moverIzquierda();
         }
-        else if (tecla == KeyCode.UP || tecla == KeyCode.W || tecla == KeyCode.K) {
+        else if (tecla == KeyCode.W || tecla == KeyCode.K) {
             this.moverArriba();
         }
-        else if (tecla == KeyCode.DOWN || tecla == KeyCode.S || tecla == KeyCode.J) {
+        else if (tecla == KeyCode.S || tecla == KeyCode.J) {
             this.moverAbajo();
         }
     }

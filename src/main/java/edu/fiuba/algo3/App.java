@@ -12,10 +12,10 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         ModeloJuego modelo = new ModeloJuego();
         ControladorJuego controlador = new ControladorJuego(modelo);
-        VistaJuego vista = new VistaJuego(controlador, modelo);
+        VistaJuego root = new VistaJuego(controlador, modelo);
 
-        Scene scene = new Scene(vista.asParent());
-        vista.inicializarMovimiento(scene);
+        Scene scene = new Scene(root.asParent());
+        root.inicializarMovimiento(scene);
 
         primaryStage.setScene(scene);
         primaryStage.show();

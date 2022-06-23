@@ -57,4 +57,8 @@ public class Mapa {
     public int getLimiteY() {
         return this.limiteY;
     }
+
+    public List<Elemento> getElementos() {
+        return this.elementos;
+    }
 }
