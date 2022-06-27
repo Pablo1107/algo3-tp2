@@ -20,7 +20,7 @@ public class ModeloJuego {
     private final Jugador jugador;
     private final Mapa mapa;
 
-    private ModeloJuego instancia;
+    private static ModeloJuego instancia;
 
     private ModeloJuego() {
         this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
@@ -28,12 +28,12 @@ public class ModeloJuego {
         this.inicializar();
     }
 
-    public ModeloJuego crear() {
-        if (this.instancia == null) {
-            this.instancia = new ModeloJuego();
+    public static ModeloJuego crear() {
+        if (ModeloJuego.instancia == null) {
+            ModeloJuego.instancia = new ModeloJuego();
         }
 
-        return this.instancia;
+        return ModeloJuego.instancia;
     }
 
     private void inicializar() {

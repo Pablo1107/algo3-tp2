@@ -1,8 +1,6 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.ayuda;
 
-import edu.fiuba.algo3.controlador.ControladorEventoUnJugador;
 import edu.fiuba.algo3.controlador.ControladorEventoVolver;
-import edu.fiuba.algo3.vista.texto.TextoAyuda;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;

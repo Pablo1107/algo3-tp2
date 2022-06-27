@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.vista.VistaAyuda;
 import edu.fiuba.algo3.vista.VistaInicio;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

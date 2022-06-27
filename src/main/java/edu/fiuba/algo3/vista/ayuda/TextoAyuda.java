@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.texto;
+package edu.fiuba.algo3.vista.ayuda;
 
 import javafx.scene.control.Label;
 

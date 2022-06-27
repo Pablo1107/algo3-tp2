@@ -20,7 +20,7 @@ public class ControladorEventoUnJugador implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        ModeloJuego modelo = new ModeloJuego();
+        ModeloJuego modelo = ModeloJuego.crear();
         ControladorJuego controlador = new ControladorJuego(modelo);
         VistaJuego root = new VistaJuego(controlador, modelo);
         Scene scene = new Scene(root.asParent());

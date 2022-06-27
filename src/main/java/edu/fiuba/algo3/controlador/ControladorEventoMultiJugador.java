@@ -20,7 +20,7 @@ public class ControladorEventoMultiJugador implements EventHandler<ActionEvent> 
     //Hay que hacer dos turnos
     @Override
     public void handle(ActionEvent actionEvent) {
-        ModeloJuego modelo = new ModeloJuego();
+        ModeloJuego modelo = ModeloJuego.crear();
         ControladorJuego controlador = new ControladorJuego(modelo);
         VistaJuego root = new VistaJuego(controlador, modelo);
         Scene scene = new Scene(root.asParent());
