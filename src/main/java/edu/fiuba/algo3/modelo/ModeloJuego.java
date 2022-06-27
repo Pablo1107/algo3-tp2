@@ -51,8 +51,9 @@ public class ModeloJuego {
     }
 
     private Posicion generarPosicionRandom() {
-        int coordenadaX = (int)Math.floor(Math.random() * this.mapa.getLimiteX());
+        int coordenadaX = (int)Math.floor(Math.random() * (this.mapa.getLimiteX()-1));
         int coordenadaY = (int)Math.floor(Math.random() * this.mapa.getLimiteY());
+
         return new Posicion(coordenadaX, coordenadaY);
     }
 
