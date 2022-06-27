@@ -50,6 +50,10 @@ public class Mapa {
         }
     }
 
+    public boolean estaDentroDeLimites(int x, int y) {
+        return (0 <= x && x < this.limiteX) && (0 <= y && y < this.limiteY);
+    }
+
     public int getLimiteX() {
         return this.limiteX;
     }
