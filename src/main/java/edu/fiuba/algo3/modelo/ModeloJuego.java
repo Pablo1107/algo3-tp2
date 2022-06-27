@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.mapa.Meta;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
@@ -17,14 +18,15 @@ public class ModeloJuego {
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
 
-    private final Jugador jugador;
+    private Jugador jugador;
     private final Mapa mapa;
-
+    public static boolean termino;
     private static ModeloJuego instancia;
 
     private ModeloJuego() {
         this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
         this.mapa = new Mapa(MAPA_LIMITE_X, MAPA_LIMITE_Y);
+        ModeloJuego.termino = false;
         this.inicializar();
     }
 
@@ -45,6 +47,7 @@ public class ModeloJuego {
             Posicion posicion = this.generarPosicionRandom();
             this.mapa.agregarElemento(this.generarObstaculoRandom(posicion));
         }
+        this.mapa.agregarElemento(new Meta(new Posicion(MAPA_LIMITE_X-1, (MAPA_LIMITE_Y-1)/2)));
     }
 
     private Posicion generarPosicionRandom() {
@@ -79,5 +82,14 @@ public class ModeloJuego {
 
     public Mapa getMapa() {
         return this.mapa;
+    }
+
+    public boolean terminoJuego() {
+        return ModeloJuego.termino;
+    }
+
+    public void reiniciar() {
+        ModeloJuego.termino = false;
+        this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
     }
 }

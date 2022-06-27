@@ -20,7 +20,6 @@ public class ControladorEventoVolver implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         VistaInicio root = new VistaInicio();
         Scene scene = new Scene(root.asParent(), 1250, 750);
-        //System.out.println("Volver");
         root.presionarBotones(this.stage);
         stage.setScene(scene);
     }

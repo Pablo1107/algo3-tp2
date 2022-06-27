@@ -21,7 +21,7 @@ public class ControladorEventoMultiJugador implements EventHandler<ActionEvent> 
     @Override
     public void handle(ActionEvent actionEvent) {
         ModeloJuego modelo = ModeloJuego.crear();
-        ControladorJuego controlador = new ControladorJuego(modelo);
+        ControladorJuego controlador = new ControladorJuego(modelo, this.stage);
         VistaJuego root = new VistaJuego(controlador, modelo);
         Scene scene = new Scene(root.asParent());
         root.inicializarMovimiento(scene);

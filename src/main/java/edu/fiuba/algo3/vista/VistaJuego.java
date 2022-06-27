@@ -53,10 +53,12 @@ public class VistaJuego {
         scene.setOnKeyPressed(evento -> {
             this.controlador.mover(evento);
             this.actualizar();
+            this.controlador.terminoJuego();//Verifica si se termino el juego
         });
     }
 
     private void actualizar() {
         this.vistaJugador.actualizar();
     }
+
 }

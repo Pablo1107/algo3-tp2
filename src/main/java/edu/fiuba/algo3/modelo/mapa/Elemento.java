@@ -26,4 +26,5 @@ public abstract class Elemento {
     public Posicion getPosicion() {
         return this.posicion;
     }
+
 }
