@@ -10,7 +10,7 @@ public class Posicion {
     }
 
     public boolean estaDentroDelMapa(Mapa mapa) {
-        return (0 <= this.x && this.x < mapa.getLimiteX()) && (0 <= this.y && this.y < mapa.getLimiteY());
+        return mapa.estaDentroDeLimites(this.x, this.y);
     }
 
     public Posicion sumar(int x, int y) {

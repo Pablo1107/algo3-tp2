@@ -3,7 +3,9 @@ package edu.fiuba.algo3.modelo.mapa;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MapaTest {
     @Test
@@ -47,5 +49,16 @@ public class MapaTest {
         String mensajeEsperado = "Dimensiones menores o iguales a cero";
 
         assertEquals(mensajeRecibido, mensajeEsperado);
+    }
+
+    @Test
+    public void dadasDosCoordenadasSePuedeSaberSiEstasEstanDentroOFueraDeLosLimitesDelMapa() {
+        Mapa mapa = new Mapa(10, 10);
+
+        assertTrue(mapa.estaDentroDeLimites(0, 0));
+        assertTrue(mapa.estaDentroDeLimites(5, 5));
+        assertFalse(mapa.estaDentroDeLimites(0, 10));
+        assertFalse(mapa.estaDentroDeLimites(10, 0));
+        assertFalse(mapa.estaDentroDeLimites(10, 10));
     }
 }
