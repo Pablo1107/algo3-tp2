@@ -6,18 +6,19 @@ import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Meta;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
-import javafx.scene.Group;
+import javafx.scene.layout.Pane;
 
-public class VistaMapa extends Group {
+public class VistaMapa extends Pane {
     private Mapa mapa;
 
     public VistaMapa(Mapa mapa) {
-        super();
         this.mapa = mapa;
-        this.inicializar();
+        this.inicializarVista();
+        this.setStyle("-fx-border-color: red;");
+        this.setStyle("-fx-border-width: 1px;");
     }
 
-    private void inicializar() {
+    private void inicializarVista() {
         List<Elemento> elementos = this.mapa.getElementos();
         for (Elemento e : elementos) {
             if(e instanceof Obstaculo) {

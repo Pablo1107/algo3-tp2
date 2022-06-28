@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controlador;
+/* package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.vista.VistaJuego;
@@ -23,8 +23,8 @@ public class ControladorEventoArcade implements EventHandler<ActionEvent> {
         ModeloJuego modelo = ModeloJuego.crear();
         ControladorJuego controlador = new ControladorJuego(modelo, this.stage);
         VistaJuego root = new VistaJuego(controlador, modelo, this.stage);
-        Scene scene = new Scene(root.asParent());
+        Scene scene = new Scene(root.getNodoRaiz());
         root.inicializarMovimiento(scene);
         stage.setScene(scene);
     }
-}
+} */

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
+import edu.fiuba.algo3.vista.juego.VistaJuego;
 
 public class VistaMeta extends Renderizable {
 

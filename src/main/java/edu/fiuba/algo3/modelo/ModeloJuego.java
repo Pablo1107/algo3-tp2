@@ -20,6 +20,7 @@ public class ModeloJuego {
 
     private Jugador jugador;
     private final Mapa mapa;
+
     public static boolean termino;
     private static ModeloJuego instancia;
 
@@ -27,20 +28,17 @@ public class ModeloJuego {
         this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
         this.mapa = new Mapa(MAPA_LIMITE_X, MAPA_LIMITE_Y);
         ModeloJuego.termino = false;
-        this.inicializar();
+        this.iniciar();
     }
 
-    public static ModeloJuego crear() {
+    public static ModeloJuego obtenerInstancia() {
         if (ModeloJuego.instancia == null) {
-            ModeloJuego.instancia = new ModeloJuego();
+            instancia = new ModeloJuego();
         }
-
         return ModeloJuego.instancia;
     }
 
-    private void inicializar() {
-        // PRESENTACION: En el siguiente comentario explico que igual probablemente cambiemos
-        // esta forma de popular el mapa.
+    private void iniciar() {
         double proporcionObstaculos = 0.25;
         int cantidadElementos = (int)((this.mapa.getLimiteX() * this.mapa.getLimiteY()) * proporcionObstaculos);
         for (int i = 0; i < cantidadElementos; i++) {
@@ -57,9 +55,6 @@ public class ModeloJuego {
         return new Posicion(coordenadaX, coordenadaY);
     }
 
-    // TODO: Lo ideal seria pasar esto a alguna clase con Factory Method o algo
-    // asi, pero por el momento lo dejo aqui. Igual con respecto a esto me
-    // pregunto si el Factory Method vendria siendo parte del modelo o no?
     private Obstaculo generarObstaculoRandom(Posicion posicion) {
         double random = Math.random();
         if (random < 0.3) {

@@ -1,14 +1,16 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.controlador.ControladorCerrarJuego;
 import edu.fiuba.algo3.controlador.ControladorJuego;
 import edu.fiuba.algo3.controlador.ControladorReiniciarJuego;
 import edu.fiuba.algo3.modelo.ModeloJuego;
-import javafx.scene.Group;
+import edu.fiuba.algo3.vista.VistaJugador;
+import edu.fiuba.algo3.vista.VistaMapa;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class VistaJuego {
@@ -19,21 +21,18 @@ public class VistaJuego {
     private ControladorJuego controlador;
     private ModeloJuego modelo;
 
-    private Group root;
+    private BorderPane nodoRaiz;
     private VistaJugador vistaJugador;
     private VistaMapa vistaMapa;
     private Button salir;
     private Button reiniciar;
 
     public VistaJuego(ControladorJuego controlador, ModeloJuego modelo, Stage stage) {
+        this.nodoRaiz = new BorderPane();
         this.controlador = controlador;
         this.modelo = modelo;
-        this.root = new Group();
-        this.stage = stage;
-
         this.vistaMapa = new VistaMapa(this.modelo.getMapa());
         this.vistaJugador = new VistaJugador(this.modelo.getJugador());
-
         this.salir = new Button("Salir");
         this.reiniciar = new Button("Reiniciar");
 
@@ -41,32 +40,22 @@ public class VistaJuego {
     }
 
     private void inicializarVista() {
-        this.root.getChildren().add(this.vistaMapa);
-        this.root.getChildren().add(this.vistaJugador);
-        this.root.getChildren().add(this.salir);
-        this.root.getChildren().add(this.reiniciar);
+        // TODO: FIX
+        // this.root.getChildren().add(this.salir);
+        // this.root.getChildren().add(this.reiniciar);
 
         this.reiniciar.setLayoutX(75);
 
-        // Esto es solo para probar el cambio de vehiculo mientras no ponemos
-        // los obstaculos.
-        //Button button = new Button("CAMBIAR VEHICULO");
-        //button.setOnAction(event -> {
-        //    this.modelo.getJugador().cambiarVehiculo();
-        //    this.vistaJugador.actualizar();
-        //});
-        //this.root.getChildren().add(button);
-
+        VistaTablero tablero = new VistaTablero(this.vistaJugador, this.vistaMapa);
+        Pane wrapperTablero = new Pane(tablero);
+        this.nodoRaiz.setCenter(wrapperTablero);
     }
 
-    public Parent asParent() {
-        return this.root;
+    public Parent getNodoRaiz() {
+        return this.nodoRaiz;
     }
 
     public void inicializarMovimiento(Scene scene) {
-        // Basicamente cada tick de nuestro event loop va a estar determinado
-        // por cuando el jugador avance. No va a pasar nada mientras el jugador
-        // no avance, asi que no es necesario mantener otro event loop.
         scene.setOnKeyPressed(evento -> {
             this.controlador.mover(evento);
             this.actualizar();

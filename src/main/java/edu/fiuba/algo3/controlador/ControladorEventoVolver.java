@@ -18,9 +18,8 @@ public class ControladorEventoVolver implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        VistaInicio root = new VistaInicio();
-        Scene scene = new Scene(root.asParent(), 1250, 750);
-        root.presionarBotones(this.stage);
+        VistaInicio root = new VistaInicio(this.stage);
+        Scene scene = new Scene(root.getNodoRaiz(), 1250, 750);
         stage.setScene(scene);
     }
 }

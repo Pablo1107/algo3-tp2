@@ -1,0 +1,30 @@
+/* https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html */
+
+#vista-botones-inicio {
+	-fx-spacing: 8px;
+	-fx-fill-width: true;
+}
+
+.button {
+	-fx-cursor: hand;
+	-fx-pref-width: 200px;
+	-fx-background-color: #E1E1E1;
+	-fx-border-color: #566573;
+	-fx-border-width: 1px;
+	-fx-padding: 8px;
+	-fx-text-fill: #212FE3;
+}
+
+.button:hover, .button:pressed {
+	-fx-text-fill: #E1E1E1;
+	-fx-background-color: #212FE3;
+}
+
+#contenedor-tablero {
+	-fx-border-width: 4px;
+	-fx-border-color: #000000;
+}
+
+#tablero {
+	/* -fx-background-color: #cacaca; */
+}

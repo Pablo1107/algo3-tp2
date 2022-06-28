@@ -8,8 +8,8 @@ import javafx.scene.image.ImageView;
 
 public abstract class Renderizable extends ImageView {
     protected void ajustarEscala() {
-        this.setFitWidth(VistaJuego.FACTOR_ESCALA);
-        this.setFitHeight(VistaJuego.FACTOR_ESCALA);
+        this.setFitWidth(VistaJugador.VistaJuego.FACTOR_ESCALA);
+        this.setFitHeight(VistaJugador.VistaJuego.FACTOR_ESCALA);
     }
 
     public abstract void actualizar();
@@ -25,5 +25,3 @@ public abstract class Renderizable extends ImageView {
         }
     }
 }
-
-

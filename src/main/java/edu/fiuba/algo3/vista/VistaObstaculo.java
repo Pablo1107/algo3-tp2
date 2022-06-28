@@ -23,8 +23,8 @@ public class VistaObstaculo extends Renderizable {
 
     public void actualizar() {
         Posicion posicion = this.elemento.getPosicion();
-        this.setX(posicion.getX() * VistaJuego.FACTOR_ESCALA);
-        this.setY(posicion.getY() * VistaJuego.FACTOR_ESCALA);
+        this.setX(posicion.getX() * VistaJugador.VistaJuego.FACTOR_ESCALA);
+        this.setY(posicion.getY() * VistaJugador.VistaJuego.FACTOR_ESCALA);
     }
 
     protected void renderizar() {

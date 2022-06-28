@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.ModeloJuego;
-import edu.fiuba.algo3.vista.VistaJuego;
+import edu.fiuba.algo3.vista.juego.VistaJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -26,7 +25,7 @@ public class ControladorReiniciarJuego implements EventHandler<ActionEvent> {
 
         ControladorJuego controlador = new ControladorJuego(this.modelo, this.stage);
         VistaJuego root = new VistaJuego(controlador, this.modelo, this.stage);
-        Scene scene = new Scene(root.asParent());
+        Scene scene = new Scene(root.getNodoRaiz());
         root.inicializarMovimiento(scene);
         stage.setScene(scene);
 

@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class ControladorJuego {
     private ModeloJuego modelo;
     private Stage stage;
+
     private static final Direccion DIR_DERECHA = new Direccion(1, 0);
     private static final Direccion DIR_IZQUIERDA = new Direccion(-1, 0);
     private static final Direccion DIR_ARRIBA = new Direccion(0, -1);
@@ -56,9 +57,8 @@ public class ControladorJuego {
     public void terminoJuego() {
         if(modelo.terminoJuego()) {
             modelo.reiniciar();
-            VistaInicio rootInicio = new VistaInicio();
-            Scene scene = new Scene(rootInicio.asParent(), 1250, 750);
-            rootInicio.presionarBotones(this.stage);
+            VistaInicio rootInicio = new VistaInicio(this.stage);
+            Scene scene = new Scene(rootInicio.getNodoRaiz(), 1250, 750);
             stage.setScene(scene);
         }
     }

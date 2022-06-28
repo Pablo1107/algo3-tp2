@@ -6,22 +6,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    private Stage stage;
+    private static final String ARCHIVO_ESTILOS = "app.css";
+
     @Override
-    public void start(Stage primaryStage) {
-
-        this.stage = primaryStage;
-
-        VistaInicio rootInicio = new VistaInicio();
-        Scene scene = new Scene(rootInicio.asParent(), 1250, 750);
-
-        rootInicio.presionarBotones(this.stage);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage stage) {
+        VistaInicio vistaInicio = new VistaInicio(stage);
+        Scene scene = new Scene(vistaInicio.getNodoRaiz());
+        this.cargarEstilos(scene);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void cargarEstilos(Scene scene) {
+        String archivoEstilos = this.getClass().getResource(ARCHIVO_ESTILOS).toExternalForm();
+        scene.getStylesheets().add(archivoEstilos);
     }
 }
