@@ -1,34 +1,39 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.ControladorBotonIniciarJuego;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class VistaInicio {
-    private VBox vista;
+    private VBox nodoRaiz;
+    Stage stage;
 
-    public VistaInicio() {
-        this.vista = new VBox();
-        this.vista.setId("vista-botones-inicio");
-        this.inicializar();
+    public VistaInicio(Stage stage) {
+        this.nodoRaiz = new VBox();
+        this.nodoRaiz.setId("vista-botones-inicio");
+        this.stage = stage;
+        this.inicializarVista();
     }
 
-    private void agregarBoton(String contenido) {
+    private void inicializarVista() {
+        this.nodoRaiz.setAlignment(Pos.CENTER);
+
+        this.agregarBotonConControlador("Iniciar Juego", new ControladorBotonIniciarJuego(this.stage));
+        this.agregarBotonConControlador("Iniciar Multijugador", new ControladorBotonIniciarJuego(this.stage));
+    }
+
+    private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
         Button boton = new Button(contenido);
-        this.vista.getChildren().add(boton);
+        boton.setOnAction(controlador);
+        this.nodoRaiz.getChildren().add(boton);
     }
 
-    private void inicializar() {
-        this.vista.setAlignment(Pos.CENTER);
-
-        this.agregarBoton("Un jugador");
-        this.agregarBoton("Multijugador");
-        this.agregarBoton("Puntajes Maximos");
-        this.agregarBoton("Ayuda");
-    }
-
-    public Parent asParent() {
-        return this.vista;
+    public Parent getNodoRaiz() {
+        return this.nodoRaiz;
     }
 }

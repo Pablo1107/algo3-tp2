@@ -6,20 +6,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    private static final String ARCHIVO_ESTILOS = "app.css";
+
     @Override
-    public void start(Stage primaryStage) {
-        VistaInicio vistaInicio = new VistaInicio();
-
-        Scene scene = new Scene(vistaInicio.asParent());
-        // TODO: Cambiar esto, odio como Java maneja los recursos.
-        String archivoEstilos = this.getClass().getResource("app.css").toExternalForm();
-        scene.getStylesheets().add(archivoEstilos);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage stage) {
+        VistaInicio vistaInicio = new VistaInicio(stage);
+        Scene scene = new Scene(vistaInicio.getNodoRaiz());
+        this.cargarEstilos(scene);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void cargarEstilos(Scene scene) {
+        String archivoEstilos = this.getClass().getResource(ARCHIVO_ESTILOS).toExternalForm();
+        scene.getStylesheets().add(archivoEstilos);
     }
 }

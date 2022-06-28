@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 
 public class ControladorJuego {
     private ModeloJuego modelo;
+
     private static final Direccion DIR_DERECHA = new Direccion(1, 0);
     private static final Direccion DIR_IZQUIERDA = new Direccion(-1, 0);
     private static final Direccion DIR_ARRIBA = new Direccion(0, -1);

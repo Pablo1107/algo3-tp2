@@ -19,3 +19,8 @@
 	-fx-text-fill: #E1E1E1;
 	-fx-background-color: #212FE3;
 }
+
+.pane {
+	-fx-border-color: red;
+	-fx-border-width: 10px;
+}
