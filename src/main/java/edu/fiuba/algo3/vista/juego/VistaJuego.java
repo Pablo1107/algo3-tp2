@@ -6,8 +6,8 @@ import edu.fiuba.algo3.vista.VistaJugador;
 import edu.fiuba.algo3.vista.VistaMapa;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 public class VistaJuego {
     public final static double FACTOR_ESCALA = 100;
@@ -15,12 +15,12 @@ public class VistaJuego {
     private ControladorJuego controlador;
     private ModeloJuego modelo;
 
-    private StackPane nodoRaiz;
+    private BorderPane nodoRaiz;
     private VistaJugador vistaJugador;
     private VistaMapa vistaMapa;
 
     public VistaJuego(ControladorJuego controlador, ModeloJuego modelo) {
-        this.nodoRaiz = new StackPane();
+        this.nodoRaiz = new BorderPane();
         this.controlador = controlador;
         this.modelo = modelo;
         this.vistaMapa = new VistaMapa(this.modelo.getMapa());
@@ -29,6 +29,9 @@ public class VistaJuego {
     }
 
     private void inicializarVista() {
+        VistaTablero tablero = new VistaTablero(this.vistaJugador, this.vistaMapa);
+        Pane wrapperTablero = new Pane(tablero);
+        this.nodoRaiz.setCenter(wrapperTablero);
     }
 
     public Parent getNodoRaiz() {

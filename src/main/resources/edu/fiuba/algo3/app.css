@@ -20,7 +20,11 @@
 	-fx-background-color: #212FE3;
 }
 
-.pane {
-	-fx-border-color: red;
-	-fx-border-width: 10px;
+#contenedor-tablero {
+	-fx-border-width: 4px;
+	-fx-border-color: #000000;
+}
+
+#tablero {
+	/* -fx-background-color: #cacaca; */
 }
