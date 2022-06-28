@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.ControladorBotonIniciarJuego;
-import edu.fiuba.algo3.controlador.ControladorCerrarJuego;
+import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;
+import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -27,8 +28,8 @@ public class VistaInicio {
         this.agregarBotonConControlador("Iniciar Juego", new ControladorBotonIniciarJuego(this.stage));
         this.agregarBotonConControlador("Iniciar Multijugador", new ControladorBotonIniciarJuego(this.stage));
         // this.agregarBotonConControlador("Puntajes", new ControladorEventoPuntajes(this.stage));
-        // this.agregarBotonConControlador("Ayuda", new ControladorEventoAyuda(this.stage));
-        // this.agregarBotonConControlador("Cerrar", new ControladorCerrarJuego(this.stage));
+        this.agregarBotonConControlador("Ayuda", new ControladorBotonAyuda(this.stage));
+        this.agregarBotonConControlador("Cerrar", new ControladorBotonCerrarJuego());
     }
 
     private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {

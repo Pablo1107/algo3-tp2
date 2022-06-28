@@ -1,20 +1,20 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.vista.juego.VistaJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ControladorReiniciarJuego implements EventHandler<ActionEvent> {
+public class ControladorBotonReiniciarJuego implements EventHandler<ActionEvent> {
+    private static final String ARCHIVO_ESTILOS = "app.css";
 
     private ModeloJuego modelo;
     private Stage stage;
-    private Button boton;
-    public ControladorReiniciarJuego(Button reiniciarBoton, ModeloJuego modelo, Stage stage) {
-        this.boton = reiniciarBoton;
+
+    public ControladorBotonReiniciarJuego(ModeloJuego modelo, Stage stage) {
         this.modelo = modelo;
         this.stage = stage;
     }
@@ -24,10 +24,18 @@ public class ControladorReiniciarJuego implements EventHandler<ActionEvent> {
         this.modelo.reiniciar();
 
         ControladorJuego controlador = new ControladorJuego(this.modelo, this.stage);
+
         VistaJuego root = new VistaJuego(controlador, this.modelo, this.stage);
         Scene scene = new Scene(root.getNodoRaiz());
         root.inicializarMovimiento(scene);
-        stage.setScene(scene);
+        this.cargarEstilos(scene);
+        this.stage.setScene(scene);
+        System.out.println(this.stage);
+    }
 
+    private void cargarEstilos(Scene scene) {
+        String archivoEstilos = App.class.getResource(ARCHIVO_ESTILOS).toExternalForm();
+        // TODO: Descubrir como mejorar la parte esta.
+        scene.getStylesheets().add(archivoEstilos);
     }
 }
