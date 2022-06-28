@@ -1,14 +1,20 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.ControladorCerrarJuego;
 import edu.fiuba.algo3.controlador.ControladorJuego;
+import edu.fiuba.algo3.controlador.ControladorReiniciarJuego;
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class VistaJuego {
     public final static double FACTOR_ESCALA = 100;
+
+    private Stage stage;
 
     private ControladorJuego controlador;
     private ModeloJuego modelo;
@@ -16,14 +22,20 @@ public class VistaJuego {
     private Group root;
     private VistaJugador vistaJugador;
     private VistaMapa vistaMapa;
+    private Button salir;
+    private Button reiniciar;
 
-    public VistaJuego(ControladorJuego controlador, ModeloJuego modelo) {
+    public VistaJuego(ControladorJuego controlador, ModeloJuego modelo, Stage stage) {
         this.controlador = controlador;
         this.modelo = modelo;
         this.root = new Group();
+        this.stage = stage;
 
         this.vistaMapa = new VistaMapa(this.modelo.getMapa());
         this.vistaJugador = new VistaJugador(this.modelo.getJugador());
+
+        this.salir = new Button("Salir");
+        this.reiniciar = new Button("Reiniciar");
 
         this.inicializarVista();
     }
@@ -31,15 +43,20 @@ public class VistaJuego {
     private void inicializarVista() {
         this.root.getChildren().add(this.vistaMapa);
         this.root.getChildren().add(this.vistaJugador);
+        this.root.getChildren().add(this.salir);
+        this.root.getChildren().add(this.reiniciar);
+
+        this.reiniciar.setLayoutX(75);
 
         // Esto es solo para probar el cambio de vehiculo mientras no ponemos
         // los obstaculos.
-        Button button = new Button("CAMBIAR VEHICULO");
-        button.setOnAction(event -> {
-            this.modelo.getJugador().cambiarVehiculo();
-            this.vistaJugador.actualizar();
-        });
-        this.root.getChildren().add(button);
+        //Button button = new Button("CAMBIAR VEHICULO");
+        //button.setOnAction(event -> {
+        //    this.modelo.getJugador().cambiarVehiculo();
+        //    this.vistaJugador.actualizar();
+        //});
+        //this.root.getChildren().add(button);
+
     }
 
     public Parent asParent() {
@@ -55,9 +72,16 @@ public class VistaJuego {
             this.actualizar();
             this.controlador.terminoJuego();//Verifica si se termino el juego
         });
+
+        ControladorCerrarJuego salirControlador = new ControladorCerrarJuego(this.salir);
+        ControladorReiniciarJuego reiniciarControlador = new ControladorReiniciarJuego(this.reiniciar, this.modelo, this.stage);
+
+        this.salir.setOnAction(salirControlador);
+        this.reiniciar.setOnAction(reiniciarControlador);
+
     }
 
-    private void actualizar() {
+    public void actualizar() {
         this.vistaJugador.actualizar();
     }
 

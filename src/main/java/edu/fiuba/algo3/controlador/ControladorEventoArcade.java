@@ -22,7 +22,7 @@ public class ControladorEventoArcade implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         ModeloJuego modelo = ModeloJuego.crear();
         ControladorJuego controlador = new ControladorJuego(modelo, this.stage);
-        VistaJuego root = new VistaJuego(controlador, modelo);
+        VistaJuego root = new VistaJuego(controlador, modelo, this.stage);
         Scene scene = new Scene(root.asParent());
         root.inicializarMovimiento(scene);
         stage.setScene(scene);

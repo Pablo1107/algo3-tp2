@@ -25,6 +25,7 @@ public class VistaInicio {
     private Button puntajesBoton;
     private Button ayudaBoton;
     private Button idiomaBoton;
+    private Button cerrarBoton;
 
 
     public VistaInicio() {
@@ -44,6 +45,7 @@ public class VistaInicio {
         this.puntajesBoton = new Button();
         this.ayudaBoton = new Button();
         this.idiomaBoton = new Button();
+        this.cerrarBoton = new Button();
 
         this.inicializarVista();
     }
@@ -59,6 +61,7 @@ public class VistaInicio {
         this.setBoton(this.puntajesBoton, "Puntajes Maximos");
         this.setBoton(this.ayudaBoton, "Ayuda");
         this.setBoton(this.idiomaBoton, "Idioma");
+        this.setBoton(this.cerrarBoton, "Salir");
 
     }
 
@@ -95,6 +98,9 @@ public class VistaInicio {
 
         ControladorEventoAyuda eventoAyuda = new ControladorEventoAyuda(this.ayudaBoton, stage);
         this.ayudaBoton.setOnAction(eventoAyuda);
+
+        ControladorCerrarJuego cerrar = new ControladorCerrarJuego(this.cerrarBoton);
+        this.cerrarBoton.setOnAction(cerrar);
     }
 
 }

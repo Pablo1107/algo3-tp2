@@ -62,4 +62,8 @@ public class ControladorJuego {
             stage.setScene(scene);
         }
     }
+
+    public void reiniciarJuego() {
+        modelo.reiniciar();
+    }
 }
