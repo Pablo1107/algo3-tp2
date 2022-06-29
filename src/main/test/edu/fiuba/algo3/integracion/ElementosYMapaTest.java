@@ -46,4 +46,5 @@ public class ElementosYMapaTest {
         assertTrue(elementosEnMapa.contains(pozo1));
         assertTrue(elementosEnMapa.contains(pozo2));
     }
+
 }
