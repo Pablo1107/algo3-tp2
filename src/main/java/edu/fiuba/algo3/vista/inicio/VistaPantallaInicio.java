@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.pantallas.inicio;
+package edu.fiuba.algo3.vista.inicio;
 
 import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
 import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;

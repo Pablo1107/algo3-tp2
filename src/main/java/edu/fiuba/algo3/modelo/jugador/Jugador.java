@@ -25,7 +25,6 @@ public class Jugador {
             return;
         }
 
-        this.movimientos++;
         this.posicionAnterior = this.posicion;
         this.posicion = direccion.desplazar(posicion, mapa);
 

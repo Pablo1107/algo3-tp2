@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.pantallas.ayuda;
+package edu.fiuba.algo3.vista.ayuda;
 
 import edu.fiuba.algo3.controlador.ControladorBotonVolver;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;

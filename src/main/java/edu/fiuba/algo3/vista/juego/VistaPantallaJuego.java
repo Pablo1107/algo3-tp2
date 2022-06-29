@@ -1,21 +1,15 @@
-package edu.fiuba.algo3.vista.pantallas.juego;
+package edu.fiuba.algo3.vista.juego;
 
-import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
-import edu.fiuba.algo3.controlador.ControladorBotonVolver;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.controlador.ControladorTecladoJuego;
 import edu.fiuba.algo3.modelo.ModeloJuego;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class VistaPantallaJuego extends HBox {
-    public final static double FACTOR_ESCALA = 100;
+    public final static double FACTOR_ESCALA_PX = 100;
 
     private ControladorTecladoJuego controladorTeclado;
     private ControladorCambioDePantallas controladorCambioPantallas;
@@ -37,26 +31,20 @@ public class VistaPantallaJuego extends HBox {
         VistaTableroJuego tablero = new VistaTableroJuego(this.vistaJugador, this.vistaMapa);
         this.getChildren().add(new Pane(tablero));
 
-        Button reiniciar = this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas));
-        Button salir = this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas));
-        VBox botonesLaterales = new VBox(reiniciar, salir);
-        botonesLaterales.setId("contenedor-botones-laterales");
-        HBox.setHgrow(botonesLaterales, Priority.ALWAYS);
-        this.getChildren().add(botonesLaterales);
+        VistaControlesLaterales controlesLaterales = new VistaControlesLaterales(this.controladorCambioPantallas);
+        HBox.setHgrow(controlesLaterales, Priority.ALWAYS);
+        this.getChildren().add(controlesLaterales);
     }
 
     public void inicializarMovimiento(Scene scene) {
         scene.setOnKeyPressed(evento -> {
             this.controladorTeclado.mover(evento);
             this.actualizar();
-            // this.controladorTeclado.terminoJuego();
-        });
-    }
 
-    private Button crearBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
-        Button boton = new Button(contenido);
-        boton.setOnAction(controlador);
-        return boton;
+            if (this.modelo.getJuegoTerminado()) {
+                this.controladorCambioPantallas.cargarPantallaPuntajes();
+            }
+        });
     }
 
     public void actualizar() {

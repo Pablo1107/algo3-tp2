@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
@@ -23,11 +26,13 @@ public class ModeloJuego {
     private Jugador jugador;
     private Mapa mapa;
     private boolean juegoTerminado;
+    private List<Partida> partidas;
 
     private ModeloJuego() {
         this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
         this.mapa = new Mapa(MAPA_LIMITE_X, MAPA_LIMITE_Y);
         this.juegoTerminado = false;
+        this.partidas = new ArrayList<>();
         this.inicializarJuego();
     }
 
@@ -57,6 +62,9 @@ public class ModeloJuego {
     }
 
     public void terminarJuego() {
+        System.out.println(instancia.getJugador().getMovimientos());
+        Partida resultado = new Partida(instancia.getJugador().getMovimientos());
+        this.partidas.add(resultado);
         instancia.juegoTerminado = true;
     }
 
@@ -94,6 +102,10 @@ public class ModeloJuego {
 
     public Mapa getMapa() {
         return this.mapa;
+    }
+
+    public List<Partida> getPartidas() {
+        return this.partidas;
     }
 
     public boolean getJuegoTerminado() {

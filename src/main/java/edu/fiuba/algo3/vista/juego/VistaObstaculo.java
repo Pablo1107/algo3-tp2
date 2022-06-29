@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.pantallas.juego;
+package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
@@ -22,8 +22,8 @@ public class VistaObstaculo extends VistaElementoTablero {
 
     public void actualizarVista() {
         Posicion posicion = this.elemento.getPosicion();
-        this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA);
-        this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA);
+        this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
     }
 
     protected void cambiarImagenVista() {

@@ -19,8 +19,19 @@
 	-fx-background-size: stretch;
 }
 
-#vista-pantalla-ayuda {
+#vista-pantalla-ayuda, #vista-pantalla-puntajes {
 	-fx-alignment: center;
+	-fx-spacing: 8px;
+}
+
+#tablero-juego {
+	-fx-border-width: 2px;
+	-fx-border-color: -color-fondo-botones;
+}
+
+#contenedor-botones-laterales, #contendor-listado-puntajes  {
+	-fx-alignment: center;
+	-fx-fill-width: true;
 	-fx-spacing: 8px;
 }
 
@@ -42,15 +53,4 @@ Text {
 
 .button:hover, .button:pressed {
 	-fx-background-color: -color-fondo-botones-presionado;
-}
-
-#tablero-juego {
-	-fx-border-width: 2px;
-	-fx-border-color: -color-fondo-botones;
-}
-
-#contenedor-botones-laterales {
-	-fx-alignment: center;
-	-fx-fill-width: true;
-	-fx-spacing: 8px;
 }

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.pantallas.juego;
+package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
@@ -38,7 +38,7 @@ public class VistaVehiculoJugador extends VistaElementoTablero {
 
     private void sincronizarPosicionVistaConJugador() {
         Posicion posicionActualJugador = this.jugador.getPosicion();
-        this.setX(posicionActualJugador.getX() * VistaPantallaJuego.FACTOR_ESCALA);
-        this.setY(posicionActualJugador.getY() * VistaPantallaJuego.FACTOR_ESCALA);
+        this.setX(posicionActualJugador.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setY(posicionActualJugador.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
     }
 }

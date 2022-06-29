@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.pantallas.juego;
+package edu.fiuba.algo3.vista.juego;
 
 import java.util.List;
 
