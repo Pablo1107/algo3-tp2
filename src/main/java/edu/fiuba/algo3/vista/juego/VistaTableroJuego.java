@@ -5,17 +5,18 @@ import edu.fiuba.algo3.vista.VistaMapa;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class VistaTablero extends StackPane {
+public class VistaTableroJuego extends StackPane {
     private VistaVehiculoJugador vistaJugador;
     private VistaMapa vistaMapa;
 
-    public VistaTablero(VistaVehiculoJugador vistaJugador, VistaMapa vistaMapa) {
+    public VistaTableroJuego(VistaVehiculoJugador vistaJugador, VistaMapa vistaMapa) {
         this.vistaJugador = vistaJugador;
         this.vistaMapa = vistaMapa;
-        this.setId("contenedor-tablero");
+        this.inicializarVista();
+    }
 
-        Pane pane = new Pane(this.vistaMapa, this.vistaJugador);
-        pane.setId("tablero");
-        this.getChildren().add(pane);
+    private void inicializarVista() {
+        this.setId("tablero-juego");
+        this.getChildren().add(new Pane(this.vistaMapa, this.vistaJugador));
     }
 }

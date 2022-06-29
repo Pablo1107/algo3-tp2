@@ -4,7 +4,7 @@ import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.vista.pantallas.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.pantallas.VistaPantallaAyuda;
-import edu.fiuba.algo3.vista.pantallas.VistaPantallaJuego;
+import edu.fiuba.algo3.vista.pantallas.juego.VistaPantallaJuego;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

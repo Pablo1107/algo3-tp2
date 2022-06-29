@@ -29,6 +29,7 @@ public class VistaPantallaAyuda extends VBox {
     }
 
     private void inicializarVista() {
+        this.setId("vista-pantalla-ayuda");
         this.getChildren().add(new Text(TEXTO_AYUDA));
         this.agregarBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas));
     }

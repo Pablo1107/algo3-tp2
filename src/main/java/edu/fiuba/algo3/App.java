@@ -4,9 +4,12 @@ import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.vista.pantallas.VistaPantallaInicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    private static final String ICONO_VENTANA = "icono.png";
     private static final String ARCHIVO_ESTILOS = "estilos.css";
 
     @Override
@@ -18,6 +21,11 @@ public class App extends Application {
         App.aplicarEstilos(scene);
 
         stage.setScene(scene);
+
+        stage.setTitle("TITULO MUY BONITO PARA GANARNOS A LOS CORRECTORES");
+        stage.getIcons().add(new Image(App.class.getResourceAsStream(ICONO_VENTANA)));
+        Font.loadFont(App.class.getResource("JetBrainsMono-Regular.ttf").toExternalForm(), 10);
+
         stage.show();
     }
 

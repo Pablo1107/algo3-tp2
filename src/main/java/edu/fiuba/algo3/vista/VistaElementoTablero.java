@@ -3,7 +3,7 @@ package edu.fiuba.algo3.vista;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import edu.fiuba.algo3.vista.pantallas.VistaPantallaJuego;
+import edu.fiuba.algo3.vista.pantallas.juego.VistaPantallaJuego;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

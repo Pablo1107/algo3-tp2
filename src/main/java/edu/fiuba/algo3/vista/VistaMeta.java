@@ -2,7 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.vista.pantallas.VistaPantallaJuego;
+import edu.fiuba.algo3.vista.pantallas.juego.VistaPantallaJuego;
 
 public class VistaMeta extends VistaElementoTablero {
 

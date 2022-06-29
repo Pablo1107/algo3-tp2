@@ -18,8 +18,7 @@ public class VistaPantallaInicio extends VBox {
     }
 
     private void inicializarVista() {
-        this.setId("vista-botones-inicio");
-
+       this.setId("vista-pantalla-inicio");
         this.agregarBotonConControlador("Iniciar Juego", new ControladorBotonIniciarJuego(this.controladorCambioPantallas));
         this.agregarBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas));
         this.agregarBotonConControlador("Cerrar", new ControladorBotonCerrarJuego());

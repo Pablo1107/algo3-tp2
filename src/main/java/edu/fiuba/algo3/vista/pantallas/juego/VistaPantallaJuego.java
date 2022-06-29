@@ -1,6 +1,5 @@
-package edu.fiuba.algo3.vista.pantallas;
+package edu.fiuba.algo3.vista.pantallas.juego;
 
-import edu.fiuba.algo3.controlador.ControladorBotonIniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonVolver;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
@@ -8,7 +7,7 @@ import edu.fiuba.algo3.controlador.ControladorTecladoJuego;
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.vista.VistaMapa;
 import edu.fiuba.algo3.vista.VistaVehiculoJugador;
-import edu.fiuba.algo3.vista.juego.VistaTablero;
+import edu.fiuba.algo3.vista.juego.VistaTableroJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -37,19 +36,18 @@ public class VistaPantallaJuego extends BorderPane {
     }
 
     private void inicializarVista() {
-        VistaTablero tablero = new VistaTablero(this.vistaJugador, this.vistaMapa);
-        Pane wrapperTablero = new Pane(tablero);
-        this.setCenter(wrapperTablero);
+        VistaTableroJuego tablero = new VistaTableroJuego(this.vistaJugador, this.vistaMapa);
+        this.setCenter(new Pane(tablero));
 
         Button reiniciar = this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas));
         Button salir = this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas));
-        VBox group = new VBox(reiniciar, salir);
-        this.setRight(group);
+        VBox botonesLaterales = new VBox(reiniciar, salir);
+        botonesLaterales.setId("contenedor-botones-laterales");
+        this.setRight(botonesLaterales);
     }
 
     public void inicializarMovimiento(Scene scene) {
         scene.setOnKeyPressed(evento -> {
-            System.out.println(evento.getCode());
             this.controladorTeclado.mover(evento);
             this.actualizar();
             this.controladorTeclado.terminoJuego();
