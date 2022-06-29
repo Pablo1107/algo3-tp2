@@ -143,4 +143,19 @@ public class JugadorTest {
 
         assertEquals(posicionEsperada, posicionActual);
     }
+
+    @Test
+    public void alAsignarleCiertaCantidadDeMovimientosAlJugadorEsteTieneLaCantidadEsperada() {
+        Posicion posicionInicial = new Posicion(1, 1);
+        Vehiculo vehiculo = new Moto();
+
+        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+
+        jugador.setMovimientos(10);
+
+        int movimientosEsperados = 10;
+        int movimientosActuales = jugador.getMovimientos();
+
+        assertEquals(movimientosEsperados, movimientosActuales);
+    }
 }

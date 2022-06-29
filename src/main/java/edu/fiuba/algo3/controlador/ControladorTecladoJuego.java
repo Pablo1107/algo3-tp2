@@ -5,14 +5,15 @@ import edu.fiuba.algo3.modelo.mapa.Direccion;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class ControladorJuego {
+public class ControladorTecladoJuego {
     private ModeloJuego modelo;
+
     private static final Direccion DIR_DERECHA = new Direccion(1, 0);
     private static final Direccion DIR_IZQUIERDA = new Direccion(-1, 0);
     private static final Direccion DIR_ARRIBA = new Direccion(0, -1);
     private static final Direccion DIR_ABAJO = new Direccion(0, 1);
 
-    public ControladorJuego(ModeloJuego modelo) {
+    public ControladorTecladoJuego(ModeloJuego modelo) {
         this.modelo = modelo;
     }
 
@@ -33,18 +34,30 @@ public class ControladorJuego {
     }
 
     private void moverDerecha() {
-        this.modelo.turno(DIR_DERECHA);
+        this.modelo.jugarTurno(DIR_DERECHA);
     }
 
     private void moverIzquierda() {
-        this.modelo.turno(DIR_IZQUIERDA);
+        this.modelo.jugarTurno(DIR_IZQUIERDA);
     }
 
     private void moverArriba() {
-        this.modelo.turno(DIR_ARRIBA);
+        this.modelo.jugarTurno(DIR_ARRIBA);
     }
 
     private void moverAbajo() {
-        this.modelo.turno(DIR_ABAJO);
+        this.modelo.jugarTurno(DIR_ABAJO);
     }
+
+    // public void reiniciarJuego() {
+    //     this.modelo.reiniciarJuego();
+    // }
+    //
+    // public void terminarJuego(ControladorCambioDePantallas controladorCambioDePantallas) {
+    //     if(!this.modelo.getJuegoTerminado()) {
+    //         return;
+    //     }
+    //
+    //     // this.modelo.reiniciarJuego();
+    // }
 }

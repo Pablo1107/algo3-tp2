@@ -1,0 +1,56 @@
+/* https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html */
+
+.root {
+	-color-fondo: #2e3440;
+	-color-fondo-botones: #88c0d0;
+	-color-fondo-botones-presionado: #d8dee9;
+	-color-texto: #eceff4;
+
+	-fx-background-color: -color-fondo;
+	-fx-font-size: 16px;
+}
+
+#vista-pantalla-inicio {
+	-fx-alignment: center;
+	-fx-spacing: 8px;
+	-fx-fill-width: true;
+	/* -fx-background-image: url("fondo.png"); */
+	-fx-background-position: center;
+	-fx-background-size: stretch;
+}
+
+#vista-pantalla-ayuda, #vista-pantalla-puntajes {
+	-fx-alignment: center;
+	-fx-spacing: 8px;
+}
+
+#tablero-juego {
+	-fx-border-width: 2px;
+	-fx-border-color: -color-fondo-botones;
+}
+
+#contenedor-botones-laterales, #contendor-listado-puntajes  {
+	-fx-alignment: center;
+	-fx-fill-width: true;
+	-fx-spacing: 8px;
+}
+
+Text {
+	-fx-fill: white;
+	-fx-text-alignment: justify;
+}
+
+.button {
+	-fx-font-weight: bold;
+	-fx-font-size: 20px;
+	-fx-cursor: hand;
+	-fx-pref-width: 200px;
+	-fx-background-color: -color-fondo-botones;
+	-fx-text-fill: -color-fondo;
+	-fx-border-width: 1px;
+	-fx-padding: 8px;
+}
+
+.button:hover, .button:pressed {
+	-fx-background-color: -color-fondo-botones-presionado;
+}

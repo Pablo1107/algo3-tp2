@@ -61,4 +61,19 @@ public class MapaTest {
         assertFalse(mapa.estaDentroDeLimites(10, 0));
         assertFalse(mapa.estaDentroDeLimites(10, 10));
     }
+
+    @Test
+    public void alCrearUnMapaLosLimitesSonLosCorrectos() {
+        Mapa mapa = new Mapa(10, 10);
+
+        int limiteXEsperado = 10;
+        int limiteXObtenido = mapa.getLimiteX();
+
+        assertEquals(limiteXEsperado, limiteXObtenido);
+
+        int limiteYEsperado = 10;
+        int limiteYObtenido = mapa.getLimiteY();
+
+        assertEquals(limiteYEsperado, limiteYObtenido);
+    }
 }

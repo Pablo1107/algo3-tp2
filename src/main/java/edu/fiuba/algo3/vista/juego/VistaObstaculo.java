@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 
-public class VistaObstaculo extends Renderizable {
+public class VistaObstaculo extends VistaElementoTablero {
     private static final String IMAGEN_POZO = "src/main/resources/img/mapa/pozo.png";
     private static final String IMAGEN_PIQUETE = "src/main/resources/img/mapa/piquete.png";
     private static final String IMAGEN_CONTROL_POLICIAL = "src/main/resources/img/mapa/policia.png";
@@ -14,26 +14,25 @@ public class VistaObstaculo extends Renderizable {
     private final Elemento elemento;
 
     public VistaObstaculo(Elemento elemento) {
-        super();
         this.elemento = elemento;
-        this.ajustarEscala();
-        this.actualizar();
-        this.renderizar();
+        this.ajustarEscalaVista();
+        this.actualizarVista();
+        this.cambiarImagenVista();
     }
 
-    public void actualizar() {
+    public void actualizarVista() {
         Posicion posicion = this.elemento.getPosicion();
-        this.setX(posicion.getX() * VistaJuego.FACTOR_ESCALA);
-        this.setY(posicion.getY() * VistaJuego.FACTOR_ESCALA);
+        this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
     }
 
-    protected void renderizar() {
+    protected void cambiarImagenVista() {
         if (this.elemento instanceof Pozo) {
-            this.cargarImagen(IMAGEN_POZO);
+            this.cargarRecursoImagen(IMAGEN_POZO);
         } else if (this.elemento instanceof Piquete) {
-            this.cargarImagen(IMAGEN_PIQUETE);
+            this.cargarRecursoImagen(IMAGEN_PIQUETE);
         } else if (this.elemento instanceof ControlPolicial) {
-            this.cargarImagen(IMAGEN_CONTROL_POLICIAL);
+            this.cargarRecursoImagen(IMAGEN_CONTROL_POLICIAL);
         }
     }
 }

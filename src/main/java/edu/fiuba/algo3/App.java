@@ -1,34 +1,40 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.controlador.ControladorJuego;
-import edu.fiuba.algo3.modelo.ModeloJuego;
-import edu.fiuba.algo3.vista.VistaInicio;
-import edu.fiuba.algo3.vista.VistaJuego;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    private Stage stage;
+    private static final String ICONO_VENTANA = "icono.png";
+    private static final String ARCHIVO_ESTILOS = "estilos.css";
+
     @Override
-    public void start(Stage primaryStage) {
-        //ModeloJuego modelo = new ModeloJuego();
-        //ControladorJuego controlador = new ControladorJuego(modelo);
-        //VistaJuego root = new VistaJuego(controlador, modelo);
+    public void start(Stage stage) {
+        ControladorCambioDePantallas controladorCambioPantallas = new ControladorCambioDePantallas(stage);
+        VistaPantallaInicio vistaPantallaInicio = new VistaPantallaInicio(controladorCambioPantallas);
 
-        this.stage = primaryStage;
+        Scene scene = new Scene(vistaPantallaInicio);
+        App.aplicarEstilos(scene);
 
-        VistaInicio rootInicio = new VistaInicio();
-        Scene scene = new Scene(rootInicio.asParent(), 1250, 750);
+        stage.setScene(scene);
 
-        rootInicio.presionarBotones(this.stage);
+        stage.setTitle("TITULO MUY BONITO PARA GANARNOS A LOS CORRECTORES");
+        stage.getIcons().add(new Image(App.class.getResourceAsStream(ICONO_VENTANA)));
+        Font.loadFont(App.class.getResource("JetBrainsMono-Regular.ttf").toExternalForm(), 10);
 
-        //root.inicializarMovimiento(scene);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stage.show();
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static void aplicarEstilos(Scene scene) {
+        String archivoEstilos = App.class.getResource(ARCHIVO_ESTILOS).toExternalForm();
+        scene.getStylesheets().add(archivoEstilos);
     }
 }
