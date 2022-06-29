@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.Direccion;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.mapa.Meta;
-import edu.fiuba.algo3.modelo.mapa.Posicion;
+import edu.fiuba.algo3.modelo.mapa.*;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
@@ -45,15 +46,15 @@ public class ModeloJuego {
     }
 
     private void inicializarJuego() {
-        double proporcionObstaculos = 0.25;
-        int cantidadElementos = (int)((this.mapa.getLimiteX() * this.mapa.getLimiteY()) * proporcionObstaculos);
+        this.mapa.agregarElemento(new Meta(new Posicion(MAPA_LIMITE_X-1, (MAPA_LIMITE_Y-1)/2)));
+        this.mapa.agregarElemento(new ElementoNulo(POS_INICIAL_JUGADOR)); //Agrego un elemento nulo en la posicion inicial del jugador
 
-        for (int i = 0; i < cantidadElementos; i++) {
-            Posicion posicion = this.generarPosicionRandom();
-            this.mapa.agregarElemento(this.generarObstaculoRandom(posicion));
+        for (int i  = 0; i < this.mapa.getLimiteX(); i++ ){
+            for (int j = 0; j < this.mapa.getLimiteY(); j++ ) {
+                Posicion posicion = new Posicion(i, j);
+                this.mapa.agregarElemento(this.generarElementoRandom(posicion));
+            }
         }
-
-        this.mapa.agregarElemento(new Meta(new Posicion(MAPA_LIMITE_X - 1, (MAPA_LIMITE_Y - 1)/2)));
     }
 
     public void reiniciarJuego() {
@@ -76,24 +77,34 @@ public class ModeloJuego {
         this.jugador.avanzar(direccion, this.mapa);
     }
 
-    private Posicion generarPosicionRandom() {
-        int coordenadaX = (int)Math.floor(Math.random() * (this.mapa.getLimiteX() - 1));
-        int coordenadaY = (int)Math.floor(Math.random() * this.mapa.getLimiteY());
-
-        return new Posicion(coordenadaX, coordenadaY);
-    }
-
-    private Obstaculo generarObstaculoRandom(Posicion posicion) {
+    private Elemento generarElementoRandom(Posicion posicion) {
         double random = Math.random();
-        if (random < 0.3) {
+        if (random < 0.2) {
             return new Pozo(posicion);
         }
 
-        if (random < 0.7) {
+        if (random < 0.4) {
             return new Piquete(posicion);
         } 
 
-        return new ControlPolicial(posicion);
+        if (random < 0.6) {
+            return new ControlPolicial(posicion);
+        }
+
+        if (random < 0.66) {
+            return new Favorable(posicion);
+        }
+
+        if (random < 0.72) {
+            return new Desfavorable(posicion);
+        }
+
+        if (random < 0.8) {
+            return new CambioDeVehiculo(posicion);
+        }
+
+        return new ElementoNulo(posicion);
+
     }
 
     public Jugador getJugador() {

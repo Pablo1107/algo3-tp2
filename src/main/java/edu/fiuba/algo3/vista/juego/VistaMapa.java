@@ -6,6 +6,9 @@ import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Meta;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa;
+import edu.fiuba.algo3.vista.VistaElementoNulo;
+import edu.fiuba.algo3.vista.VistaSorpresa;
 import javafx.scene.layout.Pane;
 
 public class VistaMapa extends Pane {
@@ -21,8 +24,12 @@ public class VistaMapa extends Pane {
         for (Elemento e : elementos) {
             if(e instanceof Obstaculo) {
                 this.getChildren().add(new VistaObstaculo(e));
+            } else if (e instanceof Sorpresa) {
+              this.getChildren().add(new VistaSorpresa(e));
             } else if(e instanceof Meta) {
                 this.getChildren().add(new VistaMeta(e));
+            } else {
+                this.getChildren().add(new VistaElementoNulo(e));
             }
         }
     }

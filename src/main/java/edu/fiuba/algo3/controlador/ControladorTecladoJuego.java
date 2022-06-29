@@ -48,7 +48,7 @@ public class ControladorTecladoJuego {
     private void moverAbajo() {
         this.modelo.jugarTurno(DIR_ABAJO);
     }
-    //
+
     // public void reiniciarJuego() {
     //     this.modelo.reiniciarJuego();
     // }
