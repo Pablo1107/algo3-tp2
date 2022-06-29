@@ -17,6 +17,7 @@ public class VistaPantallaJuego extends HBox {
     private ModeloJuego modelo;
     private VistaVehiculoJugador vistaJugador;
     private VistaMapa vistaMapa;
+    private VistaOculta vistaOculta;
 
     public VistaPantallaJuego(ModeloJuego modelo, ControladorCambioDePantallas controladorCambioPantallas) {
         this.modelo = modelo;
@@ -24,11 +25,12 @@ public class VistaPantallaJuego extends HBox {
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.vistaMapa = new VistaMapa(this.modelo.getMapa());
         this.vistaJugador = new VistaVehiculoJugador(this.modelo.getJugador());
+        this.vistaOculta = new VistaOculta(this.modelo.getJugador(), this.modelo.getMapa(), this.modelo.getPosicionMeta());
         this.inicializarVista();
     }
 
     private void inicializarVista() {
-        VistaTableroJuego tablero = new VistaTableroJuego(this.vistaJugador, this.vistaMapa);
+        VistaTableroJuego tablero = new VistaTableroJuego(this.vistaJugador, this.vistaMapa, this.vistaOculta);
         this.getChildren().add(new Pane(tablero));
 
         VistaControlesLaterales controlesLaterales = new VistaControlesLaterales(this.controladorCambioPantallas);
@@ -49,5 +51,6 @@ public class VistaPantallaJuego extends HBox {
 
     public void actualizar() {
         this.vistaJugador.actualizarVista();
+        this.vistaOculta.actualizarVista();
     }
 }
