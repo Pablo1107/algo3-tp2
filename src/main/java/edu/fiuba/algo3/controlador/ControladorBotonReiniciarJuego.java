@@ -2,7 +2,6 @@ package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.ModeloJuego;
-import edu.fiuba.algo3.vista.juego.VistaJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -21,16 +20,16 @@ public class ControladorBotonReiniciarJuego implements EventHandler<ActionEvent>
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.modelo.reiniciar();
-
-        ControladorTecladoJuego controlador = new ControladorTecladoJuego(this.modelo, this.stage);
-
-        VistaJuego root = new VistaJuego(controlador, this.modelo, this.stage);
-        Scene scene = new Scene(root.getNodoRaiz());
-        root.inicializarMovimiento(scene);
-        this.cargarEstilos(scene);
-        this.stage.setScene(scene);
-        System.out.println(this.stage);
+        // this.modelo.reiniciar();
+        //
+        // ControladorTecladoJuego controlador = new ControladorTecladoJuego(this.modelo, this.stage);
+        //
+        // VistaPantallaJuego root = new VistaPantallaJuego(controlador, this.modelo, this.stage);
+        // Scene scene = new Scene(root.getNodoRaiz());
+        // root.inicializarMovimiento(scene);
+        // this.cargarEstilos(scene);
+        // this.stage.setScene(scene);
+        // System.out.println(this.stage);
     }
 
     private void cargarEstilos(Scene scene) {

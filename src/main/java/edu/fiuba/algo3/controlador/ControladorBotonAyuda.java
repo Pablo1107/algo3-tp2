@@ -1,22 +1,17 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.vista.ayuda.VistaAyuda;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class ControladorBotonAyuda implements EventHandler<ActionEvent> {
-    private Stage stage;
+    private final ControladorCambioPantallas controladorCambioPantallas;
 
-    public ControladorBotonAyuda(Stage stage) {
-        this.stage = stage;
+    public ControladorBotonAyuda(ControladorCambioPantallas controladorCambioPantallas) {
+        this.controladorCambioPantallas = controladorCambioPantallas;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        VistaAyuda vistaAyuda = new VistaAyuda(this.stage);
-        Scene scene = new Scene(vistaAyuda);
-        stage.setScene(scene);
+        this.controladorCambioPantallas.cargarPantallaAyuda();
     }
 }

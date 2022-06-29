@@ -3,14 +3,14 @@ package edu.fiuba.algo3.vista;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import edu.fiuba.algo3.vista.juego.VistaJuego;
+import edu.fiuba.algo3.vista.pantallas.VistaPantallaJuego;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class VistaElementoTablero extends ImageView {
     protected void ajustarEscalaVista() {
-        this.setFitWidth(VistaJuego.FACTOR_ESCALA);
-        this.setFitHeight(VistaJuego.FACTOR_ESCALA);
+        this.setFitWidth(VistaPantallaJuego.FACTOR_ESCALA);
+        this.setFitHeight(VistaPantallaJuego.FACTOR_ESCALA);
     }
 
     public abstract void actualizarVista();

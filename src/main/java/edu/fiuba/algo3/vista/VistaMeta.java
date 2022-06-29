@@ -2,7 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.vista.juego.VistaJuego;
+import edu.fiuba.algo3.vista.pantallas.VistaPantallaJuego;
 
 public class VistaMeta extends VistaElementoTablero {
 
@@ -20,8 +20,8 @@ public class VistaMeta extends VistaElementoTablero {
     @Override
     public void actualizarVista() {
         Posicion posicion = this.elemento.getPosicion();
-        this.setX(posicion.getX() * VistaJuego.FACTOR_ESCALA);
-        this.setY(posicion.getY() * VistaJuego.FACTOR_ESCALA);
+        this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA);
+        this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA);
     }
 
     @Override

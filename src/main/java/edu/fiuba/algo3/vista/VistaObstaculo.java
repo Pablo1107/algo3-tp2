@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
-import edu.fiuba.algo3.vista.juego.VistaJuego;
+import edu.fiuba.algo3.vista.pantallas.VistaPantallaJuego;
 
 public class VistaObstaculo extends VistaElementoTablero {
     private static final String IMAGEN_POZO = "src/main/resources/img/mapa/pozo.png";
@@ -23,8 +23,8 @@ public class VistaObstaculo extends VistaElementoTablero {
 
     public void actualizarVista() {
         Posicion posicion = this.elemento.getPosicion();
-        this.setX(posicion.getX() * VistaJuego.FACTOR_ESCALA);
-        this.setY(posicion.getY() * VistaJuego.FACTOR_ESCALA);
+        this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA);
+        this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA);
     }
 
     protected void cambiarImagenVista() {
