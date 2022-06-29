@@ -49,10 +49,16 @@ public class ModeloJuego {
     }
 
     private Posicion generarPosicionRandom() {
-        int coordenadaX = (int)Math.floor(Math.random() * (this.mapa.getLimiteX()-1));
+        int coordenadaX = (int)Math.floor(Math.random() * (this.mapa.getLimiteX()));
         int coordenadaY = (int)Math.floor(Math.random() * this.mapa.getLimiteY());
 
-        return new Posicion(coordenadaX, coordenadaY);
+        Posicion pos = new Posicion(coordenadaX, coordenadaY);
+
+        if(pos.equals(POS_INICIAL_JUGADOR) | pos.equals(new Posicion(MAPA_LIMITE_X, MAPA_LIMITE_Y))) {
+            return generarPosicionRandom();
+        }
+
+        return pos;
     }
 
     private Obstaculo generarObstaculoRandom(Posicion posicion) {

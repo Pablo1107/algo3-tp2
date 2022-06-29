@@ -29,7 +29,7 @@ public class VistaInicio {
         this.agregarBotonConControlador("Iniciar Multijugador", new ControladorBotonIniciarJuego(this.stage));
         // this.agregarBotonConControlador("Puntajes", new ControladorEventoPuntajes(this.stage));
         this.agregarBotonConControlador("Ayuda", new ControladorBotonAyuda(this.stage));
-        this.agregarBotonConControlador("Cerrar", new ControladorBotonCerrarJuego());
+        this.agregarBotonConControlador("Salir", new ControladorBotonCerrarJuego());
     }
 
     private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {

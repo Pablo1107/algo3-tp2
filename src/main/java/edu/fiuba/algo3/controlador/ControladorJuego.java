@@ -41,7 +41,6 @@ public class ControladorJuego {
     private void moverDerecha() {
         this.modelo.turno(DIR_DERECHA);
     }
-
     private void moverIzquierda() {
         this.modelo.turno(DIR_IZQUIERDA);
     }
@@ -61,9 +60,5 @@ public class ControladorJuego {
             Scene scene = new Scene(rootInicio.getNodoRaiz(), 1250, 750);
             stage.setScene(scene);
         }
-    }
-
-    public void reiniciarJuego() {
-        modelo.reiniciar();
     }
 }

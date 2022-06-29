@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;
+import edu.fiuba.algo3.controlador.ControladorEventoVolver;
 import edu.fiuba.algo3.controlador.ControladorJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.modelo.ModeloJuego;
@@ -45,9 +46,10 @@ public class VistaJuego {
         this.nodoRaiz.setCenter(wrapperTablero);
 
         Button reiniciar = this.horrible("Reiniciar", new ControladorBotonReiniciarJuego(this.modelo, this.stage));
+        Button volver = this.horrible("Volver", new ControladorEventoVolver(this.stage));
         Button salir = this.horrible("Salir", new ControladorBotonCerrarJuego());
 
-        VBox group = new VBox(reiniciar, salir);
+        VBox group = new VBox(reiniciar, volver, salir);
         this.nodoRaiz.setRight(group);
     }
 
