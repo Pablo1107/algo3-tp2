@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.pantallas.juego;
 
 import java.util.List;
 
@@ -14,8 +14,6 @@ public class VistaMapa extends Pane {
     public VistaMapa(Mapa mapa) {
         this.mapa = mapa;
         this.inicializarVista();
-        this.setStyle("-fx-border-color: red;");
-        this.setStyle("-fx-border-width: 1px;");
     }
 
     private void inicializarVista() {

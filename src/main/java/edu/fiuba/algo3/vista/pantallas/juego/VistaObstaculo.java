@@ -1,11 +1,10 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.pantallas.juego;
 
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
-import edu.fiuba.algo3.vista.pantallas.juego.VistaPantallaJuego;
 
 public class VistaObstaculo extends VistaElementoTablero {
     private static final String IMAGEN_POZO = "src/main/resources/img/mapa/pozo.png";

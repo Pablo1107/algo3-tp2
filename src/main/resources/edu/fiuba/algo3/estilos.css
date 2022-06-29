@@ -51,5 +51,6 @@ Text {
 
 #contenedor-botones-laterales {
 	-fx-alignment: center;
-	-fx-background-color: white;
+	-fx-fill-width: true;
+	-fx-spacing: 8px;
 }

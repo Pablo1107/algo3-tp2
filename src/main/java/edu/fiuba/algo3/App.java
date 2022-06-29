@@ -1,7 +1,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
-import edu.fiuba.algo3.vista.pantallas.VistaPantallaInicio;
+import edu.fiuba.algo3.vista.pantallas.inicio.VistaPantallaInicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

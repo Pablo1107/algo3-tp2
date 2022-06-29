@@ -1,7 +1,5 @@
-package edu.fiuba.algo3.vista.juego;
+package edu.fiuba.algo3.vista.pantallas.juego;
 
-import edu.fiuba.algo3.vista.VistaVehiculoJugador;
-import edu.fiuba.algo3.vista.VistaMapa;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 

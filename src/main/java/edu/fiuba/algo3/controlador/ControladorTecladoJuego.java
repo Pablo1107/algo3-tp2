@@ -34,31 +34,30 @@ public class ControladorTecladoJuego {
     }
 
     private void moverDerecha() {
-        this.modelo.turno(DIR_DERECHA);
+        this.modelo.jugarTurno(DIR_DERECHA);
     }
 
     private void moverIzquierda() {
-        this.modelo.turno(DIR_IZQUIERDA);
+        this.modelo.jugarTurno(DIR_IZQUIERDA);
     }
 
     private void moverArriba() {
-        this.modelo.turno(DIR_ARRIBA);
+        this.modelo.jugarTurno(DIR_ARRIBA);
     }
 
     private void moverAbajo() {
-        this.modelo.turno(DIR_ABAJO);
-    }
-
-    public void terminoJuego() {
-        if(modelo.terminoJuego()) {
-            modelo.reiniciar();
-            // VistaPantallaInicio vistaInico = new VistaPantallaInicio(this.stage);
-            // Scene scene = new Scene(vistaInico, 1250, 750);
-            // stage.setScene(scene);
-        }
+        this.modelo.jugarTurno(DIR_ABAJO);
     }
 
     public void reiniciarJuego() {
-        modelo.reiniciar();
+        this.modelo.reiniciarJuego();
+    }
+
+    public void terminarJuego(ControladorCambioDePantallas controladorCambioDePantallas) {
+        if(!this.modelo.getJuegoTerminado()) {
+            return;
+        }
+
+        this.modelo.reiniciarJuego();
     }
 }
