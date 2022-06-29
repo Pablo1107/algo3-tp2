@@ -4,9 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class ControladorBotonIniciarJuego implements EventHandler<ActionEvent> {
-    private final ControladorCambioPantallas controladorCambioPantallas;
+    private final ControladorCambioDePantallas controladorCambioPantallas;
 
-    public ControladorBotonIniciarJuego(ControladorCambioPantallas controladorCambioPantallas) {
+    public ControladorBotonIniciarJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
     }
 

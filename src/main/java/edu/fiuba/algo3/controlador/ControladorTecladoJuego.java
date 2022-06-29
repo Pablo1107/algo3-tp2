@@ -4,20 +4,17 @@ import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 public class ControladorTecladoJuego {
     private ModeloJuego modelo;
-    private Stage stage;
 
     private static final Direccion DIR_DERECHA = new Direccion(1, 0);
     private static final Direccion DIR_IZQUIERDA = new Direccion(-1, 0);
     private static final Direccion DIR_ARRIBA = new Direccion(0, -1);
     private static final Direccion DIR_ABAJO = new Direccion(0, 1);
 
-    public ControladorTecladoJuego(ModeloJuego modelo, Stage stage) {
+    public ControladorTecladoJuego(ModeloJuego modelo) {
         this.modelo = modelo;
-        this.stage = stage;
     }
 
     public void mover(KeyEvent evento) {

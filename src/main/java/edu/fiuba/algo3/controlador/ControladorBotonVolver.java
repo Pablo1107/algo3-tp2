@@ -5,9 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class ControladorBotonVolver implements EventHandler<ActionEvent> {
-    private ControladorCambioPantallas controladorCambioPantallas;
+    private ControladorCambioDePantallas controladorCambioPantallas;
 
-    public ControladorBotonVolver(ControladorCambioPantallas controladorCambioPantallas) {
+    public ControladorBotonVolver(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
     }
 

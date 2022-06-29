@@ -1,6 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.controlador.ControladorCambioPantallas;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.vista.pantallas.VistaPantallaInicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,7 +11,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        ControladorCambioPantallas controladorCambioPantallas = new ControladorCambioPantallas(stage);
+        ControladorCambioDePantallas controladorCambioPantallas = new ControladorCambioDePantallas(stage);
         VistaPantallaInicio vistaPantallaInicio = new VistaPantallaInicio(controladorCambioPantallas);
 
         Scene scene = new Scene(vistaPantallaInicio);

@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class ControladorBotonCerrarJuego implements EventHandler<ActionEvent> {
-    public ControladorBotonCerrarJuego() {}
-
     @Override
     public void handle(ActionEvent actionEvent) {
         Platform.exit();

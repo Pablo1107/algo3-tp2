@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista.pantallas;
 
 import edu.fiuba.algo3.controlador.ControladorBotonVolver;
-import edu.fiuba.algo3.controlador.ControladorCambioPantallas;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -21,9 +21,9 @@ public class VistaPantallaAyuda extends VBox {
         "La sorpresa desfavorable suma el 25% de los movimientos\n" +
         "La sorpresa cambio de vehiculo cambia el vehiculo\n";
  
-    private final ControladorCambioPantallas controladorCambioPantallas;
+    private final ControladorCambioDePantallas controladorCambioPantallas;
 
-    public VistaPantallaAyuda(ControladorCambioPantallas controladorCambioPantallas) {
+    public VistaPantallaAyuda(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.inicializarVista();
     }
