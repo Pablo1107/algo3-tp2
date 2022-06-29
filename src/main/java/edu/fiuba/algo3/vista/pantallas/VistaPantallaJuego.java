@@ -49,7 +49,6 @@ public class VistaPantallaJuego extends BorderPane {
 
     public void inicializarMovimiento(Scene scene) {
         scene.setOnKeyPressed(evento -> {
-            System.out.println(evento.getCode());
             this.controladorTeclado.mover(evento);
             this.actualizar();
             this.controladorTeclado.terminoJuego();

@@ -52,13 +52,6 @@ public class ControladorTecladoJuego {
     public void terminoJuego() {
         if(modelo.terminoJuego()) {
             modelo.reiniciar();
-            // VistaPantallaInicio vistaInico = new VistaPantallaInicio(this.stage);
-            // Scene scene = new Scene(vistaInico, 1250, 750);
-            // stage.setScene(scene);
         }
-    }
-
-    public void reiniciarJuego() {
-        modelo.reiniciar();
     }
 }
