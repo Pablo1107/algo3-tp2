@@ -2,13 +2,13 @@ package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
-import edu.fiuba.algo3.vista.VistaInicio;
+import edu.fiuba.algo3.vista.VistaPantallaInicio;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class ControladorJuego {
+public class ControladorTecladoJuego {
     private ModeloJuego modelo;
     private Stage stage;
 
@@ -17,7 +17,7 @@ public class ControladorJuego {
     private static final Direccion DIR_ARRIBA = new Direccion(0, -1);
     private static final Direccion DIR_ABAJO = new Direccion(0, 1);
 
-    public ControladorJuego(ModeloJuego modelo, Stage stage) {
+    public ControladorTecladoJuego(ModeloJuego modelo, Stage stage) {
         this.modelo = modelo;
         this.stage = stage;
     }
@@ -57,9 +57,9 @@ public class ControladorJuego {
     public void terminoJuego() {
         if(modelo.terminoJuego()) {
             modelo.reiniciar();
-            VistaInicio rootInicio = new VistaInicio(this.stage);
-            Scene scene = new Scene(rootInicio.getNodoRaiz(), 1250, 750);
-            stage.setScene(scene);
+            // VistaPantallaInicio vistaInico = new VistaPantallaInicio(this.stage);
+            // Scene scene = new Scene(vistaInico, 1250, 750);
+            // stage.setScene(scene);
         }
     }
 

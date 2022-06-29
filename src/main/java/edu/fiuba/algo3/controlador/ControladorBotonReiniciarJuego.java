@@ -23,7 +23,7 @@ public class ControladorBotonReiniciarJuego implements EventHandler<ActionEvent>
     public void handle(ActionEvent actionEvent) {
         this.modelo.reiniciar();
 
-        ControladorJuego controlador = new ControladorJuego(this.modelo, this.stage);
+        ControladorTecladoJuego controlador = new ControladorTecladoJuego(this.modelo, this.stage);
 
         VistaJuego root = new VistaJuego(controlador, this.modelo, this.stage);
         Scene scene = new Scene(root.getNodoRaiz());

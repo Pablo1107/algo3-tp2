@@ -15,9 +15,8 @@ public class ControladorBotonAyuda implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        VistaAyuda root = new VistaAyuda();
-        Scene scene = new Scene(root.asParent(), 1250, 750);
-        root.volver(this.stage);
+        VistaAyuda vistaAyuda = new VistaAyuda(this.stage);
+        Scene scene = new Scene(vistaAyuda);
         stage.setScene(scene);
     }
 }

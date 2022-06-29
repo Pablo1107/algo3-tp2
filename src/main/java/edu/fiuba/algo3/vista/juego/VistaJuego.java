@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;
-import edu.fiuba.algo3.controlador.ControladorJuego;
+import edu.fiuba.algo3.controlador.ControladorTecladoJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.modelo.ModeloJuego;
-import edu.fiuba.algo3.vista.VistaJugador;
+import edu.fiuba.algo3.vista.VistaVehiculoJugador;
 import edu.fiuba.algo3.vista.VistaMapa;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,19 +21,19 @@ public class VistaJuego {
 
     private Stage stage;
 
-    private ControladorJuego controlador;
+    private ControladorTecladoJuego controlador;
     private ModeloJuego modelo;
 
     private BorderPane nodoRaiz;
-    private VistaJugador vistaJugador;
+    private VistaVehiculoJugador vistaJugador;
     private VistaMapa vistaMapa;
 
-    public VistaJuego(ControladorJuego controlador, ModeloJuego modelo, Stage stage) {
+    public VistaJuego(ControladorTecladoJuego controlador, ModeloJuego modelo, Stage stage) {
         this.nodoRaiz = new BorderPane();
         this.controlador = controlador;
         this.modelo = modelo;
         this.vistaMapa = new VistaMapa(this.modelo.getMapa());
-        this.vistaJugador = new VistaJugador(this.modelo.getJugador());
+        this.vistaJugador = new VistaVehiculoJugador(this.modelo.getJugador());
         this.stage = stage;
 
         this.inicializarVista();
@@ -51,6 +51,7 @@ public class VistaJuego {
         this.nodoRaiz.setRight(group);
     }
 
+    // TODO: Intentar unificar esto en todas las vistas.
     private Button horrible(String contenido, EventHandler<ActionEvent> controlador) {
         Button boton = new Button(contenido);
         boton.setOnAction(controlador);
@@ -70,7 +71,7 @@ public class VistaJuego {
     }
 
     public void actualizar() {
-        this.vistaJugador.actualizar();
+        this.vistaJugador.actualizarVista();
     }
 
 }
