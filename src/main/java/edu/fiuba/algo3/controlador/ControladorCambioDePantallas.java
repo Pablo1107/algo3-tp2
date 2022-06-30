@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
+import edu.fiuba.algo3.vista.puntajes.VistaNombresPuntaje;
 import edu.fiuba.algo3.vista.puntajes.VistaPantallaPuntajes;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,9 +43,14 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaPuntajes(this));
     }
 
+    public void cargarPantallaNombres() {
+        this.cambiarPantalla(new VistaNombresPuntaje(this));
+    }
+
     private void cambiarPantalla(Parent pantalla) {
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
         this.stage.setScene(scene);
     }
+
 }

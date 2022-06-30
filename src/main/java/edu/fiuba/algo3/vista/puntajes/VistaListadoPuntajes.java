@@ -22,7 +22,7 @@ public class VistaListadoPuntajes extends VBox {
     }
 
     private Text crearEntradaPuntaje(Partida resultado) {
-        String mensaje = String.format("Puntaje: %s puntos", resultado.getPuntaje());
+        String mensaje = String.format("%s: %s puntos",resultado.getNombre() , resultado.getPuntaje());
         return new Text(mensaje);
     }
 }
