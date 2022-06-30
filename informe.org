@@ -1,0 +1,499 @@
+#+LANGUAGE: es
+#+OPTIONS: toc:nil title:nil
+
+#+LATEX_CLASS_OPTIONS: [titlepage,a4paper]
+#+LATEX_HEADER_EXTRA: \hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true}
+#+LATEX_HEADER_EXTRA: \usepackage{a4wide}
+#+LATEX_HEADER_EXTRA: \usepackage{bookmark}
+#+LATEX_HEADER_EXTRA: \usepackage{fancyhdr}
+#+LATEX_HEADER_EXTRA: \usepackage[spanish]{babel}
+#+LATEX_HEADER_EXTRA: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER_EXTRA: \usepackage[T1]{fontenc}
+#+LATEX_HEADER_EXTRA: \usepackage{graphicx}
+#+LATEX_HEADER_EXTRA: \usepackage{float}
+#+LATEX_HEADER_EXTRA: \usepackage{minted}
+#+LATEX_HEADER_EXTRA: \usepackage{svg}
+#+LATEX_HEADER_EXTRA: \pagestyle{fancy}
+#+LATEX_HEADER_EXTRA: \fancyhf{}
+#+LATEX_HEADER_EXTRA: \fancyhead[L]{TP3 - Grupo 1}
+#+LATEX_HEADER_EXTRA: \fancyhead[R]{Teoria de Algoritmos I - FIUBA}
+#+LATEX_HEADER_EXTRA: \renewcommand{\headrulewidth}{0.4pt}
+#+LATEX_HEADER_EXTRA: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER_EXTRA: \renewcommand{\footrulewidth}{0.4pt}
+#+LATEX_HEADER_EXTRA: \usemintedstyle{stata-light}
+#+LATEX_HEADER_EXTRA: \newminted{c}{bgcolor={rgb}{0.95,0.95,0.95}}
+#+LATEX_HEADER_EXTRA: \usepackage{color}
+#+LATEX_HEADER_EXTRA: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER_EXTRA: \usepackage{fancyvrb}
+#+LATEX_HEADER_EXTRA: \fvset{framesep=1mm,fontfamily=courier,fontsize=\scriptsize,numbers=left,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
+#+LATEX_HEADER_EXTRA: \usepackage[nottoc]{tocbibind}
+
+#+NAME: setup
+#+BEGIN_SRC emacs-lisp :results silent :exports none
+  (setq org-latex-minted-options
+    '(("bgcolor" "bg")))
+#+END_SRC
+
+#+BEGIN_EXPORT latex
+\begin{titlepage}
+    \hfill\includegraphics[width=6cm]{assets/logofiuba.jpg}
+    \centering
+    \vfill
+    \Huge \textbf{Trabajo Práctico 2 — GPS Challenge}
+    \vskip2cm
+    \Large [75.07/95.02] Algoritmos y Programación III \\
+    Primer cuatrimestre de 2022\\
+    \vfill
+    \begin{tabular}{ | l | l | l | }
+      \hline
+      Alumno & Padron & Email \\ \hline
+      CASTILLO, Carlos & 108535 & ccastillo@fi.uba.ar \\ \hline
+      DEALBERA, Pablo Andres & 106585 & pdealbera@fi.uba.ar \\ \hline
+      DUARTE, Luciano & 105604 & lduarte@fi.uba.ar \\ \hline
+      RECCHIA, Ramiro & 99289 & rrecchia@fi.uba.ar \\ \hline
+    \end{tabular}
+    \vfill
+    \begin{tabular}{ | l | l | }
+      \hline
+      Corrector & Email \\ \hline
+      GOMEZ, Joaquin & gjoaquin@fi.uba.ar \\ \hline
+      VALDEZ, Santiago & vsantiago@fi.uba.ar \\ \hline
+    \end{tabular}
+    \vfill
+\end{titlepage}
+\tableofcontents
+\newpage
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+#+END_EXPORT
+
+* Supuestos
+# Documentar todos los supuestos hechos sobre el enunciado. Asegurarse de validar con los docentes.
+
+* Diagramas de clases
+# Varios diagramas de clases, mostrando la relación estática entre las clases. Pueden agregar todo el texto necesario para aclarar y explicar su diseño de manera tal que el modelo logre comunicarse de manera efectiva.
+
+** Vehiculo
+
+#+begin_src plantuml :file ./diagramas/clases-vehiculo.png
+class edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro {
+- {static} int LIMITE_POZOS_PISADOS
+- int pozosPisados
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+- boolean pasoElLimiteDePozosPisados()
+}
+class edu.fiuba.algo3.modelo.vehiculo.Auto {
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+}
+class edu.fiuba.algo3.modelo.vehiculo.Moto {
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+}
+abstract class edu.fiuba.algo3.modelo.vehiculo.Vehiculo {
+# int penalizaciones
++ {abstract}Vehiculo siguienteVehiculo()
++ {abstract}void pisar(ControlPolicial)
++ {abstract}void pisar(Piquete)
++ {abstract}void pisar(Pozo)
++ {abstract}void retroceder(Jugador)
++ void reducirPenalizaciones()
++ boolean tienePenalizaciones()
+}
+class edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro {
+- {static} int LIMITE_POZOS_PISADOS
+- int pozosPisados
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+- boolean pasoElLimiteDePozosPisados()
+}
+
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Auto
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Moto
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-vehiculo.png]]
+
+** Sorpresas
+
+#+begin_src plantuml :file ./diagramas/clases-sorpresas.png
+class edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable {
+- {static} double FACTOR_AUMENTO_MOVIMIENTOS
++ void chocarCon(Jugador)
+- double calcularMovimientosAumentados(int)
+}
+class edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable {
+- {static} double FACTOR_REDUCCION_MOVIMIENTOS
++ void chocarCon(Jugador)
+- double calcularMovimientosDescontados(int)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa {
++ {abstract}void chocarCon(Jugador)
+}
+
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-sorpresas.png]]
+
+** Obstaculos
+
+#+begin_src plantuml :file ./diagramas/clases-obstaculos.png
+class edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial {
+- {static} double PROBABILIDAD_MOTO
+- {static} double PROBABILIDAD_AUTO
+- {static} double PROBABILIDAD_CUATROxCUATRO
+- {static} int PENALIZACION
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+- int calcularPenalizacion(double)
+- boolean esPenalizado(double)
+}
+class edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo {
+- {static} int PENALIZACION_MOTO
+- {static} int PENALIZACION_AUTO
+- {static} int PENALIZACION_CUATROXCUATRO
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo {
++ {abstract}void chocarCon(Jugador)
++ {abstract}int aplicarPenalizacion(Moto)
++ {abstract}int aplicarPenalizacion(Auto)
++ {abstract}int aplicarPenalizacion(CuatroXCuatro)
+}
+class edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete {
+- {static} int PENALIZACION_MOTO
+- {static} int PENALIZACION_AUTO
+- {static} int PENALIZACION_CUATROXCUATRO
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+}
+
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-obstaculos.png]]
+
+** Mapa
+
+#+begin_src plantuml :file ./diagramas/clases-mapa.png
+class edu.fiuba.algo3.modelo.mapa.Posicion {
+- int x
+- int y
++ boolean estaDentroDelMapa(Mapa)
++ Posicion sumar(int,int)
++ boolean equals(Object)
++ int getX()
++ int getY()
+}
+class edu.fiuba.algo3.modelo.mapa.Direccion {
+- int x
+- int y
++ Posicion desplazar(Posicion,Mapa)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.Elemento {
+# Posicion posicion
++ {abstract}void chocarCon(Jugador)
++ boolean estaDentroDelMapa(Mapa)
++ boolean estaEnLaMismaPosicion(Elemento)
++ boolean estaEnLaMismaPosicion(Posicion)
++ Posicion getPosicion()
+}
+class edu.fiuba.algo3.modelo.mapa.ElementoNulo {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.Meta {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.Mapa {
+- int limiteX
+- int limiteY
+- List<Elemento> elementos
++ void agregarElemento(Elemento)
+- boolean hayElementoEnMismaPosicion(Elemento)
++ void chocarConElemento(Jugador)
++ boolean estaDentroDeLimites(int,int)
++ int getLimiteX()
++ int getLimiteY()
++ List<Elemento> getElementos()
+}
+
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.ElementoNulo
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.Meta
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-mapa.png]]
+
+** ModeloJuego
+
+#+begin_src plantuml :file ./diagramas/clases-modelojuego.png
+class edu.fiuba.algo3.modelo.ModeloJuego {
+- {static} Posicion POS_INICIAL_JUGADOR
+- {static} Vehiculo VEHICULO_INICIAL_JUGADOR
+- {static} int MAPA_LIMITE_X
+- {static} int MAPA_LIMITE_Y
+- {static} Posicion POS_META
+- {static} ModeloJuego instancia
+- Jugador jugador
+- Mapa mapa
+- boolean juegoTerminado
+- List<Partida> partidas
++ {static} ModeloJuego getInstancia()
+- void inicializarJuego()
++ void reiniciarJuego()
++ void terminarJuego()
++ void jugarTurno(Direccion)
+- Elemento generarElementoRandom(Posicion)
++ Jugador getJugador()
++ Mapa getMapa()
++ List<Partida> getPartidas()
++ boolean getJuegoTerminado()
++ Posicion getPosicionMeta()
+}
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-modelojuego.png]]
+
+
+* Diagrama de paquetes
+# Incluir un diagrama de paquetes UML para mostrar el acoplamiento de su trabajo.
+
+#+begin_src plantuml :file ./diagramas/paquetes.png
+class edu.fiuba.algo3.modelo.ModeloJuego {}
+
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Auto
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Moto
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Moto
+
+edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro -[hidden]-> edu.fiuba.algo3.modelo.mapa.Elemento 
+
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.ElementoNulo
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.Meta
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/paquetes.png]]
+
+* Diagramas de secuencia
+# Varios diagramas de secuencia, mostrando la relación dinámica entre distintos objetos planteando una gran cantidad de escenarios que contemplen las secuencias más interesantes del modelo.
+
+** Interaccion Jugador - Sorpresa Cambio de Vehiculo
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png
+actor Jugador
+participant CambioDeVehiculo
+participant Vehiculo
+
+Jugador -> CambioDeVehiculo ++ : chocarCon(this)
+CambioDeVehiculo -> Jugador ++ : getVehiculo()
+return vehiculo
+
+CambioDeVehiculo -> Vehiculo ++ : cambio()
+return siguienteVehiculo
+
+CambioDeVehiculo -> Jugador : setVehiculo(siguienteVehiculo)
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png]]
+
+** Interaccion Jugador - Sorpresa Favorable
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png
+
+
+actor Jugador
+participant Favorable
+
+Jugador -> Favorable ++ : chocarCon(this)
+Favorable -> Jugador ++ : getMovimientos()
+return movimientos
+
+Favorable -> Favorable ++ : calcularMovimientosDescontados(movimientos)
+return movimientosDescontados
+
+note right of Favorable
+	movimientosActuales = movimientos - movimientosDescontados
+end note
+
+Favorable -> Jugador : setMovimientos(movimientosActuales)
+
+
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png]]
+
+** Interaccion Jugador - Elemento
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png
+
+
+actor TestCase
+participant "__:Jugador__" as Jugador
+participant Vehiculo
+participant "__:Posicion__" as Posicion
+participant "mapa : Mapa" as Mapa
+participant Elemento
+
+TestCase -> Jugador ++ : avazar(direccion, mapa)
+Jugador -> Vehiculo ++ : tienePenalizaciones()
+return false
+
+Jugador -> Posicion ++ : desplazar(direccion, mapa)
+Posicion -> Posicion ++ : estaDentroDelMapa(mapa)
+Posicion -> Mapa ++ : getLimiteX()
+return limiteX
+
+Posicion -> Mapa ++ : getLmiteY()
+return limiteY
+
+return true
+
+note left of Posicion
+	nuevaPosicion = posicion + direccion
+end note
+
+return nuevaPosicion
+
+Jugador -> Mapa ++ : obtenerElementoEnPosicion(this.posicion)
+Mapa -> Elemento ++ : estaEnLaMismaPosicion(posicion)
+return true
+return elementoEnPosicion
+
+Jugador -> Elemento : chocarCon(this)
+
+
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png]]
+
+** Jugador avanza y se encuentra con un Elemento
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png
+actor Jugador
+participant Obstaculo
+participant Vehiculo
+
+Jugador -> Obstaculo ++ : chocarCon(this)
+Obstaculo -> Jugador : getVehiculo()
+Jugador --> Obstaculo : vehiculo
+Obstaculo -> Vehiculo ++ : pisar(this)
+Vehiculo -> Obstaculo : aplicarPenalizaciones(this)
+Obstaculo --> Vehiculo : penalizacion
+deactivate Obstaculo
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png]]
+
+* Diagramas de estado
+# Incluir diagramas de estados, mostrando tanto los estados como  las distintas transiciones para varias entidades del modelo.
+
+* Detalles de implementación
+# Deben detallar/explicar qué estrategias utilizaron para resolver todos los puntos más conflictivos del trabajo práctico. Justificar el uso de herencia vs. delegación, mencionar que principio de diseño aplicaron en qué caso y mencionar qué patrones de diseño fueron utilizados y por qué motivos.
+
+# IMPORTANTE
+# No describir el concepto de herencia, delegación, principio de diseño o patrón de diseño. Solo justificar su utilización.
+
+** Vehiculo
+
+En principio tenes una clase abstracta llamada /Vehiculo/ y usamos herencia para
+abstraer comportamiento comun entre su tres clases hijas: Moto, Auto y CuatroXCuatro.
+
+** Elemento
+
+Es una clase abstracta de la cual heredan dos clases:
+
+- Obstaculo
+  - Pozo, Piquete y Control Policial.
+- Sorpresa
+  - Favorable y Cambio de Vehiculo
+- Meta
+
+Utilizamos esta clase para definir compotamientos que los distintos
+Elementos tienen en comun, como por ejemplo que pueden ~chocaCon~ un
+jugador, y algunas funciones de ayuda para saber si el elemento esta
+adentro del mapa, si esta en la misma posicion que otro elemento o una
+posicion arbitraria, etc.
+
+** Interaccion Vehiculo-Obstaculo
+
+Para la interaccion Vehiculo-Obstaculo decidimos usar el patron /Double
+Dispatch/ de forma ya que tenemos una interaccion de muchos a muchos entre los
+hijos de ambas clases abstractas:
+
+#+BEGIN_SRC dot :file diagramas/interaccionVehiculoObstaculo.png :exports results
+digraph G {
+    rankdir=LR
+    splines=false
+    Moto -> Pozo [dir=both]
+    Moto -> Piquete [dir=both]
+    Moto -> ControlPolicial [dir=both]
+    Auto -> Pozo [dir=both]
+    Auto -> Piquete [dir=both]
+    Auto -> ControlPolicial [dir=both]
+    CuatroXCuatro -> Pozo [dir=both]
+    CuatroXCuatro -> Piquete [dir=both]
+    CuatroXCuatro -> ControlPolicial [dir=both]
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:diagramas/interaccionVehiculoObstaculo.png]]
+
+Ademas de esto teniamos la necesidad de modelar implementaciones especificas
+como el caso de CuatroXCuatro-Pozo donde la CuatroXCuatro debe pisar tres pozos
+para recibir una penalizacion, cosa que no sucede en ninguna de las otras interacciones.
+
+Para esto los Vehiculos tienen firmas segun cada implementacion de Obstaculo.
+Y cada implementacion de Obstaculo tiene firmas para cada Vehiculo.
+
+* Excepciones
+# Explicar las excepciones creadas, con qué fin fueron creadas y cómo y dónde se las atrapa explicando qué acciones se toman al respecto una vez capturadas.

@@ -1,0 +1,191 @@
+@startuml
+class edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro {
+- {static} int LIMITE_POZOS_PISADOS
+- int pozosPisados
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+- boolean pasoElLimiteDePozosPisados()
+}
+class edu.fiuba.algo3.modelo.mapa.Posicion {
+- int x
+- int y
++ boolean estaDentroDelMapa(Mapa)
++ Posicion sumar(int,int)
++ boolean equals(Object)
++ int getX()
++ int getY()
+}
+class edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial {
+- {static} double PROBABILIDAD_MOTO
+- {static} double PROBABILIDAD_AUTO
+- {static} double PROBABILIDAD_CUATROxCUATRO
+- {static} int PENALIZACION
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+- int calcularPenalizacion(double)
+- boolean esPenalizado(double)
+}
+class edu.fiuba.algo3.modelo.mapa.Direccion {
+- int x
+- int y
++ Posicion desplazar(Posicion,Mapa)
+}
+class edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo {
+- {static} int PENALIZACION_MOTO
+- {static} int PENALIZACION_AUTO
+- {static} int PENALIZACION_CUATROXCUATRO
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+}
+class edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable {
+- {static} double FACTOR_AUMENTO_MOVIMIENTOS
++ void chocarCon(Jugador)
+- double calcularMovimientosAumentados(int)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.Elemento {
+# Posicion posicion
++ {abstract}void chocarCon(Jugador)
++ boolean estaDentroDelMapa(Mapa)
++ boolean estaEnLaMismaPosicion(Elemento)
++ boolean estaEnLaMismaPosicion(Posicion)
++ Posicion getPosicion()
+}
+class edu.fiuba.algo3.modelo.vehiculo.Auto {
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.Partida {
+- int puntaje
+- LocalDateTime horaRegistro
+- String nombre
++ int getPuntaje()
++ LocalDateTime getHoraRegistro()
++ void setNombre(String)
++ String getNombre()
+}
+class edu.fiuba.algo3.modelo.vehiculo.Moto {
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+}
+class edu.fiuba.algo3.modelo.ModeloJuego {
+- {static} Posicion POS_INICIAL_JUGADOR
+- {static} Vehiculo VEHICULO_INICIAL_JUGADOR
+- {static} int MAPA_LIMITE_X
+- {static} int MAPA_LIMITE_Y
+- {static} Posicion POS_META
+- {static} ModeloJuego instancia
+- Jugador jugador
+- Mapa mapa
+- boolean juegoTerminado
+- List<Partida> partidas
++ {static} ModeloJuego getInstancia()
+- void inicializarJuego()
++ void reiniciarJuego()
++ void terminarJuego()
++ void jugarTurno(Direccion)
+- Elemento generarElementoRandom(Posicion)
++ Jugador getJugador()
++ Mapa getMapa()
++ List<Partida> getPartidas()
++ boolean getJuegoTerminado()
++ Posicion getPosicionMeta()
+}
+class edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable {
+- {static} double FACTOR_REDUCCION_MOVIMIENTOS
++ void chocarCon(Jugador)
+- double calcularMovimientosDescontados(int)
+}
+class edu.fiuba.algo3.modelo.jugador.Jugador {
+- Vehiculo vehiculo
+- Posicion posicion
+- Posicion posicionAnterior
+- int movimientos
++ void avanzar(Direccion,Mapa)
++ void retroceder()
++ void cambiarVehiculo()
++ Vehiculo getVehiculo()
++ Posicion getPosicion()
++ int getMovimientos()
++ void setMovimientos(int)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo {
++ {abstract}void chocarCon(Jugador)
++ {abstract}int aplicarPenalizacion(Moto)
++ {abstract}int aplicarPenalizacion(Auto)
++ {abstract}int aplicarPenalizacion(CuatroXCuatro)
+}
+class edu.fiuba.algo3.modelo.mapa.ElementoNulo {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete {
+- {static} int PENALIZACION_MOTO
+- {static} int PENALIZACION_AUTO
+- {static} int PENALIZACION_CUATROXCUATRO
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+}
+class edu.fiuba.algo3.modelo.mapa.Meta {
++ void chocarCon(Jugador)
+}
+abstract class edu.fiuba.algo3.modelo.vehiculo.Vehiculo {
+# int penalizaciones
++ {abstract}Vehiculo siguienteVehiculo()
++ {abstract}void pisar(ControlPolicial)
++ {abstract}void pisar(Piquete)
++ {abstract}void pisar(Pozo)
++ {abstract}void retroceder(Jugador)
++ void reducirPenalizaciones()
++ boolean tienePenalizaciones()
+}
+class edu.fiuba.algo3.modelo.mapa.Mapa {
+- int limiteX
+- int limiteY
+- List<Elemento> elementos
++ void agregarElemento(Elemento)
+- boolean hayElementoEnMismaPosicion(Elemento)
++ void chocarConElemento(Jugador)
++ boolean estaDentroDeLimites(int,int)
++ int getLimiteX()
++ int getLimiteY()
++ List<Elemento> getElementos()
+}
+abstract class edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa {
++ {abstract}void chocarCon(Jugador)
+}
+
+
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Auto
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Moto
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.ElementoNulo
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.Meta
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa
+@enduml
