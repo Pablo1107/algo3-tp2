@@ -7,8 +7,6 @@ import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Meta;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa;
-import edu.fiuba.algo3.vista.VistaElementoNulo;
-import edu.fiuba.algo3.vista.VistaSorpresa;
 import javafx.scene.layout.Pane;
 
 public class VistaMapa extends Pane {
