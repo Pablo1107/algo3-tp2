@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
+import edu.fiuba.algo3.vista.Sonido;
 
 public class VistaVehiculoJugador extends VistaElementoTablero {
     private static final String IMAGEN_MOTO = "src/main/resources/img/vehiculos/moto.png";
@@ -23,6 +24,7 @@ public class VistaVehiculoJugador extends VistaElementoTablero {
     public void actualizarVista() {
         this.sincronizarPosicionVistaConJugador();
         this.cambiarImagenVista();
+        Sonido.reproducirSonido();
     }
 
     protected void cambiarImagenVista() {
