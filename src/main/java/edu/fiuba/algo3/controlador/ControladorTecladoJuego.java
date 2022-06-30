@@ -49,15 +49,4 @@ public class ControladorTecladoJuego {
         this.modelo.jugarTurno(DIR_ABAJO);
     }
 
-    // public void reiniciarJuego() {
-    //     this.modelo.reiniciarJuego();
-    // }
-    //
-    // public void terminarJuego(ControladorCambioDePantallas controladorCambioDePantallas) {
-    //     if(!this.modelo.getJuegoTerminado()) {
-    //         return;
-    //     }
-    //
-    //     // this.modelo.reiniciarJuego();
-    // }
 }

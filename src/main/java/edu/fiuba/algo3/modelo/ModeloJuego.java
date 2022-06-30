@@ -21,6 +21,7 @@ public class ModeloJuego {
     private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
+    private static final Posicion POS_META = new Posicion(MAPA_LIMITE_X-1, (MAPA_LIMITE_Y-1)/2);
 
     private static ModeloJuego instancia;
 
@@ -46,7 +47,7 @@ public class ModeloJuego {
     }
 
     private void inicializarJuego() {
-        this.mapa.agregarElemento(new Meta(new Posicion(MAPA_LIMITE_X-1, (MAPA_LIMITE_Y-1)/2)));
+        this.mapa.agregarElemento(new Meta(POS_META));
         this.mapa.agregarElemento(new ElementoNulo(POS_INICIAL_JUGADOR)); //Agrego un elemento nulo en la posicion inicial del jugador
 
         for (int i  = 0; i < this.mapa.getLimiteX(); i++ ){
@@ -79,27 +80,27 @@ public class ModeloJuego {
 
     private Elemento generarElementoRandom(Posicion posicion) {
         double random = Math.random();
-        if (random < 0.2) {
+        if (random < 0.1) {
             return new Pozo(posicion);
         }
 
-        if (random < 0.4) {
+        if (random < 0.2) {
             return new Piquete(posicion);
         } 
 
-        if (random < 0.6) {
+        if (random < 0.3) {
             return new ControlPolicial(posicion);
         }
 
-        if (random < 0.66) {
+        if (random < 0.33) {
             return new Favorable(posicion);
         }
 
-        if (random < 0.72) {
+        if (random < 0.36) {
             return new Desfavorable(posicion);
         }
 
-        if (random < 0.8) {
+        if (random < 0.4) {
             return new CambioDeVehiculo(posicion);
         }
 
@@ -121,5 +122,9 @@ public class ModeloJuego {
 
     public boolean getJuegoTerminado() {
         return instancia.juegoTerminado;
+    }
+
+    public Posicion getPosicionMeta() {
+        return POS_META;
     }
 }
