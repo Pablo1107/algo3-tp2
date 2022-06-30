@@ -6,13 +6,11 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.*;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
-import edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable;
 import edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable;
-import edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
@@ -39,11 +37,11 @@ public class ModeloJuego {
     }
 
     public static ModeloJuego getInstancia() {
-        if (ModeloJuego.instancia == null) {
+        if (instancia == null) {
             instancia = new ModeloJuego();
         }
 
-        return ModeloJuego.instancia;
+        return instancia;
     }
 
     private void inicializarJuego() {
@@ -59,12 +57,13 @@ public class ModeloJuego {
     }
 
     public void reiniciarJuego() {
-        instancia.juegoTerminado = false;
-        instancia = new ModeloJuego();
+        this.juegoTerminado = false;
+        this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
+        //instancia = new ModeloJuego();
     }
 
     public void terminarJuego() {
-        System.out.println(instancia.getJugador().getMovimientos());
+        //System.out.println(instancia.getJugador().getMovimientos());
         Partida resultado = new Partida(instancia.getJugador().getMovimientos());
         this.partidas.add(resultado);
         instancia.juegoTerminado = true;
