@@ -15,13 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-public class VistaPantallaPartidas extends VBox {
+public class VistaPantallaResultados extends VBox {
     private static final int TAMANIO_TITULO = 36;
     private static final String IMAGEN_GANADOR = "src/main/resources/img/ganador.png";
 
     private final ControladorCambioDePantallas controladorCambioPantallas;
 
-    public VistaPantallaPartidas(ControladorCambioDePantallas controladorCambioPantallas) {
+    public VistaPantallaResultados(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.inicializarVista();
     }

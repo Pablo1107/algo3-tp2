@@ -6,7 +6,7 @@ import edu.fiuba.algo3.vista.ayuda.VistaPantallaAcercaDe;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
-import edu.fiuba.algo3.vista.partidas.VistaPantallaPartidas;
+import edu.fiuba.algo3.vista.partidas.VistaPantallaResultados;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,7 +24,7 @@ public class ControladorCambioDePantallas {
 
     public void cargarPantallaJuego() {
         ModeloJuego modelo = ModeloJuego.getInstancia();
-        modelo.reiniciarJuego();
+        modelo.iniciarNuevaPartida();
 
         VistaPantallaJuego pantalla = new VistaPantallaJuego(modelo, this);
 
@@ -43,7 +43,7 @@ public class ControladorCambioDePantallas {
     }
 
     public void cargarPantallaPartidas() {
-        this.cambiarPantalla(new VistaPantallaPartidas(this));
+        this.cambiarPantalla(new VistaPantallaResultados(this));
     }
 
     private void cambiarPantalla(Parent pantalla) {

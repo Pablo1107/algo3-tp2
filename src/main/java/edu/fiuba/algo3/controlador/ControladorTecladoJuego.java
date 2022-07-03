@@ -10,11 +10,6 @@ public class ControladorTecladoJuego {
     private static final Direccion DIR_IZQUIERDA = new Direccion(-1, 0);
     private static final Direccion DIR_ARRIBA = new Direccion(0, -1);
     private static final Direccion DIR_ABAJO = new Direccion(0, 1);
-    private ModeloJuego modelo;
-
-    public ControladorTecladoJuego(ModeloJuego modelo) {
-        this.modelo = modelo;
-    }
 
     public void mover(KeyEvent evento) {
         KeyCode tecla = evento.getCode();
@@ -30,19 +25,19 @@ public class ControladorTecladoJuego {
     }
 
     private void moverDerecha() {
-        this.modelo.jugarTurno(DIR_DERECHA);
+        ModeloJuego.getInstancia().jugarTurno(DIR_DERECHA);
     }
 
     private void moverIzquierda() {
-        this.modelo.jugarTurno(DIR_IZQUIERDA);
+        ModeloJuego.getInstancia().jugarTurno(DIR_IZQUIERDA);
     }
 
     private void moverArriba() {
-        this.modelo.jugarTurno(DIR_ARRIBA);
+        ModeloJuego.getInstancia().jugarTurno(DIR_ARRIBA);
     }
 
     private void moverAbajo() {
-        this.modelo.jugarTurno(DIR_ABAJO);
+        ModeloJuego.getInstancia().jugarTurno(DIR_ABAJO);
     }
 
 }

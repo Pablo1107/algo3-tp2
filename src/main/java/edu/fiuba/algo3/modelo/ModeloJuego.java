@@ -9,17 +9,7 @@ import edu.fiuba.algo3.modelo.mapa.Posicion;
 public class ModeloJuego {
     private static ModeloJuego instancia;
 
-    private boolean juegoTerminado;
     private PartidaMultijugador partida;
-
-    private ModeloJuego() {
-        this.juegoTerminado = false;
-        this.partida = this.crearPartida();
-    }
-
-    private PartidaMultijugador crearPartida() {
-        return new PartidaMultijugador();
-    }
 
     public static ModeloJuego getInstancia() {
         if (instancia == null) {
@@ -29,17 +19,20 @@ public class ModeloJuego {
         return instancia;
     }
 
-    public void reiniciarJuego() {
-        this.juegoTerminado = false;
-        this.partida.iniciar();
+    private ModeloJuego() {
+        this.partida = new PartidaMultijugador();
     }
 
-    public void terminarJuego() {
-        instancia.juegoTerminado = true;
+    public void iniciarNuevaPartida() {
+        this.partida.iniciarNuevaPartida();
+    }
+
+    public PartidaMultijugador getPartidaActual() {
+        return this.partida;
     }
 
     public void jugarTurno(Direccion direccion) {
-        if (instancia.juegoTerminado) {
+        if (!instancia.getPartidaActual().estaEnCurso()) {
             return;
         }
 
@@ -52,10 +45,6 @@ public class ModeloJuego {
 
     public Mapa getMapa() {
         return this.partida.getMapa();
-    }
-
-    public boolean getJuegoTerminado() {
-        return instancia.juegoTerminado;
     }
 
     public Posicion getPosicionMeta() {

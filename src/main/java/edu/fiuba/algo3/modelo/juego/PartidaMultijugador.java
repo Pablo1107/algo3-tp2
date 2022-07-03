@@ -16,12 +16,14 @@ public class PartidaMultijugador {
 
     private Jugador jugador;
     private GeneradorMapa generadorMapa;
+    private boolean estaEnCurso;
 
     public PartidaMultijugador() {
-        this.iniciar();
+        this.estaEnCurso = true;
+        this.iniciarNuevaPartida();
     }
 
-    public void iniciar() {
+    public void iniciarNuevaPartida() {
         this.jugador = new Jugador(POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
         this.generadorMapa = new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y);
     }
@@ -40,5 +42,13 @@ public class PartidaMultijugador {
 
     public Meta getMeta() {
         return this.generadorMapa.getMeta();
+    }
+
+    public boolean estaEnCurso() {
+        return this.estaEnCurso;
+    }
+
+    public void finalizar() {
+        this.estaEnCurso = false;
     }
 }

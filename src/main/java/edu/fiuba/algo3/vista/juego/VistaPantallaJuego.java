@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class VistaPantallaJuego extends HBox {
     public final static double FACTOR_ESCALA_PX = 100;
@@ -23,7 +22,7 @@ public class VistaPantallaJuego extends HBox {
 
     public VistaPantallaJuego(ModeloJuego modelo, ControladorCambioDePantallas controladorCambioPantallas) {
         this.modelo = modelo;
-        this.controladorTeclado = new ControladorTecladoJuego(this.modelo);
+        this.controladorTeclado = new ControladorTecladoJuego();
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.vistaMapa = new VistaMapa(this.modelo.getMapa());
         this.vistaJugador = new VistaVehiculoJugador(this.modelo.getJugador());
@@ -46,7 +45,7 @@ public class VistaPantallaJuego extends HBox {
             this.actualizarVista();
             this.vistaPanelLateralJuego.actualizarContadorPuntajeActual();
 
-            if (this.modelo.getJuegoTerminado()) {
+            if (!this.modelo.getPartidaActual().estaEnCurso()) {
                 this.controladorCambioPantallas.cargarPantallaPartidas();
             }
         });
