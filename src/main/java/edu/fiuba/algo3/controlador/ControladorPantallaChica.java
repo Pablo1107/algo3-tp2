@@ -4,21 +4,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
 
-public class ControladorPantallaCompleta implements EventHandler<ActionEvent> {
-
+public class ControladorPantallaChica implements EventHandler<ActionEvent> {
     private ControladorCambioDePantallas controlador;
-    private MenuItem opcionPantallaCompleta;
     private MenuItem opcionPantallaChica;
+    private MenuItem opcionPantallaCompleta;
 
-    public ControladorPantallaCompleta(ControladorCambioDePantallas controlador, MenuItem opcionPantallaCompleta, MenuItem opcionPantallaChica) {
+    public ControladorPantallaChica(ControladorCambioDePantallas controlador, MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
         this.controlador = controlador;
-        this.opcionPantallaCompleta = opcionPantallaCompleta;
         this.opcionPantallaChica = opcionPantallaChica;
+        this.opcionPantallaCompleta = opcionPantallaCompleta;
         this.controlador.deshabilitarBotones(this.opcionPantallaChica, this.opcionPantallaCompleta);
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.controlador.maximizarPantalla(this.opcionPantallaCompleta, this.opcionPantallaChica);
+        this.controlador.reducirPantalla(this.opcionPantallaChica, this.opcionPantallaCompleta);
     }
 }
