@@ -9,8 +9,6 @@ public class Partida {
     private final int puntaje;
     private final LocalDateTime horaRegistro;
 
-    private List<Jugador> jugadores;
-
     public Partida(int puntaje) {
         this.puntaje = puntaje;
         this.horaRegistro = LocalDateTime.now();

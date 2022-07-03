@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.juego.Partida;
+import edu.fiuba.algo3.modelo.juego.PartidaMultijugador;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.*;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
@@ -12,32 +13,29 @@ import edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ModeloJuego {
-    private static final Posicion POS_INICIAL_JUGADOR = new Posicion(0, 0);
-    private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
 
     private static ModeloJuego instancia;
 
-    private Jugador jugador;
     private Mapa mapa;
     private Meta meta;
 
     private boolean juegoTerminado;
-    private List<Partida> registroPartidas;
+    private PartidaMultijugador partida;
 
     private ModeloJuego() {
-        this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
         this.mapa = new Mapa(MAPA_LIMITE_X, MAPA_LIMITE_Y);
         this.meta = this.crearMetaEnFilaAleatoria();
 
         this.juegoTerminado = false;
-        this.registroPartidas = new ArrayList<>();
+        this.partida = this.crearPartida();
         this.inicializarJuego();
+    }
+
+    private PartidaMultijugador crearPartida() {
+        return new PartidaMultijugador(this.mapa);
     }
 
     public static ModeloJuego getInstancia() {
@@ -50,7 +48,7 @@ public class ModeloJuego {
 
     private void inicializarJuego() {
         this.mapa.agregarElemento(this.meta);
-        this.mapa.agregarElemento(new ElementoNulo(POS_INICIAL_JUGADOR));
+        this.mapa.agregarElemento(new ElementoNulo(new Posicion(0, 0)));
 
         for (int i = 0; i < this.mapa.getLimiteX(); i++) {
             for (int j = 0; j < this.mapa.getLimiteY(); j++) {
@@ -68,12 +66,10 @@ public class ModeloJuego {
 
     public void reiniciarJuego() {
         this.juegoTerminado = false;
-        this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
+        this.partida.reiniciar();
     }
 
     public void terminarJuego() {
-        Partida resultado = new Partida(instancia.getJugador().getMovimientos());
-        this.registroPartidas.add(resultado);
         instancia.juegoTerminado = true;
     }
 
@@ -82,7 +78,7 @@ public class ModeloJuego {
             return;
         }
 
-        this.jugador.avanzar(direccion, this.mapa);
+        this.partida.jugarTurno(direccion);
     }
 
     private Elemento generarElementoRandom(Posicion posicion) {
@@ -116,15 +112,11 @@ public class ModeloJuego {
     }
 
     public Jugador getJugador() {
-        return this.jugador;
+        return this.partida.getJugador();
     }
 
     public Mapa getMapa() {
         return this.mapa;
-    }
-
-    public List<Partida> getPartidas() {
-        return this.registroPartidas;
     }
 
     public boolean getJuegoTerminado() {
@@ -132,8 +124,6 @@ public class ModeloJuego {
     }
 
     public Posicion getPosicionMeta() {
-        System.out.println(this.meta.getPosicion().getX());
-        System.out.println(this.meta.getPosicion().getY());
         return this.meta.getPosicion();
     }
 }
