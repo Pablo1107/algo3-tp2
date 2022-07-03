@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.vista.juego;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.vista.ContenedorBotones;
-import edu.fiuba.algo3.vista.TituloJuego;
+import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -28,11 +29,13 @@ public class VistaPanelLateralJuego extends VBox {
         this.setId("panel-lateral-juego");
         this.getStyleClass().add("lista-vertical");
 
+        this.contadorPuntajeActual.setId("contador-puntaje-actual");
+
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolverAlInicio(this.controladorCambioPantallas)));
 
-        this.getChildren().add(new TituloJuego(TAMANIO_TITULO));
+        this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(this.contadorPuntajeActual);
         this.getChildren().add(contenedorBotones);
     }

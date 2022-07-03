@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
 import javafx.event.ActionEvent;
-
 import javafx.event.EventHandler;
 
 public class ControladorBotonVolverAlInicio implements EventHandler<ActionEvent> {

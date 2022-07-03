@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.vista.inicio;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
 import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonIniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.vista.ContenedorBotones;
-import edu.fiuba.algo3.vista.TituloJuego;
+import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -29,7 +30,7 @@ public class VistaPantallaInicio extends VBox {
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Cerrar", new ControladorBotonCerrarJuego()));
 
-        this.getChildren().add(new TituloJuego(TAMANIO_TITULO));
+        this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(contenedorBotones);
     }
 

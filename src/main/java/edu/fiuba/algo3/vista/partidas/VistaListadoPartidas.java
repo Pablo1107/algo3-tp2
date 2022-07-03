@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.vista.partidas;
 
-import java.util.List;
-
 import edu.fiuba.algo3.modelo.ModeloJuego;
-import edu.fiuba.algo3.modelo.Partida;
+import edu.fiuba.algo3.modelo.juego.Partida;
 import javafx.scene.layout.VBox;
+
+import java.util.List;
 
 public class VistaListadoPartidas extends VBox {
     public VistaListadoPartidas() {

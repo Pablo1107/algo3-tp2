@@ -7,6 +7,7 @@ import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.vista.ContenedorBotones;
+import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class VistaPantallaPartidas extends VBox {
+    private static final int TAMANIO_TITULO = 36;
     private static final String IMAGEN_GANADOR = "src/main/resources/img/ganador.png";
 
     private final ControladorCambioDePantallas controladorCambioPantallas;
@@ -27,8 +29,8 @@ public class VistaPantallaPartidas extends VBox {
     private void inicializarVista() {
         this.getStyleClass().add("vista-pantalla-centrada");
 
+        this.getChildren().add(new TituloPantalla("Fin del Juego", TAMANIO_TITULO));
         this.getChildren().add(this.crearImagenFinalPartida());
-
         this.getChildren().add(new VistaListadoPartidas());
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();

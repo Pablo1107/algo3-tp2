@@ -53,3 +53,14 @@ Text {
 #panel-lateral-juego {
 	-fx-spacing: 72px;
 }
+
+#contador-puntaje-actual {
+	-fx-font-weight: bold;
+	-fx-font-size: 24px;
+}
+
+.entrada-listado-partida {
+	-fx-font-weight: bold;
+	-fx-font-size: 24px;
+	-fx-alignment: center;
+}

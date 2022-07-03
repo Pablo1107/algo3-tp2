@@ -8,7 +8,7 @@ public class Direccion {
         this.x = x;
         this.y = y;
     }
-    
+
     public Posicion desplazar(Posicion posicion, Mapa mapa) {
         Posicion nuevaPosicion = posicion.sumar(this.x, this.y);
 

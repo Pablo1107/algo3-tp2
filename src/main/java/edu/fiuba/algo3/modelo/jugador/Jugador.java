@@ -16,10 +16,9 @@ public class Jugador {
         this.posicionAnterior = posicionInicial;
         this.vehiculo = vehiculo;
         this.movimientos = 0;
-   }
+    }
 
     public void avanzar(Direccion direccion, Mapa mapa) {
-        // TODO: Delegar esta responsablidad a `Vehiculo`.
         if (this.vehiculo.tienePenalizaciones()) {
             this.vehiculo.reducirPenalizaciones();
             return;

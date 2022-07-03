@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ElementoTest {
     @Test

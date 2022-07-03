@@ -36,7 +36,7 @@ public class ControladorCambioDePantallas {
     public void cargarPantallaAyuda() {
         this.cambiarPantalla(new VistaPantallaAyuda(this));
     }
-    
+
     public void cargarPantallaPartidas() {
         this.cambiarPantalla(new VistaPantallaPartidas(this));
     }

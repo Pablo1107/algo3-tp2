@@ -71,9 +71,9 @@ public class JugadorYSorpresasTest {
         Jugador jugador = new Jugador(posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(10, 10);
-        mapa.agregarElemento(new CambioDeVehiculo(new Posicion(1,0)));
-        mapa.agregarElemento(new CambioDeVehiculo(new Posicion(2,0)));
-        mapa.agregarElemento(new CambioDeVehiculo(new Posicion(3,0)));
+        mapa.agregarElemento(new CambioDeVehiculo(new Posicion(1, 0)));
+        mapa.agregarElemento(new CambioDeVehiculo(new Posicion(2, 0)));
+        mapa.agregarElemento(new CambioDeVehiculo(new Posicion(3, 0)));
 
         Direccion direccion = new Direccion(1, 0);
         assertTrue(jugador.getVehiculo() instanceof Moto);

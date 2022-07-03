@@ -1,10 +1,15 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.juego;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public class Partida {
     private final int puntaje;
     private final LocalDateTime horaRegistro;
+
+    private List<Jugador> jugadores;
 
     public Partida(int puntaje) {
         this.puntaje = puntaje;
@@ -17,5 +22,9 @@ public class Partida {
 
     public LocalDateTime getHoraRegistro() {
         return this.horaRegistro;
+    }
+
+    public void jugarTurno() {
+
     }
 }
