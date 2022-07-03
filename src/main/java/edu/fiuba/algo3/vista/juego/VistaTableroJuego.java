@@ -2,7 +2,6 @@ package edu.fiuba.algo3.vista.juego;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Shape;
 
 public class VistaTableroJuego extends StackPane {
     private VistaVehiculoJugador vistaJugador;

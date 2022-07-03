@@ -1,15 +1,20 @@
 package edu.fiuba.algo3.vista.inicio;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
 import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonIniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.vista.ContenedorBotones;
+import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class VistaPantallaInicio extends VBox {
+    private static final int TAMANIO_TITULO = 86;
+
     private final ControladorCambioDePantallas controladorCambioPantallas;
 
     public VistaPantallaInicio(ControladorCambioDePantallas controladorCambioPantallas) {
@@ -18,15 +23,20 @@ public class VistaPantallaInicio extends VBox {
     }
 
     private void inicializarVista() {
-       this.setId("vista-pantalla-inicio");
-        this.agregarBotonConControlador("Iniciar Juego", new ControladorBotonIniciarJuego(this.controladorCambioPantallas));
-        this.agregarBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas));
-        this.agregarBotonConControlador("Cerrar", new ControladorBotonCerrarJuego());
+        this.getStyleClass().add("vista-pantalla-centrada");
+
+        ContenedorBotones contenedorBotones = new ContenedorBotones();
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Juego", new ControladorBotonIniciarJuego(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Cerrar", new ControladorBotonCerrarJuego()));
+
+        this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
+        this.getChildren().add(contenedorBotones);
     }
 
-    private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
+    private Button crearBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
         Button boton = new Button(contenido);
         boton.setOnAction(controlador);
-        this.getChildren().add(boton);
+        return boton;
     }
 }

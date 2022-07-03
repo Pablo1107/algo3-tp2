@@ -5,23 +5,14 @@
 	-color-fondo-botones: #88c0d0;
 	-color-fondo-botones-presionado: #d8dee9;
 	-color-texto: #eceff4;
-
 	-fx-background-color: -color-fondo;
 	-fx-font-size: 16px;
 }
 
-#vista-pantalla-inicio {
+.vista-pantalla-centrada {
 	-fx-alignment: center;
-	-fx-spacing: 8px;
+	-fx-spacing: 72px;
 	-fx-fill-width: true;
-	/* -fx-background-image: url("fondo.png"); */
-	-fx-background-position: center;
-	-fx-background-size: stretch;
-}
-
-#vista-pantalla-ayuda, #vista-pantalla-puntajes {
-	-fx-alignment: center;
-	-fx-spacing: 8px;
 }
 
 #tablero-juego {
@@ -29,14 +20,14 @@
 	-fx-border-color: -color-fondo-botones;
 }
 
-#contenedor-botones-laterales, #contendor-listado-puntajes  {
+.lista-vertical {
 	-fx-alignment: center;
 	-fx-fill-width: true;
-	-fx-spacing: 8px;
+	-fx-spacing: 16px;
 }
 
 Text {
-	-fx-fill: white;
+	-fx-fill: -color-texto;
 	-fx-text-alignment: justify;
 }
 
@@ -44,13 +35,32 @@ Text {
 	-fx-font-weight: bold;
 	-fx-font-size: 20px;
 	-fx-cursor: hand;
-	-fx-pref-width: 200px;
+	-fx-pref-width: 250px;
+	-fx-border-radius: 24px;
 	-fx-background-color: -color-fondo-botones;
-	-fx-text-fill: -color-fondo;
 	-fx-border-width: 1px;
-	-fx-padding: 8px;
+	-fx-padding: 16px;
 }
 
 .button:hover, .button:pressed {
 	-fx-background-color: -color-fondo-botones-presionado;
+}
+
+.titulo-pantalla {
+	-fx-fill: -color-texto;
+}
+
+#panel-lateral-juego {
+	-fx-spacing: 72px;
+}
+
+#contador-puntaje-actual {
+	-fx-font-weight: bold;
+	-fx-font-size: 24px;
+}
+
+.entrada-listado-partida {
+	-fx-font-weight: bold;
+	-fx-font-size: 24px;
+	-fx-alignment: center;
 }

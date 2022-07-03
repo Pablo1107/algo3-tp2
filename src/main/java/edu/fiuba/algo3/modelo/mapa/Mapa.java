@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.mapa;
 
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public class Mapa {
     private final int limiteX;

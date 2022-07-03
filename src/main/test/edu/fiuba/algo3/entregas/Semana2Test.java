@@ -70,11 +70,6 @@ public class Semana2Test {
     }
 
     @Test
-    public void unVehiculoAtraviesaLaciudadYSeEncuentraUnaSorpresaCambioDeVehiculo() {
-        // TODO: ...
-    }
-
-    @Test
     public void unaMotoAtraviesaLaCiudadYSeEncuentraConUnPiquetePuedePasarConUnaPenalizacionDe2Movimientos() {
         Posicion posicionInicial = new Posicion(0, 0);
         Moto moto = new Moto();

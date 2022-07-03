@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import edu.fiuba.algo3.modelo.juego.Partida;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PartidaTest {
     @Test
@@ -23,16 +24,5 @@ public class PartidaTest {
         Partida partida = new Partida(0);
 
         assertTrue(partida.getHoraRegistro() instanceof LocalDateTime);
-    }
-
-    @Test
-    public void seCreaUnaPartidaSeSeteaElNombreYSeVerifica() {
-        Partida partida = new Partida(0);
-        String nombreEsperado = "nombre";
-
-        partida.setNombre("nombre");
-        String nombreActual = partida.getNombre();
-
-        assertEquals(nombreEsperado, nombreActual);
     }
 }

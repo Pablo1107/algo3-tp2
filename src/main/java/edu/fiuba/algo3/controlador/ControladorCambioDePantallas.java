@@ -5,8 +5,7 @@ import edu.fiuba.algo3.modelo.ModeloJuego;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
-import edu.fiuba.algo3.vista.puntajes.VistaNombresPuntaje;
-import edu.fiuba.algo3.vista.puntajes.VistaPantallaPuntajes;
+import edu.fiuba.algo3.vista.partidas.VistaPantallaPartidas;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -22,15 +21,14 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaInicio(this));
     }
 
-    // TODO: Aca podriamos unificar todo realmente.
     public void cargarPantallaJuego() {
         ModeloJuego modelo = ModeloJuego.getInstancia();
         modelo.reiniciarJuego();
 
         VistaPantallaJuego pantalla = new VistaPantallaJuego(modelo, this);
+
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
-
         pantalla.inicializarMovimiento(scene);
         this.stage.setScene(scene);
     }
@@ -38,13 +36,9 @@ public class ControladorCambioDePantallas {
     public void cargarPantallaAyuda() {
         this.cambiarPantalla(new VistaPantallaAyuda(this));
     }
-    
-    public void cargarPantallaPuntajes() {
-        this.cambiarPantalla(new VistaPantallaPuntajes(this));
-    }
 
-    public void cargarPantallaNombres() {
-        this.cambiarPantalla(new VistaNombresPuntaje(this));
+    public void cargarPantallaPartidas() {
+        this.cambiarPantalla(new VistaPantallaPartidas(this));
     }
 
     private void cambiarPantalla(Parent pantalla) {
@@ -52,5 +46,4 @@ public class ControladorCambioDePantallas {
         App.aplicarEstilos(scene);
         this.stage.setScene(scene);
     }
-
 }

@@ -1,15 +1,14 @@
 package edu.fiuba.algo3.integracion;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.ElementoNulo;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
 import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JugadorYElementoNulo {
     @Test
