@@ -12,7 +12,7 @@ public class VistaListadoPartidas extends VBox {
     }
 
     private void inicializarVista() {
-        this.setId("contendor-listado-partidas");
+        this.getStyleClass().add("lista-vertical");
 
         List<Partida> partidas = ModeloJuego.getInstancia().getPartidas();
         for (Partida partida : partidas) {

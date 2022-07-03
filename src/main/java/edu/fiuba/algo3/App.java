@@ -1,30 +1,24 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
-import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    public static final String TITULO = "La Messineta";
-    private static final String ICONO_VENTANA = "icono.png";
+    public static final String TITULO_JUEGO = "La Messineta";
+    public static final String FUENTE_TITULO = "titulo.ttf";
+    private static final String ICONO_JUEGO = "icono.png";
     private static final String ARCHIVO_ESTILOS = "estilos.css";
 
     @Override
     public void start(Stage stage) {
         ControladorCambioDePantallas controladorCambioPantallas = new ControladorCambioDePantallas(stage);
-        VistaPantallaInicio vistaPantallaInicio = new VistaPantallaInicio(controladorCambioPantallas);
+        controladorCambioPantallas.cargarPantallaInicio();
 
-        Scene scene = new Scene(vistaPantallaInicio);
-        App.aplicarEstilos(scene);
-
-        stage.setScene(scene);
-
-        stage.setTitle(TITULO);
-        stage.getIcons().add(new Image(App.class.getResourceAsStream(ICONO_VENTANA)));
+        stage.setTitle(TITULO_JUEGO);
+        stage.getIcons().add(new Image(App.class.getResourceAsStream(ICONO_JUEGO)));
 
         stage.show();
     }

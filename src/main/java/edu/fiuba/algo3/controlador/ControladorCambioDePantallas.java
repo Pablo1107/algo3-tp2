@@ -26,9 +26,9 @@ public class ControladorCambioDePantallas {
         modelo.reiniciarJuego();
 
         VistaPantallaJuego pantalla = new VistaPantallaJuego(modelo, this);
+
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
-
         pantalla.inicializarMovimiento(scene);
         this.stage.setScene(scene);
     }
@@ -46,5 +46,4 @@ public class ControladorCambioDePantallas {
         App.aplicarEstilos(scene);
         this.stage.setScene(scene);
     }
-
 }

@@ -18,6 +18,7 @@ public class VistaPantallaJuego extends HBox {
     private VistaVehiculoJugador vistaJugador;
     private VistaMapa vistaMapa;
     private VistaOculta vistaOculta;
+    private VistaPanelLateralJuego vistaPanelLateralJuego;
 
     public VistaPantallaJuego(ModeloJuego modelo, ControladorCambioDePantallas controladorCambioPantallas) {
         this.modelo = modelo;
@@ -26,6 +27,7 @@ public class VistaPantallaJuego extends HBox {
         this.vistaMapa = new VistaMapa(this.modelo.getMapa());
         this.vistaJugador = new VistaVehiculoJugador(this.modelo.getJugador());
         this.vistaOculta = new VistaOculta(this.modelo.getJugador(), this.modelo.getMapa(), this.modelo.getPosicionMeta());
+        this.vistaPanelLateralJuego = new VistaPanelLateralJuego(this.controladorCambioPantallas);
         this.inicializarVista();
     }
 
@@ -33,15 +35,15 @@ public class VistaPantallaJuego extends HBox {
         VistaTableroJuego tablero = new VistaTableroJuego(this.vistaJugador, this.vistaMapa, this.vistaOculta);
         this.getChildren().add(new Pane(tablero));
 
-        VistaControlesLaterales controlesLaterales = new VistaControlesLaterales(this.controladorCambioPantallas);
-        HBox.setHgrow(controlesLaterales, Priority.ALWAYS);
-        this.getChildren().add(controlesLaterales);
+        HBox.setHgrow(this.vistaPanelLateralJuego, Priority.ALWAYS);
+        this.getChildren().add(this.vistaPanelLateralJuego);
     }
 
     public void inicializarMovimiento(Scene scene) {
         scene.setOnKeyPressed(evento -> {
             this.controladorTeclado.mover(evento);
-            this.actualizar();
+            this.actualizarVista();
+            this.vistaPanelLateralJuego.actualizarContadorPuntajeActual();
 
             if (this.modelo.getJuegoTerminado()) {
                 this.controladorCambioPantallas.cargarPantallaPartidas();
@@ -49,7 +51,7 @@ public class VistaPantallaJuego extends HBox {
         });
     }
 
-    public void actualizar() {
+    public void actualizarVista() {
         this.vistaJugador.actualizarVista();
         this.vistaOculta.actualizarVista();
     }

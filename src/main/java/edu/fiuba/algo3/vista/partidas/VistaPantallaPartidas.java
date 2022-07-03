@@ -1,14 +1,22 @@
 package edu.fiuba.algo3.vista.partidas;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
-import edu.fiuba.algo3.controlador.ControladorBotonVolver;
+import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.vista.ContenedorBotones;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class VistaPantallaPartidas extends VBox {
+    private static final String IMAGEN_GANADOR = "src/main/resources/img/ganador.png";
+
     private final ControladorCambioDePantallas controladorCambioPantallas;
 
     public VistaPantallaPartidas(ControladorCambioDePantallas controladorCambioPantallas) {
@@ -17,19 +25,36 @@ public class VistaPantallaPartidas extends VBox {
     }
 
     private void inicializarVista() {
-        this.setId("vista-pantalla-partidas");
+        this.getStyleClass().add("vista-pantalla-centrada");
+
+        this.getChildren().add(this.crearImagenFinalPartida());
 
         this.getChildren().add(new VistaListadoPartidas());
 
-        Button botonReiniciar = this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas));
-        Button botonVolver = this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas));
-        this.getChildren().add(botonReiniciar);
-        this.getChildren().add(botonVolver);
+        ContenedorBotones contenedorBotones = new ContenedorBotones();
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolverAlInicio(this.controladorCambioPantallas)));
+
+        this.getChildren().add(contenedorBotones);
     }
 
     private Button crearBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
         Button boton = new Button(contenido);
         boton.setOnAction(controlador);
         return boton;
+    }
+
+    private ImageView crearImagenFinalPartida() {
+        ImageView imageView = new ImageView(this.obtenerRecursoImagen(IMAGEN_GANADOR));
+        return imageView;
+    }
+
+    private Image obtenerRecursoImagen(String archivoImagen) {
+        try {
+            FileInputStream stream = new FileInputStream(archivoImagen);
+            return new Image(stream);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
