@@ -44,7 +44,7 @@ public class VistaPantallaJuego extends HBox {
             this.actualizar();
 
             if (this.modelo.getJuegoTerminado()) {
-                this.controladorCambioPantallas.cargarPantallaNombres();
+                this.controladorCambioPantallas.cargarPantallaPartidas();
             }
         });
     }

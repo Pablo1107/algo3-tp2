@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    public static final String TITULO = "La Messineta";
     private static final String ICONO_VENTANA = "icono.png";
     private static final String ARCHIVO_ESTILOS = "estilos.css";
 
@@ -22,9 +23,8 @@ public class App extends Application {
 
         stage.setScene(scene);
 
-        stage.setTitle("TITULO MUY BONITO PARA GANARNOS A LOS CORRECTORES");
+        stage.setTitle(TITULO);
         stage.getIcons().add(new Image(App.class.getResourceAsStream(ICONO_VENTANA)));
-        Font.loadFont(App.class.getResource("JetBrainsMono-Regular.ttf").toExternalForm(), 10);
 
         stage.show();
     }

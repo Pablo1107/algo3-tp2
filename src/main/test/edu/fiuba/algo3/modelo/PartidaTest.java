@@ -24,15 +24,4 @@ public class PartidaTest {
 
         assertTrue(partida.getHoraRegistro() instanceof LocalDateTime);
     }
-
-    @Test
-    public void seCreaUnaPartidaSeSeteaElNombreYSeVerifica() {
-        Partida partida = new Partida(0);
-        String nombreEsperado = "nombre";
-
-        partida.setNombre("nombre");
-        String nombreActual = partida.getNombre();
-
-        assertEquals(nombreEsperado, nombreActual);
-    }
 }

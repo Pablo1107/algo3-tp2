@@ -12,14 +12,14 @@
 
 #vista-pantalla-inicio {
 	-fx-alignment: center;
-	-fx-spacing: 8px;
+	-fx-spacing: 72px;
 	-fx-fill-width: true;
 	/* -fx-background-image: url("fondo.png"); */
 	-fx-background-position: center;
 	-fx-background-size: stretch;
 }
 
-#vista-pantalla-ayuda, #vista-pantalla-puntajes {
+#vista-pantalla-ayuda, #vista-pantalla-partidas {
 	-fx-alignment: center;
 	-fx-spacing: 8px;
 }
@@ -29,10 +29,14 @@
 	-fx-border-color: -color-fondo-botones;
 }
 
-#contenedor-botones-laterales, #contendor-listado-puntajes  {
+#contenedor-botones-laterales, #contendor-listado-partidas, #contenedor-botones-inicio {
 	-fx-alignment: center;
 	-fx-fill-width: true;
 	-fx-spacing: 8px;
+}
+
+.entrada-listado-partida {
+	-fx-alignment: center;
 }
 
 Text {

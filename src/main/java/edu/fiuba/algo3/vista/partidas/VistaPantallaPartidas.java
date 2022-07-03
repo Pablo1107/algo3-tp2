@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista.puntajes;
+package edu.fiuba.algo3.vista.partidas;
 
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonVolver;
@@ -8,18 +8,18 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-public class VistaPantallaPuntajes extends VBox {
+public class VistaPantallaPartidas extends VBox {
     private final ControladorCambioDePantallas controladorCambioPantallas;
 
-    public VistaPantallaPuntajes(ControladorCambioDePantallas controladorCambioPantallas) {
+    public VistaPantallaPartidas(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.inicializarVista();
     }
 
     private void inicializarVista() {
-        this.setId("vista-pantalla-puntajes");
+        this.setId("vista-pantalla-partidas");
 
-        this.getChildren().add(new VistaListadoPuntajes());
+        this.getChildren().add(new VistaListadoPartidas());
 
         Button botonReiniciar = this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas));
         Button botonVolver = this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas));
