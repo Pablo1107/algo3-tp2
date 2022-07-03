@@ -16,7 +16,7 @@ public class VistaEntradaPartida extends FlowPane {
         this.getStyleClass().add("entrada-listado-partida");
 
         String nombreJugador = "Carlos";
-        int puntajePartida = this.partida.getPuntaje();
+        int puntajePartida = 10;
 
         String formato = String.format("%s: %s Movimientos", nombreJugador, puntajePartida);
 

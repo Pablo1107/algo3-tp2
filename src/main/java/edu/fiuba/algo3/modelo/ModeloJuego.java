@@ -20,6 +20,7 @@ public class ModeloJuego {
     private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
+    private static final Posicion POS_META = new Posicion(MAPA_LIMITE_X-1, (MAPA_LIMITE_Y-1)/2);
 
     private static ModeloJuego instancia;
 
@@ -33,10 +34,11 @@ public class ModeloJuego {
     private ModeloJuego() {
         this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
         this.mapa = new Mapa(MAPA_LIMITE_X, MAPA_LIMITE_Y);
-        this.meta = this.crearMetaEnFilaAleatoria();
+        this.meta = new Meta(POS_META);
 
         this.juegoTerminado = false;
         this.registroPartidas = new ArrayList<>();
+
         this.inicializarJuego();
     }
 
@@ -60,20 +62,12 @@ public class ModeloJuego {
         }
     }
 
-    private Meta crearMetaEnFilaAleatoria() {
-        int filaRandom = (int)Math.floor(Math.random() * (this.mapa.getLimiteY() - 1));
-        Posicion posicionMeta = new Posicion(this.mapa.getLimiteX() - 1, filaRandom);
-        return new Meta(posicionMeta);
-    }
-
     public void reiniciarJuego() {
         this.juegoTerminado = false;
         this.jugador = new Jugador(POS_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
     }
 
     public void terminarJuego() {
-        Partida resultado = new Partida(instancia.getJugador().getMovimientos());
-        this.registroPartidas.add(resultado);
         instancia.juegoTerminado = true;
     }
 
@@ -82,7 +76,8 @@ public class ModeloJuego {
             return;
         }
 
-        this.jugador.avanzar(direccion, this.mapa);
+        // this.jugador.avanzar(direccion, this.mapa);
+        this.registroPartidas.get(0).jugarTurno(direccion);
     }
 
     private Elemento generarElementoRandom(Posicion posicion) {
@@ -117,6 +112,10 @@ public class ModeloJuego {
 
     public Jugador getJugador() {
         return this.jugador;
+    }
+
+    public List<Jugador> getJugadores() {
+        return this.registroPartidas.get(0).getListadoJugadores();
     }
 
     public Mapa getMapa() {
