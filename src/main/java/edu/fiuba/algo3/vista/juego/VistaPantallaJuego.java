@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 public class VistaPantallaJuego extends HBox {
     public final static double FACTOR_ESCALA_PX = 100;

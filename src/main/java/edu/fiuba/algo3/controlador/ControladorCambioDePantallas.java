@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.ModeloJuego;
+import edu.fiuba.algo3.vista.ayuda.VistaPantallaAcercaDe;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
@@ -37,6 +38,10 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaAyuda(this));
     }
 
+    public void cargarPantallaAcercaDe() {
+        this.cambiarPantalla(new VistaPantallaAcercaDe(this));
+    }
+
     public void cargarPantallaPartidas() {
         this.cambiarPantalla(new VistaPantallaPartidas(this));
     }
@@ -45,5 +50,10 @@ public class ControladorCambioDePantallas {
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
         this.stage.setScene(scene);
+    }
+
+
+    public Stage getStage() {
+        return this.stage;
     }
 }
