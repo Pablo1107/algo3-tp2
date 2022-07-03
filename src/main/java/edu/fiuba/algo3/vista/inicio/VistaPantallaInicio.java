@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
@@ -24,8 +25,6 @@ public class VistaPantallaInicio extends VBox {
     }
 
     private void inicializarVista() {
-        this.getStyleClass().add("vista-pantalla-centrada");
-
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Juego", new ControladorBotonIniciarJuego(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas)));
@@ -34,8 +33,11 @@ public class VistaPantallaInicio extends VBox {
         contenedorBotones.agregarBoton(this.crearBotonCircularConControlador("", new ControladorMusica()));
 
         this.getChildren().add(new VistaBarraDeMenu(this.controladorCambioPantallas));
-        this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
-        this.getChildren().add(contenedorBotones);
+
+        VBox vbox = new VBox(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO), contenedorBotones);
+        vbox.getStyleClass().add("vista-pantalla-centrada");
+        VBox.setVgrow(vbox, Priority.ALWAYS);
+        this.getChildren().add(vbox);
     }
 
     private Button crearBotonCircularConControlador(String contenido, EventHandler<ActionEvent> controlador) {
