@@ -12,9 +12,9 @@ public abstract class VistaElementoTablero extends ImageView {
         this.setFitHeight(VistaPantallaJuego.FACTOR_ESCALA_PX);
     }
 
-    public abstract void actualizarVista();
+    public abstract void renderizar();
 
-    protected abstract void cambiarImagenVista();
+    protected abstract void cambiarImagen();
 
     protected void cargarRecursoImagen(String archivoImagen) {
         try {

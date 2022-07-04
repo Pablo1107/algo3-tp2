@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.modelo.ModeloJuego;
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -10,11 +10,6 @@ public class ControladorTecladoJuego {
     private static final Direccion DIR_IZQUIERDA = new Direccion(-1, 0);
     private static final Direccion DIR_ARRIBA = new Direccion(0, -1);
     private static final Direccion DIR_ABAJO = new Direccion(0, 1);
-    private ModeloJuego modelo;
-
-    public ControladorTecladoJuego(ModeloJuego modelo) {
-        this.modelo = modelo;
-    }
 
     public void mover(KeyEvent evento) {
         KeyCode tecla = evento.getCode();
@@ -30,19 +25,19 @@ public class ControladorTecladoJuego {
     }
 
     private void moverDerecha() {
-        this.modelo.jugarTurno(DIR_DERECHA);
+        Juego.getInstancia().jugarTurno(DIR_DERECHA);
     }
 
     private void moverIzquierda() {
-        this.modelo.jugarTurno(DIR_IZQUIERDA);
+        Juego.getInstancia().jugarTurno(DIR_IZQUIERDA);
     }
 
     private void moverArriba() {
-        this.modelo.jugarTurno(DIR_ARRIBA);
+        Juego.getInstancia().jugarTurno(DIR_ARRIBA);
     }
 
     private void moverAbajo() {
-        this.modelo.jugarTurno(DIR_ABAJO);
+        Juego.getInstancia().jugarTurno(DIR_ABAJO);
     }
 
 }

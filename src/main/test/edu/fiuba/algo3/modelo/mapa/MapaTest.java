@@ -21,19 +21,19 @@ public class MapaTest {
             new Mapa(-10, 10);
         });
 
-        String mensajeRecibido = excepcion.getMessage();
         String mensajeEsperado = "Dimensiones menores o iguales a cero";
+        String mensajeRecibido = excepcion.getMessage();
 
-        assertEquals(mensajeRecibido, mensajeEsperado);
+        assertEquals(mensajeEsperado, mensajeRecibido);
 
         excepcion = assertThrows(RuntimeException.class, () -> {
             new Mapa(10, -10);
         });
 
-        mensajeRecibido = excepcion.getMessage();
         mensajeEsperado = "Dimensiones menores o iguales a cero";
+        mensajeRecibido = excepcion.getMessage();
 
-        assertEquals(mensajeRecibido, mensajeEsperado);
+        assertEquals(mensajeEsperado, mensajeRecibido);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class MapaTest {
         String mensajeRecibido = excepcion.getMessage();
         String mensajeEsperado = "Dimensiones menores o iguales a cero";
 
-        assertEquals(mensajeRecibido, mensajeEsperado);
+        assertEquals(mensajeEsperado, mensajeRecibido);
     }
 
     @Test

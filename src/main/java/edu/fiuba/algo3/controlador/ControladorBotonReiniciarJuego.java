@@ -12,6 +12,6 @@ public class ControladorBotonReiniciarJuego implements EventHandler<ActionEvent>
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.controladorCambioPantallas.cargarPantallaJuego();
+        this.controladorCambioPantallas.cargarPantallaPartida();
     }
 }

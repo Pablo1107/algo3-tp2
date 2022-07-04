@@ -5,7 +5,7 @@ import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.controlador.ControladorMusica;
-import edu.fiuba.algo3.modelo.ModeloJuego;
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
@@ -71,16 +71,16 @@ public class VistaPanelLateralJuego extends VBox {
     }
 
     private Text crearContadorPuntajeActual() {
-        int movimientosActualesJugador = this.obtenerMovimientosActualesJugador();
+        int movimientosActualesJugador = this.getMovimientosActualesJugador();
         String formato = String.format("Movimientos Actuales: %s", movimientosActualesJugador);
         return new Text(formato);
     }
 
     public void actualizarContadorPuntajeActual() {
-        this.contadorPuntajeActual.setText(String.valueOf(this.obtenerMovimientosActualesJugador()));
+        this.contadorPuntajeActual.setText(String.valueOf(this.getMovimientosActualesJugador()));
     }
 
-    private int obtenerMovimientosActualesJugador() {
-        return ModeloJuego.getInstancia().getJugador().getMovimientos();
+    private int getMovimientosActualesJugador() {
+        return Juego.getInstancia().getPartidaActual().getJugadorEnTurno().getMovimientos();
     }
 }

@@ -1,59 +1,48 @@
 package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.controlador.ControladorPostTurnoJugador;
 import edu.fiuba.algo3.controlador.ControladorTecladoJuego;
-import edu.fiuba.algo3.modelo.ModeloJuego;
+import edu.fiuba.algo3.modelo.juego.Juego;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class VistaPantallaJuego extends HBox {
     public final static double FACTOR_ESCALA_PX = 100;
 
     private ControladorTecladoJuego controladorTeclado;
     private ControladorCambioDePantallas controladorCambioPantallas;
+    private ControladorPostTurnoJugador controladorPostTurnoJugador;
 
-    private ModeloJuego modelo;
-    private VistaVehiculoJugador vistaJugador;
-    private VistaMapa vistaMapa;
-    private VistaOculta vistaOculta;
+    private VistaPartida vistaPartida;
     private VistaPanelLateralJuego vistaPanelLateralJuego;
 
-    public VistaPantallaJuego(ModeloJuego modelo, ControladorCambioDePantallas controladorCambioPantallas) {
-        this.modelo = modelo;
-        this.controladorTeclado = new ControladorTecladoJuego(this.modelo);
+    public VistaPantallaJuego(ControladorCambioDePantallas controladorCambioPantallas) {
+        this.controladorTeclado = new ControladorTecladoJuego();
         this.controladorCambioPantallas = controladorCambioPantallas;
-        this.vistaMapa = new VistaMapa(this.modelo.getMapa());
-        this.vistaJugador = new VistaVehiculoJugador(this.modelo.getJugador());
-        this.vistaOculta = new VistaOculta(this.modelo.getJugador(), this.modelo.getMapa(), this.modelo.getPosicionMeta());
+        this.controladorPostTurnoJugador = new ControladorPostTurnoJugador(this.controladorCambioPantallas);
+
         this.vistaPanelLateralJuego = new VistaPanelLateralJuego(this.controladorCambioPantallas);
-        this.inicializarVista();
+
+        this.generarVistaPartida();
     }
 
-    private void inicializarVista() {
-        VistaTableroJuego tablero = new VistaTableroJuego(this.vistaJugador, this.vistaMapa, this.vistaOculta);
-        this.getChildren().add(new Pane(tablero));
+    private void generarVistaPartida() {
+        this.vistaPartida = new VistaPartida();
+        this.getChildren().add(new Pane(this.vistaPartida));
 
         HBox.setHgrow(this.vistaPanelLateralJuego, Priority.ALWAYS);
         this.getChildren().add(this.vistaPanelLateralJuego);
     }
 
-    public void inicializarMovimiento(Scene scene) {
+    public void iniciarEventLoop(Scene scene) {
         scene.setOnKeyPressed(evento -> {
             this.controladorTeclado.mover(evento);
-            this.actualizarVista();
-            this.vistaPanelLateralJuego.actualizarContadorPuntajeActual();
-
-            if (this.modelo.getJuegoTerminado()) {
-                this.controladorCambioPantallas.cargarPantallaPartidas();
-            }
+            this.controladorPostTurnoJugador.actualizarVista(this.vistaPartida, this.vistaPanelLateralJuego);
+            this.controladorPostTurnoJugador.finalizarTurno();
         });
-    }
-
-    public void actualizarVista() {
-        this.vistaJugador.actualizarVista();
-        this.vistaOculta.actualizarVista();
     }
 }
