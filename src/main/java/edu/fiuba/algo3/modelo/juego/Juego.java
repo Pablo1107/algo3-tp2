@@ -16,6 +16,7 @@ public class Juego {
 
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
+
     private static Juego instancia;
 
     private Partida partida;
@@ -54,9 +55,5 @@ public class Juego {
         }
 
         this.partida.jugarTurno(direccion);
-    }
-
-    public Posicion getPosicionMeta() {
-        return this.partida.getMeta().getPosicion();
     }
 }

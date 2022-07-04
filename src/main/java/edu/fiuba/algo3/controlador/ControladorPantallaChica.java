@@ -5,9 +5,9 @@ import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
 
 public class ControladorPantallaChica implements EventHandler<ActionEvent> {
-    private ControladorCambioDePantallas controlador;
-    private MenuItem opcionPantallaChica;
-    private MenuItem opcionPantallaCompleta;
+    private final ControladorCambioDePantallas controlador;
+    private final MenuItem opcionPantallaChica;
+    private final MenuItem opcionPantallaCompleta;
 
     public ControladorPantallaChica(ControladorCambioDePantallas controlador, MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
         this.controlador = controlador;

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.ayuda;
 
-import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
+import edu.fiuba.algo3.controlador.ControladorBotonVolver;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,9 +13,11 @@ public class VistaPantallaAcercaDe extends VBox {
             "Los alumnos integrantes son Ramiro Recchia, Carlos Castillo y Pablo Andres Dealbera\n";
 
     private final ControladorCambioDePantallas controladorCambioPantallas;
+    private boolean estaJugando;
 
     public VistaPantallaAcercaDe(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
+        this.estaJugando = estaJugando;
         this.inicializarVista();
     }
 
@@ -23,7 +25,7 @@ public class VistaPantallaAcercaDe extends VBox {
         this.getStyleClass().add("vista-pantalla-centrada");
 
         this.getChildren().add(new Text(TEXTO_ACERCA_DE));
-        this.agregarBotonConControlador("Volver", new ControladorBotonVolverAlInicio(this.controladorCambioPantallas));
+        this.agregarBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, this.estaJugando));
     }
 
     private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
