@@ -4,17 +4,13 @@ import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
 import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
-import edu.fiuba.algo3.controlador.ControladorMusica;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 public class VistaPanelLateralJuego extends VBox {
@@ -25,7 +21,7 @@ public class VistaPanelLateralJuego extends VBox {
 
     public VistaPanelLateralJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
-        this.contadorPuntajeActual = this.crearContadorPuntajeActual();
+        this.contadorPuntajeActual = new Text(this.getValoresContadorPuntajeActual());
         this.inicializarVista();
     }
 
@@ -39,29 +35,9 @@ public class VistaPanelLateralJuego extends VBox {
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolverAlInicio(this.controladorCambioPantallas)));
 
-        contenedorBotones.agregarBoton(this.crearBotonCircularConControlador("", new ControladorMusica()));
-
         this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(this.contadorPuntajeActual);
         this.getChildren().add(contenedorBotones);
-    }
-
-    private Button crearBotonCircularConControlador(String contenido, EventHandler<ActionEvent> controlador) {
-        double r = 20;
-        Button boton = new Button(contenido);
-        boton.setShape(new Circle(r));
-        boton.setMinSize(2*r, 2*r);
-        boton.setMaxSize(2*r, 2*r);
-
-        ImageView iconoMusica = new ImageView(new Image(App.class.getResourceAsStream("corchea.png")));
-
-        iconoMusica.setFitHeight(1.5*r);
-        iconoMusica.setFitWidth(1.5*r);
-
-        boton.setGraphic(iconoMusica);
-
-        boton.setOnAction(controlador);
-        return boton;
     }
 
     private Button crearBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
@@ -70,14 +46,13 @@ public class VistaPanelLateralJuego extends VBox {
         return boton;
     }
 
-    private Text crearContadorPuntajeActual() {
+    public String getValoresContadorPuntajeActual() {
         int movimientosActualesJugador = this.getMovimientosActualesJugador();
-        String formato = String.format("Movimientos Actuales: %s", movimientosActualesJugador);
-        return new Text(formato);
+        return String.format("Movimientos Actuales: %s", movimientosActualesJugador);
     }
 
     public void actualizarContadorPuntajeActual() {
-        this.contadorPuntajeActual.setText(String.valueOf(this.getMovimientosActualesJugador()));
+        this.contadorPuntajeActual.setText(this.getValoresContadorPuntajeActual());
     }
 
     private int getMovimientosActualesJugador() {

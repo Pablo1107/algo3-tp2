@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAcercaDe;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
+import edu.fiuba.algo3.vista.juego.VistaPantallaRegistrarJugadores;
 import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
 import edu.fiuba.algo3.vista.partidas.VistaPantallaResultados;
 import javafx.scene.Parent;
@@ -13,7 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class ControladorCambioDePantallas {
-    private Stage stage;
+    private final Stage stage;
 
     public ControladorCambioDePantallas(Stage stage) {
         this.stage = stage;
@@ -21,6 +22,10 @@ public class ControladorCambioDePantallas {
 
     public void cargarPantallaInicio() {
         this.cambiarPantalla(new VistaPantallaInicio(this));
+    }
+
+    public void cargarPantallaRegistrarJugadores() {
+        this.cambiarPantalla(new VistaPantallaRegistrarJugadores(this));
     }
 
     public void cargarPantallaPartida() {
@@ -52,6 +57,7 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
+    // TODO: Puedo meter todo esto en un solo metodo realmente.
     public void maximizarPantalla(MenuItem opcionPantallaCompleta, MenuItem opcionPantallaChica) {
         if(!this.stage.isFullScreen()) {
             this.stage.hide();
