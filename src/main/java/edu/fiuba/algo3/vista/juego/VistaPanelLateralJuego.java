@@ -16,8 +16,8 @@ import javafx.scene.text.Text;
 public class VistaPanelLateralJuego extends VBox {
     private static final int TAMANIO_TITULO = 36;
 
-    private ControladorCambioDePantallas controladorCambioPantallas;
-    private Text contadorPuntajeActual;
+    private final ControladorCambioDePantallas controladorCambioPantallas;
+    private final Text contadorPuntajeActual;
 
     public VistaPanelLateralJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
@@ -32,8 +32,10 @@ public class VistaPanelLateralJuego extends VBox {
         this.contadorPuntajeActual.setId("contador-puntaje-actual");
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarPartida(this.controladorCambioPantallas)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolverAlInicio(this.controladorCambioPantallas)));
+
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, false)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas, true)));
 
         this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(this.contadorPuntajeActual);

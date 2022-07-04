@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 
 public class VistaPartida extends StackPane {
     private VistaJugador vistaJugador; 
-    private VistaMapa vistaMapa; 
+    private final VistaMapa vistaMapa;
     private VistaOculta vistaOculta; 
     private Jugador jugadorEnTurno;
 

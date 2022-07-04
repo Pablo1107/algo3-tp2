@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo.mapa;
 
 public class Direccion {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public Direccion(int x, int y) {
         this.x = x;

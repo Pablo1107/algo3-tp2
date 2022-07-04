@@ -17,18 +17,14 @@ public class MapaTest {
 
     @Test
     public void noSePuedeCrearUnMapaConDimensionesNegativas() {
-        Exception excepcion = assertThrows(RuntimeException.class, () -> {
-            new Mapa(-10, 10);
-        });
+        Exception excepcion = assertThrows(RuntimeException.class, () -> new Mapa(-10, 10));
 
         String mensajeEsperado = "Dimensiones menores o iguales a cero";
         String mensajeRecibido = excepcion.getMessage();
 
         assertEquals(mensajeEsperado, mensajeRecibido);
 
-        excepcion = assertThrows(RuntimeException.class, () -> {
-            new Mapa(10, -10);
-        });
+        excepcion = assertThrows(RuntimeException.class, () -> new Mapa(10, -10));
 
         mensajeEsperado = "Dimensiones menores o iguales a cero";
         mensajeRecibido = excepcion.getMessage();
@@ -38,9 +34,7 @@ public class MapaTest {
 
     @Test
     public void noSePuedeCrearUnMapaConDimensionesNulas() {
-        Exception excepcion = assertThrows(RuntimeException.class, () -> {
-            new Mapa(0, 0);
-        });
+        Exception excepcion = assertThrows(RuntimeException.class, () -> new Mapa(0, 0));
 
         String mensajeRecibido = excepcion.getMessage();
         String mensajeEsperado = "Dimensiones menores o iguales a cero";

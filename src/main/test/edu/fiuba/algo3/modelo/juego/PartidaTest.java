@@ -22,9 +22,7 @@ public class PartidaTest {
     public void noSePuedeCrearUnaPartidaSinJugadores() {
         List<Jugador> listadoJugadores = new ArrayList<>();
 
-        Exception excepcion = assertThrows(RuntimeException.class, () -> {
-            new Partida(listadoJugadores, new GeneradorMapa(10, 10));
-        });
+        Exception excepcion = assertThrows(RuntimeException.class, () -> new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0))));
 
         String mensajeEsperado = "La partida debe tener al menos un jugador";
         String mensajeRecibido = excepcion.getMessage();
@@ -40,7 +38,7 @@ public class PartidaTest {
         listadoJugadores.add(jugador1);
         listadoJugadores.add(jugador2);
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10));
+        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
 
         Jugador jugadorEnTurnoEsperado = jugador1;
         Jugador jugadorEnTurnoActual = partida.getJugadorEnTurno();
@@ -53,7 +51,7 @@ public class PartidaTest {
         List<Jugador> listadoJugadores = new ArrayList<>();
         listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
-        GeneradorMapa generadorMapa = new GeneradorMapa(10, 10);
+        GeneradorMapa generadorMapa = new GeneradorMapa(10, 10, new Posicion(0, 0));
         Partida partida = new Partida(listadoJugadores, generadorMapa);
 
         Mapa mapaGeneradoPorElGenerador = generadorMapa.getMapa();
@@ -67,7 +65,7 @@ public class PartidaTest {
         List<Jugador> listadoJugadores = new ArrayList<>();
         listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
-        GeneradorMapa generadorMapa = new GeneradorMapa(10, 10);
+        GeneradorMapa generadorMapa = new GeneradorMapa(10, 10, new Posicion(0, 0));
         Partida partida = new Partida(listadoJugadores, generadorMapa);
 
         Meta metaGeneradaPorElGenerador = generadorMapa.getMeta();
@@ -81,7 +79,7 @@ public class PartidaTest {
         List<Jugador> listadoJugadores = new ArrayList<>();
         listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10));
+        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
 
         assertTrue(partida.estaEnCurso());
     }
@@ -91,7 +89,7 @@ public class PartidaTest {
         List<Jugador> listadoJugadores = new ArrayList<>();
         listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10));
+        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
         partida.finalizar();
 
         assertFalse(partida.estaEnCurso());
@@ -107,7 +105,7 @@ public class PartidaTest {
         listadoJugadores.add(jugador2);
         listadoJugadores.add(jugador3);
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10));
+        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
 
         Jugador jugadorEnTurnoEsperado;
         Jugador jugadorEnTurnoActual;
@@ -133,7 +131,7 @@ public class PartidaTest {
         listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
         listadoJugadores.add(new Jugador("nombre", new Posicion(0, 1), new Moto()));
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10));
+        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
 
         partida.turnoSiguienteJugador();
         partida.turnoSiguienteJugador();
@@ -147,7 +145,7 @@ public class PartidaTest {
         Jugador jugador = new Jugador("nombre", new Posicion(0, 0), new Moto());
         listadoJugadores.add(jugador);
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10));
+        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
 
         partida.jugarTurno(new Direccion(1, 0));
 

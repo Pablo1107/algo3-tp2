@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import java.util.List;
 
 public class VistaMapa extends Pane {
-    private Mapa mapa;
+    private final Mapa mapa;
 
     public VistaMapa(Mapa mapa) {
         this.mapa = mapa;

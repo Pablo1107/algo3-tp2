@@ -5,7 +5,7 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public class ListadoJugadores {
-    private List<Jugador> listadoJugadores;
+    private final List<Jugador> listadoJugadores;
     private int indiceJugadorEnTurno;
 
     public ListadoJugadores(List<Jugador> listadoJugadores) {

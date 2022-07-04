@@ -34,6 +34,7 @@ public class VistaJugador extends VistaElementoTablero {
         this.renderizar();
     }
 
+    @Override
     public void renderizar() {
         this.sincronizarConModelo();
         this.cambiarImagen();
@@ -43,6 +44,7 @@ public class VistaJugador extends VistaElementoTablero {
         return imagenesJugadorFactory.get(this.indiceFactoryImagenesJugadorEnTurno);
     }
 
+    @Override
     protected void cambiarImagen() {
         Vehiculo vehiculoActualJugador = jugador.getVehiculo();
         if (vehiculoActualJugador instanceof Moto) {

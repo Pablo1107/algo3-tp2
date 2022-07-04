@@ -3,8 +3,6 @@ package edu.fiuba.algo3.vista.juego;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.controlador.ControladorPostTurnoJugador;
 import edu.fiuba.algo3.controlador.ControladorTecladoJuego;
-import edu.fiuba.algo3.modelo.juego.Juego;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -13,19 +11,17 @@ import javafx.scene.layout.Priority;
 public class VistaPantallaJuego extends HBox {
     public final static double FACTOR_ESCALA_PX = 100;
 
-    private ControladorTecladoJuego controladorTeclado;
-    private ControladorCambioDePantallas controladorCambioPantallas;
-    private ControladorPostTurnoJugador controladorPostTurnoJugador;
+    private final ControladorTecladoJuego controladorTeclado;
+    private final ControladorPostTurnoJugador controladorPostTurnoJugador;
 
     private VistaPartida vistaPartida;
-    private VistaPanelLateralJuego vistaPanelLateralJuego;
+    private final VistaPanelLateralJuego vistaPanelLateralJuego;
 
     public VistaPantallaJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorTeclado = new ControladorTecladoJuego();
-        this.controladorCambioPantallas = controladorCambioPantallas;
-        this.controladorPostTurnoJugador = new ControladorPostTurnoJugador(this.controladorCambioPantallas);
+        this.controladorPostTurnoJugador = new ControladorPostTurnoJugador(controladorCambioPantallas);
 
-        this.vistaPanelLateralJuego = new VistaPanelLateralJuego(this.controladorCambioPantallas);
+        this.vistaPanelLateralJuego = new VistaPanelLateralJuego(controladorCambioPantallas);
 
         this.generarVistaPartida();
     }

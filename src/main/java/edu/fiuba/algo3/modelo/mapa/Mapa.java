@@ -8,7 +8,7 @@ import java.util.List;
 public class Mapa {
     private final int limiteX;
     private final int limiteY;
-    private List<Elemento> elementos;
+    private final List<Elemento> elementos;
 
     public Mapa(int limiteX, int limiteY) {
         if (limiteX <= 0 || limiteY <= 0) {

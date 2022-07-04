@@ -35,8 +35,8 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
-    public void cargarPantallaAyuda() {
-        this.cambiarPantalla(new VistaPantallaAyuda(this));
+    public void cargarPantallaAyuda(boolean estaJugando) {
+        this.cambiarPantalla(new VistaPantallaAyuda(this, estaJugando));
     }
 
     public void cargarPantallaAcercaDe() {
