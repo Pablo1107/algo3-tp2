@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarJuego;
-import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
+import edu.fiuba.algo3.controlador.ControladorBotonVolver;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
@@ -35,7 +35,7 @@ public class VistaPantallaResultados extends VBox {
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolverAlInicio(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, false)));
 
         this.getChildren().add(contenedorBotones);
     }

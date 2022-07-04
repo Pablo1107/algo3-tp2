@@ -26,7 +26,7 @@ public class VistaPantallaInicio extends VBox {
     private void inicializarVista() {
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Juego", new ControladorBotonIniciarJuego(this.controladorCambioPantallas)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas, false)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Cerrar", new ControladorBotonCerrarJuego()));
 
         contenedorBotones.agregarBoton(this.crearBotonCircularConControlador("", new ControladorMusica()));
