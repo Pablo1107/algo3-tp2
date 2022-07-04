@@ -24,6 +24,19 @@ public class JugadorTest {
     }
 
     @Test
+    public void alCrearUnaJugadorEsteTieneElNombreCorrecto() {
+        Posicion posicionInicial = new Posicion(0, 0);
+        Vehiculo vehiculo = new Moto();
+
+        Jugador jugador = new Jugador("Lionel Messi", posicionInicial, vehiculo);
+
+        String nombreEsperado = "Lionel Messi";
+        String nombreActual = jugador.getNombre();
+
+        assertEquals(nombreEsperado, nombreActual);
+    }
+
+    @Test
     public void alCrearUnJugadorEsteTieneElVehiculoEspecificado() {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
