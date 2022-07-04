@@ -9,6 +9,7 @@ import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
 import edu.fiuba.algo3.vista.partidas.VistaPantallaResultados;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class ControladorCambioDePantallas {
@@ -51,7 +52,34 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
-    public Stage getStage() {
-        return this.stage;
+    public void maximizarPantalla(MenuItem opcionPantallaCompleta, MenuItem opcionPantallaChica) {
+        if(!this.stage.isFullScreen()) {
+            this.stage.hide();
+            this.stage.setFullScreen(true);
+            opcionPantallaCompleta.setDisable(true);
+            opcionPantallaChica.setDisable(false);
+            this.stage.show();
+        }
+    }
+
+    public void reducirPantalla(MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
+        if(this.stage.isFullScreen()) {
+            this.stage.hide();
+            this.stage.centerOnScreen();
+            this.stage.setFullScreen(false);
+            opcionPantallaChica.setDisable(true);
+            opcionPantallaCompleta.setDisable(false);
+            this.stage.show();
+        }
+    }
+
+    public void deshabilitarBotones(MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
+        if(this.stage.isFullScreen()) {
+            opcionPantallaCompleta.setDisable(true);
+            opcionPantallaChica.setDisable(false);
+        } else {
+            opcionPantallaChica.setDisable(true);
+            opcionPantallaCompleta.setDisable(false);
+        }
     }
 }
