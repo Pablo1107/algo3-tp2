@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.App;
-import edu.fiuba.algo3.modelo.ModeloJuego;
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAcercaDe;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
@@ -23,7 +23,7 @@ public class ControladorCambioDePantallas {
     }
 
     public void cargarPantallaPartida() {
-        ModeloJuego.getInstancia().iniciarNuevaPartida();
+        Juego.getInstancia().iniciarNuevaPartida();
 
         VistaPantallaJuego pantalla = new VistaPantallaJuego(this);
 

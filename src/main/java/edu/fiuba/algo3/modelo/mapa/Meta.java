@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.mapa;
 
-import edu.fiuba.algo3.modelo.ModeloJuego;
-import edu.fiuba.algo3.modelo.juego.PartidaMultijugador;
+import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.juego.Partida;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public class Meta extends Elemento {
@@ -11,7 +11,7 @@ public class Meta extends Elemento {
 
     @Override
     public void chocarCon(Jugador jugador) {
-        PartidaMultijugador partidaActual = ModeloJuego.getInstancia().getPartidaActual();
+        Partida partidaActual = Juego.getInstancia().getPartidaActual();
         partidaActual.finalizar();
     }
 }

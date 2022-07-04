@@ -39,7 +39,7 @@ public class ListadoJugadores implements Iterable<Jugador> {
         return it;
     }
 
-    public List<Jugador> obtenerListadoJugadores() {
+    public List<Jugador> getListadoJugadores() {
         return this.listadoJugadores;
     }
 }

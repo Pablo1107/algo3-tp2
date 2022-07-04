@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.juego;
 
-import edu.fiuba.algo3.modelo.juego.PartidaMultijugador;
+import edu.fiuba.algo3.modelo.juego.Partida;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
@@ -18,7 +18,7 @@ public class VistaOculta extends Pane {
     private Mapa mapa;
     private Posicion posicionMeta;
 
-    public VistaOculta(PartidaMultijugador partidaActual) {
+    public VistaOculta(Partida partidaActual) {
         this.jugador = partidaActual.getJugador();
         this.mapa = partidaActual.getMapa();
         this.posicionMeta = partidaActual.getMeta().getPosicion();

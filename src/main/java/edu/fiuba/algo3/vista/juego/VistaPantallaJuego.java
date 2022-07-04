@@ -2,7 +2,7 @@ package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.controlador.ControladorTecladoJuego;
-import edu.fiuba.algo3.modelo.ModeloJuego;
+import edu.fiuba.algo3.modelo.juego.Juego;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -40,7 +40,7 @@ public class VistaPantallaJuego extends HBox {
             this.vistaPartida.renderizar();
             this.vistaPanelLateralJuego.actualizarContadorPuntajeActual();
 
-            if (!ModeloJuego.getInstancia().getPartidaActual().estaEnCurso()) {
+            if (!Juego.getInstancia().getPartidaActual().estaEnCurso()) {
                 this.controladorCambioPantallas.cargarPantallaPartidas();
             }
         });
