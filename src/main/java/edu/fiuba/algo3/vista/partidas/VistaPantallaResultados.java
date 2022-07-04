@@ -15,13 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-public class VistaPantallaPartidas extends VBox {
+public class VistaPantallaResultados extends VBox {
     private static final int TAMANIO_TITULO = 36;
     private static final String IMAGEN_GANADOR = "src/main/resources/img/ganador.png";
 
     private final ControladorCambioDePantallas controladorCambioPantallas;
 
-    public VistaPantallaPartidas(ControladorCambioDePantallas controladorCambioPantallas) {
+    public VistaPantallaResultados(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.inicializarVista();
     }
@@ -31,7 +31,7 @@ public class VistaPantallaPartidas extends VBox {
 
         this.getChildren().add(new TituloPantalla("Fin del Juego", TAMANIO_TITULO));
         this.getChildren().add(this.crearImagenFinalPartida());
-        this.getChildren().add(new VistaListadoPartidas());
+        this.getChildren().add(new VistaListadoResultados());
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
@@ -47,11 +47,11 @@ public class VistaPantallaPartidas extends VBox {
     }
 
     private ImageView crearImagenFinalPartida() {
-        ImageView imageView = new ImageView(this.obtenerRecursoImagen(IMAGEN_GANADOR));
+        ImageView imageView = new ImageView(this.getRecursoImagen(IMAGEN_GANADOR));
         return imageView;
     }
 
-    private Image obtenerRecursoImagen(String archivoImagen) {
+    private Image getRecursoImagen(String archivoImagen) {
         try {
             FileInputStream stream = new FileInputStream(archivoImagen);
             return new Image(stream);

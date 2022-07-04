@@ -16,17 +16,17 @@ public class VistaObstaculo extends VistaElementoTablero {
     public VistaObstaculo(Elemento elemento) {
         this.elemento = elemento;
         this.ajustarEscalaVista();
-        this.actualizarVista();
-        this.cambiarImagenVista();
+        this.renderizar();
+        this.cambiarImagen();
     }
 
-    public void actualizarVista() {
+    public void renderizar() {
         Posicion posicion = this.elemento.getPosicion();
         this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
         this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
     }
 
-    protected void cambiarImagenVista() {
+    protected void cambiarImagen() {
         if (this.elemento instanceof Pozo) {
             this.cargarRecursoImagen(IMAGEN_POZO);
         } else if (this.elemento instanceof Piquete) {

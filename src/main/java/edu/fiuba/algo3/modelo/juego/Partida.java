@@ -1,30 +1,52 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.mapa.Direccion;
+import edu.fiuba.algo3.modelo.mapa.Mapa;
+import edu.fiuba.algo3.modelo.mapa.Meta;
 
 public class Partida {
-    private final int puntaje;
-    private final LocalDateTime horaRegistro;
+    private ListadoJugadores listadoJugadores;
+    private GeneradorMapa generadorMapa;
+    private boolean estaEnCurso;
 
-    private List<Jugador> jugadores;
+    public Partida(List<Jugador> listadoJugadores, GeneradorMapa generadorMapa) {
+        if (listadoJugadores.size() == 0) {
+            throw new RuntimeException("La partida debe tener al menos un jugador");
+        }
 
-    public Partida(int puntaje) {
-        this.puntaje = puntaje;
-        this.horaRegistro = LocalDateTime.now();
+        this.estaEnCurso = true;
+        this.listadoJugadores = new ListadoJugadores(listadoJugadores);
+        this.generadorMapa = generadorMapa;
     }
 
-    public int getPuntaje() {
-        return this.puntaje;
+    public void jugarTurno(Direccion direccion) {
+        this.getJugadorEnTurno().avanzar(direccion, this.generadorMapa.getMapa());
     }
 
-    public LocalDateTime getHoraRegistro() {
-        return this.horaRegistro;
+    public Jugador getJugadorEnTurno() {
+        return this.listadoJugadores.getJugadorEnTurno();
     }
 
-    public void jugarTurno() {
+    public Mapa getMapa() {
+        return this.generadorMapa.getMapa();
+    }
 
+    public Meta getMeta() {
+        return this.generadorMapa.getMeta();
+    }
+
+    public boolean estaEnCurso() {
+        return this.estaEnCurso;
+    }
+
+    public void finalizar() {
+        this.estaEnCurso = false;
+    }
+
+    public void turnoSiguienteJugador() {
+        this.listadoJugadores.turnoSiguienteJugador(this);
     }
 }

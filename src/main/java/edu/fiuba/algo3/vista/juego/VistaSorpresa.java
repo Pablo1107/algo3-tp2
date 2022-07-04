@@ -10,19 +10,19 @@ public class VistaSorpresa extends VistaElementoTablero {
     public VistaSorpresa(Elemento elemento) {
         this.elemento = elemento;
         this.ajustarEscalaVista();
-        this.actualizarVista();
-        this.cambiarImagenVista();
+        this.renderizar();
+        this.cambiarImagen();
     }
 
     @Override
-    public void actualizarVista() {
+    public void renderizar() {
         Posicion posicion = this.elemento.getPosicion();
         this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
         this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
     }
 
     @Override
-    protected void cambiarImagenVista() {
+    protected void cambiarImagen() {
         this.cargarRecursoImagen(IMAGEN_SORPRESA);
     }
 }
