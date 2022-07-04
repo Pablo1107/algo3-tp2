@@ -6,6 +6,8 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
+import edu.fiuba.algo3.modelo.vehiculo.Auto;
+import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class Juego {
@@ -28,7 +30,8 @@ public class Juego {
     public void iniciarNuevaPartida() {
         List<Jugador> listadoJugadores = new ArrayList<>();
         listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
-        listadoJugadores.add(new Jugador(new Posicion(0, 1), new Moto()));
+        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Auto()));
+        listadoJugadores.add(new Jugador(new Posicion(0, 0), new CuatroXCuatro()));
         this.partida = new Partida(listadoJugadores);
         this.partida.iniciarNuevaPartida();
     }
