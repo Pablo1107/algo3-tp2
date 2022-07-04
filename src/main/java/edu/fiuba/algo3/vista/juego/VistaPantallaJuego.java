@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
-import edu.fiuba.algo3.controlador.ControladorFinalizarJuego;
+import edu.fiuba.algo3.controlador.ControladorPostTurnoJugador;
 import edu.fiuba.algo3.controlador.ControladorTecladoJuego;
 import edu.fiuba.algo3.modelo.juego.Juego;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -14,7 +15,7 @@ public class VistaPantallaJuego extends HBox {
 
     private ControladorTecladoJuego controladorTeclado;
     private ControladorCambioDePantallas controladorCambioPantallas;
-    private ControladorFinalizarJuego controladorFinalizarJuego;
+    private ControladorPostTurnoJugador controladorPostTurnoJugador;
 
     private VistaPartida vistaPartida;
     private VistaPanelLateralJuego vistaPanelLateralJuego;
@@ -22,7 +23,7 @@ public class VistaPantallaJuego extends HBox {
     public VistaPantallaJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorTeclado = new ControladorTecladoJuego();
         this.controladorCambioPantallas = controladorCambioPantallas;
-        this.controladorFinalizarJuego = new ControladorFinalizarJuego(this.controladorCambioPantallas);
+        this.controladorPostTurnoJugador = new ControladorPostTurnoJugador(this.controladorCambioPantallas);
 
         this.vistaPanelLateralJuego = new VistaPanelLateralJuego(this.controladorCambioPantallas);
 
@@ -37,16 +38,11 @@ public class VistaPantallaJuego extends HBox {
         this.getChildren().add(this.vistaPanelLateralJuego);
     }
 
-    public void inicializarMovimiento(Scene scene) {
+    public void iniciarEventLoop(Scene scene) {
         scene.setOnKeyPressed(evento -> {
             this.controladorTeclado.mover(evento);
-            this.vistaPartida.renderizar();
-            this.vistaPanelLateralJuego.actualizarContadorPuntajeActual();
-
-            if (!Juego.getInstancia().getPartidaActual().estaEnCurso()) {
-                // this.controladorFinalizarJuego.irSiguientePantalla();
-                this.controladorCambioPantallas.cargarPantallaPartidas();
-            }
+            this.controladorPostTurnoJugador.actualizarVista(this.vistaPartida, this.vistaPanelLateralJuego);
+            this.controladorPostTurnoJugador.finalizarTurno();
         });
     }
 }

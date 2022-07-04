@@ -29,7 +29,7 @@ public class ControladorCambioDePantallas {
 
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
-        pantalla.inicializarMovimiento(scene);
+        pantalla.iniciarEventLoop(scene);
         this.stage.setScene(scene);
     }
 
@@ -41,7 +41,7 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaAcercaDe(this));
     }
 
-    public void cargarPantallaPartidas() {
+    public void cargarPantallaResultados() {
         this.cambiarPantalla(new VistaPantallaResultados(this));
     }
 

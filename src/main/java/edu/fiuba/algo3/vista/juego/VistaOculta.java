@@ -19,7 +19,7 @@ public class VistaOculta extends Pane {
     private Posicion posicionMeta;
 
     public VistaOculta(Partida partidaActual) {
-        this.jugador = partidaActual.getJugador();
+        this.jugador = partidaActual.getJugadorEnTurno();
         this.mapa = partidaActual.getMapa();
         this.posicionMeta = partidaActual.getMeta().getPosicion();
         this.renderizar();

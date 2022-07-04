@@ -81,6 +81,6 @@ public class VistaPanelLateralJuego extends VBox {
     }
 
     private int getMovimientosActualesJugador() {
-        return Juego.getInstancia().getPartidaActual().getJugador().getMovimientos();
+        return Juego.getInstancia().getPartidaActual().getJugadorEnTurno().getMovimientos();
     }
 }

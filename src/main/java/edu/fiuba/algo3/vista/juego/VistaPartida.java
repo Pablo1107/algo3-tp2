@@ -23,13 +23,13 @@ public class VistaPartida extends StackPane {
     }
 
     private boolean turnoSiguienteJugador() {
-        Jugador jugadorEnTurno = Juego.getInstancia().getPartidaActual().getJugador();
+        Jugador jugadorEnTurno = Juego.getInstancia().getPartidaActual().getJugadorEnTurno();
         return !(jugadorEnTurno == this.jugadorEnTurno);
     }
 
     private void actualizarDatosJugador() {
         Partida partidaActual = Juego.getInstancia().getPartidaActual();
-        this.jugadorEnTurno = partidaActual.getJugador();
+        this.jugadorEnTurno = partidaActual.getJugadorEnTurno();
         this.vistaJugador = new VistaJugador(this.jugadorEnTurno);
         this.vistaOculta = new VistaOculta(partidaActual);
     }

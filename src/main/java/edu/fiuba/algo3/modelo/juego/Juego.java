@@ -11,6 +11,8 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class Juego {
+    private static final int MAPA_LIMITE_X = 15;
+    private static final int MAPA_LIMITE_Y = 10;
     private static Juego instancia;
 
     private Partida partida;
@@ -32,8 +34,8 @@ public class Juego {
         listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
         listadoJugadores.add(new Jugador(new Posicion(0, 0), new Auto()));
         listadoJugadores.add(new Jugador(new Posicion(0, 0), new CuatroXCuatro()));
-        this.partida = new Partida(listadoJugadores);
-        this.partida.iniciarNuevaPartida();
+
+        this.partida = new Partida(listadoJugadores, new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y));
     }
 
     public Partida getPartidaActual() {
