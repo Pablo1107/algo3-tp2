@@ -41,6 +41,7 @@ public class Juego {
     public void iniciarNuevaPartida() {
         this.listadoJugadores = new ArrayList<>();
         this.listadoJugadores.add(new Jugador("Carlos", new Posicion(0, 0), new Auto()));
+        this.listadoJugadores.add(new Jugador("Carlos", new Posicion(0, 0), new Auto()));
         this.partida = new Partida(this.listadoJugadores, new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y));
     }
 

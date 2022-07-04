@@ -20,7 +20,7 @@ public class Semana1Test {
         Posicion posicionInicial = new Posicion(0, 0);
         Moto moto = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, moto);
+        Jugador jugador = new Jugador("nombre", posicionInicial, moto);
 
         Mapa mapa = new Mapa(10, 10);
         Posicion posicionPozo = new Posicion(1, 0);
@@ -56,7 +56,7 @@ public class Semana1Test {
         Posicion posicionInicial = new Posicion(0, 0);
         Auto auto = new Auto();
 
-        Jugador jugador = new Jugador(posicionInicial, auto);
+        Jugador jugador = new Jugador("nombre", posicionInicial, auto);
 
         Mapa mapa = new Mapa(10, 10);
         Posicion posicionPozo = new Posicion(1, 0);
@@ -92,7 +92,7 @@ public class Semana1Test {
         Posicion posicionInicial = new Posicion(0, 0);
         CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
 
-        Jugador jugador = new Jugador(posicionInicial, cuatroXCuatro);
+        Jugador jugador = new Jugador("nombre", posicionInicial, cuatroXCuatro);
 
         Mapa mapa = new Mapa(10, 10);
 
@@ -123,7 +123,7 @@ public class Semana1Test {
         Posicion posicionInicial = new Posicion(0, 0);
         CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
 
-        Jugador jugador = new Jugador(posicionInicial, cuatroXCuatro);
+        Jugador jugador = new Jugador("nombre", posicionInicial, cuatroXCuatro);
 
         Mapa mapa = new Mapa(10, 10);
 
@@ -166,7 +166,7 @@ public class Semana1Test {
     public void unVehiculoAtraviesaLaCiudadYSeEncuentraConUnControlPolicialPuedeSerPenalizadoEnCeroOTresMovimientos() {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(10, 10);
         Posicion posicionControlPolicial = new Posicion(1, 0);

@@ -28,7 +28,7 @@ public class VistaJugador extends VistaElementoTablero {
             indiceFactoryImagenesJugadorEnTurnoStatic = 0;
         }
 
-        this.indiceFactoryImagenesJugadorEnTurno = indiceFactoryImagenesJugadorEnTurnoStatic;
+        this.indiceFactoryImagenesJugadorEnTurno = indiceFactoryImagenesJugadorEnTurnoStatic++;
         this.jugador = jugador;
         this.ajustarEscalaVista();
         this.renderizar();

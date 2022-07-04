@@ -14,8 +14,8 @@ public class ListadoJugadoresTest {
     @Test
     public void dadaUnaListaDeJugadoresAlCrearElJugadorEnTurnoEnElListadoEsElPrimerJugadorDeLaListaDada() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        Jugador jugador1 = new Jugador(new Posicion(0, 0), new Moto());
-        Jugador jugador2 = new Jugador(new Posicion(0, 1), new Moto());
+        Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
+        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
         listadoJugadores.add(jugador1);
         listadoJugadores.add(jugador2);
 
@@ -30,8 +30,8 @@ public class ListadoJugadoresTest {
     @Test
     public void dadaUnaListaDeJugadoresSeGuardaLaListaDadaEnElListado() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
-        listadoJugadores.add(new Jugador(new Posicion(0, 1), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 1), new Moto()));
 
         ListadoJugadores listadoJugadoresPartida = new ListadoJugadores(listadoJugadores);
 

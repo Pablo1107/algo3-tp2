@@ -16,7 +16,7 @@ public class JugadorYElementoNulo {
         Posicion posicion = new Posicion(0, 0);
         ElementoNulo elementoNulo = new ElementoNulo(posicion);
         Moto moto = new Moto();
-        Jugador jugador = new Jugador(posicion, moto);
+        Jugador jugador = new Jugador("nombre", posicion, moto);
 
         elementoNulo.chocarCon(jugador);
 
@@ -28,7 +28,7 @@ public class JugadorYElementoNulo {
         Posicion posicion = new Posicion(0, 0);
         ElementoNulo elementoNulo = new ElementoNulo(posicion);
         Auto auto = new Auto();
-        Jugador jugador = new Jugador(posicion, auto);
+        Jugador jugador = new Jugador("nombre", posicion, auto);
 
         elementoNulo.chocarCon(jugador);
 
@@ -40,7 +40,7 @@ public class JugadorYElementoNulo {
         Posicion posicion = new Posicion(0, 0);
         ElementoNulo elementoNulo = new ElementoNulo(posicion);
         CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
-        Jugador jugador = new Jugador(posicion, cuatroXCuatro);
+        Jugador jugador = new Jugador("nombre", posicion, cuatroXCuatro);
 
         elementoNulo.chocarCon(jugador);
 

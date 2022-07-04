@@ -22,7 +22,7 @@ public class JugadorYSorpresasTest {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(10, 10);
         Posicion posicionSorpresa = new Posicion(1, 0);
@@ -45,7 +45,7 @@ public class JugadorYSorpresasTest {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(10, 10);
         Posicion posicionSorpresa = new Posicion(1, 0);
@@ -68,7 +68,7 @@ public class JugadorYSorpresasTest {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(10, 10);
         mapa.agregarElemento(new CambioDeVehiculo(new Posicion(1, 0)));
