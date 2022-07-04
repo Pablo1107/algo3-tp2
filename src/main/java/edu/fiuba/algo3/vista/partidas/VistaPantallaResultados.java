@@ -34,7 +34,7 @@ public class VistaPantallaResultados extends VBox {
         this.getChildren().add(new VistaListadoResultados());
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarPartida(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, false)));
 
         this.getChildren().add(contenedorBotones);

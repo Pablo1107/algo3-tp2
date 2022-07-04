@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
 import edu.fiuba.algo3.controlador.ControladorBotonReiniciarPartida;
-import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
+import edu.fiuba.algo3.controlador.ControladorBotonVolver;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.vista.ContenedorBotones;
@@ -33,7 +34,7 @@ public class VistaPanelLateralJuego extends VBox {
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
 
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarJuego(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorBotonReiniciarPartida(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, false)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas, true)));
 
