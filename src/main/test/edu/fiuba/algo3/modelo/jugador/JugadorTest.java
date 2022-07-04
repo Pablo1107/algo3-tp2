@@ -15,7 +15,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(10, 10);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Posicion posicionEsperada = posicionInicial;
         Posicion posicionActual = jugador.getPosicion();
@@ -24,11 +24,24 @@ public class JugadorTest {
     }
 
     @Test
+    public void alCrearUnaJugadorEsteTieneElNombreCorrecto() {
+        Posicion posicionInicial = new Posicion(0, 0);
+        Vehiculo vehiculo = new Moto();
+
+        Jugador jugador = new Jugador("Lionel Messi", posicionInicial, vehiculo);
+
+        String nombreEsperado = "Lionel Messi";
+        String nombreActual = jugador.getNombre();
+
+        assertEquals(nombreEsperado, nombreActual);
+    }
+
+    @Test
     public void alCrearUnJugadorEsteTieneElVehiculoEspecificado() {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Posicion posicionEsperada = posicionInicial;
         Posicion posicionActual = jugador.getPosicion();
@@ -41,7 +54,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(10, 10);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         int movimientosEsperados = 0;
         int movimientosActuales = jugador.getMovimientos();
@@ -54,7 +67,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Direccion direccion = new Direccion(1, 0);
         Mapa mapa = new Mapa(10, 10);
@@ -72,7 +85,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(5, 5);
         Direccion direccion = new Direccion(10, 10);
@@ -90,7 +103,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(0, 0);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(5, 5);
         Direccion direccion = new Direccion(1, 0);
@@ -108,7 +121,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(4, 5);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Mapa mapa = new Mapa(10, 10);
         Direccion direccion = new Direccion(1, 0);
@@ -134,7 +147,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(1, 1);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         jugador.retroceder();
 
@@ -149,7 +162,7 @@ public class JugadorTest {
         Posicion posicionInicial = new Posicion(1, 1);
         Vehiculo vehiculo = new Moto();
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         jugador.setMovimientos(10);
 

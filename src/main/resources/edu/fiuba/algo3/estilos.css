@@ -64,3 +64,7 @@ Text {
 	-fx-font-size: 24px;
 	-fx-alignment: center;
 }
+
+#input-nombre-jugador {
+    -fx-prompt-text-fill: #989898;
+}

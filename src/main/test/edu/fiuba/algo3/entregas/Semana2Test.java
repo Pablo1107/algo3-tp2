@@ -28,7 +28,7 @@ public class Semana2Test {
 
         mapa.agregarElemento(sorpresa);
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Direccion direccion = new Direccion(1, 0);
         jugador.avanzar(direccion, mapa);
@@ -55,7 +55,7 @@ public class Semana2Test {
 
         mapa.agregarElemento(sorpresa);
 
-        Jugador jugador = new Jugador(posicionInicial, vehiculo);
+        Jugador jugador = new Jugador("nombre", posicionInicial, vehiculo);
 
         Direccion direccion = new Direccion(1, 0);
         jugador.avanzar(direccion, mapa);
@@ -73,7 +73,7 @@ public class Semana2Test {
     public void unaMotoAtraviesaLaCiudadYSeEncuentraConUnPiquetePuedePasarConUnaPenalizacionDe2Movimientos() {
         Posicion posicionInicial = new Posicion(0, 0);
         Moto moto = new Moto();
-        Jugador jugador = new Jugador(posicionInicial, moto);
+        Jugador jugador = new Jugador("nombre", posicionInicial, moto);
 
         Posicion posicionPiquete = new Posicion(1, 0);
         Piquete piquete = new Piquete(posicionPiquete);
@@ -105,7 +105,7 @@ public class Semana2Test {
     public void unAutoAtraviesaLaCiudadYSeEncuentraConUnPiqueteNoPuedePasarYDaLaVuelta() {
         Posicion posicionInicial = new Posicion(0, 0);
         Auto auto = new Auto();
-        Jugador jugador = new Jugador(posicionInicial, auto);
+        Jugador jugador = new Jugador("nombre", posicionInicial, auto);
 
         Posicion posicionPiquete = new Posicion(2, 0);
         Piquete piquete = new Piquete(posicionPiquete);
@@ -130,7 +130,7 @@ public class Semana2Test {
     public void unCuatroXCuatroAtraviesaLaCiudadYSeEncuentraConUnPiqueteNoPuedePasarYDaLaVuelta() {
         Posicion posicionInicial = new Posicion(0, 0);
         CuatroXCuatro cuatroXCuatro = new CuatroXCuatro();
-        Jugador jugador = new Jugador(posicionInicial, cuatroXCuatro);
+        Jugador jugador = new Jugador("nombre", posicionInicial, cuatroXCuatro);
 
         Posicion posicionPiquete = new Posicion(2, 0);
         Piquete piquete = new Piquete(posicionPiquete);

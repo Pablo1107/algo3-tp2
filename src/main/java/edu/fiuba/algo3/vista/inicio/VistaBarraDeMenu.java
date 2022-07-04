@@ -17,7 +17,7 @@ public class VistaBarraDeMenu extends MenuBar {
         MenuItem opcionAcercaDe = new MenuItem("Acerda de...");
         MenuItem opcionAyudaJuego = new MenuItem("Ayuda juego");
 
-        opcionIniciarJuego.setOnAction(new ControladorBotonIniciarJuego(controlador));
+        opcionIniciarJuego.setOnAction(new ControladorBotonIniciarPartida(controlador));
         opcionSalir.setOnAction(new ControladorBotonCerrarJuego());
         opcionAyudaJuego.setOnAction(new ControladorBotonAyuda(controlador, false));
         opcionAcercaDe.setOnAction(new ControladorBotonAcercaDe(controlador));

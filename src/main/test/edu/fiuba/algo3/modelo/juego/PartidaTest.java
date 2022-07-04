@@ -33,8 +33,8 @@ public class PartidaTest {
     @Test
     public void dadaUnaListaDeJugadoresAlCrearUnaPartidaElJugadorEnTurnoEsElPrimerJugadorDeLaListaDada() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        Jugador jugador1 = new Jugador(new Posicion(0, 0), new Moto());
-        Jugador jugador2 = new Jugador(new Posicion(0, 1), new Moto());
+        Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
+        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
         listadoJugadores.add(jugador1);
         listadoJugadores.add(jugador2);
 
@@ -49,7 +49,7 @@ public class PartidaTest {
     @Test
     public void dadoUnGeneradorDeMapaAlCrearUnaPartidaSeCreaElMapaCorrecto() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
         GeneradorMapa generadorMapa = new GeneradorMapa(10, 10, new Posicion(0, 0));
         Partida partida = new Partida(listadoJugadores, generadorMapa);
@@ -63,7 +63,7 @@ public class PartidaTest {
     @Test
     public void dadoUnGeneradorDeMapaAlCrearUnaPartidaSeCreaLaMetaCorrecta() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
         GeneradorMapa generadorMapa = new GeneradorMapa(10, 10, new Posicion(0, 0));
         Partida partida = new Partida(listadoJugadores, generadorMapa);
@@ -77,7 +77,7 @@ public class PartidaTest {
     @Test
     public void alCrearUnaPartidaEstaEstaEnCurso() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
         Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
 
@@ -87,7 +87,7 @@ public class PartidaTest {
     @Test
     public void luegoDeFinalizarUnaPartidaEstaNoEstaEnCurso() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
 
         Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
         partida.finalizar();
@@ -98,9 +98,9 @@ public class PartidaTest {
     @Test
     public void alCederleElTurnoAlSiguienteJugadorDeUnaPartidaElNuevoJugadorEnTurnoEsElEsperado() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        Jugador jugador1 = new Jugador(new Posicion(0, 0), new Moto());
-        Jugador jugador2 = new Jugador(new Posicion(0, 1), new Moto());
-        Jugador jugador3 = new Jugador(new Posicion(0, 2), new Moto());
+        Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
+        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
+        Jugador jugador3 = new Jugador("nombre", new Posicion(0, 2), new Moto());
         listadoJugadores.add(jugador1);
         listadoJugadores.add(jugador2);
         listadoJugadores.add(jugador3);
@@ -128,8 +128,8 @@ public class PartidaTest {
     @Test
     public void cuandoTodosLosJugadoresDeUnaPartidaTerminanSuTurnoSeFinalizaLaPartida() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
-        listadoJugadores.add(new Jugador(new Posicion(0, 1), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 1), new Moto()));
 
         Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
 
@@ -142,7 +142,7 @@ public class PartidaTest {
     @Test
     public void cuandoSeJuegaElTurnoEnUnaPartidaEfectivamenteSeJuegaElTurnoParaElJugadorEnTurno() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        Jugador jugador = new Jugador(new Posicion(0, 0), new Moto());
+        Jugador jugador = new Jugador("nombre", new Posicion(0, 0), new Moto());
         listadoJugadores.add(jugador);
 
         Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
