@@ -7,9 +7,6 @@ import javafx.scene.control.MenuItem;
 
 public class VistaBarraDeMenu extends MenuBar {
 
-    private MenuItem opcionPantallaCompleta = new MenuItem("Pantalla Completa");
-    private MenuItem opcionPantallaChica = new MenuItem("Miniatura");
-
     public VistaBarraDeMenu(ControladorCambioDePantallas controlador){
         Menu menuArchivo = new Menu("Archivo");
         Menu menuVer = new Menu("Ver");
@@ -24,11 +21,13 @@ public class VistaBarraDeMenu extends MenuBar {
         opcionSalir.setOnAction(new ControladorBotonCerrarJuego());
         opcionAyudaJuego.setOnAction(new ControladorBotonAyuda(controlador));
         opcionAcercaDe.setOnAction(new ControladorBotonAcercaDe(controlador));
-        this.opcionPantallaCompleta.setOnAction(new ControladorPantallaCompleta(controlador, this.opcionPantallaCompleta, this.opcionPantallaChica));
-        this.opcionPantallaChica.setOnAction(new ControladorPantallaChica(controlador, this.opcionPantallaChica, this.opcionPantallaCompleta));
+        MenuItem opcionPantallaChica = new MenuItem("Miniatura");
+        MenuItem opcionPantallaCompleta = new MenuItem("Pantalla Completa");
+        opcionPantallaCompleta.setOnAction(new ControladorPantallaCompleta(controlador, opcionPantallaCompleta, opcionPantallaChica));
+        opcionPantallaChica.setOnAction(new ControladorPantallaChica(controlador, opcionPantallaChica, opcionPantallaCompleta));
 
         menuArchivo.getItems().addAll(opcionIniciarJuego, opcionSalir);
-        menuVer.getItems().addAll(this.opcionPantallaChica, this.opcionPantallaCompleta);
+        menuVer.getItems().addAll(opcionPantallaChica, opcionPantallaCompleta);
         menuAyuda.getItems().addAll(opcionAcercaDe, opcionAyudaJuego);
 
         this.getMenus().addAll(menuArchivo, menuVer, menuAyuda);

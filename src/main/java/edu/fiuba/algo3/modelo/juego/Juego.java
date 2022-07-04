@@ -6,13 +6,15 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
-import edu.fiuba.algo3.modelo.vehiculo.Auto;
-import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
+import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Juego {
+    private static final Posicion POSICION_INICIAL_JUGADOR = new Posicion(0, 0);
+    private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
+
     private static Juego instancia;
 
     private Partida partida;
@@ -31,11 +33,12 @@ public class Juego {
 
     public void iniciarNuevaPartida() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new Auto()));
-        listadoJugadores.add(new Jugador(new Posicion(0, 0), new CuatroXCuatro()));
+        listadoJugadores.add(new Jugador(POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR));
+        listadoJugadores.add(new Jugador(POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR));
+        listadoJugadores.add(new Jugador(POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR));
 
-        this.partida = new Partida(listadoJugadores, new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y));
+        GeneradorMapa generadorMapa = new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y, POSICION_INICIAL_JUGADOR);
+        this.partida = new Partida(listadoJugadores, generadorMapa);
     }
 
     public Partida getPartidaActual() {
@@ -48,9 +51,5 @@ public class Juego {
         }
 
         this.partida.jugarTurno(direccion);
-    }
-
-    public Posicion getPosicionMeta() {
-        return this.partida.getMeta().getPosicion();
     }
 }

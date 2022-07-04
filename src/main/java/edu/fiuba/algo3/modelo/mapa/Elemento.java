@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.mapa;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public abstract class Elemento {
-    protected Posicion posicion;
+    protected final Posicion posicion;
 
     public Elemento(Posicion posicion) {
         this.posicion = posicion;
