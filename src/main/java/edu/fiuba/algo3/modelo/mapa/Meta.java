@@ -12,6 +12,6 @@ public class Meta extends Elemento {
     @Override
     public void chocarCon(Jugador jugador) {
         Partida partidaActual = Juego.getInstancia().getPartidaActual();
-        partidaActual.finalizar();
+        partidaActual.turnoSiguienteJugador();
     }
 }

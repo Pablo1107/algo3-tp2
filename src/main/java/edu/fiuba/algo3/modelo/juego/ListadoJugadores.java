@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.Iterator;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
-public class ListadoJugadores implements Iterable<Jugador> {
+public class ListadoJugadores {
     private List<Jugador> listadoJugadores;
     private int indiceJugadorEnTurno;
 
@@ -14,29 +13,21 @@ public class ListadoJugadores implements Iterable<Jugador> {
         this.indiceJugadorEnTurno = 0;
     }
 
-    public Iterator<Jugador> iterator() {
-        Iterator<Jugador> it = new Iterator<Jugador>() {
-			@Override
-			public boolean hasNext() {
-                return indiceJugadorEnTurno < listadoJugadores.size();
-			}
+    public Jugador getJugadorEnTurno() {
+        return this.listadoJugadores.get(this.indiceJugadorEnTurno);
+    }
 
-			@Override
-			public Jugador next() {
-                if (listadoJugadores.size() == 0) {
-                    return null;
-                }
+    public void turnoSiguienteJugador(Partida partidaActual) {
+        if (!partidaActual.estaEnCurso()) {
+            return;
+        }
 
-                if (this.hasNext()) {
-                    return listadoJugadores.get(indiceJugadorEnTurno++);
-                }
+        if (this.indiceJugadorEnTurno >= (this.listadoJugadores.size() - 1)) {
+            partidaActual.finalizar();
+            this.indiceJugadorEnTurno = 0;
+        }
 
-                indiceJugadorEnTurno = 0;
-				return listadoJugadores.get(indiceJugadorEnTurno);
-			}
-        };
-
-        return it;
+        this.indiceJugadorEnTurno++;
     }
 
     public List<Jugador> getListadoJugadores() {

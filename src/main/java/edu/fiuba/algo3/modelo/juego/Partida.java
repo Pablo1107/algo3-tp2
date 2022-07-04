@@ -11,13 +11,13 @@ public class Partida {
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
 
-    private List<Jugador> listadoJugadores;
+    private ListadoJugadores listadoJugadores;
     private GeneradorMapa generadorMapa;
     private boolean estaEnCurso;
 
     public Partida(List<Jugador> listadoJugadores) {
         this.estaEnCurso = true;
-        this.listadoJugadores = listadoJugadores;
+        this.listadoJugadores = new ListadoJugadores(listadoJugadores);
         this.iniciarNuevaPartida();
     }
 
@@ -31,7 +31,7 @@ public class Partida {
     }
 
     public Jugador getJugador() {
-        return this.listadoJugadores.get(0);
+        return this.listadoJugadores.getJugadorEnTurno();
     }
 
     public Mapa getMapa() {
@@ -48,5 +48,9 @@ public class Partida {
 
     public void finalizar() {
         this.estaEnCurso = false;
+    }
+
+    public void turnoSiguienteJugador() {
+        this.listadoJugadores.turnoSiguienteJugador(this);
     }
 }

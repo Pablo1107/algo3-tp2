@@ -51,7 +51,6 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
-
     public Stage getStage() {
         return this.stage;
     }

@@ -29,7 +29,6 @@ public class Juego {
         List<Jugador> listadoJugadores = new ArrayList<>();
         listadoJugadores.add(new Jugador(new Posicion(0, 0), new Moto()));
         listadoJugadores.add(new Jugador(new Posicion(0, 1), new Moto()));
-
         this.partida = new Partida(listadoJugadores);
         this.partida.iniciarNuevaPartida();
     }
