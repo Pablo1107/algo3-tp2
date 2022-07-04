@@ -25,6 +25,7 @@ public class ListadoJugadores {
         if (this.indiceJugadorEnTurno >= (this.listadoJugadores.size() - 1)) {
             partidaActual.finalizar();
             this.indiceJugadorEnTurno = 0;
+            return;
         }
 
         this.indiceJugadorEnTurno++;

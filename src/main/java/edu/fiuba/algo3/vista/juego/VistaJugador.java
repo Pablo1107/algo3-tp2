@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class VistaJugador extends VistaElementoTablero {
     private static int indiceFactoryImagenesJugadorEnTurnoStatic = 0;
-    private List<ImagenesJugadorFactory> imagenesJugadorFactory = new ArrayList<>() {
+    private final List<ImagenesJugadorFactory> imagenesJugadorFactory = new ArrayList<>() {
         {
             add(new ImagenesJugadorMessi());
             add(new ImagenesJugadorDiego());
@@ -28,7 +28,7 @@ public class VistaJugador extends VistaElementoTablero {
             indiceFactoryImagenesJugadorEnTurnoStatic = 0;
         }
 
-        this.indiceFactoryImagenesJugadorEnTurno = indiceFactoryImagenesJugadorEnTurnoStatic++;
+        this.indiceFactoryImagenesJugadorEnTurno = indiceFactoryImagenesJugadorEnTurnoStatic;
         this.jugador = jugador;
         this.ajustarEscalaVista();
         this.renderizar();

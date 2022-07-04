@@ -8,8 +8,8 @@ import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Meta;
 
 public class Partida {
-    private ListadoJugadores listadoJugadores;
-    private GeneradorMapa generadorMapa;
+    private final ListadoJugadores listadoJugadores;
+    private final GeneradorMapa generadorMapa;
     private boolean estaEnCurso;
 
     public Partida(List<Jugador> listadoJugadores, GeneradorMapa generadorMapa) {

@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
-import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
@@ -20,7 +19,7 @@ public class Juego {
     private static Juego instancia;
 
     private Partida partida;
-    private final List<Jugador> listadoJugadores;
+    private List<Jugador> listadoJugadores;
 
     public static Juego getInstancia() {
         if (instancia == null) {
@@ -40,6 +39,8 @@ public class Juego {
     }
 
     public void iniciarNuevaPartida() {
+        this.listadoJugadores = new ArrayList<>();
+        this.listadoJugadores.add(new Jugador("Carlos", new Posicion(0, 0), new Auto()));
         this.partida = new Partida(this.listadoJugadores, new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y));
     }
 
