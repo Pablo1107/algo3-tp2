@@ -3,17 +3,21 @@ package edu.fiuba.algo3.controlador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class ControladorBotonAyuda implements EventHandler<ActionEvent> {
+public class ControladorBotonVolver implements EventHandler<ActionEvent> {
     private final ControladorCambioDePantallas controladorCambioPantallas;
     private boolean estaJugando;
 
-    public ControladorBotonAyuda(ControladorCambioDePantallas controladorCambioPantallas, boolean estaJugando) {
+    public ControladorBotonVolver(ControladorCambioDePantallas controladorCambioPantallas, boolean estaJugando) {
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.estaJugando = estaJugando;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.controladorCambioPantallas.cargarPantallaAyuda(this.estaJugando);
+        if(this.estaJugando) {
+            this.controladorCambioPantallas.cargarPantallaPartidaEnCurso();
+        } else {
+            this.controladorCambioPantallas.cargarPantallaInicio();
+        }
     }
 }

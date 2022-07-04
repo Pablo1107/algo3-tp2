@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.ayuda;
 
-import edu.fiuba.algo3.controlador.ControladorBotonVolverAlInicio;
+import edu.fiuba.algo3.controlador.ControladorBotonVolver;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,9 +22,11 @@ public class VistaPantallaAyuda extends VBox {
             "La sorpresa cambio de vehiculo cambia el vehiculo\n";
 
     private final ControladorCambioDePantallas controladorCambioPantallas;
+    private boolean estaJugando;
 
-    public VistaPantallaAyuda(ControladorCambioDePantallas controladorCambioPantallas) {
+    public VistaPantallaAyuda(ControladorCambioDePantallas controladorCambioPantallas, boolean estaJugando) {
         this.controladorCambioPantallas = controladorCambioPantallas;
+        this.estaJugando = estaJugando;
         this.inicializarVista();
     }
 
@@ -32,7 +34,7 @@ public class VistaPantallaAyuda extends VBox {
         this.getStyleClass().add("vista-pantalla-centrada");
 
         this.getChildren().add(new Text(TEXTO_AYUDA));
-        this.agregarBotonConControlador("Volver", new ControladorBotonVolverAlInicio(this.controladorCambioPantallas));
+        this.agregarBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, this.estaJugando));
     }
 
     private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {

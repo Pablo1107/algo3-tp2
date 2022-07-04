@@ -25,6 +25,10 @@ public class ControladorCambioDePantallas {
 
     public void cargarPantallaPartida() {
         Juego.getInstancia().iniciarNuevaPartida();
+        this.cargarPantallaPartidaEnCurso();
+    }
+
+    public void cargarPantallaPartidaEnCurso() {
 
         VistaPantallaJuego pantalla = new VistaPantallaJuego(this);
 
@@ -34,8 +38,8 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
-    public void cargarPantallaAyuda() {
-        this.cambiarPantalla(new VistaPantallaAyuda(this));
+    public void cargarPantallaAyuda(boolean estaJugando) {
+        this.cambiarPantalla(new VistaPantallaAyuda(this, estaJugando));
     }
 
     public void cargarPantallaAcercaDe() {

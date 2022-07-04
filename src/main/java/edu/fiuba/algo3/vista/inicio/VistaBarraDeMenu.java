@@ -19,7 +19,7 @@ public class VistaBarraDeMenu extends MenuBar {
 
         opcionIniciarJuego.setOnAction(new ControladorBotonIniciarJuego(controlador));
         opcionSalir.setOnAction(new ControladorBotonCerrarJuego());
-        opcionAyudaJuego.setOnAction(new ControladorBotonAyuda(controlador));
+        opcionAyudaJuego.setOnAction(new ControladorBotonAyuda(controlador, false));
         opcionAcercaDe.setOnAction(new ControladorBotonAcercaDe(controlador));
         MenuItem opcionPantallaChica = new MenuItem("Miniatura");
         MenuItem opcionPantallaCompleta = new MenuItem("Pantalla Completa");
