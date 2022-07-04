@@ -14,26 +14,21 @@ public class VistaPantallaJuego extends HBox {
     private ControladorTecladoJuego controladorTeclado;
     private ControladorCambioDePantallas controladorCambioPantallas;
 
-    private ModeloJuego modelo;
-    private VistaVehiculoJugador vistaJugador;
-    private VistaMapa vistaMapa;
-    private VistaOculta vistaOculta;
+    private VistaPartida vistaPartida;
     private VistaPanelLateralJuego vistaPanelLateralJuego;
 
-    public VistaPantallaJuego(ModeloJuego modelo, ControladorCambioDePantallas controladorCambioPantallas) {
-        this.modelo = modelo;
+    public VistaPantallaJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorTeclado = new ControladorTecladoJuego();
         this.controladorCambioPantallas = controladorCambioPantallas;
-        this.vistaMapa = new VistaMapa(this.modelo.getMapa());
-        this.vistaJugador = new VistaVehiculoJugador(this.modelo.getJugador());
-        this.vistaOculta = new VistaOculta(this.modelo.getJugador(), this.modelo.getMapa(), this.modelo.getPosicionMeta());
+
         this.vistaPanelLateralJuego = new VistaPanelLateralJuego(this.controladorCambioPantallas);
-        this.inicializarVista();
+
+        this.generarVistaPartida();
     }
 
-    private void inicializarVista() {
-        VistaTableroJuego tablero = new VistaTableroJuego(this.vistaJugador, this.vistaMapa, this.vistaOculta);
-        this.getChildren().add(new Pane(tablero));
+    private void generarVistaPartida() {
+        this.vistaPartida = new VistaPartida();
+        this.getChildren().add(new Pane(this.vistaPartida));
 
         HBox.setHgrow(this.vistaPanelLateralJuego, Priority.ALWAYS);
         this.getChildren().add(this.vistaPanelLateralJuego);
@@ -42,17 +37,12 @@ public class VistaPantallaJuego extends HBox {
     public void inicializarMovimiento(Scene scene) {
         scene.setOnKeyPressed(evento -> {
             this.controladorTeclado.mover(evento);
-            this.actualizarVista();
+            this.vistaPartida.renderizar();
             this.vistaPanelLateralJuego.actualizarContadorPuntajeActual();
 
-            if (!this.modelo.getPartidaActual().estaEnCurso()) {
+            if (!ModeloJuego.getInstancia().getPartidaActual().estaEnCurso()) {
                 this.controladorCambioPantallas.cargarPantallaPartidas();
             }
         });
-    }
-
-    public void actualizarVista() {
-        this.vistaJugador.actualizarVista();
-        this.vistaOculta.actualizarVista();
     }
 }

@@ -24,6 +24,7 @@ public class PartidaMultijugador {
     }
 
     public void iniciarNuevaPartida() {
+        this.estaEnCurso = true;
         this.jugador = new Jugador(POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
         this.generadorMapa = new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y);
     }

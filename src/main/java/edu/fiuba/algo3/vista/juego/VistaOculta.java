@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista.juego;
 
+import edu.fiuba.algo3.modelo.juego.PartidaMultijugador;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
@@ -17,16 +18,14 @@ public class VistaOculta extends Pane {
     private Mapa mapa;
     private Posicion posicionMeta;
 
-    public VistaOculta(Jugador jugador, Mapa mapa, Posicion posicionMeta) {
-        super();
-        this.jugador = jugador;
-        this.mapa = mapa;
-        this.posicionMeta = posicionMeta;
-
-        this.actualizarVista();
+    public VistaOculta(PartidaMultijugador partidaActual) {
+        this.jugador = partidaActual.getJugador();
+        this.mapa = partidaActual.getMapa();
+        this.posicionMeta = partidaActual.getMeta().getPosicion();
+        this.renderizar();
     }
 
-    public void actualizarVista() {
+    public void renderizar() {
         Posicion posicionActualJugador = this.jugador.getPosicion();
 
         Shape shape = Path.subtract(new Rectangle(this.mapa.getLimiteX() * VistaPantallaJuego.FACTOR_ESCALA_PX, this.mapa.getLimiteY() * VistaPantallaJuego.FACTOR_ESCALA_PX), new Circle(posicionMeta.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX + this.offset, posicionMeta.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX + this.offset, this.rangoVisionMeta));

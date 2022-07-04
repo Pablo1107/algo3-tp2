@@ -7,25 +7,26 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
-public class VistaVehiculoJugador extends VistaElementoTablero {
+public class VistaJugador extends VistaElementoTablero {
     private static final String IMAGEN_MOTO = "src/main/resources/img/vehiculos/moto.png";
     private static final String IMAGEN_AUTO = "src/main/resources/img/vehiculos/auto.png";
     private static final String IMAGEN_CUATROXCUATRO = "src/main/resources/img/vehiculos/cuatroxcuatro.png";
 
     private final Jugador jugador;
 
-    public VistaVehiculoJugador(Jugador jugador) {
+    public VistaJugador(Jugador jugador) {
         this.jugador = jugador;
         this.ajustarEscalaVista();
         this.cargarRecursoImagen(IMAGEN_MOTO);
+        this.renderizar();
     }
 
-    public void actualizarVista() {
-        this.sincronizarPosicionVistaConJugador();
-        this.cambiarImagenVista();
+    public void renderizar() {
+        this.sincronizarConModelo();
+        this.cambiarImagen();
     }
 
-    protected void cambiarImagenVista() {
+    protected void cambiarImagen() {
         Vehiculo vehiculoActualJugador = jugador.getVehiculo();
         if (vehiculoActualJugador instanceof Moto) {
             this.cargarRecursoImagen(IMAGEN_MOTO);
@@ -36,7 +37,7 @@ public class VistaVehiculoJugador extends VistaElementoTablero {
         }
     }
 
-    private void sincronizarPosicionVistaConJugador() {
+    private void sincronizarConModelo() {
         Posicion posicionActualJugador = this.jugador.getPosicion();
         this.setX(posicionActualJugador.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
         this.setY(posicionActualJugador.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);

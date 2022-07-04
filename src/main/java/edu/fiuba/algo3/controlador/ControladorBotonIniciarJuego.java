@@ -12,6 +12,6 @@ public class ControladorBotonIniciarJuego implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent evento) {
-        this.controladorCambioPantallas.cargarPantallaJuego();
+        this.controladorCambioPantallas.cargarPantallaPartida();
     }
 }

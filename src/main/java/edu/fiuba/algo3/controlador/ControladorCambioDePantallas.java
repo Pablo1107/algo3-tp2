@@ -22,11 +22,10 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaInicio(this));
     }
 
-    public void cargarPantallaJuego() {
-        ModeloJuego modelo = ModeloJuego.getInstancia();
-        modelo.iniciarNuevaPartida();
+    public void cargarPantallaPartida() {
+        ModeloJuego.getInstancia().iniciarNuevaPartida();
 
-        VistaPantallaJuego pantalla = new VistaPantallaJuego(modelo, this);
+        VistaPantallaJuego pantalla = new VistaPantallaJuego(this);
 
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
