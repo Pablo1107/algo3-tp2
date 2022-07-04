@@ -13,7 +13,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class ControladorCambioDePantallas {
-    private Stage stage;
+    private final Stage stage;
 
     public ControladorCambioDePantallas(Stage stage) {
         this.stage = stage;

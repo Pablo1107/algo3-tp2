@@ -20,12 +20,14 @@ public class VistaObstaculo extends VistaElementoTablero {
         this.cambiarImagen();
     }
 
+    @Override
     public void renderizar() {
         Posicion posicion = this.elemento.getPosicion();
         this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
         this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
     }
 
+    @Override
     protected void cambiarImagen() {
         if (this.elemento instanceof Pozo) {
             this.cargarRecursoImagen(IMAGEN_POZO);

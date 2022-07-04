@@ -20,8 +20,8 @@ import javafx.scene.text.Text;
 public class VistaPanelLateralJuego extends VBox {
     private static final int TAMANIO_TITULO = 36;
 
-    private ControladorCambioDePantallas controladorCambioPantallas;
-    private Text contadorPuntajeActual;
+    private final ControladorCambioDePantallas controladorCambioPantallas;
+    private final Text contadorPuntajeActual;
 
     public VistaPanelLateralJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;

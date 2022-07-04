@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class ControladorBotonVolverAlInicio implements EventHandler<ActionEvent> {
-    private ControladorCambioDePantallas controladorCambioPantallas;
+    private final ControladorCambioDePantallas controladorCambioPantallas;
 
     public ControladorBotonVolverAlInicio(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
