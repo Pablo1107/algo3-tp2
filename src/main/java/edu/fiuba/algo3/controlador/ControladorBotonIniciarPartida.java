@@ -13,7 +13,6 @@ public class ControladorBotonIniciarPartida implements EventHandler<ActionEvent>
 
     @Override
     public void handle(ActionEvent evento) {
-        Juego.getInstancia().iniciarNuevaPartida();
         this.controladorCambioPantallas.cargarPantallaPartida();
     }
 }

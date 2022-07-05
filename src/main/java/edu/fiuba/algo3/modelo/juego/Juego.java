@@ -20,7 +20,6 @@ public class Juego {
     private static Juego instancia;
 
     private Partida partida;
-    private List<Jugador> listadoJugadores;
 
     public static Juego getInstancia() {
         if (instancia == null) {
@@ -31,19 +30,11 @@ public class Juego {
     }
 
     private Juego() {
-        this.listadoJugadores = new ArrayList<>();
-    }
-
-    public void agregarJugador(String nombreJugador) {
-        Jugador nuevoJugador = new Jugador(nombreJugador, POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR);
-        this.listadoJugadores.add(nuevoJugador);
+        this.iniciarNuevaPartida();
     }
 
     public void iniciarNuevaPartida() {
-        this.listadoJugadores = new ArrayList<>();
-        this.listadoJugadores.add(new Jugador("Carlos", new Posicion(0, 0), new Auto()));
-        this.listadoJugadores.add(new Jugador("Carlos 2", new Posicion(0, 0), new Auto()));
-        this.partida = new Partida(this.listadoJugadores, new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y, POSICION_INICIAL_JUGADOR));
+        this.partida = new Partida();
     }
 
     public Partida getPartidaActual() {

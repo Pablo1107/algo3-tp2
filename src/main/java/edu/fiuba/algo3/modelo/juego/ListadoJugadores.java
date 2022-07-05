@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.juego;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
@@ -8,9 +9,13 @@ public class ListadoJugadores {
     private final List<Jugador> listadoJugadores;
     private int indiceJugadorEnTurno;
 
-    public ListadoJugadores(List<Jugador> listadoJugadores) {
-        this.listadoJugadores = listadoJugadores;
+    public ListadoJugadores() {
+        this.listadoJugadores = new ArrayList<>();
         this.indiceJugadorEnTurno = 0;
+    }
+
+    public void agregarJugador(Jugador jugador) {
+        this.listadoJugadores.add(jugador);
     }
 
     public Jugador getJugadorEnTurno() {
