@@ -1,35 +1,48 @@
 package edu.fiuba.algo3.vista.inicio;
 
-import edu.fiuba.algo3.controlador.*;
+import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
+import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;
+import edu.fiuba.algo3.controlador.ControladorBotonInformacionDelProyecto;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
 public class VistaBarraDeMenu extends MenuBar {
+    private final ControladorCambioDePantallas controladorCambioDePantallas;
 
-    public VistaBarraDeMenu(ControladorCambioDePantallas controlador){
-        Menu menuArchivo = new Menu("Archivo");
-        Menu menuVer = new Menu("Ver");
-        Menu menuAyuda = new Menu("Ayuda");
+    public VistaBarraDeMenu(ControladorCambioDePantallas controladorCambioDePantallas) {
+        this.controladorCambioDePantallas = controladorCambioDePantallas;
+        this.inicializarVista();
+    }
 
-        MenuItem opcionIniciarJuego = new MenuItem("Iniciar Juego");
-        MenuItem opcionSalir = new MenuItem("Salir");
-        MenuItem opcionAcercaDe = new MenuItem("Acerda de...");
-        MenuItem opcionAyudaJuego = new MenuItem("Ayuda juego");
+    private void inicializarVista() {
+        MenuItem opcionAlternarPantallaCompleta = new MenuItem("Maximizar");
+        opcionAlternarPantallaCompleta.setOnAction(evento -> {
+            this.controladorCambioDePantallas.alternarPantallaCompleta(opcionAlternarPantallaCompleta);
+        });
 
-        opcionIniciarJuego.setOnAction(new ControladorBotonIniciarPartida(controlador));
-        opcionSalir.setOnAction(new ControladorBotonCerrarJuego());
-        opcionAyudaJuego.setOnAction(new ControladorBotonAyuda(controlador, false));
-        opcionAcercaDe.setOnAction(new ControladorBotonAcercaDe(controlador));
-        MenuItem opcionPantallaChica = new MenuItem("Miniatura");
-        MenuItem opcionPantallaCompleta = new MenuItem("Pantalla Completa");
-        opcionPantallaCompleta.setOnAction(new ControladorPantallaCompleta(controlador, opcionPantallaCompleta, opcionPantallaChica));
-        opcionPantallaChica.setOnAction(new ControladorPantallaChica(controlador, opcionPantallaChica, opcionPantallaCompleta));
+        MenuItem opcionAyudaJuego = this.crearOpcionConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioDePantallas, true));
+        MenuItem opcionInformacionJuego = this.crearOpcionConControlador("Informacion", new ControladorBotonInformacionDelProyecto(this.controladorCambioDePantallas));
+        MenuItem opcionSalirJuego = this.crearOpcionConControlador("Salir", new ControladorBotonCerrarJuego());
 
-        menuArchivo.getItems().addAll(opcionIniciarJuego, opcionSalir);
-        menuVer.getItems().addAll(opcionPantallaChica, opcionPantallaCompleta);
-        menuAyuda.getItems().addAll(opcionAcercaDe, opcionAyudaJuego);
+        this.getMenus().add(this.crearMenuConOpcion(opcionAlternarPantallaCompleta));
+        this.getMenus().add(this.crearMenuConOpcion(opcionAyudaJuego));
+        this.getMenus().add(this.crearMenuConOpcion(opcionInformacionJuego));
+        this.getMenus().add(this.crearMenuConOpcion(opcionSalirJuego));
+    }
 
-        this.getMenus().addAll(menuArchivo, menuVer, menuAyuda);
+    private MenuItem crearOpcionConControlador(String contenido, EventHandler<ActionEvent> controlador) {
+        MenuItem opcionMenu = new MenuItem(contenido);
+        opcionMenu.setOnAction(controlador);
+        return opcionMenu;
+    }
+
+    private Menu crearMenuConOpcion(MenuItem opcion) {
+        Menu menu = new Menu(opcion.getText());
+        menu.getItems().add(opcion);
+        return menu;
     }
 }

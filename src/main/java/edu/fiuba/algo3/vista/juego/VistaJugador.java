@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
-public class VistaJugador extends VistaElementoTablero {
+public class VistaJugador extends VistaElemento {
     private static int indiceFactoryImagenesJugadorEnTurnoStatic = 0;
     private final List<ImagenesJugadorFactory> imagenesJugadorFactory = new ArrayList<>() {
         {
