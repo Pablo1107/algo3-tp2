@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
@@ -12,6 +11,7 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Partida {
+    // TODO: Quiero mover esto de vuelta a Juego.java
     private static final Posicion POSICION_INICIAL_JUGADOR = new Posicion(0, 0);
     private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
 
@@ -33,16 +33,18 @@ public class Partida {
         this.listadoJugadores.reiniciar();
     }
 
+    public void finalizar() {
+        this.estaEnCurso = false;
+    }
+
     public void agregarJugador(String nombreJugador) {
         this.listadoJugadores.agregarJugador(new Jugador(nombreJugador, POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR));
     }
 
-    public void jugarTurno(Direccion direccion) {
-        if (this.listadoJugadores.getListadoJugadores().size() == 0) {
-            return;
+    public void jugarTurnoJugadorActual(Direccion direccion) {
+        if (this.listadoJugadores.getListadoJugadores().size() > 0) {
+            this.getJugadorEnTurno().avanzar(direccion, this.generadorMapa.getMapa());
         }
-
-        this.getJugadorEnTurno().avanzar(direccion, this.generadorMapa.getMapa());
     }
 
     public Jugador getJugadorEnTurno() {
@@ -63,10 +65,6 @@ public class Partida {
 
     public boolean estaEnCurso() {
         return this.estaEnCurso;
-    }
-
-    public void finalizar() {
-        this.estaEnCurso = false;
     }
 
     public void turnoSiguienteJugador() {

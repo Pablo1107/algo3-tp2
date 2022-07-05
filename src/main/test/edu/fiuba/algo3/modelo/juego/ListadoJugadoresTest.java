@@ -13,16 +13,15 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 public class ListadoJugadoresTest {
     @Test
     public void dadaUnaListaDeJugadoresAlCrearElJugadorEnTurnoEnElListadoEsElPrimerJugadorDeLaListaDada() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
+        ListadoJugadores listadoJugadores = new ListadoJugadores();
+
         Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
         Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
-        listadoJugadores.add(jugador1);
-        listadoJugadores.add(jugador2);
-
-        ListadoJugadores listadoJugadoresPartida = new ListadoJugadores(listadoJugadores);
+        listadoJugadores.agregarJugador(jugador1);
+        listadoJugadores.agregarJugador(jugador2);
 
         Jugador jugadorEnTurnoEsperado = jugador1;
-        Jugador jugadorEnTurnoActual = listadoJugadoresPartida.getJugadorEnTurno();
+        Jugador jugadorEnTurnoActual = listadoJugadores.getJugadorEnTurno();
 
         assertEquals(jugadorEnTurnoEsperado, jugadorEnTurnoActual);
     }
@@ -30,10 +29,15 @@ public class ListadoJugadoresTest {
     @Test
     public void dadaUnaListaDeJugadoresSeGuardaLaListaDadaEnElListado() {
         List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 1), new Moto()));
+        Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
+        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
 
-        ListadoJugadores listadoJugadoresPartida = new ListadoJugadores(listadoJugadores);
+        listadoJugadores.add(jugador1);
+        listadoJugadores.add(jugador2);
+
+        ListadoJugadores listadoJugadoresPartida = new ListadoJugadores();
+        listadoJugadoresPartida.agregarJugador(jugador1);
+        listadoJugadoresPartida.agregarJugador(jugador2);
 
         List<Jugador> listadoJugadoresEsperado = listadoJugadores;
         List<Jugador> listadoJugadoresActual = listadoJugadoresPartida.getListadoJugadores();
