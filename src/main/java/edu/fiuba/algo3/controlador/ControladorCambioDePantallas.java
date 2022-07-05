@@ -55,9 +55,7 @@ public class ControladorCambioDePantallas {
 
     public void alternarPantallaCompleta(MenuItem botonAlternarPantallaCompleto) {
         this.stage.setFullScreen(!this.stage.isFullScreen());
-
         String opcionAlternarPantallaCompleta = this.stage.isFullScreen() ? "Minimizar" : "Maximizar";
-
         botonAlternarPantallaCompleto.setText(opcionAlternarPantallaCompleta);
         this.stage.show();
     }

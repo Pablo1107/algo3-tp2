@@ -15,7 +15,7 @@
 	-fx-fill-width: true;
 }
 
-#tablero-juego {
+#partida {
 	-fx-border-width: 2px;
 	-fx-border-color: -color-fondo-botones;
 }

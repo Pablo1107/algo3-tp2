@@ -13,7 +13,7 @@ public class VistaPartida extends StackPane {
     private Jugador jugadorEnTurno;
 
     public VistaPartida() {
-        this.setId("tablero-juego");
+        this.setId("partida");
 
         Partida partidaActual = Juego.getInstancia().getPartidaActual();
         this.vistaMapa = new VistaMapa(partidaActual.getMapa());
@@ -23,15 +23,12 @@ public class VistaPartida extends StackPane {
     }
 
     private boolean turnoSiguienteJugador() {
+        if (!Juego.getInstancia().hayPartidaEnCurso()) {
+            return false;
+        }
+
         Jugador jugadorEnTurno = Juego.getInstancia().getPartidaActual().getJugadorEnTurno();
         return !(jugadorEnTurno == this.jugadorEnTurno);
-    }
-
-    private void actualizarDatosJugador() {
-        Partida partidaActual = Juego.getInstancia().getPartidaActual();
-        this.jugadorEnTurno = partidaActual.getJugadorEnTurno();
-        this.vistaJugador = new VistaJugador(this.jugadorEnTurno);
-        this.vistaOculta = new VistaOculta(partidaActual);
     }
 
     public void renderizar() {
@@ -42,5 +39,12 @@ public class VistaPartida extends StackPane {
         this.vistaJugador.renderizar();
         this.vistaOculta.renderizar();
         this.getChildren().add(new Pane(this.vistaMapa, this.vistaJugador, this.vistaOculta));
+    }
+
+    private void actualizarDatosJugador() {
+        Partida partidaActual = Juego.getInstancia().getPartidaActual();
+        this.jugadorEnTurno = partidaActual.getJugadorEnTurno();
+        this.vistaJugador = new VistaJugador(this.jugadorEnTurno);
+        this.vistaOculta = new VistaOculta(partidaActual);
     }
 }

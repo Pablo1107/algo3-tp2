@@ -4,6 +4,6 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 
 public class ControladorAgregarJugador {
     public void agregarJugador(String nombreJugador) {
-        Juego.getInstancia().getPartidaActual().agregarJugador(nombreJugador);
+        Juego.getInstancia().registrarJugador(nombreJugador);
     }
 }

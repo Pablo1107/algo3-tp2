@@ -1,54 +1,35 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public class ListadoJugadores {
-    private final List<Jugador> listadoJugadores;
+    private List<Jugador> jugadoresRegistrados;
     private int indiceJugadorEnTurno;
 
-    public ListadoJugadores() {
-        this.listadoJugadores = new ArrayList<>();
+    public ListadoJugadores(List<Jugador> jugadoresRegistrados) {
+        if (jugadoresRegistrados.size() == 0) {
+            throw new RuntimeException("Sin jugadores registrados");
+        }
+
+        this.jugadoresRegistrados = jugadoresRegistrados;
         this.indiceJugadorEnTurno = 0;
     }
 
-    public void agregarJugador(Jugador jugador) {
-        this.listadoJugadores.add(jugador);
-    }
-
-    public Jugador getJugadorEnTurno() {
-        return this.listadoJugadores.get(this.indiceJugadorEnTurno);
-    }
-
-    public void turnoSiguienteJugador(Partida partidaActual) {
-        if (!partidaActual.estaEnCurso()) {
-            return;
-        }
-
-        if (this.indiceJugadorEnTurno >= (this.listadoJugadores.size() - 1)) {
-            partidaActual.finalizar();
-            this.indiceJugadorEnTurno = 0;
-            return;
+    public void turnoSiguienteJugador() {
+        if (this.indiceJugadorEnTurno >= (this.jugadoresRegistrados.size() - 1)) {
+            Juego.getInstancia().finalizarPartidaActual();
         }
 
         this.indiceJugadorEnTurno++;
     }
 
-    public List<Jugador> getListadoJugadores() {
-        return this.listadoJugadores;
+    public Jugador getJugadorEnTurno() {
+        return this.jugadoresRegistrados.get(this.indiceJugadorEnTurno);
     }
 
-    // TODO: Claramente tengo que cambiar esto.
-    public void reiniciar() {
-        this.indiceJugadorEnTurno = 0;
-        for(Jugador jugador: this.listadoJugadores) {
-            jugador.volverAPosicionInicial();
-        }
-
-        for(Jugador jugador: this.listadoJugadores) {
-            System.out.println(jugador.getPosicion().getX());
-        }
+    public List<Jugador> getListadoJugadores() {
+        return this.jugadoresRegistrados;
     }
 }

@@ -23,6 +23,6 @@ public class ControladorPostTurnoJugador {
     }
 
     private boolean juegoHaFinalizado() {
-        return !Juego.getInstancia().getPartidaActual().estaEnCurso();
+        return !Juego.getInstancia().hayPartidaEnCurso();
     }
 }

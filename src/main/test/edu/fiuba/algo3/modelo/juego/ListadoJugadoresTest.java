@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.juego;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +14,29 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class ListadoJugadoresTest {
     @Test
-    public void dadaUnaListaDeJugadoresAlCrearElJugadorEnTurnoEnElListadoEsElPrimerJugadorDeLaListaDada() {
-        ListadoJugadores listadoJugadores = new ListadoJugadores();
+    public void noSePuedeCrearUnListadoDeJugadoresSinJugadoresRegistrados() {
+        List<Jugador> jugadoresRegistrados = new ArrayList<>();
 
-        Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
-        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
-        listadoJugadores.agregarJugador(jugador1);
-        listadoJugadores.agregarJugador(jugador2);
+        Exception excepcion = assertThrows(RuntimeException.class, () -> new ListadoJugadores(jugadoresRegistrados));
 
-        Jugador jugadorEnTurnoEsperado = jugador1;
+        String mensajeEsperado = "Sin jugadores registrados";
+        String mensajeRecibido = excepcion.getMessage();
+
+        assertEquals(mensajeEsperado, mensajeRecibido);
+    }
+
+    @Test
+    public void dadaUnaListaDeJugadoresRegistradosAlCrearElJugadorEnTurnoEnElListadoEsElPrimerJugadorDeLaListaDada() {
+        List<Jugador> jugadoresRegistrados = new ArrayList<>();
+
+        Jugador primerJugador = new Jugador("nombre", new Posicion(0, 0), new Moto());
+
+        jugadoresRegistrados.add(primerJugador);
+        jugadoresRegistrados.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+
+        ListadoJugadores listadoJugadores = new ListadoJugadores(jugadoresRegistrados);
+
+        Jugador jugadorEnTurnoEsperado = primerJugador;
         Jugador jugadorEnTurnoActual = listadoJugadores.getJugadorEnTurno();
 
         assertEquals(jugadorEnTurnoEsperado, jugadorEnTurnoActual);
@@ -28,20 +44,19 @@ public class ListadoJugadoresTest {
 
     @Test
     public void dadaUnaListaDeJugadoresSeGuardaLaListaDadaEnElListado() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
+        List<Jugador> listadoJugadoresOriginal = new ArrayList<>();
+
         Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
-        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
+        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 0), new Moto());
 
-        listadoJugadores.add(jugador1);
-        listadoJugadores.add(jugador2);
+        listadoJugadoresOriginal.add(jugador1);
+        listadoJugadoresOriginal.add(jugador2);
 
-        ListadoJugadores listadoJugadoresPartida = new ListadoJugadores();
-        listadoJugadoresPartida.agregarJugador(jugador1);
-        listadoJugadoresPartida.agregarJugador(jugador2);
+        Partida partida = new Partida(listadoJugadoresOriginal, new GeneradorMapa(5, 5, new Posicion(0, 0)));
 
-        List<Jugador> listadoJugadoresEsperado = listadoJugadores;
-        List<Jugador> listadoJugadoresActual = listadoJugadoresPartida.getListadoJugadores();
+        List<Jugador> listadoJugadoresPartida = partida.getListadoJugadores();
 
-        assertEquals(listadoJugadoresEsperado, listadoJugadoresActual);
+        assertTrue(listadoJugadoresPartida.contains(jugador1));
+        assertTrue(listadoJugadoresPartida.contains(jugador2));
     }
 }
