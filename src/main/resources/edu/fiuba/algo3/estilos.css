@@ -68,3 +68,17 @@ Text {
 #input-nombre-jugador {
     -fx-prompt-text-fill: #989898;
 }
+
+.seccion {
+	-fx-alignment: center;
+	-fx-spacing: 72px;
+	-fx-fill-width: true;
+}
+
+.seccion-titulo {
+    -fx-font-size: 32px;
+}
+
+.seccion-cuerpo {
+    -fx-font-size: 16px;
+}
