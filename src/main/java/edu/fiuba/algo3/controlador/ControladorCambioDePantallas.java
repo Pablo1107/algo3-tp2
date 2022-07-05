@@ -13,6 +13,9 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class ControladorCambioDePantallas {
+
+    private final int MIN_HEIGHT = 1080;
+    private final int MIN_WIDTH = 1920;
     private final Stage stage;
 
     public ControladorCambioDePantallas(Stage stage) {
@@ -48,8 +51,10 @@ public class ControladorCambioDePantallas {
     }
 
     private void cambiarPantalla(Parent pantalla) {
-        Scene scene = new Scene(pantalla);
+        Scene scene = new Scene(pantalla, MIN_WIDTH, MIN_HEIGHT);
         App.aplicarEstilos(scene);
+        this.stage.setMinWidth(MIN_WIDTH);
+        this.stage.setMinHeight(MIN_HEIGHT);
         this.stage.setScene(scene);
     }
 
