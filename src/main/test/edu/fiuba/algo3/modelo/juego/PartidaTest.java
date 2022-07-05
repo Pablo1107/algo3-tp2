@@ -159,4 +159,22 @@ public class PartidaTest {
 
         assertEquals(movimientosJugadorEsperados, movimientosJugadorActuales);
     }
+
+    @Test
+    public void alCrearUnaPartidaConCiertosJugadoresTodosLosJugadoresEsperadosJueganLaPartida() {
+        List<Jugador> listadoJugadores = new ArrayList<>();
+        Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
+        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
+        Jugador jugador3 = new Jugador("nombre", new Posicion(0, 2), new Moto());
+        listadoJugadores.add(jugador1);
+        listadoJugadores.add(jugador2);
+        listadoJugadores.add(jugador3);
+
+        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        List<Jugador> listadoJugadoresPartida = partida.getListadoJugadores();
+
+        assertTrue(listadoJugadoresPartida.contains(jugador1));
+        assertTrue(listadoJugadoresPartida.contains(jugador2));
+        assertTrue(listadoJugadoresPartida.contains(jugador3));
+    }
 }

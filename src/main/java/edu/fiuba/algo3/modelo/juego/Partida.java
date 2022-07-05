@@ -30,6 +30,10 @@ public class Partida {
         return this.listadoJugadores.getJugadorEnTurno();
     }
 
+    public List<Jugador> getListadoJugadores() {
+        return this.listadoJugadores.getListadoJugadores();
+    }
+
     public Mapa getMapa() {
         return this.generadorMapa.getMapa();
     }
