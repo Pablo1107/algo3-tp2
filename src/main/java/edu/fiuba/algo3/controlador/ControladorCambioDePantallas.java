@@ -5,7 +5,7 @@ import edu.fiuba.algo3.vista.ayuda.VistaPantallaInformacionDelProyecto;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaRegistrarJugadores;
-import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
+import edu.fiuba.algo3.vista.juego.VistaPantallaPartida;
 import edu.fiuba.algo3.vista.partidas.VistaPantallaResultados;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,7 +28,7 @@ public class ControladorCambioDePantallas {
     }
 
     public void cargarPantallaPartida() {
-        VistaPantallaJuego pantalla = new VistaPantallaJuego(this);
+        VistaPantallaPartida pantalla = new VistaPantallaPartida(this);
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
         pantalla.iniciarEventLoop(scene);
