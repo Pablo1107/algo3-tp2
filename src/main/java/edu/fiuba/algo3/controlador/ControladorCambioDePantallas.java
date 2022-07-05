@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.App;
-import edu.fiuba.algo3.vista.ayuda.VistaPantallaAcercaDe;
+import edu.fiuba.algo3.vista.ayuda.VistaPantallaInformacionDelProyecto;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaRegistrarJugadores;
@@ -39,8 +39,8 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaAyuda(this, estaJugando));
     }
 
-    public void cargarPantallaAcercaDe() {
-        this.cambiarPantalla(new VistaPantallaAcercaDe(this));
+    public void cargarPantallaInformacionDelProyecto() {
+        this.cambiarPantalla(new VistaPantallaInformacionDelProyecto(this));
     }
 
     public void cargarPantallaResultados() {
@@ -53,35 +53,12 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
-    // TODO: Puedo meter todo esto en un solo metodo realmente.
-    public void maximizarPantalla(MenuItem opcionPantallaCompleta, MenuItem opcionPantallaChica) {
-        if(!this.stage.isFullScreen()) {
-            this.stage.hide();
-            this.stage.setFullScreen(true);
-            opcionPantallaCompleta.setDisable(true);
-            opcionPantallaChica.setDisable(false);
-            this.stage.show();
-        }
-    }
+    public void alternarPantallaCompleta(MenuItem botonAlternarPantallaCompleto) {
+        this.stage.setFullScreen(!this.stage.isFullScreen());
 
-    public void reducirPantalla(MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
-        if(this.stage.isFullScreen()) {
-            this.stage.hide();
-            this.stage.centerOnScreen();
-            this.stage.setFullScreen(false);
-            opcionPantallaChica.setDisable(true);
-            opcionPantallaCompleta.setDisable(false);
-            this.stage.show();
-        }
-    }
+        String opcionAlternarPantallaCompleta = this.stage.isFullScreen() ? "Minimizar" : "Maximizar";
 
-    public void deshabilitarBotones(MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
-        if(this.stage.isFullScreen()) {
-            opcionPantallaCompleta.setDisable(true);
-            opcionPantallaChica.setDisable(false);
-        } else {
-            opcionPantallaChica.setDisable(true);
-            opcionPantallaCompleta.setDisable(false);
-        }
+        botonAlternarPantallaCompleto.setText(opcionAlternarPantallaCompleta);
+        this.stage.show();
     }
 }

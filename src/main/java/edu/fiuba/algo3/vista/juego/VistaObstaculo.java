@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 
-public class VistaObstaculo extends VistaElementoTablero {
+public class VistaObstaculo extends VistaElemento {
     private static final String IMAGEN_POZO = "src/main/resources/img/mapa/pozo.png";
     private static final String IMAGEN_PIQUETE = "src/main/resources/img/mapa/piquete.png";
     private static final String IMAGEN_CONTROL_POLICIAL = "src/main/resources/img/mapa/policia.png";

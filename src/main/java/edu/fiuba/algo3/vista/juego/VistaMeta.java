@@ -3,7 +3,7 @@ package edu.fiuba.algo3.vista.juego;
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 
-public class VistaMeta extends VistaElementoTablero {
+public class VistaMeta extends VistaElemento {
     private static final String IMAGEN_META = "src/main/resources/img/mapa/meta.png";
     private final Elemento elemento;
 
