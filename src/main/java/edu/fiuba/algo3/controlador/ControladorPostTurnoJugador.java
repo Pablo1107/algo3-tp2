@@ -14,6 +14,7 @@ public class ControladorPostTurnoJugador {
     public void actualizarVista(VistaPartida vistaPartida, VistaPanelLateralJuego vistaPanelLateralJuego) {
         vistaPartida.renderizar();
         vistaPanelLateralJuego.actualizarContadorPuntajeActual();
+        vistaPanelLateralJuego.actualizarElementoChocado();
     }
 
     public void finalizarTurno() {

@@ -6,6 +6,13 @@ import edu.fiuba.algo3.controlador.ControladorReiniciarPartida;
 import edu.fiuba.algo3.controlador.ControladorVolverAPantallaAnterior;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
@@ -19,10 +26,12 @@ public class VistaPanelLateralJuego extends VBox {
 
     private final ControladorCambioDePantallas controladorCambioPantallas;
     private final Text contadorPuntajeActual;
+    private final Text elementoChocado;
 
     public VistaPanelLateralJuego(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
         this.contadorPuntajeActual = new Text(this.getValoresContadorPuntajeActual());
+        this.elementoChocado = new Text(this.getElementoChocado());
         this.inicializarVista();
     }
 
@@ -41,6 +50,7 @@ public class VistaPanelLateralJuego extends VBox {
         this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(this.contadorPuntajeActual);
         this.getChildren().add(contenedorBotones);
+        this.getChildren().add(this.elementoChocado);
     }
 
     private Button crearBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
@@ -54,11 +64,49 @@ public class VistaPanelLateralJuego extends VBox {
         return String.format("Movimientos Actuales: %s", movimientosActualesJugador);
     }
 
+    private String getElementoChocado() {
+        Elemento elemento = this.getElemento();
+        return this.devolverElemento(elemento);
+    }
+
+    private String devolverElemento(Elemento e) {
+        if(e instanceof Favorable) {
+            return String.format("Choco con sorpresa favorable");
+        }
+        if(e instanceof Desfavorable) {
+            return String.format("Choco con sorpresa desfavorable");
+        }
+        if(e instanceof CambioDeVehiculo) {
+            return String.format("Choco con sorpresa cambio de vehiculo");
+        }
+        if(e instanceof Pozo) {
+            return String.format("Choco con pozo");
+        }
+        if(e instanceof Piquete) {
+            return String.format("Choco con piquete");
+        }
+
+        if(e instanceof ControlPolicial) {
+            return String.format("Choco con control policial");
+        }
+
+        return String.format("No choco con nada");
+
+    }
+
     public void actualizarContadorPuntajeActual() {
         this.contadorPuntajeActual.setText(this.getValoresContadorPuntajeActual());
     }
 
+    public void actualizarElementoChocado() {
+        this.elementoChocado.setText(this.getElementoChocado());
+    }
+
     private int getMovimientosActualesJugador() {
         return Juego.getInstancia().getPartidaActual().getJugadorEnTurno().getMovimientos();
+    }
+
+    private Elemento getElemento() {
+        return Juego.getInstancia().getPartidaActual().getElementoEnTurno();
     }
 }
