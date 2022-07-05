@@ -11,7 +11,6 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Partida {
-    // TODO: Quiero mover esto de vuelta a Juego.java
     private static final Posicion POSICION_INICIAL_JUGADOR = new Posicion(0, 0);
     private static final Vehiculo VEHICULO_INICIAL_JUGADOR = new Moto();
 
