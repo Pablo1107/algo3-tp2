@@ -37,6 +37,10 @@ public class Juego {
         this.partida = new Partida();
     }
 
+    public void reiniciarPartidaActual() {
+        this.partida.reiniciar();
+    }
+
     public Partida getPartidaActual() {
         return this.partida;
     }

@@ -11,10 +11,12 @@ public class Jugador {
     private Posicion posicion;
     private Posicion posicionAnterior;
     private int movimientos;
+    private final Posicion posicionInicial;
 
     public Jugador(String nombre, Posicion posicionInicial, Vehiculo vehiculo) {
         this.nombre = nombre;
-        this.posicion = posicionInicial;
+        this.posicionInicial = posicionInicial;
+        this.posicion = this.posicionInicial;
         this.posicionAnterior = posicionInicial;
         this.vehiculo = vehiculo;
         this.movimientos = 0;
@@ -45,16 +47,25 @@ public class Jugador {
         return this.vehiculo;
     }
 
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
     public Posicion getPosicion() {
         return this.posicion;
     }
 
-    public int getMovimientos() {
-        return this.movimientos;
-    }
-
     public void setMovimientos(int movimientos) {
         this.movimientos = movimientos;
+    }
+
+    public void volverAPosicionInicial() {
+        this.posicion = this.posicionInicial;
+        this.setMovimientos(0);
+    }
+
+    public int getMovimientos() {
+        return this.movimientos;
     }
 
     public String getNombre() {

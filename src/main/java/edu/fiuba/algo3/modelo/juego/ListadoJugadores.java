@@ -39,4 +39,16 @@ public class ListadoJugadores {
     public List<Jugador> getListadoJugadores() {
         return this.listadoJugadores;
     }
+
+    // TODO: Claramente tengo que cambiar esto.
+    public void reiniciar() {
+        this.indiceJugadorEnTurno = 0;
+        for(Jugador jugador: this.listadoJugadores) {
+            jugador.volverAPosicionInicial();
+        }
+
+        for(Jugador jugador: this.listadoJugadores) {
+            System.out.println(jugador.getPosicion().getX());
+        }
+    }
 }

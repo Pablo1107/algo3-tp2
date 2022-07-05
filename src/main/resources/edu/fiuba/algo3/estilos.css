@@ -20,7 +20,7 @@
 	-fx-border-color: -color-fondo-botones;
 }
 
-.lista-vertical {
+.lista-vertical, .lista-horizontal {
 	-fx-alignment: center;
 	-fx-fill-width: true;
 	-fx-spacing: 16px;

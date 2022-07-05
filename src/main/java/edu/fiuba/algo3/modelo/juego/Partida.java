@@ -18,7 +18,7 @@ public class Partida {
     private static final int MAPA_LIMITE_X = 15;
     private static final int MAPA_LIMITE_Y = 10;
 
-    private final ListadoJugadores listadoJugadores;
+    private ListadoJugadores listadoJugadores;
     private final GeneradorMapa generadorMapa;
     private boolean estaEnCurso;
 
@@ -26,6 +26,11 @@ public class Partida {
         this.estaEnCurso = true;
         this.listadoJugadores = new ListadoJugadores();
         this.generadorMapa = new GeneradorMapa(MAPA_LIMITE_X, MAPA_LIMITE_Y, POSICION_INICIAL_JUGADOR);
+    }
+
+    public void reiniciar() {
+        this.estaEnCurso = true;
+        this.listadoJugadores.reiniciar();
     }
 
     public void agregarJugador(String nombreJugador) {

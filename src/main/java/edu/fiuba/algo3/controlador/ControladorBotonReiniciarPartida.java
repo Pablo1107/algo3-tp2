@@ -13,7 +13,7 @@ public class ControladorBotonReiniciarPartida implements EventHandler<ActionEven
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Juego.getInstancia().iniciarNuevaPartida();
+        Juego.getInstancia().getPartidaActual().reiniciar();
         this.controladorCambioPantallas.cargarPantallaPartida();
     }
 }
