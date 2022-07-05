@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 public class ControladorCambioDePantallas {
     private final Stage stage;
 
+    private final double anchoPantallaInicio = 1200;
+    private final double altoPantallaInicio = 800;
+
     public ControladorCambioDePantallas(Stage stage) {
         this.stage = stage;
     }
@@ -33,6 +36,8 @@ public class ControladorCambioDePantallas {
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
         pantalla.iniciarEventLoop(scene);
+        this.stage.centerOnScreen();
+        this.stage.setFullScreen(true);
         this.stage.setScene(scene);
     }
 
@@ -49,8 +54,11 @@ public class ControladorCambioDePantallas {
     }
 
     private void cambiarPantalla(Parent pantalla) {
-        Scene scene = new Scene(pantalla);
+        Scene scene = new Scene(pantalla, this.anchoPantallaInicio, this.altoPantallaInicio);
         App.aplicarEstilos(scene);
+
+        this.stage.setResizable(true);
+        this.stage.centerOnScreen();
         this.stage.setScene(scene);
     }
 
