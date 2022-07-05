@@ -66,4 +66,12 @@ public class Mapa {
         return this.elementos;
     }
 
+    public Elemento getElementoEnPosicion(Posicion posicion) {
+        for (Elemento e : this.elementos) {
+            if (posicion.equals(e.getPosicion())) {
+                return e;
+            }
+        }
+        return null; //nunca se llega
+    }
 }
