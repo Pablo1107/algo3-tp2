@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
-public class VistaPantallaJuego extends HBox {
+public class VistaPantallaPartida extends HBox {
     public final static double FACTOR_ESCALA_PX = 100;
 
     private final ControladorTecladoJuego controladorTeclado;
@@ -17,7 +17,7 @@ public class VistaPantallaJuego extends HBox {
     private VistaPartida vistaPartida;
     private final VistaPanelLateralJuego vistaPanelLateralJuego;
 
-    public VistaPantallaJuego(ControladorCambioDePantallas controladorCambioPantallas) {
+    public VistaPantallaPartida(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorTeclado = new ControladorTecladoJuego();
         this.controladorPostTurnoJugador = new ControladorPostTurnoJugador(controladorCambioPantallas);
 

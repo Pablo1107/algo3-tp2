@@ -28,8 +28,8 @@ public class VistaOculta extends Pane {
     public void renderizar() {
         Posicion posicionActualJugador = this.jugador.getPosicion();
 
-        Shape shape = Path.subtract(new Rectangle(this.mapa.getLimiteX() * VistaPantallaJuego.FACTOR_ESCALA_PX, this.mapa.getLimiteY() * VistaPantallaJuego.FACTOR_ESCALA_PX), new Circle(posicionMeta.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX + this.offset, posicionMeta.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX + this.offset, this.rangoVisionMeta));
-        shape = Path.subtract(shape, new Circle(posicionActualJugador.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX + this.offset, posicionActualJugador.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX + this.offset, this.rangoVision));
+        Shape shape = Path.subtract(new Rectangle(this.mapa.getLimiteX() * VistaPantallaPartida.FACTOR_ESCALA_PX, this.mapa.getLimiteY() * VistaPantallaPartida.FACTOR_ESCALA_PX), new Circle(posicionMeta.getX() * VistaPantallaPartida.FACTOR_ESCALA_PX + this.offset, posicionMeta.getY() * VistaPantallaPartida.FACTOR_ESCALA_PX + this.offset, this.rangoVisionMeta));
+        shape = Path.subtract(shape, new Circle(posicionActualJugador.getX() * VistaPantallaPartida.FACTOR_ESCALA_PX + this.offset, posicionActualJugador.getY() * VistaPantallaPartida.FACTOR_ESCALA_PX + this.offset, this.rangoVision));
 
         this.getChildren().clear();
         this.getChildren().add(shape);

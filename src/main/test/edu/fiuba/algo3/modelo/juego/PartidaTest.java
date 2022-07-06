@@ -167,6 +167,5 @@ public class PartidaTest {
 
         Elemento elementoEnPosicionInicial = partida.getElementoEnTurno();
         assertTrue(elementoEnPosicionInicial instanceof ElementoNulo);
-
     }
 }

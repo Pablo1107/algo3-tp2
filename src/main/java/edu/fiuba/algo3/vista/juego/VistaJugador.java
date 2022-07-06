@@ -58,7 +58,7 @@ public class VistaJugador extends VistaElemento {
 
     private void sincronizarConModelo() {
         Posicion posicionActualJugador = this.jugador.getPosicion();
-        this.setX(posicionActualJugador.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
-        this.setY(posicionActualJugador.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setX(posicionActualJugador.getX() * VistaPantallaPartida.FACTOR_ESCALA_PX);
+        this.setY(posicionActualJugador.getY() * VistaPantallaPartida.FACTOR_ESCALA_PX);
     }
 }
