@@ -180,6 +180,7 @@ public class PartidaTest {
         assertEquals(posicionInicial2, posicionActual2);
     }
 
+    @Test
     public void seGeneraUnaPartidaYSeObtieneUnElemento() {
         Partida partida = new Partida(new GeneradorMapa(10, 10, new Posicion(0, 0)));
         partida.agregarJugador(new Jugador("nombre", new Posicion(0, 0), new Moto()));
