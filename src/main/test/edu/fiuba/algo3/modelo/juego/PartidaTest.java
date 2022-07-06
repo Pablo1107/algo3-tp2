@@ -2,43 +2,32 @@ package edu.fiuba.algo3.modelo.juego;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.mapa.*;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.Direccion;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.mapa.Meta;
-import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class PartidaTest {
-    @Test
-    public void noSePuedeCrearUnaPartidaSinJugadores() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
-
-        Exception excepcion = assertThrows(RuntimeException.class, () -> new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0))));
-
-        String mensajeEsperado = "La partida debe tener al menos un jugador";
-        String mensajeRecibido = excepcion.getMessage();
-
-        assertEquals(mensajeEsperado, mensajeRecibido);
-    }
+    private static final GeneradorMapa GENERADOR_MAPA = new GeneradorMapa(10, 10, new Posicion(0, 0));
 
     @Test
-    public void dadaUnaListaDeJugadoresAlCrearUnaPartidaElJugadorEnTurnoEsElPrimerJugadorDeLaListaDada() {
+    public void dadosUnosJugadoresAlIniciarUnaPartidaElJugadorEnTurnoEsElPrimerJugadorAgregado() {
         List<Jugador> listadoJugadores = new ArrayList<>();
         Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
         Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
         listadoJugadores.add(jugador1);
         listadoJugadores.add(jugador2);
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        Partida partida = new Partida(GENERADOR_MAPA);
+
+        partida.agregarJugador(jugador1);
+        partida.agregarJugador(jugador2);
 
         Jugador jugadorEnTurnoEsperado = jugador1;
         Jugador jugadorEnTurnoActual = partida.getJugadorEnTurno();
@@ -48,13 +37,9 @@ public class PartidaTest {
 
     @Test
     public void dadoUnGeneradorDeMapaAlCrearUnaPartidaSeCreaElMapaCorrecto() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+        Partida partida = new Partida(GENERADOR_MAPA);
 
-        GeneradorMapa generadorMapa = new GeneradorMapa(10, 10, new Posicion(0, 0));
-        Partida partida = new Partida(listadoJugadores, generadorMapa);
-
-        Mapa mapaGeneradoPorElGenerador = generadorMapa.getMapa();
+        Mapa mapaGeneradoPorElGenerador = GENERADOR_MAPA.getMapa();
         Mapa mapaActualDeLaPartida = partida.getMapa();
 
         assertEquals(mapaGeneradoPorElGenerador, mapaActualDeLaPartida);
@@ -62,13 +47,9 @@ public class PartidaTest {
 
     @Test
     public void dadoUnGeneradorDeMapaAlCrearUnaPartidaSeCreaLaMetaCorrecta() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+        Partida partida = new Partida(GENERADOR_MAPA);
 
-        GeneradorMapa generadorMapa = new GeneradorMapa(10, 10, new Posicion(0, 0));
-        Partida partida = new Partida(listadoJugadores, generadorMapa);
-
-        Meta metaGeneradaPorElGenerador = generadorMapa.getMeta();
+        Meta metaGeneradaPorElGenerador = GENERADOR_MAPA.getMeta();
         Meta metaActualDeLaPartida = partida.getMeta();
 
         assertEquals(metaGeneradaPorElGenerador, metaActualDeLaPartida);
@@ -76,20 +57,14 @@ public class PartidaTest {
 
     @Test
     public void alCrearUnaPartidaEstaEstaEnCurso() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
-
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        Partida partida = new Partida(GENERADOR_MAPA);
 
         assertTrue(partida.estaEnCurso());
     }
 
     @Test
     public void luegoDeFinalizarUnaPartidaEstaNoEstaEnCurso() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
-
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        Partida partida = new Partida(GENERADOR_MAPA);
         partida.finalizar();
 
         assertFalse(partida.estaEnCurso());
@@ -97,15 +72,15 @@ public class PartidaTest {
 
     @Test
     public void alCederleElTurnoAlSiguienteJugadorDeUnaPartidaElNuevoJugadorEnTurnoEsElEsperado() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
         Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
         Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
         Jugador jugador3 = new Jugador("nombre", new Posicion(0, 2), new Moto());
-        listadoJugadores.add(jugador1);
-        listadoJugadores.add(jugador2);
-        listadoJugadores.add(jugador3);
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        Partida partida = new Partida(GENERADOR_MAPA);
+
+        partida.agregarJugador(jugador1);
+        partida.agregarJugador(jugador2);
+        partida.agregarJugador(jugador3);
 
         Jugador jugadorEnTurnoEsperado;
         Jugador jugadorEnTurnoActual;
@@ -127,11 +102,10 @@ public class PartidaTest {
 
     @Test
     public void cuandoTodosLosJugadoresDeUnaPartidaTerminanSuTurnoSeFinalizaLaPartida() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 0), new Moto()));
-        listadoJugadores.add(new Jugador("nombre", new Posicion(0, 1), new Moto()));
+        Partida partida = new Partida(GENERADOR_MAPA);
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        partida.agregarJugador(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+        partida.agregarJugador(new Jugador("nombre", new Posicion(0, 1), new Moto()));
 
         partida.turnoSiguienteJugador();
         partida.turnoSiguienteJugador();
@@ -141,13 +115,12 @@ public class PartidaTest {
 
     @Test
     public void cuandoSeJuegaElTurnoEnUnaPartidaEfectivamenteSeJuegaElTurnoParaElJugadorEnTurno() {
-        List<Jugador> listadoJugadores = new ArrayList<>();
+        Partida partida = new Partida(GENERADOR_MAPA);
+
         Jugador jugador = new Jugador("nombre", new Posicion(0, 0), new Moto());
-        listadoJugadores.add(jugador);
+        partida.agregarJugador(jugador);
 
-        Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
-
-        partida.jugarTurno(new Direccion(1, 0));
+        partida.turnoJugadorActual(new Direccion(1, 0));
 
         Posicion posicionJugadorEsperada = new Posicion(1, 0);
         Posicion posicionJugadorActual = jugador.getPosicion();
@@ -158,5 +131,61 @@ public class PartidaTest {
         int movimientosJugadorActuales = jugador.getMovimientos();
 
         assertEquals(movimientosJugadorEsperados, movimientosJugadorActuales);
+    }
+
+    @Test
+    public void alCrearUnaPartidaConCiertosJugadoresTodosLosJugadoresEsperadosJueganLaPartida() {
+        Partida partida = new Partida(GENERADOR_MAPA);
+
+        Jugador jugador1 = new Jugador("nombre", new Posicion(0, 0), new Moto());
+        Jugador jugador2 = new Jugador("nombre", new Posicion(0, 1), new Moto());
+        Jugador jugador3 = new Jugador("nombre", new Posicion(0, 2), new Moto());
+
+        partida.agregarJugador(jugador1);
+        partida.agregarJugador(jugador2);
+        partida.agregarJugador(jugador3);
+
+        List<Jugador> listadoJugadores = partida.getListadoJugadores();
+
+        assertTrue(listadoJugadores.contains(jugador1));
+        assertTrue(listadoJugadores.contains(jugador2));
+        assertTrue(listadoJugadores.contains(jugador3));
+    }
+
+    @Test
+    public void cuandoSeReiniciaUnaPartidaTodosLosJugadoresVuelvenALaPosicionInicial() {
+        Partida partida = new Partida(GENERADOR_MAPA);
+
+        Posicion posicionInicial1 = new Posicion(0, 0);
+        Jugador jugador1 = new Jugador("nombre", posicionInicial1, new Moto());
+        
+        Posicion posicionInicial2 = new Posicion(0, 2);
+        Jugador jugador2 = new Jugador("nombre", posicionInicial2, new Moto());
+
+        partida.agregarJugador(jugador1);
+        partida.agregarJugador(jugador2);
+
+        partida.turnoJugadorActual(new Direccion(1, 0));
+        partida.turnoJugadorActual(new Direccion(1, 0));
+        partida.turnoSiguienteJugador();
+        partida.turnoJugadorActual(new Direccion(1, 0));
+        partida.turnoJugadorActual(new Direccion(1, 0));
+
+        partida.reiniciar();
+
+        Posicion posicionActual1 = jugador1.getPosicion();
+        assertEquals(posicionInicial1, posicionActual1);
+
+        Posicion posicionActual2 = jugador2.getPosicion();
+        assertEquals(posicionInicial2, posicionActual2);
+    }
+
+    @Test
+    public void seGeneraUnaPartidaYSeObtieneUnElemento() {
+        Partida partida = new Partida(new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        partida.agregarJugador(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+
+        Elemento elementoEnPosicionInicial = partida.getElementoEnTurno();
+        assertTrue(elementoEnPosicionInicial instanceof ElementoNulo);
     }
 }

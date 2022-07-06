@@ -2,7 +2,7 @@ package edu.fiuba.algo3.vista.ayuda;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-import edu.fiuba.algo3.controlador.ControladorBotonVolver;
+import edu.fiuba.algo3.controlador.ControladorVolverAPantallaAnterior;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,7 +32,7 @@ public class VistaPantallaAyuda extends VBox {
         for (Seccion seccion : this.getSecciones()) {
             this.getChildren().add(seccion);
         }
-        this.agregarBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, this.estaJugando));
+        this.agregarBotonConControlador("Volver", new ControladorVolverAPantallaAnterior(this.controladorCambioPantallas, this.estaJugando));
     }
 
     private List<Seccion> getSecciones() {

@@ -4,30 +4,52 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Meta;
 
 public class Partida {
-    private final ListadoJugadores listadoJugadores;
+    private ListadoJugadores listadoJugadores;
     private final GeneradorMapa generadorMapa;
     private boolean estaEnCurso;
 
-    public Partida(List<Jugador> listadoJugadores, GeneradorMapa generadorMapa) {
-        if (listadoJugadores.size() == 0) {
-            throw new RuntimeException("La partida debe tener al menos un jugador");
-        }
-
+    public Partida(GeneradorMapa generadorMapa) {
         this.estaEnCurso = true;
-        this.listadoJugadores = new ListadoJugadores(listadoJugadores);
+        this.listadoJugadores = new ListadoJugadores();
         this.generadorMapa = generadorMapa;
     }
 
-    public void jugarTurno(Direccion direccion) {
+    public void reiniciar() {
+        this.estaEnCurso = true;
+        this.listadoJugadores.reiniciar();
+    }
+
+    public void finalizar() {
+        this.estaEnCurso = false;
+    }
+
+    public void agregarJugador(Jugador jugador) {
+        this.listadoJugadores.agregarJugador(jugador);
+    }
+
+    public void turnoJugadorActual(Direccion direccion) {
+        if (this.listadoJugadores.getListadoJugadores().size() == 0) {
+            return;
+        }
+
         this.getJugadorEnTurno().avanzar(direccion, this.generadorMapa.getMapa());
+    }
+
+    public void turnoSiguienteJugador() {
+        this.listadoJugadores.turnoSiguienteJugador(this);
     }
 
     public Jugador getJugadorEnTurno() {
         return this.listadoJugadores.getJugadorEnTurno();
+    }
+
+    public List<Jugador> getListadoJugadores() {
+        return this.listadoJugadores.getListadoJugadores();
     }
 
     public Mapa getMapa() {
@@ -42,11 +64,7 @@ public class Partida {
         return this.estaEnCurso;
     }
 
-    public void finalizar() {
-        this.estaEnCurso = false;
-    }
-
-    public void turnoSiguienteJugador() {
-        this.listadoJugadores.turnoSiguienteJugador(this);
+    public Elemento getElementoEnTurno() {
+        return this.getMapa().getElementoEnPosicion(this.getJugadorEnTurno().getPosicion());
     }
 }
