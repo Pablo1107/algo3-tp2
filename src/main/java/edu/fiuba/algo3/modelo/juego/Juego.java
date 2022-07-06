@@ -38,6 +38,7 @@ public class Juego {
         this.jugadoresRegistrados.add(new Jugador(nombre, POSICION_INICIAL_JUGADOR, VEHICULO_INICIAL_JUGADOR));
     }
 
+    // TODO: Poner un excepcion custom aqui.
     public boolean iniciarNuevaPartida() {
         try {
             this.partida = new Partida(this.jugadoresRegistrados, GENERADOR_MAPA);

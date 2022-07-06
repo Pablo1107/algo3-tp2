@@ -25,19 +25,19 @@ public class ControladorTecladoJuego {
     }
 
     private void moverDerecha() {
-        Juego.getInstancia().jugarTurno(DIR_DERECHA);
+        Juego.getInstancia().turnoJugadorActual(DIR_DERECHA);
     }
 
     private void moverIzquierda() {
-        Juego.getInstancia().jugarTurno(DIR_IZQUIERDA);
+        Juego.getInstancia().turnoJugadorActual(DIR_IZQUIERDA);
     }
 
     private void moverArriba() {
-        Juego.getInstancia().jugarTurno(DIR_ARRIBA);
+        Juego.getInstancia().turnoJugadorActual(DIR_ARRIBA);
     }
 
     private void moverAbajo() {
-        Juego.getInstancia().jugarTurno(DIR_ABAJO);
+        Juego.getInstancia().turnoJugadorActual(DIR_ABAJO);
     }
 
 }
