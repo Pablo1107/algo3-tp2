@@ -12,10 +12,9 @@ public class VistaPartida extends StackPane {
     private VistaOculta vistaOculta; 
     private Jugador jugadorEnTurno;
 
-    public VistaPartida() {
+    public VistaPartida(Partida partidaActual) {
         this.setId("tablero-juego");
 
-        Partida partidaActual = Juego.getInstancia().getPartidaActual();
         this.vistaMapa = new VistaMapa(partidaActual.getMapa());
         this.actualizarDatosJugador();
 

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.juego;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
@@ -8,16 +9,35 @@ public class ListadoJugadores {
     private final List<Jugador> listadoJugadores;
     private int indiceJugadorEnTurno;
 
-    public ListadoJugadores(List<Jugador> listadoJugadores) {
-        this.listadoJugadores = listadoJugadores;
+    public ListadoJugadores() {
+        this.listadoJugadores = new ArrayList<>();
         this.indiceJugadorEnTurno = 0;
     }
 
+    public void agregarJugador(Jugador jugador) {
+        this.listadoJugadores.add(jugador);
+    }
+
+    public void reiniciar() {
+        this.indiceJugadorEnTurno = 0;
+        for(Jugador jugador: this.listadoJugadores) {
+            jugador.volverAPosicionInicial();
+        }
+    }
+
     public Jugador getJugadorEnTurno() {
+        if (this.listadoJugadores.size() == 0) {
+            throw new RuntimeException("La partida debe tener al menos un jugador");
+        }
+
         return this.listadoJugadores.get(this.indiceJugadorEnTurno);
     }
 
     public void turnoSiguienteJugador(Partida partidaActual) {
+        if (this.listadoJugadores.size() == 0) {
+            throw new RuntimeException("La partida debe tener al menos un jugador");
+        }
+
         if (!partidaActual.estaEnCurso()) {
             return;
         }

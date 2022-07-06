@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.ayuda;
 
-import edu.fiuba.algo3.controlador.ControladorBotonVolver;
+import edu.fiuba.algo3.controlador.ControladorVolverAPantallaAnterior;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,7 +25,7 @@ public class VistaPantallaInformacionDelProyecto extends VBox {
         this.getStyleClass().add("vista-pantalla-centrada");
 
         this.getChildren().add(new Text(TEXTO_INFORMACION));
-        this.agregarBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioPantallas, this.estaJugando));
+        this.agregarBotonConControlador("Volver", new ControladorVolverAPantallaAnterior(this.controladorCambioPantallas, this.estaJugando));
     }
 
     private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {

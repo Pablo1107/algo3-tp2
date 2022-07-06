@@ -19,7 +19,7 @@ public class VistaBarraDeMenu extends MenuBar {
     }
 
     private void inicializarVista() {
-        MenuItem opcionAlternarPantallaCompleta = new MenuItem("Maximizar");
+        MenuItem opcionAlternarPantallaCompleta = new MenuItem("Pantalla Completa");
         opcionAlternarPantallaCompleta.setOnAction(evento -> {
             this.controladorCambioDePantallas.alternarPantallaCompleta(opcionAlternarPantallaCompleta);
         });

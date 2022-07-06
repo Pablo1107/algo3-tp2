@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.modelo.juego.Partida;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaInformacionDelProyecto;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaRegistrarJugadores;
-import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
+import edu.fiuba.algo3.vista.juego.VistaPantallaPartida;
 import edu.fiuba.algo3.vista.partidas.VistaPantallaResultados;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +18,9 @@ public class ControladorCambioDePantallas {
     private final int MIN_HEIGHT = 1080;
     private final int MIN_WIDTH = 1920;
     private final Stage stage;
+
+    private final double anchoPantallaInicio = 1200;
+    private final double altoPantallaInicio = 800;
 
     public ControladorCambioDePantallas(Stage stage) {
         this.stage = stage;
@@ -30,11 +34,13 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaRegistrarJugadores(this));
     }
 
-    public void cargarPantallaPartida() {
-        VistaPantallaJuego pantalla = new VistaPantallaJuego(this);
+    public void cargarPantallaPartida(Partida partidaActual) {
+        VistaPantallaPartida pantalla = new VistaPantallaPartida(partidaActual, this);
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
         pantalla.iniciarEventLoop(scene);
+        this.stage.centerOnScreen();
+        this.stage.setFullScreen(true);
         this.stage.setScene(scene);
     }
 

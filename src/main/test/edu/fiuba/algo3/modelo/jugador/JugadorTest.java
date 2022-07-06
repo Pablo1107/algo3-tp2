@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JugadorTest {
     @Test
@@ -170,5 +171,21 @@ public class JugadorTest {
         int movimientosActuales = jugador.getMovimientos();
 
         assertEquals(movimientosEsperados, movimientosActuales);
+    }
+
+    @Test
+    public void unJugadorVuelveASuPosicionInicialCorrectamente() {
+        Posicion posicionInicial = new Posicion(1, 1);
+        Jugador jugador = new Jugador("nombre", posicionInicial, new Moto());
+
+        jugador.avanzar(new Direccion(1, 0), new Mapa(10, 10));
+        jugador.avanzar(new Direccion(1, 0), new Mapa(10, 10));
+        jugador.avanzar(new Direccion(1, 0), new Mapa(10, 10));
+        jugador.avanzar(new Direccion(1, 0), new Mapa(10, 10));
+
+        jugador.volverAPosicionInicial();
+
+        Posicion posicionActual = jugador.getPosicion();
+        assertEquals(posicionInicial, posicionActual);
     }
 }

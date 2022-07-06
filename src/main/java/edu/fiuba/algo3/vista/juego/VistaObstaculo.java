@@ -23,8 +23,8 @@ public class VistaObstaculo extends VistaElemento {
     @Override
     public void renderizar() {
         Posicion posicion = this.elemento.getPosicion();
-        this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
-        this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setX(posicion.getX() * VistaPantallaPartida.FACTOR_ESCALA_PX);
+        this.setY(posicion.getY() * VistaPantallaPartida.FACTOR_ESCALA_PX);
     }
 
     @Override

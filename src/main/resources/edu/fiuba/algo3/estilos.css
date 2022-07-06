@@ -20,7 +20,7 @@
 	-fx-border-color: -color-fondo-botones;
 }
 
-.lista-vertical {
+.lista-vertical, .lista-horizontal {
 	-fx-alignment: center;
 	-fx-fill-width: true;
 	-fx-spacing: 16px;
@@ -59,12 +59,22 @@ Text {
 	-fx-font-size: 24px;
 }
 
-.entrada-listado-partida {
+.contenido-resultado-partida {
 	-fx-font-weight: bold;
-	-fx-font-size: 24px;
+	-fx-font-size: 20px;
 	-fx-alignment: center;
 }
 
 #input-nombre-jugador {
     -fx-prompt-text-fill: #989898;
+}
+
+.entrada-resultado-partida {
+    -fx-alignment: center;
+    -fx-spacing: 16px;
+}
+
+#contenedor-resultados-partida {
+	-fx-alignment: center;
+    -fx-spacing: 32px;
 }
