@@ -72,6 +72,6 @@ public class Mapa {
                 return e;
             }
         }
-        return null; //nunca se llega
+        return null;
     }
 }
