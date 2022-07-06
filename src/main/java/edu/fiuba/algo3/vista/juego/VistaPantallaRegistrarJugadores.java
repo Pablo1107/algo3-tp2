@@ -22,11 +22,16 @@ public class VistaPantallaRegistrarJugadores extends VBox {
         this.getStyleClass().add("vista-pantalla-centrada");
 
         this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
-        this.getChildren().add(new VistaAgregarJugadores());
+        this.getChildren().add(new VistaPromptAgregarJugadores());
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
+<<<<<<< HEAD
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Partida", new ControladorBotonIniciarPartida(this.controladorCambioDePantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorBotonVolver(this.controladorCambioDePantallas, false)));
+=======
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Partida", new ControladorIniciarPartida(this.controladorCambioDePantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaAnterior(this.controladorCambioDePantallas, true)));
+>>>>>>> 015ffc3043d2f21082e8d16672dca1cfe218ead2
 
         this.getChildren().add(contenedorBotones);
     }

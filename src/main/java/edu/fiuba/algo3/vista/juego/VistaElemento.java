@@ -6,10 +6,10 @@ import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public abstract class VistaElementoTablero extends ImageView {
+public abstract class VistaElemento extends ImageView {
     protected void ajustarEscalaVista() {
-        this.setFitWidth(VistaPantallaJuego.FACTOR_ESCALA_PX);
-        this.setFitHeight(VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setFitWidth(VistaPantallaPartida.FACTOR_ESCALA_PX);
+        this.setFitHeight(VistaPantallaPartida.FACTOR_ESCALA_PX);
     }
 
     public abstract void renderizar();

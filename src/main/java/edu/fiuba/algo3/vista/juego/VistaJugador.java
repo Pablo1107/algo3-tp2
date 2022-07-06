@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vista.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
@@ -10,7 +11,7 @@ import edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
-public class VistaJugador extends VistaElementoTablero {
+public class VistaJugador extends VistaElemento {
     private static int indiceFactoryImagenesJugadorEnTurnoStatic = 0;
     private final List<ImagenesJugadorFactory> imagenesJugadorFactory = new ArrayList<>() {
         {
@@ -24,7 +25,8 @@ public class VistaJugador extends VistaElementoTablero {
     private final int indiceFactoryImagenesJugadorEnTurno;
 
     public VistaJugador(Jugador jugador) {
-        if (!(indiceFactoryImagenesJugadorEnTurnoStatic < imagenesJugadorFactory.size())) {
+        int cantidadJugadoresPartida = Juego.getInstancia().getPartidaActual().getListadoJugadores().size();
+        if (!(indiceFactoryImagenesJugadorEnTurnoStatic < cantidadJugadoresPartida)) {
             indiceFactoryImagenesJugadorEnTurnoStatic = 0;
         }
 
@@ -58,7 +60,7 @@ public class VistaJugador extends VistaElementoTablero {
 
     private void sincronizarConModelo() {
         Posicion posicionActualJugador = this.jugador.getPosicion();
-        this.setX(posicionActualJugador.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
-        this.setY(posicionActualJugador.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setX(posicionActualJugador.getX() * VistaPantallaPartida.FACTOR_ESCALA_PX);
+        this.setY(posicionActualJugador.getY() * VistaPantallaPartida.FACTOR_ESCALA_PX);
     }
 }

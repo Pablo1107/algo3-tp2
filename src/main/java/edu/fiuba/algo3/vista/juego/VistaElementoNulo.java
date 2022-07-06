@@ -3,7 +3,7 @@ package edu.fiuba.algo3.vista.juego;
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 
-public class VistaElementoNulo extends VistaElementoTablero {
+public class VistaElementoNulo extends VistaElemento {
     private static final String IMAGEN_NULO = "src/main/resources/img/mapa/nulo.png";
     private final Elemento elemento;
 
@@ -17,8 +17,8 @@ public class VistaElementoNulo extends VistaElementoTablero {
     @Override
     public void renderizar() {
         Posicion posicion = this.elemento.getPosicion();
-        this.setX(posicion.getX() * VistaPantallaJuego.FACTOR_ESCALA_PX);
-        this.setY(posicion.getY() * VistaPantallaJuego.FACTOR_ESCALA_PX);
+        this.setX(posicion.getX() * VistaPantallaPartida.FACTOR_ESCALA_PX);
+        this.setY(posicion.getY() * VistaPantallaPartida.FACTOR_ESCALA_PX);
     }
 
     @Override

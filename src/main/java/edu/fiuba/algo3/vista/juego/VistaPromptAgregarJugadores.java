@@ -7,11 +7,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class VistaAgregarJugadores extends VBox {
+public class VistaPromptAgregarJugadores extends VBox {
     private final ControladorAgregarJugador controladorAgregarJugador;
     private final HBox nombresJugadoresAgregados;
 
-    public VistaAgregarJugadores() {
+    public VistaPromptAgregarJugadores() {
         this.controladorAgregarJugador = new ControladorAgregarJugador();
         this.nombresJugadoresAgregados = new HBox();
         this.inicializarVista();
@@ -19,20 +19,29 @@ public class VistaAgregarJugadores extends VBox {
 
     private void inicializarVista() {
         this.getStyleClass().add("lista-vertical");
+        this.nombresJugadoresAgregados.getStyleClass().add("lista-horizontal");
 
         this.getChildren().add(this.nombresJugadoresAgregados);
 
+        HBox contendorPromptNombreJugador = new HBox();
+        contendorPromptNombreJugador.getStyleClass().add("lista-horizontal");
+
+        // TODO: Realmente no me gusta como estoy manejando los layouts aqui.
         TextField inputNombreJugador = new TextField();
         inputNombreJugador.setId("input-nombre-jugador");
         inputNombreJugador.setPromptText("nombre del jugador");
-        inputNombreJugador.setMaxWidth(300);
+        inputNombreJugador.setMinHeight(65);
+        inputNombreJugador.setMinWidth(300);
 
-        this.getChildren().add(inputNombreJugador);
-        this.getChildren().add(this.crearBotonAgregarJugador(inputNombreJugador));
+        contendorPromptNombreJugador.getChildren().add(inputNombreJugador);
+        contendorPromptNombreJugador.getChildren().add(this.crearBotonAgregarJugador(inputNombreJugador));
+
+        this.getChildren().add(contendorPromptNombreJugador);
     }
 
     private Button crearBotonAgregarJugador(TextField inputNombreJugador) {
-        Button botonAgregarJugador = new Button("Agregar Jugador");
+        Button botonAgregarJugador = new Button("Agregar");
+        botonAgregarJugador.setMaxWidth(150);
 
         botonAgregarJugador.setOnAction(evento -> {
             String nombreJugador = inputNombreJugador.getText();

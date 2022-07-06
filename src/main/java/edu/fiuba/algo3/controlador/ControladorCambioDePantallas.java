@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.App;
-import edu.fiuba.algo3.vista.ayuda.VistaPantallaAcercaDe;
+import edu.fiuba.algo3.modelo.juego.Partida;
+import edu.fiuba.algo3.vista.ayuda.VistaPantallaInformacionDelProyecto;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaRegistrarJugadores;
-import edu.fiuba.algo3.vista.juego.VistaPantallaJuego;
+import edu.fiuba.algo3.vista.juego.VistaPantallaPartida;
 import edu.fiuba.algo3.vista.partidas.VistaPantallaResultados;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,8 +31,8 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaRegistrarJugadores(this));
     }
 
-    public void cargarPantallaPartida() {
-        VistaPantallaJuego pantalla = new VistaPantallaJuego(this);
+    public void cargarPantallaPartida(Partida partidaActual) {
+        VistaPantallaPartida pantalla = new VistaPantallaPartida(partidaActual, this);
         Scene scene = new Scene(pantalla);
         App.aplicarEstilos(scene);
         pantalla.iniciarEventLoop(scene);
@@ -44,8 +45,8 @@ public class ControladorCambioDePantallas {
         this.cambiarPantalla(new VistaPantallaAyuda(this, estaJugando));
     }
 
-    public void cargarPantallaAcercaDe() {
-        this.cambiarPantalla(new VistaPantallaAcercaDe(this));
+    public void cargarPantallaInformacionDelProyecto() {
+        this.cambiarPantalla(new VistaPantallaInformacionDelProyecto(this));
     }
 
     public void cargarPantallaResultados() {
@@ -61,35 +62,12 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
-    // TODO: Puedo meter todo esto en un solo metodo realmente.
-    public void maximizarPantalla(MenuItem opcionPantallaCompleta, MenuItem opcionPantallaChica) {
-        if(!this.stage.isFullScreen()) {
-            this.stage.hide();
-            this.stage.setFullScreen(true);
-            opcionPantallaCompleta.setDisable(true);
-            opcionPantallaChica.setDisable(false);
-            this.stage.show();
-        }
-    }
+    public void alternarPantallaCompleta(MenuItem botonAlternarPantallaCompleto) {
+        this.stage.setFullScreen(!this.stage.isFullScreen());
 
-    public void reducirPantalla(MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
-        if(this.stage.isFullScreen()) {
-            this.stage.hide();
-            this.stage.centerOnScreen();
-            this.stage.setFullScreen(false);
-            opcionPantallaChica.setDisable(true);
-            opcionPantallaCompleta.setDisable(false);
-            this.stage.show();
-        }
-    }
+        String opcionAlternarPantallaCompleta = this.stage.isFullScreen() ? "Minimizar" : "Maximizar";
 
-    public void deshabilitarBotones(MenuItem opcionPantallaChica, MenuItem opcionPantallaCompleta) {
-        if(this.stage.isFullScreen()) {
-            opcionPantallaCompleta.setDisable(true);
-            opcionPantallaChica.setDisable(false);
-        } else {
-            opcionPantallaChica.setDisable(true);
-            opcionPantallaCompleta.setDisable(false);
-        }
+        botonAlternarPantallaCompleto.setText(opcionAlternarPantallaCompleta);
+        this.stage.show();
     }
 }
