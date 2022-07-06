@@ -7,13 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.mapa.*;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.mapa.Direccion;
-import edu.fiuba.algo3.modelo.mapa.Mapa;
-import edu.fiuba.algo3.modelo.mapa.Meta;
-import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class PartidaTest {
@@ -181,5 +178,16 @@ public class PartidaTest {
 
         Posicion posicionActual2 = jugador2.getPosicion();
         assertEquals(posicionInicial2, posicionActual2);
+    }
+
+    public void seGeneraUnaPartidaYSeObtieneUnElemento() {
+        // List<Jugador> listadoJugadores = new ArrayList<>();
+        // Jugador jugador = new Jugador("nombre", new Posicion(0, 0), new Moto());
+        // listadoJugadores.add(jugador);
+        //
+        // Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        //
+        // Elemento elementoEnPosicionInicial = partida.getElementoEnTurno();
+        // assertTrue(elementoEnPosicionInicial instanceof ElementoNulo);
     }
 }
