@@ -83,4 +83,13 @@ public class MapaTest {
 
         assertEquals(elementoEsperadoEnPosicion, elementoActualEnPosicion);
     }
+
+    @Test
+    public void alObtenerUnElementoEnPosicionEnLaQueNoHayElementoSeRetornaUnElementoNulo() {
+        Mapa mapa = new Mapa(10, 10);
+
+        Elemento elemento = mapa.getElementoEnPosicion(new Posicion(0, 1));
+
+        assertTrue(elemento instanceof ElementoNulo);
+    }
 }

@@ -9,7 +9,6 @@ import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Meta;
 
 public class Partida {
-    // TODO: Hacer estas dependencias inyectables.
     private ListadoJugadores listadoJugadores;
     private final GeneradorMapa generadorMapa;
     private boolean estaEnCurso;
