@@ -19,10 +19,18 @@ public class ListadoJugadores {
     }
 
     public Jugador getJugadorEnTurno() {
+        if (this.listadoJugadores.size() == 0) {
+            throw new RuntimeException("La partida debe tener al menos un jugador");
+        }
+
         return this.listadoJugadores.get(this.indiceJugadorEnTurno);
     }
 
     public void turnoSiguienteJugador(Partida partidaActual) {
+        if (this.listadoJugadores.size() == 0) {
+            throw new RuntimeException("La partida debe tener al menos un jugador");
+        }
+
         if (!partidaActual.estaEnCurso()) {
             return;
         }
