@@ -68,10 +68,11 @@ public class Mapa {
 
     public Elemento getElementoEnPosicion(Posicion posicion) {
         for (Elemento e : this.elementos) {
-            if (posicion.equals(e.getPosicion())) {
+            if (e.estaEnLaMismaPosicion(posicion)) {
                 return e;
             }
         }
-        return null;
+
+        return new ElementoNulo(posicion);
     }
 }

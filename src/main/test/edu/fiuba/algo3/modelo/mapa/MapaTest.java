@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.mapa;
 
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MapaTest {
@@ -66,5 +68,19 @@ public class MapaTest {
         int limiteYObtenido = mapa.getLimiteY();
 
         assertEquals(limiteYEsperado, limiteYObtenido);
+    }
+    
+    @Test
+    public void alObtenerUnElementoEnPosicionSeRetornaElElementoEsperado() {
+        Mapa mapa = new Mapa(10, 10);
+
+        Posicion posicionElemento = new Posicion(1, 1);
+        Elemento elemento = new Pozo(posicionElemento);
+        mapa.agregarElemento(elemento);
+
+        Elemento elementoEsperadoEnPosicion = elemento;
+        Elemento elementoActualEnPosicion = mapa.getElementoEnPosicion(posicionElemento);
+
+        assertEquals(elementoEsperadoEnPosicion, elementoActualEnPosicion);
     }
 }

@@ -181,13 +181,10 @@ public class PartidaTest {
     }
 
     public void seGeneraUnaPartidaYSeObtieneUnElemento() {
-        // List<Jugador> listadoJugadores = new ArrayList<>();
-        // Jugador jugador = new Jugador("nombre", new Posicion(0, 0), new Moto());
-        // listadoJugadores.add(jugador);
-        //
-        // Partida partida = new Partida(listadoJugadores, new GeneradorMapa(10, 10, new Posicion(0, 0)));
-        //
-        // Elemento elementoEnPosicionInicial = partida.getElementoEnTurno();
-        // assertTrue(elementoEnPosicionInicial instanceof ElementoNulo);
+        Partida partida = new Partida(new GeneradorMapa(10, 10, new Posicion(0, 0)));
+        partida.agregarJugador(new Jugador("nombre", new Posicion(0, 0), new Moto()));
+
+        Elemento elementoEnPosicionInicial = partida.getElementoEnTurno();
+        assertTrue(elementoEnPosicionInicial instanceof ElementoNulo);
     }
 }
