@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.juego;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -19,19 +18,6 @@ import edu.fiuba.algo3.modelo.vehiculo.Moto;
 
 public class PartidaTest {
     private static final GeneradorMapa GENERADOR_MAPA = new GeneradorMapa(10, 10, new Posicion(0, 0));
-
-    @Test
-    public void noSePuedeIniciarUnaPartidaSinJugadores() {
-        Exception excepcion = assertThrows(RuntimeException.class, () -> {
-            Partida partida = new Partida(GENERADOR_MAPA);
-            partida.turnoSiguienteJugador();
-        });
-
-        String mensajeEsperado = "La partida debe tener al menos un jugador";
-        String mensajeRecibido = excepcion.getMessage();
-
-        assertEquals(mensajeEsperado, mensajeRecibido);
-    }
 
     @Test
     public void dadosUnosJugadoresAlIniciarUnaPartidaElJugadorEnTurnoEsElPrimerJugadorAgregado() {
@@ -167,5 +153,33 @@ public class PartidaTest {
         assertTrue(listadoJugadores.contains(jugador1));
         assertTrue(listadoJugadores.contains(jugador2));
         assertTrue(listadoJugadores.contains(jugador3));
+    }
+
+    @Test
+    public void cuandoSeReiniciaUnaPartidaTodosLosJugadoresVuelvenALaPosicionInicial() {
+        Partida partida = new Partida(GENERADOR_MAPA);
+
+        Posicion posicionInicial1 = new Posicion(0, 0);
+        Jugador jugador1 = new Jugador("nombre", posicionInicial1, new Moto());
+        
+        Posicion posicionInicial2 = new Posicion(0, 2);
+        Jugador jugador2 = new Jugador("nombre", posicionInicial2, new Moto());
+
+        partida.agregarJugador(jugador1);
+        partida.agregarJugador(jugador2);
+
+        partida.turnoJugadorActual(new Direccion(1, 0));
+        partida.turnoJugadorActual(new Direccion(1, 0));
+        partida.turnoSiguienteJugador();
+        partida.turnoJugadorActual(new Direccion(1, 0));
+        partida.turnoJugadorActual(new Direccion(1, 0));
+
+        partida.reiniciar();
+
+        Posicion posicionActual1 = jugador1.getPosicion();
+        assertEquals(posicionInicial1, posicionActual1);
+
+        Posicion posicionActual2 = jugador2.getPosicion();
+        assertEquals(posicionInicial2, posicionActual2);
     }
 }

@@ -47,10 +47,6 @@ public class Jugador {
         return this.vehiculo;
     }
 
-    public void setPosicion(Posicion posicion) {
-        this.posicion = posicion;
-    }
-
     public Posicion getPosicion() {
         return this.posicion;
     }
