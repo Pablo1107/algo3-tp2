@@ -64,4 +64,8 @@ public class Partida {
     public boolean estaEnCurso() {
         return this.estaEnCurso;
     }
+
+    public Elemento getElementoEnTurno() {
+        return this.getMapa().getElementoEnPosicion(this.getJugadorEnTurno().getPosicion());
+    }
 }
