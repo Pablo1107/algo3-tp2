@@ -4,11 +4,11 @@ import java.util.List;
 
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Direccion;
+import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.Mapa;
 import edu.fiuba.algo3.modelo.mapa.Meta;
 
 public class Partida {
-    // TODO: Hacer estas dependencias inyectables.
     private ListadoJugadores listadoJugadores;
     private final GeneradorMapa generadorMapa;
     private boolean estaEnCurso;
@@ -62,5 +62,9 @@ public class Partida {
 
     public boolean estaEnCurso() {
         return this.estaEnCurso;
+    }
+
+    public Elemento getElementoEnTurno() {
+        return this.getMapa().getElementoEnPosicion(this.getJugadorEnTurno().getPosicion());
     }
 }
