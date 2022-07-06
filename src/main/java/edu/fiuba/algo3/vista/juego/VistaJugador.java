@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vista.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.mapa.Posicion;
 import edu.fiuba.algo3.modelo.vehiculo.Auto;
@@ -24,7 +25,8 @@ public class VistaJugador extends VistaElemento {
     private final int indiceFactoryImagenesJugadorEnTurno;
 
     public VistaJugador(Jugador jugador) {
-        if (!(indiceFactoryImagenesJugadorEnTurnoStatic < imagenesJugadorFactory.size())) {
+        int cantidadJugadoresPartida = Juego.getInstancia().getPartidaActual().getListadoJugadores().size();
+        if (!(indiceFactoryImagenesJugadorEnTurnoStatic < cantidadJugadoresPartida)) {
             indiceFactoryImagenesJugadorEnTurnoStatic = 0;
         }
 
