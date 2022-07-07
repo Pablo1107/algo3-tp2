@@ -41,6 +41,12 @@ public class Jugador {
         this.posicion = this.posicionAnterior;
     }
 
+    public void reiniciar() {
+        this.posicion = this.posicionInicial;
+        this.vehiculo = this.vehiculoInicial;
+        this.setMovimientos(0);
+    }
+
     public void cambiarVehiculo() {
         this.vehiculo = this.vehiculo.siguienteVehiculo();
     }
@@ -51,12 +57,6 @@ public class Jugador {
 
     public Posicion getPosicion() {
         return this.posicion;
-    }
-
-    public void volverAPosicionInicial() {
-        this.posicion = this.posicionInicial;
-        this.vehiculo = this.vehiculoInicial;
-        this.setMovimientos(0);
     }
 
     public int getMovimientos() {

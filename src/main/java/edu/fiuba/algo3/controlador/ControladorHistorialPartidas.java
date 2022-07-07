@@ -1,14 +1,20 @@
 package edu.fiuba.algo3.controlador;
 
-import com.google.gson.*;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.ToNumberPolicy;
 
 public class ControladorHistorialPartidas {
     public final String RUTA_RANKING = "src/main/resources/edu/fiuba/algo3/partidas.json";
 
-    public void guardarRanking(HashMap<String, Long> ranking) {
+    public void guardarRegistroPartida(HashMap<String, Long> ranking) {
         Gson gson = new Gson();
 
         try {
@@ -18,16 +24,12 @@ public class ControladorHistorialPartidas {
             gson.toJson(ranking, writer);
             writer.flush();
             writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JsonIOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public HashMap<String, Long> cargarRanking() {
+    public HashMap<String, Long> getHistorialPartidas() {
         Gson gson = new GsonBuilder()
                 .setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE)
                 .create();
@@ -38,9 +40,10 @@ public class ControladorHistorialPartidas {
             FileReader reader = new FileReader(archivo);
             JsonObject jsonArray = JsonParser.parseReader(reader).getAsJsonObject();
             return gson.fromJson(jsonArray, HashMap.class);
-        } catch (JsonIOException | IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 }

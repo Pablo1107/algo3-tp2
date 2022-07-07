@@ -183,7 +183,7 @@ public class JugadorTest {
         jugador.avanzar(new Direccion(1, 0), new Mapa(10, 10));
         jugador.avanzar(new Direccion(1, 0), new Mapa(10, 10));
 
-        jugador.volverAPosicionInicial();
+        jugador.reiniciar();
 
         Posicion posicionActual = jugador.getPosicion();
         assertEquals(posicionInicial, posicionActual);

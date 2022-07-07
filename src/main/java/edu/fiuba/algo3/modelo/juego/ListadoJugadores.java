@@ -21,7 +21,7 @@ public class ListadoJugadores {
     public void reiniciar() {
         this.indiceJugadorEnTurno = 0;
         for (Jugador jugador : this.listadoJugadores) {
-            jugador.volverAPosicionInicial();
+            jugador.reiniciar();
         }
     }
 
