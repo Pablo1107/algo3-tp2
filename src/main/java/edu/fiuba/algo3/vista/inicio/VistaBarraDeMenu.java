@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vista.inicio;
 
 import edu.fiuba.algo3.controlador.ControladorAyuda;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.controlador.ControladorCerrarJuego;
 import edu.fiuba.algo3.controlador.ControladorInformacionDelProyecto;
-import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;

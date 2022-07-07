@@ -7,12 +7,12 @@ import edu.fiuba.algo3.modelo.vehiculo.Vehiculo;
 
 public class Jugador {
     private final String nombre;
+    private final Posicion posicionInicial;
+    private final Vehiculo vehiculoInicial;
     private Vehiculo vehiculo;
     private Posicion posicion;
     private Posicion posicionAnterior;
     private int movimientos;
-    private final Posicion posicionInicial;
-    private final Vehiculo vehiculoInicial;
 
     public Jugador(String nombre, Posicion posicionInicial, Vehiculo vehiculo) {
         this.nombre = nombre;
@@ -41,6 +41,12 @@ public class Jugador {
         this.posicion = this.posicionAnterior;
     }
 
+    public void reiniciar() {
+        this.posicion = this.posicionInicial;
+        this.vehiculo = this.vehiculoInicial;
+        this.setMovimientos(0);
+    }
+
     public void cambiarVehiculo() {
         this.vehiculo = this.vehiculo.siguienteVehiculo();
     }
@@ -53,18 +59,12 @@ public class Jugador {
         return this.posicion;
     }
 
-    public void setMovimientos(int movimientos) {
-        this.movimientos = movimientos;
-    }
-
-    public void volverAPosicionInicial() {
-        this.posicion = this.posicionInicial;
-        this.vehiculo = this.vehiculoInicial;
-        this.setMovimientos(0);
-    }
-
     public int getMovimientos() {
         return this.movimientos;
+    }
+
+    public void setMovimientos(int movimientos) {
+        this.movimientos = movimientos;
     }
 
     public String getNombre() {

@@ -18,7 +18,6 @@ public class ControlPolicialTest {
         int penalizacion = controlPolicial.aplicarPenalizacion(moto);
         assertTrue(penalizacion == 3 || penalizacion == 0);
 
-        // Esta pruebas no tiene mucho sentido pero tengo que probar el vehiculo.pisar para el coverage.
         moto.pisar(controlPolicial);
         assertTrue(moto.tienePenalizaciones() || !moto.tienePenalizaciones());
     }

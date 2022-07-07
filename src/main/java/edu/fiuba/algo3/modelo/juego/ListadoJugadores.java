@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.juego;
 
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 public class ListadoJugadores {
     private final List<Jugador> listadoJugadores;
@@ -20,8 +20,8 @@ public class ListadoJugadores {
 
     public void reiniciar() {
         this.indiceJugadorEnTurno = 0;
-        for(Jugador jugador: this.listadoJugadores) {
-            jugador.volverAPosicionInicial();
+        for (Jugador jugador : this.listadoJugadores) {
+            jugador.reiniciar();
         }
     }
 

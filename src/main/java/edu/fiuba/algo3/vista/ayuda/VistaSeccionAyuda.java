@@ -4,8 +4,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class VistaSeccionAyuda extends VBox {
-    private Text titulo;
-    private Text contenido;
+    private final Text titulo;
+    private final Text contenido;
 
     public VistaSeccionAyuda(String titulo, String contenido) {
         this.titulo = new Text(titulo);

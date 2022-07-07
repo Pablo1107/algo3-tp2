@@ -17,16 +17,16 @@ public class Juego {
 
     private Partida partida;
 
+    private Juego() {
+        this.iniciarNuevaPartida();
+    }
+
     public static Juego getInstancia() {
         if (instancia == null) {
             instancia = new Juego();
         }
 
         return instancia;
-    }
-
-    private Juego() {
-        this.iniciarNuevaPartida();
     }
 
     public void iniciarNuevaPartida() {
