@@ -4,6 +4,7 @@ import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.ControladorAyuda;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.controlador.ControladorCerrarJuego;
+import edu.fiuba.algo3.controlador.ControladorRankings;
 import edu.fiuba.algo3.controlador.ControladorRegistrarJugadores;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
@@ -27,6 +28,7 @@ public class VistaPantallaInicio extends VBox {
         ContenedorBotones contenedorBotones = new ContenedorBotones();
 
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Juego", new ControladorRegistrarJugadores(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Rankings", new ControladorRankings(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorAyuda(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Cerrar", new ControladorCerrarJuego()));
 
