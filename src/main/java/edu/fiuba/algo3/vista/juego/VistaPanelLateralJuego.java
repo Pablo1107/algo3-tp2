@@ -44,8 +44,8 @@ public class VistaPanelLateralJuego extends VBox {
         ContenedorBotones contenedorBotones = new ContenedorBotones();
 
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorReiniciarPartida(this.controladorCambioPantallas)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaDeInicio(this.controladorCambioPantallas)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorAyudaDuranteElJuego(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaDeInicio(this.controladorCambioPantallas)));
 
         this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(this.contadorPuntajeActual);
