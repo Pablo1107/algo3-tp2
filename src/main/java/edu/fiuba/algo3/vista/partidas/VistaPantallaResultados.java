@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vista.partidas;
 
-import edu.fiuba.algo3.controlador.ControladorRanking;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.controlador.ControladorHistorialPartidas;
 import edu.fiuba.algo3.controlador.ControladorRegistrarJugadores;
 import edu.fiuba.algo3.controlador.ControladorVolverAPantallaDeInicio;
-import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
@@ -26,7 +26,7 @@ public class VistaPantallaResultados extends VBox {
 
         this.getChildren().add(new TituloPantalla("Fin del Juego", TAMANIO_TITULO));
 
-        this.getChildren().add(new VistaListadoResultadosPartida(new ControladorRanking()));
+        this.getChildren().add(new VistaListadoResultadosPartida(new ControladorHistorialPartidas()));
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver a Jugar", new ControladorRegistrarJugadores(this.controladorCambioPantallas)));

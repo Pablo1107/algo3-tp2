@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista.partidas;
 
-import edu.fiuba.algo3.controlador.ControladorRanking;
+import edu.fiuba.algo3.controlador.ControladorHistorialPartidas;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.vista.juego.VistaEntradaListadoResultadosPartida;
@@ -9,9 +9,9 @@ import javafx.scene.layout.HBox;
 import java.util.*;
 
 public class VistaListadoResultadosPartida extends HBox {
-    private final ControladorRanking controladorRanking;
+    private final ControladorHistorialPartidas controladorRanking;
 
-    public VistaListadoResultadosPartida(ControladorRanking controladorRanking) {
+    public VistaListadoResultadosPartida(ControladorHistorialPartidas controladorRanking) {
         this.controladorRanking = controladorRanking;
         this.inicializarVista();
     }
@@ -23,7 +23,7 @@ public class VistaListadoResultadosPartida extends HBox {
         List<VistaEntradaListadoResultadosPartida> listadoResultados = new ArrayList<>();
 
         HashMap<String, Long> ranking = controladorRanking.cargarRanking();
-        for(Jugador jugador : listadoJugadores) {
+        for (Jugador jugador : listadoJugadores) {
             ranking.put(jugador.getNombre(), Long.valueOf(jugador.getMovimientos()));
         }
 

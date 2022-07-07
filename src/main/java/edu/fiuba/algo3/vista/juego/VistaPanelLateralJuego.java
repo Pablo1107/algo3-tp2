@@ -2,9 +2,9 @@ package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.ControladorAyudaDuranteElJuego;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.controlador.ControladorReiniciarPartida;
 import edu.fiuba.algo3.controlador.ControladorVolverAPantallaDeInicio;
-import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.mapa.Elemento;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
@@ -70,23 +70,23 @@ public class VistaPanelLateralJuego extends VBox {
     }
 
     private String devolverElemento(Elemento e) {
-        if(e instanceof Favorable) {
+        if (e instanceof Favorable) {
             return String.format("Choco con sorpresa favorable");
         }
-        if(e instanceof Desfavorable) {
+        if (e instanceof Desfavorable) {
             return String.format("Choco con sorpresa desfavorable");
         }
-        if(e instanceof CambioDeVehiculo) {
+        if (e instanceof CambioDeVehiculo) {
             return String.format("Choco con sorpresa cambio de vehiculo");
         }
-        if(e instanceof Pozo) {
+        if (e instanceof Pozo) {
             return String.format("Choco con pozo");
         }
-        if(e instanceof Piquete) {
+        if (e instanceof Piquete) {
             return String.format("Choco con piquete");
         }
 
-        if(e instanceof ControlPolicial) {
+        if (e instanceof ControlPolicial) {
             return String.format("Choco con control policial");
         }
 

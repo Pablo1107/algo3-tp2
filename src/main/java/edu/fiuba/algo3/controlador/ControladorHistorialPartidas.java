@@ -1,16 +1,12 @@
 package edu.fiuba.algo3.controlador;
 
 import com.google.gson.*;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
-public class ControladorRanking {
-
-    public final String RUTA_RANKING = "src/main/resources/edu/fiuba/algo3/ranking.json";
+public class ControladorHistorialPartidas {
+    public final String RUTA_RANKING = "src/main/resources/edu/fiuba/algo3/partidas.json";
 
     public void guardarRanking(HashMap<String, Long> ranking) {
         Gson gson = new Gson();

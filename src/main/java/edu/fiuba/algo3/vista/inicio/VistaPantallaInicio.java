@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.vista.inicio;
 
 import edu.fiuba.algo3.App;
-import edu.fiuba.algo3.controlador.*;
+import edu.fiuba.algo3.controlador.ControladorAyuda;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.controlador.ControladorCerrarJuego;
+import edu.fiuba.algo3.controlador.ControladorRegistrarJugadores;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;

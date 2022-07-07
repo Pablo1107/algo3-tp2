@@ -16,8 +16,8 @@ public class VistaPantallaPartida extends HBox {
     private final ControladorPostTurnoJugador controladorPostTurnoJugador;
 
     private final Partida partidaActual;
-    private VistaPartida vistaPartida;
     private final VistaPanelLateralJuego vistaPanelLateralJuego;
+    private VistaPartida vistaPartida;
 
     public VistaPantallaPartida(Partida partidaActual, ControladorCambioDePantallas controladorCambioPantallas) {
         this.partidaActual = partidaActual;

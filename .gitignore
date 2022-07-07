@@ -24,3 +24,4 @@ buildNumber.properties
 *.toc
 *.log
 *.aux
+src/main/resources/edu/fiuba/algo3/partidas.json

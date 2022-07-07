@@ -1,8 +1,12 @@
 package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.mapa.*;
-import edu.fiuba.algo3.modelo.mapa.obstaculos.*;
-import edu.fiuba.algo3.modelo.mapa.sorpresas.*;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
+import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable;
+import edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable;
 
 public class GeneradorMapa {
     private static final double PROBABILIDAD_GENERACION_POZO = 0.1;
@@ -28,7 +32,7 @@ public class GeneradorMapa {
     }
 
     private Posicion generarPosicionAleatoriaEnColumna(int numeroColumna) {
-        int numeroFilaAleatoria = (int)Math.floor(Math.random() * (this.mapa.getLimiteY() - 1));
+        int numeroFilaAleatoria = (int) Math.floor(Math.random() * (this.mapa.getLimiteY() - 1));
         return new Posicion(numeroColumna, numeroFilaAleatoria);
     }
 

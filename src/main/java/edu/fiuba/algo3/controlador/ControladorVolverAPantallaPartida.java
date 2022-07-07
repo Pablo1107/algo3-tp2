@@ -15,10 +15,10 @@ public class ControladorVolverAPantallaPartida implements EventHandler<ActionEve
     @Override
     public void handle(ActionEvent actionEvent) {
         Partida partidaActual = Juego.getInstancia().getPartidaActual();
-        if(partidaActual.estaEnCurso()) {
+        if (partidaActual.estaEnCurso()) {
             this.controladorCambioPantallas.cargarPantallaPartida(partidaActual);
             return;
-        } 
+        }
 
         this.controladorCambioPantallas.cargarPantallaInicio();
     }
