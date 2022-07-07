@@ -92,3 +92,14 @@ Text {
 	-fx-alignment: center;
     -fx-spacing: 32px;
 }
+
+.seccion-ayuda {
+	-fx-alignment: center;
+	-fx-spacing: 16px;
+	-fx-pref-width: 250px;
+}
+
+.titulo-seccion-ayuda {
+	-fx-font-size: 32px;
+	-fx-font-weight: bold;
+}

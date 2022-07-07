@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista.partidas;
 
 import edu.fiuba.algo3.controlador.ControladorReiniciarPartida;
-import edu.fiuba.algo3.controlador.ControladorVolverAPantallaAnterior;
+import edu.fiuba.algo3.controlador.ControladorVolverAPantallaDeInicio;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
@@ -29,7 +29,7 @@ public class VistaPantallaResultados extends VBox {
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorReiniciarPartida(this.controladorCambioPantallas)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaAnterior(this.controladorCambioPantallas, false)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaDeInicio(this.controladorCambioPantallas)));
 
         this.getChildren().add(contenedorBotones);
     }
