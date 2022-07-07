@@ -1,17 +1,18 @@
 package edu.fiuba.algo3.vista.partidas;
 
+import edu.fiuba.algo3.controlador.ControladorRanking;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.vista.juego.VistaEntradaListadoResultadosPartida;
 import javafx.scene.layout.HBox;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class VistaListadoResultadosPartida extends HBox {
-    public VistaListadoResultadosPartida() {
+    private final ControladorRanking controladorRanking;
+
+    public VistaListadoResultadosPartida(ControladorRanking controladorRanking) {
+        this.controladorRanking = controladorRanking;
         this.inicializarVista();
     }
 
@@ -21,8 +22,15 @@ public class VistaListadoResultadosPartida extends HBox {
         List<Jugador> listadoJugadores = Juego.getInstancia().getPartidaActual().getListadoJugadores();
         List<VistaEntradaListadoResultadosPartida> listadoResultados = new ArrayList<>();
 
+        HashMap<String, Long> ranking = controladorRanking.cargarRanking();
         for(Jugador jugador : listadoJugadores) {
-            VistaEntradaListadoResultadosPartida resultadoJugador = new VistaEntradaListadoResultadosPartida(jugador);
+            ranking.put(jugador.getNombre(), Long.valueOf(jugador.getMovimientos()));
+        }
+
+        controladorRanking.guardarRanking(ranking);
+
+        for (Map.Entry<String, Long> set : ranking.entrySet()) {
+            VistaEntradaListadoResultadosPartida resultadoJugador = new VistaEntradaListadoResultadosPartida(set.getKey(), set.getValue());
             this.getChildren().add(resultadoJugador);
             listadoResultados.add(resultadoJugador);
         }

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vista.juego;
 
-import edu.fiuba.algo3.modelo.jugador.Jugador;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -13,11 +12,13 @@ public class VistaEntradaListadoResultadosPartida extends VBox {
     private static final String IMAGEN_GANADOR = "src/main/resources/img/ganador.png";
     private static final String IMAGEN_PERDEDOR = "src/main/resources/img/perdedor.png";
 
-    private final Jugador jugador;
+    private final String nombre;
+    private final Long movimientos;
     private final ImageView imagenResultadoPartida;
 
-    public VistaEntradaListadoResultadosPartida(Jugador jugador) {
-        this.jugador = jugador;
+    public VistaEntradaListadoResultadosPartida(String nombre, Long movimientos) {
+        this.nombre = nombre;
+        this.movimientos = movimientos;
         this.imagenResultadoPartida = new ImageView(this.getRecursoImagen(IMAGEN_PERDEDOR));
         this.inicializarVista();
     }
@@ -34,11 +35,11 @@ public class VistaEntradaListadoResultadosPartida extends VBox {
     }
 
     private String getInformacionResultadoPartida() {
-        return String.format("%s: %s Movimientos", this.jugador.getNombre(), this.getResultadoJugador());
+        return String.format("%s: %s Movimientos", this.nombre, this.movimientos);
     }
 
-    public int getResultadoJugador() {
-        return this.jugador.getMovimientos();
+    public Long getResultadoJugador() {
+        return this.movimientos;
     }
 
     public void setImagenResultadoGanador() {
