@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete;
 import edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo;
 
 public class Auto extends Vehiculo {
-    private void pisar(Obstaculo obstaculo) {
+    public void pisar(Obstaculo obstaculo) {
         this.penalizaciones += obstaculo.aplicarPenalizacion(this);
     }
 

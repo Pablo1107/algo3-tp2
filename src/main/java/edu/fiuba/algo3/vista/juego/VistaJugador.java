@@ -55,6 +55,8 @@ public class VistaJugador extends VistaElemento {
             this.cargarRecursoImagen(this.getFactoryImagenesEnJugadorEnTurno().getURIImagenAuto());
         } else if (vehiculoActualJugador instanceof CuatroXCuatro) {
             this.cargarRecursoImagen(this.getFactoryImagenesEnJugadorEnTurno().getURIImagenCuatroXCuatro());
+        } else {
+            this.cargarRecursoImagen(this.getFactoryImagenesEnJugadorEnTurno().getURIImagenMoto());
         }
     }
 
