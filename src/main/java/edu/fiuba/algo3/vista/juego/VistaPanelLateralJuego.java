@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.App;
-import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
+import edu.fiuba.algo3.controlador.ControladorAyudaDuranteElJuego;
 import edu.fiuba.algo3.controlador.ControladorReiniciarPartida;
-import edu.fiuba.algo3.controlador.ControladorVolverAPantallaAnterior;
+import edu.fiuba.algo3.controlador.ControladorVolverAPantallaDeInicio;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.mapa.Elemento;
@@ -44,8 +44,8 @@ public class VistaPanelLateralJuego extends VBox {
         ContenedorBotones contenedorBotones = new ContenedorBotones();
 
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Reiniciar", new ControladorReiniciarPartida(this.controladorCambioPantallas)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaAnterior(this.controladorCambioPantallas, false)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioPantallas, true)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaDeInicio(this.controladorCambioPantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Ayuda", new ControladorAyudaDuranteElJuego(this.controladorCambioPantallas)));
 
         this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(this.contadorPuntajeActual);

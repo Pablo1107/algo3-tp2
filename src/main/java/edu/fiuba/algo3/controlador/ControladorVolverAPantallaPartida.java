@@ -5,19 +5,17 @@ import edu.fiuba.algo3.modelo.juego.Partida;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class ControladorVolverAPantallaAnterior implements EventHandler<ActionEvent> {
+public class ControladorVolverAPantallaPartida implements EventHandler<ActionEvent> {
     private final ControladorCambioDePantallas controladorCambioPantallas;
-    private boolean estaJugando;
 
-    public ControladorVolverAPantallaAnterior(ControladorCambioDePantallas controladorCambioPantallas, boolean estaJugando) {
+    public ControladorVolverAPantallaPartida(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
-        this.estaJugando = estaJugando;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
         Partida partidaActual = Juego.getInstancia().getPartidaActual();
-        if(this.estaJugando) {
+        if(partidaActual.estaEnCurso()) {
             this.controladorCambioPantallas.cargarPantallaPartida(partidaActual);
             return;
         } 

@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.vista.inicio;
 
-import edu.fiuba.algo3.controlador.ControladorBotonAyuda;
-import edu.fiuba.algo3.controlador.ControladorBotonCerrarJuego;
-import edu.fiuba.algo3.controlador.ControladorBotonInformacionDelProyecto;
+import edu.fiuba.algo3.controlador.ControladorAyuda;
+import edu.fiuba.algo3.controlador.ControladorCerrarJuego;
+import edu.fiuba.algo3.controlador.ControladorInformacionDelProyecto;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,9 +24,9 @@ public class VistaBarraDeMenu extends MenuBar {
             this.controladorCambioDePantallas.alternarPantallaCompleta(opcionAlternarPantallaCompleta);
         });
 
-        MenuItem opcionAyudaJuego = this.crearOpcionConControlador("Ayuda", new ControladorBotonAyuda(this.controladorCambioDePantallas, true));
-        MenuItem opcionInformacionJuego = this.crearOpcionConControlador("Informacion", new ControladorBotonInformacionDelProyecto(this.controladorCambioDePantallas));
-        MenuItem opcionSalirJuego = this.crearOpcionConControlador("Salir", new ControladorBotonCerrarJuego());
+        MenuItem opcionAyudaJuego = this.crearOpcionConControlador("Ayuda", new ControladorAyuda(this.controladorCambioDePantallas));
+        MenuItem opcionInformacionJuego = this.crearOpcionConControlador("Informacion", new ControladorInformacionDelProyecto(this.controladorCambioDePantallas));
+        MenuItem opcionSalirJuego = this.crearOpcionConControlador("Salir", new ControladorCerrarJuego());
 
         this.getMenus().add(this.crearMenuConOpcion(opcionAlternarPantallaCompleta));
         this.getMenus().add(this.crearMenuConOpcion(opcionAyudaJuego));

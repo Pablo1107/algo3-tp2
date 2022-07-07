@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.vista.juego;
 
 import edu.fiuba.algo3.App;
-import edu.fiuba.algo3.controlador.*;
+import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.controlador.ControladorIniciarPartida;
+import edu.fiuba.algo3.controlador.ControladorVolverAPantallaDeInicio;
 import edu.fiuba.algo3.vista.ContenedorBotones;
 import edu.fiuba.algo3.vista.TituloPantalla;
 import javafx.event.ActionEvent;
@@ -26,7 +28,7 @@ public class VistaPantallaRegistrarJugadores extends VBox {
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Partida", new ControladorIniciarPartida(this.controladorCambioDePantallas)));
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaAnterior(this.controladorCambioDePantallas, true)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaDeInicio(this.controladorCambioDePantallas)));
 
         this.getChildren().add(contenedorBotones);
     }

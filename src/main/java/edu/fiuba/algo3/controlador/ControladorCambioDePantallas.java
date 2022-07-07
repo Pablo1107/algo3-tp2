@@ -4,6 +4,7 @@ import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.juego.Partida;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaInformacionDelProyecto;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
+import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyudaDuranteElJuego;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaRegistrarJugadores;
 import edu.fiuba.algo3.vista.juego.VistaPantallaPartida;
@@ -18,9 +19,6 @@ public class ControladorCambioDePantallas {
     private final int MIN_HEIGHT = 1080;
     private final int MIN_WIDTH = 1920;
     private final Stage stage;
-
-    private final double anchoPantallaInicio = 1200;
-    private final double altoPantallaInicio = 800;
 
     public ControladorCambioDePantallas(Stage stage) {
         this.stage = stage;
@@ -44,8 +42,12 @@ public class ControladorCambioDePantallas {
         this.stage.setScene(scene);
     }
 
-    public void cargarPantallaAyuda(boolean estaJugando) {
-        this.cambiarPantalla(new VistaPantallaAyuda(this, estaJugando));
+    public void cargarPantallaAyuda() {
+        this.cambiarPantalla(new VistaPantallaAyuda(this));
+    }
+
+    public void cargarPantallaAyudaDuranteElJuego() {
+        this.cambiarPantalla(new VistaPantallaAyudaDuranteElJuego(this));
     }
 
     public void cargarPantallaInformacionDelProyecto() {

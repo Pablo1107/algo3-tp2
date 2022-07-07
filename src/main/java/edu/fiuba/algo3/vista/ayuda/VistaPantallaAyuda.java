@@ -1,70 +1,61 @@
 package edu.fiuba.algo3.vista.ayuda;
 
-import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
-import edu.fiuba.algo3.controlador.ControladorVolverAPantallaAnterior;
 import edu.fiuba.algo3.controlador.ControladorCambioDePantallas;
+import edu.fiuba.algo3.controlador.ControladorVolverAPantallaDeInicio;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class VistaPantallaAyuda extends VBox {
-    private final ControladorCambioDePantallas controladorCambioPantallas;
-    private boolean estaJugando;
+    protected final ControladorCambioDePantallas controladorCambioPantallas;
 
-    public VistaPantallaAyuda(ControladorCambioDePantallas controladorCambioPantallas, boolean estaJugando) {
+    public VistaPantallaAyuda(ControladorCambioDePantallas controladorCambioPantallas) {
         this.controladorCambioPantallas = controladorCambioPantallas;
-        this.estaJugando = estaJugando;
         this.inicializarVista();
     }
 
-    private void inicializarVista() {
+    protected void inicializarVista() {
         this.getStyleClass().add("vista-pantalla-centrada");
+        this.setWidth(300);
 
-        for (Seccion seccion : this.getSecciones()) {
-            this.getChildren().add(seccion);
-        }
-        this.agregarBotonConControlador("Volver", new ControladorVolverAPantallaAnterior(this.controladorCambioPantallas, this.estaJugando));
+        this.getChildren().add(this.crearSeccionObjetivoDelJuego());
+        this.getChildren().add(this.crearSeccionObstaculos());
+        this.getChildren().add(this.crearSeccionSorpresas());
+
+        this.agregarBotonRegresoAPantallaAnterior();
     }
 
-    private List<Seccion> getSecciones() {
-        Gson gson = new Gson();
-        List<Seccion> salida = new ArrayList<Seccion>();
-        try (FileReader reader = new FileReader("src/main/resources/edu/fiuba/algo3/textos.json"))
-        {
-            //Read JSON file
-            JsonObject textos = JsonParser.parseReader(reader).getAsJsonObject();
-            JsonObject ayuda = textos.getAsJsonObject("ayuda");
-            JsonArray secciones = ayuda.getAsJsonArray("secciones");
-
-            for (JsonElement seccion : secciones) {
-                JsonObject obj = (JsonObject) seccion;
-                String[] lineas = gson.fromJson(
-                    obj.getAsJsonArray("cuerpo"),
-                    String[].class
-                );
-                System.out.println(lineas);
-                salida.add(new Seccion(obj.get("titulo").getAsString(), String.join("\n", lineas)));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return salida;
+    protected void agregarBotonRegresoAPantallaAnterior() {
+        this.agregarBotonConControlador("Volver", new ControladorVolverAPantallaDeInicio(this.controladorCambioPantallas));
     }
 
-    private void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
+    protected void agregarBotonConControlador(String contenido, EventHandler<ActionEvent> controlador) {
         Button boton = new Button(contenido);
         boton.setOnAction(controlador);
         this.getChildren().add(boton);
+    }
+
+    private VistaSeccionAyuda crearSeccionObjetivoDelJuego() {
+        String contenido = "El juego consiste en llegar a la meta en la menor cantidad de movimientos posible.\n" +
+            "Se tiene una moto, un auto o una 4x4 las cuales tienen distintos comportamientos segun el elemento que pisen" +
+            "Hay tres tipos de obstaculos que imponen penalizaciones sobre el jugador y tres tipos de sorpresas";
+        return new VistaSeccionAyuda("Objetivo del Juego", contenido);
+    }
+
+    private VistaSeccionAyuda crearSeccionObstaculos() {
+        String contenido = "Estan los pozos, los piquetes y los controles policiales\n" + 
+            "Los pozos imponen pensalizacion de 3 turnos a los autos y las motos y de 2 turnos a la 4x4 luego de pasar por 3 pozos" +
+            "El piquete no deja pasar a los autos y 4x4 pero las motos pueden pasar con 2 penalizaciones" +
+            "El control policial penaliza con ciertas probabilidades, 0.3 para las 4x4, 0.5 para los autos y 0.8 para las motos";
+        return new VistaSeccionAyuda("Obstaculos", contenido);
+    }
+
+    private VistaSeccionAyuda crearSeccionSorpresas() {
+        String contenido = "Dentro de las Sorpresas se encuentran las Favorables, las Desfavorables y el Cambio de Vehiculo \n" +
+            "La Sorpresa Favorable resta el 20% de los movimientos" +
+            "La Sorpresa Desfavorable suma el 25% de los movimientos" +
+            "La Sorpresa Cambio de Vehiculo cambia el vehiculo";
+        return new VistaSeccionAyuda("Sorpresas", contenido);
     }
 }
