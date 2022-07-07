@@ -14,7 +14,27 @@ import edu.fiuba.algo3.vista.juego.VistaEntradaListadoResultadosPartida;
 import javafx.scene.layout.HBox;
 
 public class VistaListadoResultadosPartida extends HBox {
+    private static final int MAXIMO_RESULTADOS_MOSTRADOS = 5;
+
     private final ControladorHistorialPartidas controladorHistorialPartidas;
+
+    private class RegistroPartida {
+        private final String nombreJugador;
+        private final Long resultadoJugador;
+
+        public RegistroPartida(String nombreJugador, Long resultadoJugador) {
+            this.nombreJugador = nombreJugador;
+            this.resultadoJugador = resultadoJugador;
+        }
+
+        public String getNombreJugador() {
+            return this.nombreJugador;
+        }
+
+        public Long getResultadoJugador() {
+            return this.resultadoJugador;
+        }
+    }
 
     public VistaListadoResultadosPartida(ControladorHistorialPartidas controladorHistorialPartidas) {
         this.controladorHistorialPartidas = controladorHistorialPartidas;
@@ -34,10 +54,24 @@ public class VistaListadoResultadosPartida extends HBox {
 
         controladorHistorialPartidas.guardarRegistroPartida(historialPartidas);
 
+        List<RegistroPartida> registrosPartidas = new ArrayList<>();
+
         for (Map.Entry<String, Long> set : historialPartidas.entrySet()) {
-            VistaEntradaListadoResultadosPartida resultadoJugador = new VistaEntradaListadoResultadosPartida(set.getKey(), set.getValue());
+            registrosPartidas.add(new RegistroPartida(set.getKey(), set.getValue()));
+        }
+
+        registrosPartidas.sort(Comparator.comparing(resultado -> resultado.getResultadoJugador()));
+
+        int i = 0;
+        for (RegistroPartida r : registrosPartidas) {
+            if (i >= MAXIMO_RESULTADOS_MOSTRADOS) {
+                break;
+            }
+
+            VistaEntradaListadoResultadosPartida resultadoJugador = new VistaEntradaListadoResultadosPartida(r.getNombreJugador(), r.getResultadoJugador());
             this.getChildren().add(resultadoJugador);
             listadoResultados.add(resultadoJugador);
+            i++;
         }
 
         VistaEntradaListadoResultadosPartida resultadoGanador = this.entradaResultadoGanador(listadoResultados);

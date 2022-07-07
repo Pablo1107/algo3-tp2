@@ -103,3 +103,9 @@ Text {
 	-fx-font-size: 32px;
 	-fx-font-weight: bold;
 }
+
+#listado-ranking {
+	-fx-font-weight: bold;
+	-fx-font-size: 24px;
+	-fx-spacing: 24px;
+}

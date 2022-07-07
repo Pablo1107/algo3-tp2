@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.juego.Partida;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyuda;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaAyudaDuranteElJuego;
 import edu.fiuba.algo3.vista.ayuda.VistaPantallaInformacionDelProyecto;
+import edu.fiuba.algo3.vista.historial.VistaPantallaRankings;
 import edu.fiuba.algo3.vista.inicio.VistaPantallaInicio;
 import edu.fiuba.algo3.vista.juego.VistaPantallaPartida;
 import edu.fiuba.algo3.vista.juego.VistaPantallaRegistrarJugadores;
@@ -56,6 +57,10 @@ public class ControladorCambioDePantallas {
 
     public void cargarPantallaResultados() {
         this.cambiarPantalla(new VistaPantallaResultados(this));
+    }
+
+    public void cargarPantallaRankings() {
+        this.cambiarPantalla(new VistaPantallaRankings(this));
     }
 
     private void cambiarPantalla(Parent pantalla) {
