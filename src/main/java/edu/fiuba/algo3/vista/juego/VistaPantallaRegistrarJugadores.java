@@ -31,7 +31,7 @@ public class VistaPantallaRegistrarJugadores extends VBox {
         this.getChildren().add(this.mensajeAlerta);
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
-        contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Partida", new ControladorIniciarPartida(this.controladorCambioDePantallas)));
+        contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Partida", new ControladorIniciarPartida(this.controladorCambioDePantallas, this)));
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Volver", new ControladorVolverAPantallaDeInicio(this.controladorCambioDePantallas)));
 
         this.getChildren().add(contenedorBotones);
