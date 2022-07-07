@@ -10,13 +10,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class VistaPantallaRegistrarJugadores extends VBox {
     private static final int TAMANIO_TITULO = 50;
     private final ControladorCambioDePantallas controladorCambioDePantallas;
+    private final Text mensajeAlerta;
 
     public VistaPantallaRegistrarJugadores(ControladorCambioDePantallas controladorCambioDePantallas) {
         this.controladorCambioDePantallas = controladorCambioDePantallas;
+        this.mensajeAlerta = new Text();
         this.inicializarlizarVista();
     }
 
@@ -25,6 +28,7 @@ public class VistaPantallaRegistrarJugadores extends VBox {
 
         this.getChildren().add(new TituloPantalla(App.TITULO_JUEGO, TAMANIO_TITULO));
         this.getChildren().add(new VistaPromptAgregarJugadores());
+        this.getChildren().add(this.mensajeAlerta);
 
         ContenedorBotones contenedorBotones = new ContenedorBotones();
         contenedorBotones.agregarBoton(this.crearBotonConControlador("Iniciar Partida", new ControladorIniciarPartida(this.controladorCambioDePantallas)));
@@ -37,5 +41,13 @@ public class VistaPantallaRegistrarJugadores extends VBox {
         Button boton = new Button(contenido);
         boton.setOnAction(controlador);
         return boton;
+    }
+
+    public void setAlerta(String contenido) {
+        this.mensajeAlerta.setText(contenido);
+    }
+
+    public void borrarAlerta() {
+        this.setAlerta("");
     }
 }

@@ -26,7 +26,6 @@ public class VistaPromptAgregarJugadores extends VBox {
         HBox contendorPromptNombreJugador = new HBox();
         contendorPromptNombreJugador.getStyleClass().add("lista-horizontal");
 
-        // TODO: Realmente no me gusta como estoy manejando los layouts aqui.
         TextField inputNombreJugador = new TextField();
         inputNombreJugador.setId("input-nombre-jugador");
         inputNombreJugador.setPromptText("nombre del jugador");
