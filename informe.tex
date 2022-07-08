@@ -1,4 +1,4 @@
-% Created 2022-07-03 Sun 02:38
+% Created 2022-07-07 Thu 21:53
 % Intended LaTeX compiler: pdflatex
 \documentclass[titlepage,a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -26,8 +26,8 @@
 \usepackage{svg}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{TP3 - Grupo 1}
-\fancyhead[R]{Teoria de Algoritmos I - FIUBA}
+\fancyhead[L]{TP2 - Grupo 22}
+\fancyhead[R]{Algoritmos y Programacion III - FIUBA}
 \renewcommand{\headrulewidth}{0.4pt}
 \fancyfoot[C]{\thepage}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -36,7 +36,7 @@
 \usepackage{color}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyvrb}
-\fvset{framesep=1mm,fontfamily=courier,fontsize=\scriptsize,numbers=left,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
+\fvset{framesep=1mm,fontfamily=courier,fontsize=\scriptsize,numbers=left,framerule=.3mm,numbersep=1mm}
 \usepackage[nottoc]{tocbibind}
 \date{\today}
 \title{}
@@ -50,7 +50,7 @@
 \begin{document}
 
 \begin{titlepage}
-    \hfill\includegraphics[width=6cm]{assets/logofiuba.jpg}
+    \hfill\includegraphics[width=6cm]{logofiuba.jpg}
     \centering
     \vfill
     \Huge \textbf{Trabajo Práctico 2 — GPS Challenge}
@@ -80,40 +80,40 @@
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 \section{Supuestos}
-\label{sec:org47d20ed}
+\label{sec:orgb0bda50}
 
 \section{Diagramas de clases}
-\label{sec:org1f4f733}
+\label{sec:orgdb29ee6}
 \subsection{Vehiculo}
-\label{sec:org7c37a4f}
+\label{sec:org73857ef}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-vehiculo.png}
 \end{center}
 
 \subsection{Sorpresas}
-\label{sec:org7c29ca0}
+\label{sec:org9666ade}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-sorpresas.png}
 \end{center}
 
 \subsection{Obstaculos}
-\label{sec:orgd6f2170}
+\label{sec:org3815096}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-obstaculos.png}
 \end{center}
 
 \subsection{Mapa}
-\label{sec:orgbf8a59a}
+\label{sec:org4253e49}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-mapa.png}
 \end{center}
 
 \subsection{ModeloJuego}
-\label{sec:orgd94c462}
+\label{sec:orgfb5cb6a}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-modelojuego.png}
@@ -121,54 +121,54 @@
 
 
 \section{Diagrama de paquetes}
-\label{sec:org0f3b886}
+\label{sec:org81ea73c}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/paquetes.png}
 \end{center}
 
 \section{Diagramas de secuencia}
-\label{sec:orgaa75bd2}
+\label{sec:orga1e5e94}
 \subsection{Interaccion Jugador - Sorpresa Cambio de Vehiculo}
-\label{sec:org1a2737b}
+\label{sec:orgb338542}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Sorpresa Favorable}
-\label{sec:orgb06de5b}
+\label{sec:org8d449a2}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Elemento}
-\label{sec:orgefc330c}
+\label{sec:org1566540}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png}
 \end{center}
 
 \subsection{Jugador avanza y se encuentra con un Elemento}
-\label{sec:orgd0a9b83}
+\label{sec:org9a58c8c}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png}
 \end{center}
 
 \section{Diagramas de estado}
-\label{sec:org8480b0f}
+\label{sec:org1702924}
 
 \section{Detalles de implementación}
-\label{sec:org59ef13e}
+\label{sec:org268fb73}
 \subsection{Vehiculo}
-\label{sec:orgb5896ff}
+\label{sec:org2af1a1e}
 
 En principio tenes una clase abstracta llamada \emph{Vehiculo} y usamos herencia para
 abstraer comportamiento comun entre su tres clases hijas: Moto, Auto y CuatroXCuatro.
 
 \subsection{Elemento}
-\label{sec:org93decb1}
+\label{sec:org2428408}
 
 Es una clase abstracta de la cual heredan dos clases:
 
@@ -191,7 +191,7 @@ adentro del mapa, si esta en la misma posicion que otro elemento o una
 posicion arbitraria, etc.
 
 \subsection{Interaccion Vehiculo-Obstaculo}
-\label{sec:org8f3d271}
+\label{sec:orgdc55730}
 
 Para la interaccion Vehiculo-Obstaculo decidimos usar el patron \emph{Double
 Dispatch} de forma ya que tenemos una interaccion de muchos a muchos entre los
@@ -208,6 +208,31 @@ para recibir una penalizacion, cosa que no sucede en ninguna de las otras intera
 Para esto los Vehiculos tienen firmas segun cada implementacion de Obstaculo.
 Y cada implementacion de Obstaculo tiene firmas para cada Vehiculo.
 
+\subsection{Ranking y Persistencia}
+\label{sec:org3cce553}
+
+Para el ranking un \texttt{HashMap<String, Long>} con el que almacenamos como
+clave el nombre del jugador y como valor la cantidad de movimientos
+minimo que hizo.
+
+Esto se maneja en el \texttt{ControladorHistorialPartidas} que tiene dos
+metodos que hacen uso de la libreria Gson para crear un JSON del
+\texttt{HashMap}, escribirlo en un archivo \texttt{ranking.json} y se capaces de
+obtener el historial en siguientes ejecuciones del programa
+\emph{deserializando} el JSON parseado como un \texttt{HashMap} de nuevo.
+
+\begin{minted}[breaklines=true,breakanywhere=true,bgcolor=bg]{json}
+{
+  "Pablo": 24,
+  "Ramiro": 20,
+  "Carlos": 30
+}
+\end{minted}
+
+\begin{minted}[breaklines=true,breakanywhere=true,bgcolor=bg]{c}
+int c = 5;
+\end{minted}
+
 \section{Excepciones}
-\label{sec:org12b8a92}
+\label{sec:orge2e2209}
 \end{document}

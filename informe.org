@@ -15,8 +15,8 @@
 #+LATEX_HEADER_EXTRA: \usepackage{svg}
 #+LATEX_HEADER_EXTRA: \pagestyle{fancy}
 #+LATEX_HEADER_EXTRA: \fancyhf{}
-#+LATEX_HEADER_EXTRA: \fancyhead[L]{TP3 - Grupo 1}
-#+LATEX_HEADER_EXTRA: \fancyhead[R]{Teoria de Algoritmos I - FIUBA}
+#+LATEX_HEADER_EXTRA: \fancyhead[L]{TP2 - Grupo 22}
+#+LATEX_HEADER_EXTRA: \fancyhead[R]{Algoritmos y Programacion III - FIUBA}
 #+LATEX_HEADER_EXTRA: \renewcommand{\headrulewidth}{0.4pt}
 #+LATEX_HEADER_EXTRA: \fancyfoot[C]{\thepage}
 #+LATEX_HEADER_EXTRA: \renewcommand{\footrulewidth}{0.4pt}
@@ -25,7 +25,7 @@
 #+LATEX_HEADER_EXTRA: \usepackage{color}
 #+LATEX_HEADER_EXTRA: \usepackage[utf8]{inputenc}
 #+LATEX_HEADER_EXTRA: \usepackage{fancyvrb}
-#+LATEX_HEADER_EXTRA: \fvset{framesep=1mm,fontfamily=courier,fontsize=\scriptsize,numbers=left,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
+#+LATEX_HEADER_EXTRA: \fvset{framesep=1mm,fontfamily=courier,fontsize=\scriptsize,numbers=left,framerule=.3mm,numbersep=1mm}
 #+LATEX_HEADER_EXTRA: \usepackage[nottoc]{tocbibind}
 
 #+NAME: setup
@@ -36,7 +36,7 @@
 
 #+BEGIN_EXPORT latex
 \begin{titlepage}
-    \hfill\includegraphics[width=6cm]{assets/logofiuba.jpg}
+    \hfill\includegraphics[width=6cm]{logofiuba.jpg}
     \centering
     \vfill
     \Huge \textbf{Trabajo Práctico 2 — GPS Challenge}
@@ -494,6 +494,26 @@ para recibir una penalizacion, cosa que no sucede en ninguna de las otras intera
 
 Para esto los Vehiculos tienen firmas segun cada implementacion de Obstaculo.
 Y cada implementacion de Obstaculo tiene firmas para cada Vehiculo.
+
+** Ranking y Persistencia
+
+Para el ranking usamos un ~HashMap<String, Long>~ con el que
+almacenamos como clave el nombre del jugador y como valor la cantidad
+de movimientos minimo que hizo.
+
+Esto se maneja en el ~ControladorHistorialPartidas~ que tiene dos
+metodos que hacen uso de la libreria Gson para crear un JSON del
+~HashMap~, escribirlo en un archivo ~ranking.json~ y otro metodo para
+obtener el historial en siguientes ejecuciones del programa
+/deserializando/ el JSON parseado como un ~HashMap~ de nuevo.
+
+#+begin_src json
+{
+  "Pablo": 24,
+  "Ramiro": 20,
+  "Carlos": 30
+}
+#+end_src
 
 * Excepciones
 # Explicar las excepciones creadas, con qué fin fueron creadas y cómo y dónde se las atrapa explicando qué acciones se toman al respecto una vez capturadas.
