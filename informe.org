@@ -65,8 +65,46 @@
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 #+END_EXPORT
 
+* Intruduccion
+Este trabajo consiste en diseñar un juego con interfaz gráfica. GPS es
+un juego de estrategia por turnos. El escenario es una ciudad y el
+objetivo, guiar un vehículo a la meta en la menor cantidad de
+movimientos posibles.
+
+El juego se jugará por turnos, y en cada turno el usuario decide hacia
+cuál de las 4 esquinas posibles avanzará.  Se tienen distintos
+vehículos, obstáculos y sorpresas con distintas funcionalidades.
+
 * Supuestos
 # Documentar todos los supuestos hechos sobre el enunciado. Asegurarse de validar con los docentes.
+
+El trabajo se realizó con los siguientes supuestos ya que no eran
+especificaciones dentro de las consignas.
+
+ - Cuando se atraviesa un obstáculo aumentan las penalizaciones y por lo
+   tanto el jugador no se puede mover.
+ - Para iniciar el juego el usuario tiene la posibilidad de agregar
+   jugadores. Cada juego es secuencial, por lo tanto, cuando llegue uno a
+   la meta comienza el turno del otro.
+ - Si el jugador se encuentra parado en una posición vacía se encuentra
+   sobre un ElementoNulo, es decir, siempre hay un elemento en una
+   posición.
+ - El jugador comienza con una moto como vehículo.
+ - Puede haber dos jugadores con el mismo nombre.
+ - El mapa se genera aleatoriamente cada vez que se abre la aplicación.
+ - El mejor puntaje es el jugador que tenga menor movimientos.
+ - Cuando un jugador llega a los límites del mapa y trata de salirse se
+   queda en la misma posición y aumenta en uno sus movimientos.
+ - Cuando el vehículo es un auto o una 4x4 y quiere pasar por un piquete,
+   estos no podrán avanzar y se sumarán movimientos.
+ - La posición inicial del jugador es siempre la misma, en la esquina
+   superior izquierda.
+ - La posición de la meta se genera en una posición aleatoria de la
+   última fila.
+ - No se generan obstáculos o sorpresas sobre la posición inicial del
+   jugador ni sobre la meta.
+ - No puede haber dos elementos en una misma posición.
+ - Un jugador no se puede mover si tiene penalizaciones.
 
 * Diagramas de clases
 # Varios diagramas de clases, mostrando la relación estática entre las clases. Pueden agregar todo el texto necesario para aclarar y explicar su diseño de manera tal que el modelo logre comunicarse de manera efectiva.
@@ -468,6 +506,68 @@ deactivate Obstaculo
 * Diagramas de estado
 # Incluir diagramas de estados, mostrando tanto los estados como  las distintas transiciones para varias entidades del modelo.
 
+** Cambio de Vehiculo del Jugador
+
+#+begin_src plantuml :file ./diagramas/estado-cambio-vehiculo.png
+hide empty description
+
+title Movimiento del Jugador y Choque contra Elemento
+
+[*] --> PartidaIniciada : Iniciar Partida
+
+state PartidaIniciada {
+	[*] -do-> MoverJugador
+	MoverJugador -ri-> ChocaContraElemento
+
+	state fork_state <<fork>>
+	ChocaContraElemento --> fork_state
+	fork_state --> ChocaContraObstaculo
+	fork_state --> ChocaContraSorpresa
+	fork_state --> ChocaContraMeta
+
+	state join_state <<join>>
+	ChocaContraObstaculo --> join_state
+	ChocaContraSorpresa --> join_state
+
+	join_state --> ActualizaMovimientosJugador
+	ActualizaMovimientosJugador --> MoverJugador
+}
+
+ChocaContraMeta --> [*] : Finalizar Partida
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/estado-cambio-vehiculo.png]]
+
+** Vehiculo Pisa Obstaculo
+
+#+begin_src plantuml :file ./diagramas/estado-vehiculo-obstaculo.png
+hide empty description
+
+title Vehiculo pisa Obstaculo
+
+[*] -down-> MoverJugador
+
+MoverJugador -down-> ChocaContraObstaculo
+
+state fork_state <<fork>>
+ChocaContraObstaculo -down-> fork_state
+fork_state -down-> ChocaContraPiquete
+fork_state -down-> ChocaContraPozo
+fork_state -down-> ChocaContraControlPolicial
+
+ChocaContraPiquete -down-> ActualizarPenalizacion
+ChocaContraPozo -down-> ActualizarPenalizacion
+ChocaContraControlPolicial -down-> ActualizarPenalizacion
+
+ActualizarPenalizacion -down-> ActualizarMovimientosJugador
+
+ActualizarMovimientosJugador --> MoverJugador
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/estado-vehiculo-obstaculo.png]]
+
 * Detalles de implementación
 # Deben detallar/explicar qué estrategias utilizaron para resolver todos los puntos más conflictivos del trabajo práctico. Justificar el uso de herencia vs. delegación, mencionar que principio de diseño aplicaron en qué caso y mencionar qué patrones de diseño fueron utilizados y por qué motivos.
 
@@ -478,6 +578,18 @@ deactivate Obstaculo
 
 En principio tenes una clase abstracta llamada /Vehiculo/ y usamos herencia para
 abstraer comportamiento comun entre su tres clases hijas: Moto, Auto y CuatroXCuatro.
+
+Los autos y las 4x4 no pueden pasar los piquetes. Cuando avanzan hacia
+un piquete se posicionan sobre este pero como es una posición que no
+está permitida para dichos vehículos estos retroceden a su posición
+anterior. Una vez que sucede esto se actualiza la vista y como la
+posición se mantiene lo único que cambia es la cantidad de movimientos
+que se muestran en pantalla.
+
+Tanto para los vehículos como para los elementos se utilizó herencia
+ya que se cumple la relación "es un". Además, se necesita que
+contengan los mismos atributos y métodos en común. También fue
+necesario sobreescribir algunos métodos.
 
 ** Elemento
 
@@ -494,6 +606,18 @@ Elementos tienen en comun, como por ejemplo que pueden ~chocaCon~ un
 jugador, y algunas funciones de ayuda para saber si el elemento esta
 adentro del mapa, si esta en la misma posicion que otro elemento o una
 posicion arbitraria, etc.
+
+*** Meta
+La clase meta es un elemento y cuando se lo choca comienza el turno
+del siguiente jugador. Si es el último, se finaliza la partida.
+
+** Mapa
+
+El mapa contiene una lista de elementos y cada elemento posee una posición.
+
+** Direccion
+Se implementó la clase “Dirección” encargada de delegar el
+desplazamiento del jugador a la clase “Posición”.
 
 ** Interaccion Vehiculo-Obstaculo
 
@@ -547,6 +671,138 @@ obtener el historial en siguientes ejecuciones del programa
 }
 #+end_src
 
+** Juego
+
+El punto de entrada la aplicación es la clase ~Juego~, que provee al
+usuario de las funciones principales para iniciar una partida y que
+cada jugador se mueva. También permite a algunas partes de la vista
+obtener información sobre el estado actual del juego.
+
+La clase ~Juego~ es un singleton ya que solo puede haber una instancia
+del juego. Dicha clase contiene un generador del mapa y una
+partida. Las partidas contienen un listado de jugadores. Cada vez que
+se inicia el juego se crea una partida. Se pueden agregar varios
+jugadores a una partida (modo multijugador). Se puede reiniciar una
+partida y el mapa generado se conserva en este caso.
+
+Desde los controladores se obtiene la instancia del juego y se
+manipula para iniciarlo, reiniciarlo y agregar jugadores.
+
+El juego genera un mapa aleatorio a través de la clase
+~GeneradorMapa~. Si bien el mapa contiene una lista de elementos y
+cada elemento tiene su posición, se recorre el mapa vacío como una
+matriz para generar distintos elementos con distinta probabilidad.
+
+** Modelo-Vista-Controlador (MVC)
+
+Aplicamos este patrón de diseño de software para separar la lógica del
+funcionamiento del juego de la interfaz.
+
+Se usaron controladores para definir “evento” que ocurren durante el
+juego, por ejemplo, iniciar o finalizar una partida, o agregar un
+nuevo jugador. La mayoría de estos controladores extienden la clase
+~EventHandler~ de JavaFX, por lo que son asignables a botones en la
+interfaz.
+
+#+begin_src plantuml :file ./diagramas/mvc-partida.png
+title Interacción MVC al iniciar una partida
+
+package "Vista" {
+	[JavaFX] --ri--> [VistaIniciarJuego]
+}
+
+package "Controlador" {
+	[VistaIniciarJuego] --do--> [ControladorCambioDePantalla]
+	[ControladorCambioDePantalla] --> [ControladorIniciarPartida]
+	[ControladorIniciarPartida] --ri--> [ControladorAgregarJugador]
+	[ControladorAgregarJugador] --> [ControladorCambioDePantalla]
+}
+
+package "Modelo" {
+	[ControladorAgregarJugador] --do--> [Juego]
+	[Juego] --ri--> [Jugador]
+	[Juego] --> [Partida]
+}
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/mvc-partida.png]]
+
+*** Controladores
+
+**** ControladorCambioDePantallas
+
+Se utilizó un controlador llamado ~ControladorCambioDePantallas~ para
+lidiar con el cambio de escenas sobre una misma ~stage~ de
+JavaFX. Este controlador permite concentrar todos las transiciones
+entre diferentes vistas (referidas como “pantallas”) para hacer estos
+cambios de manera más ordenada. Así por ejemplo, cualquier botón cuya
+tarea fuese mostrar la pantalla de ayuda, utiliza un único controlador
+para hacer esta transición, lo mismo para cualquier botón que
+retroceda a la pantalla de inicio, etc. Este controlador permite
+ahorrarnos estar pasando una referencia al ~stage~ principal para cada
+vista que fuese a necesitar interactuar con dicho~stage~, lo que hacía
+el código algo más caótico. También se utiliza este mismo controlador
+para interactuar con el ~stage~ cuando se alterna entre la pantalla
+completa y minimizada.
+
+**** ControladorPostTurnoJugador
+
+El controlador ~ControladorPostTurnoJugador~ se encarga de realizar
+todas las tareas de comprobación de finalización de turno luego de
+cada movimiento del jugador. Este controlador es referenciado dentro
+del main "event loop" que escucha cada presionar de tecla del usuario
+durante la partida en la clase ~VistaPantallaPartida~.
+
+Este controlador también se encarga de que las vistas se vuelvan a
+renderizar luego de cada turno, para actualizar las posiciones y
+puntajes de los jugadores. Para esto las vistas que muestran
+información que necesita ser actualizada durante el juego proveen los
+métodos correspondientes que toman la información del estado actual
+del juego y también vuelven a generar las figuras que estas vistas
+contienen con esta información actualizada.
+
+La mayoría de los estilos fueron definidos utilizando CSS para
+simplificar la estructura de las clases de vista y reutilizar los
+estilos comunes a varios componentes del juego que tienen la misma
+estética, como los botones, por ejemplo.
+
+**** ControladorHistorialPartidas
+
+El controlador ~ControladorHistorialPartidas~ se encarga de tomar la
+información de la partida recientemente finalizada y la agrega el
+registro de partidas previamente guardadas en un archivo con formato
+JSON.
+
+* Consideraciones
+
+** Cambios a futuro:
+
+ - Implementar la funcionalidad multimedia. Lamentablemente debido al
+   sistema operativo que utilizamos la mayoría de integrantes del grupo,
+   no se pudo implementar dicha funcionalidad por problemas de la
+   librería utilizada. Esto es culpa de JavaFX por no soportar Linux.
+
+ - Agregar una opción para que cada jugador pudiese elegir su carácter al
+   momento de iniciar una partida de entre las imágenes de jugadores
+   disponibles.
+
+ - Poner más imágenes de Messi.
+
+ - Implementar múltiples idiomas y múltiples temas de colores.
+   Agregar funcionalidad de cambio de nivel. Con la implementación de
+   ~GeneradorMapa~ esto se hace más sencillo pues se puede utilizar el
+   patrón factory para cambiar el algoritmo de generación de elementos en
+   el mapa de una partida en particular.
+
+ - Refactorizar y organizar la implementación de la vista y el
+   controlador para evitar la duplicación de código.
+
+Dentro de los cambios positivos del trabajo consideramos que la
+implementación del controlador ~ControladorCambioDePantallas~ fue
+beneficiosa ya que manipula el stage y no es necesario pasarlo como
+parámetro entre los distintos controladores y métodos.
+
 * Excepciones
 # Explicar las excepciones creadas, con qué fin fueron creadas y cómo y dónde se las atrapa explicando qué acciones se toman al respecto una vez capturadas.
 
@@ -557,3 +813,4 @@ de agregar una excepcion cuando el usuario intenta ir fuera de los
 bordes del mapa. Nosotros como supuesto elegimos no tratar esto como
 un error y directamente el modelo maneja esta posibilidad y no permite
 al usuario avanzar por fuera de los limites del mapa.
+
