@@ -616,8 +616,8 @@ del siguiente jugador. Si es el último, se finaliza la partida.
 El mapa contiene una lista de elementos y cada elemento posee una posición.
 
 ** Direccion
-Se implementó la clase “Dirección” encargada de delegar el
-desplazamiento del jugador a la clase “Posición”.
+Se implementó la clase ~Dirección~ encargada de delegar el
+desplazamiento del jugador a la clase ~Posición~.
 
 ** Interaccion Vehiculo-Obstaculo
 
@@ -698,7 +698,7 @@ matriz para generar distintos elementos con distinta probabilidad.
 Aplicamos este patrón de diseño de software para separar la lógica del
 funcionamiento del juego de la interfaz.
 
-Se usaron controladores para definir “evento” que ocurren durante el
+Se usaron controladores para definir /evento/ que ocurren durante el
 juego, por ejemplo, iniciar o finalizar una partida, o agregar un
 nuevo jugador. La mayoría de estos controladores extienden la clase
 ~EventHandler~ de JavaFX, por lo que son asignables a botones en la
@@ -733,17 +733,17 @@ package "Modelo" {
 **** ControladorCambioDePantallas
 
 Se utilizó un controlador llamado ~ControladorCambioDePantallas~ para
-lidiar con el cambio de escenas sobre una misma ~stage~ de
+lidiar con el cambio de escenas sobre una misma /stage/ de
 JavaFX. Este controlador permite concentrar todos las transiciones
-entre diferentes vistas (referidas como “pantallas”) para hacer estos
+entre diferentes vistas (referidas como /pantallas/) para hacer estos
 cambios de manera más ordenada. Así por ejemplo, cualquier botón cuya
 tarea fuese mostrar la pantalla de ayuda, utiliza un único controlador
 para hacer esta transición, lo mismo para cualquier botón que
 retroceda a la pantalla de inicio, etc. Este controlador permite
-ahorrarnos estar pasando una referencia al ~stage~ principal para cada
-vista que fuese a necesitar interactuar con dicho~stage~, lo que hacía
+ahorrarnos estar pasando una referencia al /stage/ principal para cada
+vista que fuese a necesitar interactuar con dicho /stage/, lo que hacía
 el código algo más caótico. También se utiliza este mismo controlador
-para interactuar con el ~stage~ cuando se alterna entre la pantalla
+para interactuar con el /stage/ cuando se alterna entre la pantalla
 completa y minimizada.
 
 **** ControladorPostTurnoJugador

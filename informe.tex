@@ -1,4 +1,4 @@
-% Created 2022-07-09 Sat 20:10
+% Created 2022-07-09 Sat 20:17
 % Intended LaTeX compiler: pdflatex
 \documentclass[titlepage,a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -79,7 +79,7 @@
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 \section{Intruduccion}
-\label{sec:org613f4ef}
+\label{sec:org166b9c8}
 Este trabajo consiste en diseñar un juego con interfaz gráfica. GPS es
 un juego de estrategia por turnos. El escenario es una ciudad y el
 objetivo, guiar un vehículo a la meta en la menor cantidad de
@@ -90,7 +90,7 @@ cuál de las 4 esquinas posibles avanzará.  Se tienen distintos
 vehículos, obstáculos y sorpresas con distintas funcionalidades.
 
 \section{Supuestos}
-\label{sec:org6e1b303}
+\label{sec:org800bb9b}
 El trabajo se realizó con los siguientes supuestos ya que no eran
 especificaciones dentro de las consignas.
 
@@ -122,98 +122,98 @@ jugador ni sobre la meta.
 \end{itemize}
 
 \section{Diagramas de clases}
-\label{sec:orge49b0cd}
+\label{sec:orgbfd1d11}
 \subsection{Vehiculo}
-\label{sec:orged07471}
+\label{sec:org8f1de97}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-vehiculo.png}
 \end{center}
 
 \subsection{Sorpresas}
-\label{sec:org64b68c0}
+\label{sec:org4728361}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-sorpresas.png}
 \end{center}
 
 \subsection{Obstaculos}
-\label{sec:org344f8c2}
+\label{sec:org0e2f2cd}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-obstaculos.png}
 \end{center}
 
 \subsection{Mapa}
-\label{sec:org782721e}
+\label{sec:org281f89a}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-mapa.png}
 \end{center}
 
 \subsection{Juego}
-\label{sec:org04d261b}
+\label{sec:org781ca10}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-juego.png}
 \end{center}
 
 \section{Diagrama de paquetes}
-\label{sec:orge7040a8}
+\label{sec:orgeafd157}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/paquetes.png}
 \end{center}
 
 \section{Diagramas de secuencia}
-\label{sec:org0f6aa0f}
+\label{sec:org241cd03}
 \subsection{Interaccion Jugador - Sorpresa Cambio de Vehiculo}
-\label{sec:orgf198140}
+\label{sec:org56f74c7}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Sorpresa Favorable}
-\label{sec:orgae05d79}
+\label{sec:orgdad86d0}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Elemento}
-\label{sec:orgcbc3758}
+\label{sec:org73d2c1c}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png}
 \end{center}
 
 \subsection{Jugador avanza y se encuentra con un Elemento}
-\label{sec:orga0414ea}
+\label{sec:org90b5f23}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png}
 \end{center}
 
 \section{Diagramas de estado}
-\label{sec:org2cbd9a1}
+\label{sec:org49327ce}
 \subsection{Cambio de Vehiculo del Jugador}
-\label{sec:orga7ba55f}
+\label{sec:org93b4ac7}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/estado-cambio-vehiculo.png}
 \end{center}
 
 \subsection{Vehiculo Pisa Obstaculo}
-\label{sec:org551f18d}
+\label{sec:orgdc6abe2}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/estado-vehiculo-obstaculo.png}
 \end{center}
 
 \section{Detalles de implementación}
-\label{sec:org1a47e41}
+\label{sec:org5a1c98a}
 \subsection{Vehiculo}
-\label{sec:orgcddaa4e}
+\label{sec:org0726fa1}
 
 En principio tenes una clase abstracta llamada \emph{Vehiculo} y usamos herencia para
 abstraer comportamiento comun entre su tres clases hijas: Moto, Auto y CuatroXCuatro.
@@ -231,7 +231,7 @@ contengan los mismos atributos y métodos en común. También fue
 necesario sobreescribir algunos métodos.
 
 \subsection{Elemento}
-\label{sec:orgf948964}
+\label{sec:org8c68866}
 
 Es una clase abstracta de la cual heredan dos clases:
 
@@ -254,22 +254,22 @@ adentro del mapa, si esta en la misma posicion que otro elemento o una
 posicion arbitraria, etc.
 
 \subsubsection{Meta}
-\label{sec:org3c6a4b4}
+\label{sec:org2b9e8c8}
 La clase meta es un elemento y cuando se lo choca comienza el turno
 del siguiente jugador. Si es el último, se finaliza la partida.
 
 \subsection{Mapa}
-\label{sec:orge7cb2b3}
+\label{sec:orga5e33b8}
 
 El mapa contiene una lista de elementos y cada elemento posee una posición.
 
 \subsection{Direccion}
-\label{sec:org31ffc9a}
-Se implementó la clase “Dirección” encargada de delegar el
-desplazamiento del jugador a la clase “Posición”.
+\label{sec:org806e3d8}
+Se implementó la clase \texttt{Dirección} encargada de delegar el
+desplazamiento del jugador a la clase \texttt{Posición}.
 
 \subsection{Interaccion Vehiculo-Obstaculo}
-\label{sec:org8b37651}
+\label{sec:orgaacf678}
 
 Para la interaccion Vehiculo-Obstaculo decidimos usar el patron \emph{Double
 Dispatch} de forma ya que tenemos una interaccion de muchos a muchos entre los
@@ -287,7 +287,7 @@ Para esto los Vehiculos tienen firmas segun cada implementacion de Obstaculo.
 Y cada implementacion de Obstaculo tiene firmas para cada Vehiculo.
 
 \subsection{Ranking y Persistencia}
-\label{sec:orge6a3de9}
+\label{sec:orge71ef76}
 
 Para el ranking usamos un \texttt{HashMap<String, Long>} con el que
 almacenamos como clave el nombre del jugador y como valor la cantidad
@@ -308,7 +308,7 @@ obtener el historial en siguientes ejecuciones del programa
 \end{minted}
 
 \subsection{Juego}
-\label{sec:orga300f9c}
+\label{sec:org24e2ee0}
 
 El punto de entrada la aplicación es la clase \texttt{Juego}, que provee al
 usuario de las funciones principales para iniciar una partida y que
@@ -331,12 +331,12 @@ cada elemento tiene su posición, se recorre el mapa vacío como una
 matriz para generar distintos elementos con distinta probabilidad.
 
 \subsection{Modelo-Vista-Controlador (MVC)}
-\label{sec:org0ce8c10}
+\label{sec:orgc1514d0}
 
 Aplicamos este patrón de diseño de software para separar la lógica del
 funcionamiento del juego de la interfaz.
 
-Se usaron controladores para definir “evento” que ocurren durante el
+Se usaron controladores para definir \emph{evento} que ocurren durante el
 juego, por ejemplo, iniciar o finalizar una partida, o agregar un
 nuevo jugador. La mayoría de estos controladores extienden la clase
 \texttt{EventHandler} de JavaFX, por lo que son asignables a botones en la
@@ -347,28 +347,28 @@ interfaz.
 \end{center}
 
 \subsubsection{Controladores}
-\label{sec:org7882657}
+\label{sec:orge01cf69}
 
 \begin{enumerate}
 \item ControladorCambioDePantallas
-\label{sec:org5fa82a9}
+\label{sec:org14c53b2}
 
 Se utilizó un controlador llamado \texttt{ControladorCambioDePantallas} para
-lidiar con el cambio de escenas sobre una misma \texttt{stage} de
+lidiar con el cambio de escenas sobre una misma \emph{stage} de
 JavaFX. Este controlador permite concentrar todos las transiciones
-entre diferentes vistas (referidas como “pantallas”) para hacer estos
+entre diferentes vistas (referidas como \emph{pantallas}) para hacer estos
 cambios de manera más ordenada. Así por ejemplo, cualquier botón cuya
 tarea fuese mostrar la pantalla de ayuda, utiliza un único controlador
 para hacer esta transición, lo mismo para cualquier botón que
 retroceda a la pantalla de inicio, etc. Este controlador permite
-ahorrarnos estar pasando una referencia al \texttt{stage} principal para cada
-vista que fuese a necesitar interactuar con dicho\textasciitilde{}stage\textasciitilde{}, lo que hacía
+ahorrarnos estar pasando una referencia al \emph{stage} principal para cada
+vista que fuese a necesitar interactuar con dicho \emph{stage}, lo que hacía
 el código algo más caótico. También se utiliza este mismo controlador
-para interactuar con el \texttt{stage} cuando se alterna entre la pantalla
+para interactuar con el \emph{stage} cuando se alterna entre la pantalla
 completa y minimizada.
 
 \item ControladorPostTurnoJugador
-\label{sec:org33b00c4}
+\label{sec:org544b03c}
 
 El controlador \texttt{ControladorPostTurnoJugador} se encarga de realizar
 todas las tareas de comprobación de finalización de turno luego de
@@ -390,7 +390,7 @@ estilos comunes a varios componentes del juego que tienen la misma
 estética, como los botones, por ejemplo.
 
 \item ControladorHistorialPartidas
-\label{sec:orgb2fc2c0}
+\label{sec:orga26652c}
 
 El controlador \texttt{ControladorHistorialPartidas} se encarga de tomar la
 información de la partida recientemente finalizada y la agrega el
@@ -399,10 +399,10 @@ JSON.
 \end{enumerate}
 
 \section{Consideraciones}
-\label{sec:orgc8bc516}
+\label{sec:orged4d3e9}
 
 \subsection{Cambios a futuro:}
-\label{sec:org87ab3e0}
+\label{sec:orgba83bff}
 
 \begin{itemize}
 \item Implementar la funcionalidad multimedia. Lamentablemente debido al
@@ -432,9 +432,9 @@ beneficiosa ya que manipula el stage y no es necesario pasarlo como
 parámetro entre los distintos controladores y métodos.
 
 \section{Excepciones}
-\label{sec:orgd046f7d}
+\label{sec:org3cf9330}
 \subsection{(No) Excepcion cuando el usuario intentar ir fuera del Mapa}
-\label{sec:org45cdac0}
+\label{sec:orgca975ba}
 
 Una observacion que tuvimos durante el desarrollo fue la posibilidad
 de agregar una excepcion cuando el usuario intenta ir fuera de los
