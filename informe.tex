@@ -1,4 +1,4 @@
-% Created 2022-07-09 Sat 20:30
+% Created 2022-07-09 Sat 20:58
 % Intended LaTeX compiler: pdflatex
 \documentclass[titlepage,a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -79,7 +79,7 @@
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 \section{Intruduccion}
-\label{sec:orga6b282d}
+\label{sec:org56e0e23}
 Este trabajo consiste en diseñar un juego con interfaz gráfica. GPS es
 un juego de estrategia por turnos. El escenario es una ciudad y el
 objetivo, guiar un vehículo a la meta en la menor cantidad de
@@ -90,7 +90,7 @@ cuál de las 4 esquinas posibles avanzará.  Se tienen distintos
 vehículos, obstáculos y sorpresas con distintas funcionalidades.
 
 \section{Supuestos}
-\label{sec:org78dca8c}
+\label{sec:org6102160}
 El trabajo se realizó con los siguientes supuestos ya que no eran
 especificaciones dentro de las consignas.
 
@@ -122,98 +122,106 @@ jugador ni sobre la meta.
 \end{itemize}
 
 \section{Diagramas de clases}
-\label{sec:orgc5590de}
+\label{sec:orgfe0a30e}
 \subsection{Vehiculo}
-\label{sec:org11080a6}
+\label{sec:org522e515}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-vehiculo.png}
 \end{center}
 
 \subsection{Sorpresas}
-\label{sec:org2ab0b27}
+\label{sec:orgbb2fed3}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-sorpresas.png}
 \end{center}
 
 \subsection{Obstaculos}
-\label{sec:org74212c7}
+\label{sec:org244f9ba}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-obstaculos.png}
 \end{center}
 
 \subsection{Mapa}
-\label{sec:org7fc9361}
+\label{sec:orgbbe2320}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-mapa.png}
 \end{center}
 
 \subsection{Juego}
-\label{sec:orgbdfe99d}
+\label{sec:orga71fd7a}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-juego.png}
 \end{center}
 
+\subsection{Jugador}
+\label{sec:org4399320}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./diagramas/clases-jugador.png}
+\end{center}
+
 \section{Diagrama de paquetes}
-\label{sec:org3d1dbe9}
+\label{sec:orga6366a0}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/paquetes.png}
 \end{center}
 
 \section{Diagramas de secuencia}
-\label{sec:org76e506a}
+\label{sec:orgbfb48c0}
 \subsection{Interaccion Jugador - Sorpresa Cambio de Vehiculo}
-\label{sec:org442a21f}
+\label{sec:org9f9f6f7}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Sorpresa Favorable}
-\label{sec:orgc401734}
+\label{sec:orgfdc2329}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Elemento}
-\label{sec:org43b9eae}
+\label{sec:orgeeb41fa}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png}
 \end{center}
 
 \subsection{Jugador avanza y se encuentra con un Elemento}
-\label{sec:orge85bb40}
+\label{sec:org02f14f5}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png}
 \end{center}
 
+
 \section{Diagramas de estado}
-\label{sec:org4b04681}
+\label{sec:orgfe2dafd}
 \subsection{Cambio de Vehiculo del Jugador}
-\label{sec:org90ad723}
+\label{sec:org956e02b}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/estado-cambio-vehiculo.png}
 \end{center}
 
 \subsection{Vehiculo Pisa Obstaculo}
-\label{sec:org2bbbe3c}
+\label{sec:orgc8d3cc8}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/estado-vehiculo-obstaculo.png}
 \end{center}
 
 \section{Detalles de implementación}
-\label{sec:org038e921}
+\label{sec:org3b48509}
 \subsection{Vehiculo}
-\label{sec:org8b4db90}
+\label{sec:orga2c3b93}
 
 En principio tenes una clase abstracta llamada \emph{Vehiculo} y usamos herencia para
 abstraer comportamiento comun entre su tres clases hijas: Moto, Auto y CuatroXCuatro.
@@ -231,7 +239,7 @@ contengan los mismos atributos y métodos en común. También fue
 necesario sobreescribir algunos métodos.
 
 \subsection{Elemento}
-\label{sec:orge042f29}
+\label{sec:orge42d5d2}
 
 Es una clase abstracta de la cual heredan dos clases:
 
@@ -254,22 +262,22 @@ adentro del mapa, si esta en la misma posicion que otro elemento o una
 posicion arbitraria, etc.
 
 \subsubsection{Meta}
-\label{sec:org25e62a9}
+\label{sec:org400f5d4}
 La clase meta es un elemento y cuando se lo choca comienza el turno
 del siguiente jugador. Si es el último, se finaliza la partida.
 
 \subsection{Mapa}
-\label{sec:orgd1a260a}
+\label{sec:org1a6732f}
 
 El mapa contiene una lista de elementos y cada elemento posee una posición.
 
 \subsection{Direccion}
-\label{sec:org873f4eb}
+\label{sec:org03c1ff7}
 Se implementó la clase \texttt{Dirección} encargada de delegar el
 desplazamiento del jugador a la clase \texttt{Posición}.
 
 \subsection{Interaccion Vehiculo-Obstaculo}
-\label{sec:orgb61bc50}
+\label{sec:org4dbe90e}
 
 Para la interaccion Vehiculo-Obstaculo decidimos usar el patron \emph{Double
 Dispatch} de forma ya que tenemos una interaccion de muchos a muchos entre los
@@ -287,7 +295,7 @@ Para esto los Vehiculos tienen firmas segun cada implementacion de Obstaculo.
 Y cada implementacion de Obstaculo tiene firmas para cada Vehiculo.
 
 \subsection{Ranking y Persistencia}
-\label{sec:org885f1ec}
+\label{sec:org0543ed4}
 
 Para el ranking usamos un \texttt{HashMap<String, Long>} con el que
 almacenamos como clave el nombre del jugador y como valor la cantidad
@@ -308,7 +316,7 @@ obtener el historial en siguientes ejecuciones del programa
 \end{minted}
 
 \subsection{Juego}
-\label{sec:orgc33e0a1}
+\label{sec:org2dc49b9}
 
 El punto de entrada la aplicación es la clase \texttt{Juego}, que provee al
 usuario de las funciones principales para iniciar una partida y que
@@ -331,7 +339,7 @@ cada elemento tiene su posición, se recorre el mapa vacío como una
 matriz para generar distintos elementos con distinta probabilidad.
 
 \subsection{Modelo-Vista-Controlador (MVC)}
-\label{sec:orgbdae64b}
+\label{sec:orgab9015b}
 
 Aplicamos este patrón de diseño de software para separar la lógica del
 funcionamiento del juego de la interfaz.
@@ -347,11 +355,11 @@ interfaz.
 \end{center}
 
 \subsubsection{Controladores}
-\label{sec:orgc8e9b26}
+\label{sec:org81efd79}
 
 \begin{enumerate}
 \item ControladorCambioDePantallas
-\label{sec:orgd157fe5}
+\label{sec:org64c2a40}
 
 Se utilizó un controlador llamado \texttt{ControladorCambioDePantallas} para
 lidiar con el cambio de escenas sobre una misma \emph{stage} de
@@ -368,7 +376,7 @@ para interactuar con el \emph{stage} cuando se alterna entre la pantalla
 completa y minimizada.
 
 \item ControladorPostTurnoJugador
-\label{sec:orgb381326}
+\label{sec:org4ab3f79}
 
 El controlador \texttt{ControladorPostTurnoJugador} se encarga de realizar
 todas las tareas de comprobación de finalización de turno luego de
@@ -390,7 +398,7 @@ estilos comunes a varios componentes del juego que tienen la misma
 estética, como los botones, por ejemplo.
 
 \item ControladorHistorialPartidas
-\label{sec:orga192933}
+\label{sec:orgc8f908e}
 
 El controlador \texttt{ControladorHistorialPartidas} se encarga de tomar la
 información de la partida recientemente finalizada y la agrega el
@@ -399,7 +407,7 @@ JSON.
 \end{enumerate}
 
 \subsection{Null-Object Pattern}
-\label{sec:org0a37e49}
+\label{sec:orgc6cf8f8}
 
 Se utilizó el patrón \emph{Null Object} para hacer polimórfico el
 comportamiento de choque del jugador al moverse hacia cualquier
@@ -407,7 +415,7 @@ posición, independientemente de que haya un obstáculo o sorpresa con
 algún efecto en esa posición.
 
 \subsection{Inyecccion de Dependencias}
-\label{sec:org32fb857}
+\label{sec:org3663b15}
 
 En varias clases se hicieron las dependencias inyectables, de tal
 forma que fuera fácil reemplazar el comportamiento de dichas
@@ -415,7 +423,7 @@ clases. Por ejemplo, al crear un jugador se pueden definir tanto su
 posición inicial como su vehículo inicial como dependencias.
 
 \subsection{Programacion contra Abstracción}
-\label{sec:org3c546df}
+\label{sec:orgbb1b2a4}
 
 También se programó contra abstracción en vez de contra clases
 concretas en donde se vió óptimo. Por ejemplo, en el caso de los
@@ -425,7 +433,7 @@ tenía ese momento, permitiendo que el comportamiento fuese polimórfico
 y facilitando la adición de nuevos obstáculos y vehículos.
 
 \subsection{Principio de Responsabilidad Unica}
-\label{sec:orga4631fc}
+\label{sec:org8fc2288}
 
 En el caso del diseño e implementación de la clase \texttt{Mapa}, se hicieron
 cambios durante el diseño del modelo para que esta clase tuviera una
@@ -436,10 +444,10 @@ entregas semanales), pero finalmente terminó siendo únicamente una
 colección de elementos dentro de unos límites.
 
 \section{Consideraciones}
-\label{sec:org45a0b15}
+\label{sec:org662bd18}
 
 \subsection{Cambios a futuro:}
-\label{sec:org38e894e}
+\label{sec:org95a852f}
 
 \begin{itemize}
 \item Implementar la funcionalidad multimedia. Lamentablemente debido al
@@ -469,9 +477,9 @@ beneficiosa ya que manipula el stage y no es necesario pasarlo como
 parámetro entre los distintos controladores y métodos.
 
 \section{Excepciones}
-\label{sec:org6f3aa38}
+\label{sec:org4ca64e9}
 \subsection{(No) Excepcion cuando el usuario intentar ir fuera del Mapa}
-\label{sec:org97d8da8}
+\label{sec:org4e4c150}
 
 Una observacion que tuvimos durante el desarrollo fue la posibilidad
 de agregar una excepcion cuando el usuario intenta ir fuera de los
@@ -480,7 +488,7 @@ un error y directamente el modelo maneja esta posibilidad y no permite
 al usuario avanzar por fuera de los limites del mapa.
 
 \section{Conclusion}
-\label{sec:org8080052}
+\label{sec:orgbe8bbfd}
 
 Utilizar prácticas de \emph{extreme programing} y \emph{agile} nos permitieron
 mantener un desarrollo colaborativo eficiente. Aplicar programación

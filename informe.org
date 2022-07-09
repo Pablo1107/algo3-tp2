@@ -149,17 +149,6 @@ abstract class edu.fiuba.algo3.modelo.vehiculo.Vehiculo {
 + void reducirPenalizaciones()
 + boolean tienePenalizaciones()
 }
-class edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro {
-- {static} int LIMITE_POZOS_PISADOS
-- int pozosPisados
-- void pisar(Obstaculo)
-+ Vehiculo siguienteVehiculo()
-+ void pisar(ControlPolicial)
-+ void pisar(Piquete)
-+ void pisar(Pozo)
-+ void retroceder(Jugador)
-- boolean pasoElLimiteDePozosPisados()
-}
 
 edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro
 edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Auto
@@ -263,7 +252,6 @@ class edu.fiuba.algo3.modelo.mapa.Direccion {
 + Posicion desplazar(Posicion,Mapa)
 }
 abstract class edu.fiuba.algo3.modelo.mapa.Elemento {
-# Posicion posicion
 + {abstract}void chocarCon(Jugador)
 + boolean estaDentroDelMapa(Mapa)
 + boolean estaEnLaMismaPosicion(Elemento)
@@ -279,7 +267,6 @@ class edu.fiuba.algo3.modelo.mapa.Meta {
 class edu.fiuba.algo3.modelo.mapa.Mapa {
 - int limiteX
 - int limiteY
-- List<Elemento> elementos
 + void agregarElemento(Elemento)
 - boolean hayElementoEnMismaPosicion(Elemento)
 + void chocarConElemento(Jugador)
@@ -291,6 +278,9 @@ class edu.fiuba.algo3.modelo.mapa.Mapa {
 
 edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.ElementoNulo
 edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.Meta
+edu.fiuba.algo3.modelo.mapa.Elemento "*" --* "1" edu.fiuba.algo3.modelo.mapa.Mapa
+edu.fiuba.algo3.modelo.mapa.Elemento --> edu.fiuba.algo3.modelo.mapa.Posicion
+edu.fiuba.algo3.modelo.mapa.Posicion ..> edu.fiuba.algo3.modelo.mapa.Direccion
 #+end_src
 
 #+RESULTS:
@@ -330,9 +320,7 @@ class edu.fiuba.algo3.modelo.juego.Juego {
 - {static} Vehiculo VEHICULO_INICIAL_JUGADOR
 - {static} int MAPA_LIMITE_X
 - {static} int MAPA_LIMITE_Y
-- {static} GeneradorMapa GENERADOR_MAPA
 - {static} Juego instancia
-- Partida partida
 + {static} Juego getInstancia()
 + void iniciarNuevaPartida()
 + void agregarJugadorAPartida(String)
@@ -341,8 +329,6 @@ class edu.fiuba.algo3.modelo.juego.Juego {
 + void jugarTurno(Direccion)
 }
 class edu.fiuba.algo3.modelo.juego.Partida {
-- ListadoJugadores listadoJugadores
-- GeneradorMapa generadorMapa
 - boolean estaEnCurso
 + void reiniciar()
 + void finalizar()
@@ -356,16 +342,54 @@ class edu.fiuba.algo3.modelo.juego.Partida {
 + boolean estaEnCurso()
 + Elemento getElementoEnTurno()
 }
+
+edu.fiuba.algo3.modelo.juego.Juego --> edu.fiuba.algo3.modelo.juego.Partida 
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.GeneradorMapa
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.ListadoJugadores
 #+end_src
 
 #+RESULTS:
 [[file:./diagramas/clases-juego.png]]
 
+** Jugador
+
+#+begin_src plantuml :file ./diagramas/clases-jugador.png
+class edu.fiuba.algo3.modelo.jugador.Jugador {
+- String nombre
+- Posicion posicionInicial
+- Vehiculo vehiculoInicial
+- Vehiculo vehiculo
+- Posicion posicion
+- Posicion posicionAnterior
+- int movimientos
++ void avanzar(Direccion,Mapa)
++ void retroceder()
++ void reiniciar()
++ void cambiarVehiculo()
++ Vehiculo getVehiculo()
++ Posicion getPosicion()
++ int getMovimientos()
++ void setMovimientos(int)
++ String getNombre()
+}
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-jugador.png]]
+
 * Diagrama de paquetes
 # Incluir un diagrama de paquetes UML para mostrar el acoplamiento de su trabajo.
 
 #+begin_src plantuml :file ./diagramas/paquetes.png
-class edu.fiuba.algo3.modelo.ModeloJuego {}
+edu.fiuba.algo3.modelo.juego.Juego --> edu.fiuba.algo3.modelo.juego.Partida 
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.GeneradorMapa
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.ListadoJugadores
+
+edu.fiuba.algo3.modelo.juego.GeneradorMapa --> edu.fiuba.algo3.modelo.mapa.Mapa
+edu.fiuba.algo3.modelo.mapa.Mapa --> edu.fiuba.algo3.modelo.mapa.Elemento 
+
+edu.fiuba.algo3.modelo.jugador.Jugador <-- edu.fiuba.algo3.modelo.juego.ListadoJugadores
+edu.fiuba.algo3.modelo.jugador.Jugador --> edu.fiuba.algo3.modelo.vehiculo.Vehiculo
 
 edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro
 edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Auto
@@ -502,6 +526,7 @@ deactivate Obstaculo
 
 #+RESULTS:
 [[file:./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png]]
+
 
 * Diagramas de estado
 # Incluir diagramas de estados, mostrando tanto los estados como  las distintas transiciones para varias entidades del modelo.
