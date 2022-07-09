@@ -49,8 +49,7 @@
       Alumno & Padron & Email \\ \hline
       CASTILLO, Carlos & 108535 & ccastillo@fi.uba.ar \\ \hline
       DEALBERA, Pablo Andres & 106585 & pdealbera@fi.uba.ar \\ \hline
-      DUARTE, Luciano & 105604 & lduarte@fi.uba.ar \\ \hline
-      RECCHIA, Ramiro & 99289 & rrecchia@fi.uba.ar \\ \hline
+      RECCHIA, Ramiro & 102614 & rrecchia@fi.uba.ar \\ \hline
     \end{tabular}
     \vfill
     \begin{tabular}{ | l | l | }
