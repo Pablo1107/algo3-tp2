@@ -774,6 +774,39 @@ información de la partida recientemente finalizada y la agrega el
 registro de partidas previamente guardadas en un archivo con formato
 JSON.
 
+** Null-Object Pattern
+
+Se utilizó el patrón /Null Object/ para hacer polimórfico el
+comportamiento de choque del jugador al moverse hacia cualquier
+posición, independientemente de que haya un obstáculo o sorpresa con
+algún efecto en esa posición.
+
+** Inyecccion de Dependencias
+
+En varias clases se hicieron las dependencias inyectables, de tal
+forma que fuera fácil reemplazar el comportamiento de dichas
+clases. Por ejemplo, al crear un jugador se pueden definir tanto su
+posición inicial como su vehículo inicial como dependencias.
+
+** Programacion contra Abstracción
+
+También se programó contra abstracción en vez de contra clases
+concretas en donde se vió óptimo. Por ejemplo, en el caso de los
+vehículos y los obstáculos se diseñó todo de tal forma que al jugador
+no le importase contra qué obstáculo estaba chocando y qué vehículo
+tenía ese momento, permitiendo que el comportamiento fuese polimórfico
+y facilitando la adición de nuevos obstáculos y vehículos.
+
+** Principio de Responsabilidad Unica
+
+En el caso del diseño e implementación de la clase ~Mapa~, se hicieron
+cambios durante el diseño del modelo para que esta clase tuviera una
+única responsabilidad, respetando el principio de única
+responsabilidad. Inicialmente esta clase era vista como un
+"administrador de elementos" (como se había descrito en alguna de las
+entregas semanales), pero finalmente terminó siendo únicamente una
+colección de elementos dentro de unos límites.
+
 * Consideraciones
 
 ** Cambios a futuro:
@@ -813,4 +846,15 @@ de agregar una excepcion cuando el usuario intenta ir fuera de los
 bordes del mapa. Nosotros como supuesto elegimos no tratar esto como
 un error y directamente el modelo maneja esta posibilidad y no permite
 al usuario avanzar por fuera de los limites del mapa.
+
+* Conclusion
+
+Utilizar prácticas de /extreme programing/ y /agile/ nos permitieron
+mantener un desarrollo colaborativo eficiente. Aplicar programación
+orientada a objetos en la implementación nos permitió dividir tareas
+sin manipular los mismos archivos. Aplicar /pair programming/ e
+integración continua fue beneficioso para avanzar rápidamente en el
+desarrollo del trabajo. Además, facilitó las refactorizaciones
+realizadas sin tener que modificar significativamente el código ya
+implementado.
 
