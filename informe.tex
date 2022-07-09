@@ -1,4 +1,4 @@
-% Created 2022-07-07 Thu 21:53
+% Created 2022-07-09 Sat 18:37
 % Intended LaTeX compiler: pdflatex
 \documentclass[titlepage,a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -63,8 +63,7 @@
       Alumno & Padron & Email \\ \hline
       CASTILLO, Carlos & 108535 & ccastillo@fi.uba.ar \\ \hline
       DEALBERA, Pablo Andres & 106585 & pdealbera@fi.uba.ar \\ \hline
-      DUARTE, Luciano & 105604 & lduarte@fi.uba.ar \\ \hline
-      RECCHIA, Ramiro & 99289 & rrecchia@fi.uba.ar \\ \hline
+      RECCHIA, Ramiro & 102614 & rrecchia@fi.uba.ar \\ \hline
     \end{tabular}
     \vfill
     \begin{tabular}{ | l | l | }
@@ -80,95 +79,94 @@
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 \section{Supuestos}
-\label{sec:orgb0bda50}
+\label{sec:orgc3132fc}
 
 \section{Diagramas de clases}
-\label{sec:orgdb29ee6}
+\label{sec:orga1c5731}
 \subsection{Vehiculo}
-\label{sec:org73857ef}
+\label{sec:org70eef3c}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-vehiculo.png}
 \end{center}
 
 \subsection{Sorpresas}
-\label{sec:org9666ade}
+\label{sec:orgf88f136}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-sorpresas.png}
 \end{center}
 
 \subsection{Obstaculos}
-\label{sec:org3815096}
+\label{sec:org72cb2eb}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-obstaculos.png}
 \end{center}
 
 \subsection{Mapa}
-\label{sec:org4253e49}
+\label{sec:org2ec8249}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/clases-mapa.png}
 \end{center}
 
-\subsection{ModeloJuego}
-\label{sec:orgfb5cb6a}
+\subsection{Juego}
+\label{sec:org5ee8a3a}
 
 \begin{center}
-\includegraphics[width=.9\linewidth]{./diagramas/clases-modelojuego.png}
+\includegraphics[width=.9\linewidth]{./diagramas/clases-juego.png}
 \end{center}
 
-
 \section{Diagrama de paquetes}
-\label{sec:org81ea73c}
+\label{sec:org9a5bad0}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/paquetes.png}
 \end{center}
 
 \section{Diagramas de secuencia}
-\label{sec:orga1e5e94}
+\label{sec:org791f04e}
 \subsection{Interaccion Jugador - Sorpresa Cambio de Vehiculo}
-\label{sec:orgb338542}
+\label{sec:org2833f76}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Sorpresa Favorable}
-\label{sec:org8d449a2}
+\label{sec:org6382d36}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png}
 \end{center}
 
 \subsection{Interaccion Jugador - Elemento}
-\label{sec:org1566540}
+\label{sec:orgd6b8e9b}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png}
 \end{center}
 
 \subsection{Jugador avanza y se encuentra con un Elemento}
-\label{sec:org9a58c8c}
+\label{sec:orgd8a100d}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png}
 \end{center}
 
 \section{Diagramas de estado}
-\label{sec:org1702924}
+\label{sec:org80f2570}
 
 \section{Detalles de implementación}
-\label{sec:org268fb73}
+\label{sec:org0fa7554}
 \subsection{Vehiculo}
-\label{sec:org2af1a1e}
+\label{sec:orgede4f85}
 
 En principio tenes una clase abstracta llamada \emph{Vehiculo} y usamos herencia para
 abstraer comportamiento comun entre su tres clases hijas: Moto, Auto y CuatroXCuatro.
 
 \subsection{Elemento}
-\label{sec:org2428408}
+\label{sec:orgccc91a2}
 
 Es una clase abstracta de la cual heredan dos clases:
 
@@ -191,7 +189,7 @@ adentro del mapa, si esta en la misma posicion que otro elemento o una
 posicion arbitraria, etc.
 
 \subsection{Interaccion Vehiculo-Obstaculo}
-\label{sec:orgdc55730}
+\label{sec:org458b237}
 
 Para la interaccion Vehiculo-Obstaculo decidimos usar el patron \emph{Double
 Dispatch} de forma ya que tenemos una interaccion de muchos a muchos entre los
@@ -209,15 +207,15 @@ Para esto los Vehiculos tienen firmas segun cada implementacion de Obstaculo.
 Y cada implementacion de Obstaculo tiene firmas para cada Vehiculo.
 
 \subsection{Ranking y Persistencia}
-\label{sec:org3cce553}
+\label{sec:org3d8da03}
 
-Para el ranking un \texttt{HashMap<String, Long>} con el que almacenamos como
-clave el nombre del jugador y como valor la cantidad de movimientos
-minimo que hizo.
+Para el ranking usamos un \texttt{HashMap<String, Long>} con el que
+almacenamos como clave el nombre del jugador y como valor la cantidad
+de movimientos minimo que hizo.
 
 Esto se maneja en el \texttt{ControladorHistorialPartidas} que tiene dos
 metodos que hacen uso de la libreria Gson para crear un JSON del
-\texttt{HashMap}, escribirlo en un archivo \texttt{ranking.json} y se capaces de
+\texttt{HashMap}, escribirlo en un archivo \texttt{ranking.json} y otro metodo para
 obtener el historial en siguientes ejecuciones del programa
 \emph{deserializando} el JSON parseado como un \texttt{HashMap} de nuevo.
 
@@ -229,10 +227,14 @@ obtener el historial en siguientes ejecuciones del programa
 }
 \end{minted}
 
-\begin{minted}[breaklines=true,breakanywhere=true,bgcolor=bg]{c}
-int c = 5;
-\end{minted}
-
 \section{Excepciones}
-\label{sec:orge2e2209}
+\label{sec:orgc5c5dd2}
+\subsection{(No) Excepcion cuando el usuario intentar ir fuera del Mapa}
+\label{sec:orgc646474}
+
+Una observacion que tuvimos durante el desarrollo fue la posibilidad
+de agregar una excepcion cuando el usuario intenta ir fuera de los
+bordes del mapa. Nosotros como supuesto elegimos no tratar esto como
+un error y directamente el modelo maneja esta posibilidad y no permite
+al usuario avanzar por fuera de los limites del mapa.
 \end{document}

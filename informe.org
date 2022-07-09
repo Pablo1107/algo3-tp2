@@ -258,37 +258,70 @@ edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.Meta
 #+RESULTS:
 [[file:./diagramas/clases-mapa.png]]
 
-** ModeloJuego
+** Juego
 
-#+begin_src plantuml :file ./diagramas/clases-modelojuego.png
-class edu.fiuba.algo3.modelo.ModeloJuego {
-- {static} Posicion POS_INICIAL_JUGADOR
+#+begin_src plantuml :file ./diagramas/clases-juego.png
+class edu.fiuba.algo3.modelo.juego.ListadoJugadores {
+- List<Jugador> listadoJugadores
+- int indiceJugadorEnTurno
++ void agregarJugador(Jugador)
++ void reiniciar()
++ Jugador getJugadorEnTurno()
++ void turnoSiguienteJugador(Partida)
++ List<Jugador> getListadoJugadores()
+}
+class edu.fiuba.algo3.modelo.juego.GeneradorMapa {
+- {static} double PROBABILIDAD_GENERACION_POZO
+- {static} double PROBABILIDAD_GENERACION_PIQUETE
+- {static} double PROBABILIDAD_GENERACION_CONTROL_POLICIAL
+- {static} double PROBABILIDAD_GENERACION_SORPRESA_FAVORABLE
+- {static} double PROBABILIDAD_GENERACION_SORPRESA_DESFAVORABLE
+- {static} double PROBABILIDAD_GENERACION_SORPRESA_CAMBIO_DE_VEHICULO
+- Mapa mapa
+- Meta meta
+- void generarMeta()
+- Posicion generarPosicionAleatoriaEnColumna(int)
+- void popularMapaConElementosAleatorios(Posicion)
+- void generarEspacioLibreInicialParaJugador(Posicion)
+- Elemento generarElementoRandom(Posicion)
++ Mapa getMapa()
++ Meta getMeta()
+}
+class edu.fiuba.algo3.modelo.juego.Juego {
+- {static} Posicion POSICION_INICIAL_JUGADOR
 - {static} Vehiculo VEHICULO_INICIAL_JUGADOR
 - {static} int MAPA_LIMITE_X
 - {static} int MAPA_LIMITE_Y
-- {static} Posicion POS_META
-- {static} ModeloJuego instancia
-- Jugador jugador
-- Mapa mapa
-- boolean juegoTerminado
-- List<Partida> partidas
-+ {static} ModeloJuego getInstancia()
-- void inicializarJuego()
-+ void reiniciarJuego()
-+ void terminarJuego()
+- {static} GeneradorMapa GENERADOR_MAPA
+- {static} Juego instancia
+- Partida partida
++ {static} Juego getInstancia()
++ void iniciarNuevaPartida()
++ void agregarJugadorAPartida(String)
++ void reiniciarPartidaActual()
++ Partida getPartidaActual()
 + void jugarTurno(Direccion)
-- Elemento generarElementoRandom(Posicion)
-+ Jugador getJugador()
+}
+class edu.fiuba.algo3.modelo.juego.Partida {
+- ListadoJugadores listadoJugadores
+- GeneradorMapa generadorMapa
+- boolean estaEnCurso
++ void reiniciar()
++ void finalizar()
++ void agregarJugador(Jugador)
++ void turnoJugadorActual(Direccion)
++ void turnoSiguienteJugador()
++ Jugador getJugadorEnTurno()
++ List<Jugador> getListadoJugadores()
 + Mapa getMapa()
-+ List<Partida> getPartidas()
-+ boolean getJuegoTerminado()
-+ Posicion getPosicionMeta()
++ Meta getMeta()
++ boolean estaEnCurso()
++ Elemento getElementoEnTurno()
 }
 #+end_src
 
 #+RESULTS:
-[[file:./diagramas/clases-modelojuego.png]]
-
+[[file:./diagramas/clases-juego.png]]
 
 * Diagrama de paquetes
 # Incluir un diagrama de paquetes UML para mostrar el acoplamiento de su trabajo.
@@ -516,3 +549,11 @@ obtener el historial en siguientes ejecuciones del programa
 
 * Excepciones
 # Explicar las excepciones creadas, con qué fin fueron creadas y cómo y dónde se las atrapa explicando qué acciones se toman al respecto una vez capturadas.
+
+** (No) Excepcion cuando el usuario intentar ir fuera del Mapa
+
+Una observacion que tuvimos durante el desarrollo fue la posibilidad
+de agregar una excepcion cuando el usuario intenta ir fuera de los
+bordes del mapa. Nosotros como supuesto elegimos no tratar esto como
+un error y directamente el modelo maneja esta posibilidad y no permite
+al usuario avanzar por fuera de los limites del mapa.
