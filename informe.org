@@ -1,0 +1,885 @@
+#+LANGUAGE: es
+#+OPTIONS: toc:nil title:nil
+
+#+LATEX_CLASS_OPTIONS: [titlepage,a4paper]
+#+LATEX_HEADER_EXTRA: \hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true}
+#+LATEX_HEADER_EXTRA: \usepackage{a4wide}
+#+LATEX_HEADER_EXTRA: \usepackage{bookmark}
+#+LATEX_HEADER_EXTRA: \usepackage{fancyhdr}
+#+LATEX_HEADER_EXTRA: \usepackage[spanish]{babel}
+#+LATEX_HEADER_EXTRA: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER_EXTRA: \usepackage[T1]{fontenc}
+#+LATEX_HEADER_EXTRA: \usepackage{graphicx}
+#+LATEX_HEADER_EXTRA: \usepackage{float}
+#+LATEX_HEADER_EXTRA: \usepackage{minted}
+#+LATEX_HEADER_EXTRA: \usepackage{svg}
+#+LATEX_HEADER_EXTRA: \pagestyle{fancy}
+#+LATEX_HEADER_EXTRA: \fancyhf{}
+#+LATEX_HEADER_EXTRA: \fancyhead[L]{TP2 - Grupo 22}
+#+LATEX_HEADER_EXTRA: \fancyhead[R]{Algoritmos y Programacion III - FIUBA}
+#+LATEX_HEADER_EXTRA: \renewcommand{\headrulewidth}{0.4pt}
+#+LATEX_HEADER_EXTRA: \fancyfoot[C]{\thepage}
+#+LATEX_HEADER_EXTRA: \renewcommand{\footrulewidth}{0.4pt}
+#+LATEX_HEADER_EXTRA: \usemintedstyle{stata-light}
+#+LATEX_HEADER_EXTRA: \newminted{c}{bgcolor={rgb}{0.95,0.95,0.95}}
+#+LATEX_HEADER_EXTRA: \usepackage{color}
+#+LATEX_HEADER_EXTRA: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER_EXTRA: \usepackage{fancyvrb}
+#+LATEX_HEADER_EXTRA: \fvset{framesep=1mm,fontfamily=courier,fontsize=\scriptsize,numbers=left,framerule=.3mm,numbersep=1mm}
+#+LATEX_HEADER_EXTRA: \usepackage[nottoc]{tocbibind}
+
+#+NAME: setup
+#+BEGIN_SRC emacs-lisp :results silent :exports none
+  (setq org-latex-minted-options
+    '(("bgcolor" "bg")))
+#+END_SRC
+
+#+BEGIN_EXPORT latex
+\begin{titlepage}
+    \hfill\includegraphics[width=6cm]{logofiuba.jpg}
+    \centering
+    \vfill
+    \Huge \textbf{Trabajo Práctico 2 — GPS Challenge}
+    \vskip2cm
+    \Large [75.07/95.02] Algoritmos y Programación III \\
+    Primer cuatrimestre de 2022\\
+    \vfill
+    \begin{tabular}{ | l | l | l | }
+      \hline
+      Alumno & Padron & Email \\ \hline
+      CASTILLO, Carlos & 108535 & ccastillo@fi.uba.ar \\ \hline
+      DEALBERA, Pablo Andres & 106585 & pdealbera@fi.uba.ar \\ \hline
+      RECCHIA, Ramiro & 102614 & rrecchia@fi.uba.ar \\ \hline
+    \end{tabular}
+    \vfill
+    \begin{tabular}{ | l | l | }
+      \hline
+      Corrector & Email \\ \hline
+      GOMEZ, Joaquin & gjoaquin@fi.uba.ar \\ \hline
+      VALDEZ, Santiago & vsantiago@fi.uba.ar \\ \hline
+    \end{tabular}
+    \vfill
+\end{titlepage}
+\tableofcontents
+\newpage
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+#+END_EXPORT
+
+* Intruduccion
+Este trabajo consiste en diseñar un juego con interfaz gráfica. GPS es
+un juego de estrategia por turnos. El escenario es una ciudad y el
+objetivo, guiar un vehículo a la meta en la menor cantidad de
+movimientos posibles.
+
+El juego se jugará por turnos, y en cada turno el usuario decide hacia
+cuál de las 4 esquinas posibles avanzará.  Se tienen distintos
+vehículos, obstáculos y sorpresas con distintas funcionalidades.
+
+* Supuestos
+# Documentar todos los supuestos hechos sobre el enunciado. Asegurarse de validar con los docentes.
+
+El trabajo se realizó con los siguientes supuestos ya que no eran
+especificaciones dentro de las consignas.
+
+ - Cuando se atraviesa un obstáculo aumentan las penalizaciones y por lo
+   tanto el jugador no se puede mover.
+ - Para iniciar el juego el usuario tiene la posibilidad de agregar
+   jugadores. Cada juego es secuencial, por lo tanto, cuando llegue uno a
+   la meta comienza el turno del otro.
+ - Si el jugador se encuentra parado en una posición vacía se encuentra
+   sobre un ElementoNulo, es decir, siempre hay un elemento en una
+   posición.
+ - El jugador comienza con una moto como vehículo.
+ - Puede haber dos jugadores con el mismo nombre.
+ - El mapa se genera aleatoriamente cada vez que se abre la aplicación.
+ - El mejor puntaje es el jugador que tenga menor movimientos.
+ - Cuando un jugador llega a los límites del mapa y trata de salirse se
+   queda en la misma posición y aumenta en uno sus movimientos.
+ - Cuando el vehículo es un auto o una 4x4 y quiere pasar por un piquete,
+   estos no podrán avanzar y se sumarán movimientos.
+ - La posición inicial del jugador es siempre la misma, en la esquina
+   superior izquierda.
+ - La posición de la meta se genera en una posición aleatoria de la
+   última fila.
+ - No se generan obstáculos o sorpresas sobre la posición inicial del
+   jugador ni sobre la meta.
+ - No puede haber dos elementos en una misma posición.
+ - Un jugador no se puede mover si tiene penalizaciones.
+
+* Diagramas de clases
+# Varios diagramas de clases, mostrando la relación estática entre las clases. Pueden agregar todo el texto necesario para aclarar y explicar su diseño de manera tal que el modelo logre comunicarse de manera efectiva.
+
+** Vehiculo
+
+#+begin_src plantuml :file ./diagramas/clases-vehiculo.png
+class edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro {
+- {static} int LIMITE_POZOS_PISADOS
+- int pozosPisados
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+- boolean pasoElLimiteDePozosPisados()
+}
+class edu.fiuba.algo3.modelo.vehiculo.Auto {
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+}
+class edu.fiuba.algo3.modelo.vehiculo.Moto {
+- void pisar(Obstaculo)
++ Vehiculo siguienteVehiculo()
++ void pisar(ControlPolicial)
++ void pisar(Piquete)
++ void pisar(Pozo)
++ void retroceder(Jugador)
+}
+abstract class edu.fiuba.algo3.modelo.vehiculo.Vehiculo {
+# int penalizaciones
++ {abstract}Vehiculo siguienteVehiculo()
++ {abstract}void pisar(ControlPolicial)
++ {abstract}void pisar(Piquete)
++ {abstract}void pisar(Pozo)
++ {abstract}void retroceder(Jugador)
++ void reducirPenalizaciones()
++ boolean tienePenalizaciones()
+}
+
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Auto
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Moto
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-vehiculo.png]]
+
+** Sorpresas
+
+#+begin_src plantuml :file ./diagramas/clases-sorpresas.png
+class edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable {
+- {static} double FACTOR_AUMENTO_MOVIMIENTOS
++ void chocarCon(Jugador)
+- double calcularMovimientosAumentados(int)
+}
+class edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable {
+- {static} double FACTOR_REDUCCION_MOVIMIENTOS
++ void chocarCon(Jugador)
+- double calcularMovimientosDescontados(int)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa {
++ {abstract}void chocarCon(Jugador)
+}
+
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-sorpresas.png]]
+
+** Obstaculos
+
+#+begin_src plantuml :file ./diagramas/clases-obstaculos.png
+class edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial {
+- {static} double PROBABILIDAD_MOTO
+- {static} double PROBABILIDAD_AUTO
+- {static} double PROBABILIDAD_CUATROxCUATRO
+- {static} int PENALIZACION
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+- int calcularPenalizacion(double)
+- boolean esPenalizado(double)
+}
+class edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo {
+- {static} int PENALIZACION_MOTO
+- {static} int PENALIZACION_AUTO
+- {static} int PENALIZACION_CUATROXCUATRO
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo {
++ {abstract}void chocarCon(Jugador)
++ {abstract}int aplicarPenalizacion(Moto)
++ {abstract}int aplicarPenalizacion(Auto)
++ {abstract}int aplicarPenalizacion(CuatroXCuatro)
+}
+class edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete {
+- {static} int PENALIZACION_MOTO
+- {static} int PENALIZACION_AUTO
+- {static} int PENALIZACION_CUATROXCUATRO
++ void chocarCon(Jugador)
++ int aplicarPenalizacion(Moto)
++ int aplicarPenalizacion(Auto)
++ int aplicarPenalizacion(CuatroXCuatro)
+}
+
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-obstaculos.png]]
+
+** Mapa
+
+#+begin_src plantuml :file ./diagramas/clases-mapa.png
+class edu.fiuba.algo3.modelo.mapa.Posicion {
+- int x
+- int y
++ boolean estaDentroDelMapa(Mapa)
++ Posicion sumar(int,int)
++ boolean equals(Object)
++ int getX()
++ int getY()
+}
+class edu.fiuba.algo3.modelo.mapa.Direccion {
+- int x
+- int y
++ Posicion desplazar(Posicion,Mapa)
+}
+abstract class edu.fiuba.algo3.modelo.mapa.Elemento {
++ {abstract}void chocarCon(Jugador)
++ boolean estaDentroDelMapa(Mapa)
++ boolean estaEnLaMismaPosicion(Elemento)
++ boolean estaEnLaMismaPosicion(Posicion)
++ Posicion getPosicion()
+}
+class edu.fiuba.algo3.modelo.mapa.ElementoNulo {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.Meta {
++ void chocarCon(Jugador)
+}
+class edu.fiuba.algo3.modelo.mapa.Mapa {
+- int limiteX
+- int limiteY
++ void agregarElemento(Elemento)
+- boolean hayElementoEnMismaPosicion(Elemento)
++ void chocarConElemento(Jugador)
++ boolean estaDentroDeLimites(int,int)
++ int getLimiteX()
++ int getLimiteY()
++ List<Elemento> getElementos()
+}
+
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.ElementoNulo
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.Meta
+edu.fiuba.algo3.modelo.mapa.Elemento "*" --* "1" edu.fiuba.algo3.modelo.mapa.Mapa
+edu.fiuba.algo3.modelo.mapa.Elemento --> edu.fiuba.algo3.modelo.mapa.Posicion
+edu.fiuba.algo3.modelo.mapa.Posicion ..> edu.fiuba.algo3.modelo.mapa.Direccion
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-mapa.png]]
+
+** Juego
+
+#+begin_src plantuml :file ./diagramas/clases-juego.png
+class edu.fiuba.algo3.modelo.juego.ListadoJugadores {
+- List<Jugador> listadoJugadores
+- int indiceJugadorEnTurno
++ void agregarJugador(Jugador)
++ void reiniciar()
++ Jugador getJugadorEnTurno()
++ void turnoSiguienteJugador(Partida)
++ List<Jugador> getListadoJugadores()
+}
+class edu.fiuba.algo3.modelo.juego.GeneradorMapa {
+- {static} double PROBABILIDAD_GENERACION_POZO
+- {static} double PROBABILIDAD_GENERACION_PIQUETE
+- {static} double PROBABILIDAD_GENERACION_CONTROL_POLICIAL
+- {static} double PROBABILIDAD_GENERACION_SORPRESA_FAVORABLE
+- {static} double PROBABILIDAD_GENERACION_SORPRESA_DESFAVORABLE
+- {static} double PROBABILIDAD_GENERACION_SORPRESA_CAMBIO_DE_VEHICULO
+- Mapa mapa
+- Meta meta
+- void generarMeta()
+- Posicion generarPosicionAleatoriaEnColumna(int)
+- void popularMapaConElementosAleatorios(Posicion)
+- void generarEspacioLibreInicialParaJugador(Posicion)
+- Elemento generarElementoRandom(Posicion)
++ Mapa getMapa()
++ Meta getMeta()
+}
+class edu.fiuba.algo3.modelo.juego.Juego {
+- {static} Posicion POSICION_INICIAL_JUGADOR
+- {static} Vehiculo VEHICULO_INICIAL_JUGADOR
+- {static} int MAPA_LIMITE_X
+- {static} int MAPA_LIMITE_Y
+- {static} Juego instancia
++ {static} Juego getInstancia()
++ void iniciarNuevaPartida()
++ void agregarJugadorAPartida(String)
++ void reiniciarPartidaActual()
++ Partida getPartidaActual()
++ void jugarTurno(Direccion)
+}
+class edu.fiuba.algo3.modelo.juego.Partida {
+- boolean estaEnCurso
++ void reiniciar()
++ void finalizar()
++ void agregarJugador(Jugador)
++ void turnoJugadorActual(Direccion)
++ void turnoSiguienteJugador()
++ Jugador getJugadorEnTurno()
++ List<Jugador> getListadoJugadores()
++ Mapa getMapa()
++ Meta getMeta()
++ boolean estaEnCurso()
++ Elemento getElementoEnTurno()
+}
+
+edu.fiuba.algo3.modelo.juego.Juego --> edu.fiuba.algo3.modelo.juego.Partida 
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.GeneradorMapa
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.ListadoJugadores
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-juego.png]]
+
+** Jugador
+
+#+begin_src plantuml :file ./diagramas/clases-jugador.png
+class edu.fiuba.algo3.modelo.jugador.Jugador {
+- String nombre
+- Posicion posicionInicial
+- Vehiculo vehiculoInicial
+- Vehiculo vehiculo
+- Posicion posicion
+- Posicion posicionAnterior
+- int movimientos
++ void avanzar(Direccion,Mapa)
++ void retroceder()
++ void reiniciar()
++ void cambiarVehiculo()
++ Vehiculo getVehiculo()
++ Posicion getPosicion()
++ int getMovimientos()
++ void setMovimientos(int)
++ String getNombre()
+}
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/clases-jugador.png]]
+
+* Diagrama de paquetes
+# Incluir un diagrama de paquetes UML para mostrar el acoplamiento de su trabajo.
+
+#+begin_src plantuml :file ./diagramas/paquetes.png
+edu.fiuba.algo3.modelo.juego.Juego --> edu.fiuba.algo3.modelo.juego.Partida 
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.GeneradorMapa
+edu.fiuba.algo3.modelo.juego.Partida --> edu.fiuba.algo3.modelo.juego.ListadoJugadores
+
+edu.fiuba.algo3.modelo.juego.GeneradorMapa --> edu.fiuba.algo3.modelo.mapa.Mapa
+edu.fiuba.algo3.modelo.mapa.Mapa --> edu.fiuba.algo3.modelo.mapa.Elemento 
+
+edu.fiuba.algo3.modelo.jugador.Jugador <-- edu.fiuba.algo3.modelo.juego.ListadoJugadores
+edu.fiuba.algo3.modelo.jugador.Jugador --> edu.fiuba.algo3.modelo.vehiculo.Vehiculo
+
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Auto
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Moto
+edu.fiuba.algo3.modelo.vehiculo.Vehiculo <|-- edu.fiuba.algo3.modelo.vehiculo.Moto
+
+edu.fiuba.algo3.modelo.vehiculo.CuatroXCuatro -[hidden]-> edu.fiuba.algo3.modelo.mapa.Elemento 
+
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.ControlPolicial
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Pozo
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Desfavorable
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.CambioDeVehiculo
+edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Favorable
+edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Piquete
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.obstaculos.Obstaculo
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.sorpresas.Sorpresa
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.ElementoNulo
+edu.fiuba.algo3.modelo.mapa.Elemento <|-- edu.fiuba.algo3.modelo.mapa.Meta
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/paquetes.png]]
+
+* Diagramas de secuencia
+# Varios diagramas de secuencia, mostrando la relación dinámica entre distintos objetos planteando una gran cantidad de escenarios que contemplen las secuencias más interesantes del modelo.
+
+** Interaccion Jugador - Sorpresa Cambio de Vehiculo
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png
+actor Jugador
+participant CambioDeVehiculo
+participant Vehiculo
+
+Jugador -> CambioDeVehiculo ++ : chocarCon(this)
+CambioDeVehiculo -> Jugador ++ : getVehiculo()
+return vehiculo
+
+CambioDeVehiculo -> Vehiculo ++ : cambio()
+return siguienteVehiculo
+
+CambioDeVehiculo -> Jugador : setVehiculo(siguienteVehiculo)
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaCambioDeVehiculo.png]]
+
+** Interaccion Jugador - Sorpresa Favorable
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png
+
+
+actor Jugador
+participant Favorable
+
+Jugador -> Favorable ++ : chocarCon(this)
+Favorable -> Jugador ++ : getMovimientos()
+return movimientos
+
+Favorable -> Favorable ++ : calcularMovimientosDescontados(movimientos)
+return movimientosDescontados
+
+note right of Favorable
+	movimientosActuales = movimientos - movimientosDescontados
+end note
+
+Favorable -> Jugador : setMovimientos(movimientosActuales)
+
+
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnaSorpresaFavorable.png]]
+
+** Interaccion Jugador - Elemento
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png
+
+
+actor TestCase
+participant "__:Jugador__" as Jugador
+participant Vehiculo
+participant "__:Posicion__" as Posicion
+participant "mapa : Mapa" as Mapa
+participant Elemento
+
+TestCase -> Jugador ++ : avazar(direccion, mapa)
+Jugador -> Vehiculo ++ : tienePenalizaciones()
+return false
+
+Jugador -> Posicion ++ : desplazar(direccion, mapa)
+Posicion -> Posicion ++ : estaDentroDelMapa(mapa)
+Posicion -> Mapa ++ : getLimiteX()
+return limiteX
+
+Posicion -> Mapa ++ : getLmiteY()
+return limiteY
+
+return true
+
+note left of Posicion
+	nuevaPosicion = posicion + direccion
+end note
+
+return nuevaPosicion
+
+Jugador -> Mapa ++ : obtenerElementoEnPosicion(this.posicion)
+Mapa -> Elemento ++ : estaEnLaMismaPosicion(posicion)
+return true
+return elementoEnPosicion
+
+Jugador -> Elemento : chocarCon(this)
+
+
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnElemento.png]]
+
+** Jugador avanza y se encuentra con un Elemento
+
+#+begin_src plantuml :file ./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png
+actor Jugador
+participant Obstaculo
+participant Vehiculo
+
+Jugador -> Obstaculo ++ : chocarCon(this)
+Obstaculo -> Jugador : getVehiculo()
+Jugador --> Obstaculo : vehiculo
+Obstaculo -> Vehiculo ++ : pisar(this)
+Vehiculo -> Obstaculo : aplicarPenalizaciones(this)
+Obstaculo --> Vehiculo : penalizacion
+deactivate Obstaculo
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/jugadorAvanzaYSeEncuentraConUnObstaculo.png]]
+
+
+* Diagramas de estado
+# Incluir diagramas de estados, mostrando tanto los estados como  las distintas transiciones para varias entidades del modelo.
+
+** Cambio de Vehiculo del Jugador
+
+#+begin_src plantuml :file ./diagramas/estado-cambio-vehiculo.png
+hide empty description
+
+title Movimiento del Jugador y Choque contra Elemento
+
+[*] --> PartidaIniciada : Iniciar Partida
+
+state PartidaIniciada {
+	[*] -do-> MoverJugador
+	MoverJugador -ri-> ChocaContraElemento
+
+	state fork_state <<fork>>
+	ChocaContraElemento --> fork_state
+	fork_state --> ChocaContraObstaculo
+	fork_state --> ChocaContraSorpresa
+	fork_state --> ChocaContraMeta
+
+	state join_state <<join>>
+	ChocaContraObstaculo --> join_state
+	ChocaContraSorpresa --> join_state
+
+	join_state --> ActualizaMovimientosJugador
+	ActualizaMovimientosJugador --> MoverJugador
+}
+
+ChocaContraMeta --> [*] : Finalizar Partida
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/estado-cambio-vehiculo.png]]
+
+** Vehiculo Pisa Obstaculo
+
+#+begin_src plantuml :file ./diagramas/estado-vehiculo-obstaculo.png
+hide empty description
+
+title Vehiculo pisa Obstaculo
+
+[*] -down-> MoverJugador
+
+MoverJugador -down-> ChocaContraObstaculo
+
+state fork_state <<fork>>
+ChocaContraObstaculo -down-> fork_state
+fork_state -down-> ChocaContraPiquete
+fork_state -down-> ChocaContraPozo
+fork_state -down-> ChocaContraControlPolicial
+
+ChocaContraPiquete -down-> ActualizarPenalizacion
+ChocaContraPozo -down-> ActualizarPenalizacion
+ChocaContraControlPolicial -down-> ActualizarPenalizacion
+
+ActualizarPenalizacion -down-> ActualizarMovimientosJugador
+
+ActualizarMovimientosJugador --> MoverJugador
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/estado-vehiculo-obstaculo.png]]
+
+* Detalles de implementación
+# Deben detallar/explicar qué estrategias utilizaron para resolver todos los puntos más conflictivos del trabajo práctico. Justificar el uso de herencia vs. delegación, mencionar que principio de diseño aplicaron en qué caso y mencionar qué patrones de diseño fueron utilizados y por qué motivos.
+
+# IMPORTANTE
+# No describir el concepto de herencia, delegación, principio de diseño o patrón de diseño. Solo justificar su utilización.
+
+** Vehiculo
+
+En principio tenes una clase abstracta llamada /Vehiculo/ y usamos herencia para
+abstraer comportamiento comun entre su tres clases hijas: Moto, Auto y CuatroXCuatro.
+
+Los autos y las 4x4 no pueden pasar los piquetes. Cuando avanzan hacia
+un piquete se posicionan sobre este pero como es una posición que no
+está permitida para dichos vehículos estos retroceden a su posición
+anterior. Una vez que sucede esto se actualiza la vista y como la
+posición se mantiene lo único que cambia es la cantidad de movimientos
+que se muestran en pantalla.
+
+Tanto para los vehículos como para los elementos se utilizó herencia
+ya que se cumple la relación "es un". Además, se necesita que
+contengan los mismos atributos y métodos en común. También fue
+necesario sobreescribir algunos métodos.
+
+** Elemento
+
+Es una clase abstracta de la cual heredan dos clases:
+
+- Obstaculo
+  - Pozo, Piquete y Control Policial.
+- Sorpresa
+  - Favorable y Cambio de Vehiculo
+- Meta
+
+Utilizamos esta clase para definir compotamientos que los distintos
+Elementos tienen en comun, como por ejemplo que pueden ~chocaCon~ un
+jugador, y algunas funciones de ayuda para saber si el elemento esta
+adentro del mapa, si esta en la misma posicion que otro elemento o una
+posicion arbitraria, etc.
+
+*** Meta
+La clase meta es un elemento y cuando se lo choca comienza el turno
+del siguiente jugador. Si es el último, se finaliza la partida.
+
+** Mapa
+
+El mapa contiene una lista de elementos y cada elemento posee una posición.
+
+** Direccion
+Se implementó la clase ~Dirección~ encargada de delegar el
+desplazamiento del jugador a la clase ~Posición~.
+
+** Interaccion Vehiculo-Obstaculo
+
+Para la interaccion Vehiculo-Obstaculo decidimos usar el patron /Double
+Dispatch/ de forma ya que tenemos una interaccion de muchos a muchos entre los
+hijos de ambas clases abstractas:
+
+#+BEGIN_SRC dot :file diagramas/interaccionVehiculoObstaculo.png :exports results
+digraph G {
+    rankdir=LR
+    splines=false
+    Moto -> Pozo [dir=both]
+    Moto -> Piquete [dir=both]
+    Moto -> ControlPolicial [dir=both]
+    Auto -> Pozo [dir=both]
+    Auto -> Piquete [dir=both]
+    Auto -> ControlPolicial [dir=both]
+    CuatroXCuatro -> Pozo [dir=both]
+    CuatroXCuatro -> Piquete [dir=both]
+    CuatroXCuatro -> ControlPolicial [dir=both]
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:diagramas/interaccionVehiculoObstaculo.png]]
+
+Ademas de esto teniamos la necesidad de modelar implementaciones especificas
+como el caso de CuatroXCuatro-Pozo donde la CuatroXCuatro debe pisar tres pozos
+para recibir una penalizacion, cosa que no sucede en ninguna de las otras interacciones.
+
+Para esto los Vehiculos tienen firmas segun cada implementacion de Obstaculo.
+Y cada implementacion de Obstaculo tiene firmas para cada Vehiculo.
+
+** Ranking y Persistencia
+
+Para el ranking usamos un ~HashMap<String, Long>~ con el que
+almacenamos como clave el nombre del jugador y como valor la cantidad
+de movimientos minimo que hizo.
+
+Esto se maneja en el ~ControladorHistorialPartidas~ que tiene dos
+metodos que hacen uso de la libreria Gson para crear un JSON del
+~HashMap~, escribirlo en un archivo ~ranking.json~ y otro metodo para
+obtener el historial en siguientes ejecuciones del programa
+/deserializando/ el JSON parseado como un ~HashMap~ de nuevo.
+
+#+begin_src json
+{
+  "Pablo": 24,
+  "Ramiro": 20,
+  "Carlos": 30
+}
+#+end_src
+
+** Juego
+
+El punto de entrada la aplicación es la clase ~Juego~, que provee al
+usuario de las funciones principales para iniciar una partida y que
+cada jugador se mueva. También permite a algunas partes de la vista
+obtener información sobre el estado actual del juego.
+
+La clase ~Juego~ es un singleton ya que solo puede haber una instancia
+del juego. Dicha clase contiene un generador del mapa y una
+partida. Las partidas contienen un listado de jugadores. Cada vez que
+se inicia el juego se crea una partida. Se pueden agregar varios
+jugadores a una partida (modo multijugador). Se puede reiniciar una
+partida y el mapa generado se conserva en este caso.
+
+Desde los controladores se obtiene la instancia del juego y se
+manipula para iniciarlo, reiniciarlo y agregar jugadores.
+
+El juego genera un mapa aleatorio a través de la clase
+~GeneradorMapa~. Si bien el mapa contiene una lista de elementos y
+cada elemento tiene su posición, se recorre el mapa vacío como una
+matriz para generar distintos elementos con distinta probabilidad.
+
+** Modelo-Vista-Controlador (MVC)
+
+Aplicamos este patrón de diseño de software para separar la lógica del
+funcionamiento del juego de la interfaz.
+
+Se usaron controladores para definir /evento/ que ocurren durante el
+juego, por ejemplo, iniciar o finalizar una partida, o agregar un
+nuevo jugador. La mayoría de estos controladores extienden la clase
+~EventHandler~ de JavaFX, por lo que son asignables a botones en la
+interfaz.
+
+#+begin_src plantuml :file ./diagramas/mvc-partida.png
+title Interacción MVC al iniciar una partida
+
+package "Vista" {
+	[JavaFX] --ri--> [VistaIniciarJuego]
+}
+
+package "Controlador" {
+	[VistaIniciarJuego] --do--> [ControladorCambioDePantalla]
+	[ControladorCambioDePantalla] --> [ControladorIniciarPartida]
+	[ControladorIniciarPartida] --ri--> [ControladorAgregarJugador]
+	[ControladorAgregarJugador] --> [ControladorCambioDePantalla]
+}
+
+package "Modelo" {
+	[ControladorAgregarJugador] --do--> [Juego]
+	[Juego] --ri--> [Jugador]
+	[Juego] --> [Partida]
+}
+#+end_src
+
+#+RESULTS:
+[[file:./diagramas/mvc-partida.png]]
+
+*** Controladores
+
+**** ControladorCambioDePantallas
+
+Se utilizó un controlador llamado ~ControladorCambioDePantallas~ para
+lidiar con el cambio de escenas sobre una misma /stage/ de
+JavaFX. Este controlador permite concentrar todos las transiciones
+entre diferentes vistas (referidas como /pantallas/) para hacer estos
+cambios de manera más ordenada. Así por ejemplo, cualquier botón cuya
+tarea fuese mostrar la pantalla de ayuda, utiliza un único controlador
+para hacer esta transición, lo mismo para cualquier botón que
+retroceda a la pantalla de inicio, etc. Este controlador permite
+ahorrarnos estar pasando una referencia al /stage/ principal para cada
+vista que fuese a necesitar interactuar con dicho /stage/, lo que hacía
+el código algo más caótico. También se utiliza este mismo controlador
+para interactuar con el /stage/ cuando se alterna entre la pantalla
+completa y minimizada.
+
+**** ControladorPostTurnoJugador
+
+El controlador ~ControladorPostTurnoJugador~ se encarga de realizar
+todas las tareas de comprobación de finalización de turno luego de
+cada movimiento del jugador. Este controlador es referenciado dentro
+del main "event loop" que escucha cada presionar de tecla del usuario
+durante la partida en la clase ~VistaPantallaPartida~.
+
+Este controlador también se encarga de que las vistas se vuelvan a
+renderizar luego de cada turno, para actualizar las posiciones y
+puntajes de los jugadores. Para esto las vistas que muestran
+información que necesita ser actualizada durante el juego proveen los
+métodos correspondientes que toman la información del estado actual
+del juego y también vuelven a generar las figuras que estas vistas
+contienen con esta información actualizada.
+
+La mayoría de los estilos fueron definidos utilizando CSS para
+simplificar la estructura de las clases de vista y reutilizar los
+estilos comunes a varios componentes del juego que tienen la misma
+estética, como los botones, por ejemplo.
+
+**** ControladorHistorialPartidas
+
+El controlador ~ControladorHistorialPartidas~ se encarga de tomar la
+información de la partida recientemente finalizada y la agrega el
+registro de partidas previamente guardadas en un archivo con formato
+JSON.
+
+** Null-Object Pattern
+
+Se utilizó el patrón /Null Object/ para hacer polimórfico el
+comportamiento de choque del jugador al moverse hacia cualquier
+posición, independientemente de que haya un obstáculo o sorpresa con
+algún efecto en esa posición.
+
+** Inyecccion de Dependencias
+
+En varias clases se hicieron las dependencias inyectables, de tal
+forma que fuera fácil reemplazar el comportamiento de dichas
+clases. Por ejemplo, al crear un jugador se pueden definir tanto su
+posición inicial como su vehículo inicial como dependencias.
+
+** Programacion contra Abstracción
+
+También se programó contra abstracción en vez de contra clases
+concretas en donde se vió óptimo. Por ejemplo, en el caso de los
+vehículos y los obstáculos se diseñó todo de tal forma que al jugador
+no le importase contra qué obstáculo estaba chocando y qué vehículo
+tenía ese momento, permitiendo que el comportamiento fuese polimórfico
+y facilitando la adición de nuevos obstáculos y vehículos.
+
+** Principio de Responsabilidad Unica
+
+En el caso del diseño e implementación de la clase ~Mapa~, se hicieron
+cambios durante el diseño del modelo para que esta clase tuviera una
+única responsabilidad, respetando el principio de única
+responsabilidad. Inicialmente esta clase era vista como un
+"administrador de elementos" (como se había descrito en alguna de las
+entregas semanales), pero finalmente terminó siendo únicamente una
+colección de elementos dentro de unos límites.
+
+* Consideraciones
+
+** Cambios a futuro:
+
+ - Implementar la funcionalidad multimedia. Lamentablemente debido al
+   sistema operativo que utilizamos la mayoría de integrantes del grupo,
+   no se pudo implementar dicha funcionalidad por problemas de la
+   librería utilizada. Esto es culpa de JavaFX por no soportar Linux.
+
+ - Agregar una opción para que cada jugador pudiese elegir su carácter al
+   momento de iniciar una partida de entre las imágenes de jugadores
+   disponibles.
+
+ - Poner más imágenes de Messi.
+
+ - Implementar múltiples idiomas y múltiples temas de colores.
+   Agregar funcionalidad de cambio de nivel. Con la implementación de
+   ~GeneradorMapa~ esto se hace más sencillo pues se puede utilizar el
+   patrón factory para cambiar el algoritmo de generación de elementos en
+   el mapa de una partida en particular.
+
+ - Refactorizar y organizar la implementación de la vista y el
+   controlador para evitar la duplicación de código.
+
+Dentro de los cambios positivos del trabajo consideramos que la
+implementación del controlador ~ControladorCambioDePantallas~ fue
+beneficiosa ya que manipula el stage y no es necesario pasarlo como
+parámetro entre los distintos controladores y métodos.
+
+* Excepciones
+# Explicar las excepciones creadas, con qué fin fueron creadas y cómo y dónde se las atrapa explicando qué acciones se toman al respecto una vez capturadas.
+
+** (No) Excepcion cuando el usuario intentar ir fuera del Mapa
+
+Una observacion que tuvimos durante el desarrollo fue la posibilidad
+de agregar una excepcion cuando el usuario intenta ir fuera de los
+bordes del mapa. Nosotros como supuesto elegimos no tratar esto como
+un error y directamente el modelo maneja esta posibilidad y no permite
+al usuario avanzar por fuera de los limites del mapa.
+
+* Conclusion
+
+Utilizar prácticas de /extreme programing/ y /agile/ nos permitieron
+mantener un desarrollo colaborativo eficiente. Aplicar programación
+orientada a objetos en la implementación nos permitió dividir tareas
+sin manipular los mismos archivos. Aplicar /pair programming/ e
+integración continua fue beneficioso para avanzar rápidamente en el
+desarrollo del trabajo. Además, facilitó las refactorizaciones
+realizadas sin tener que modificar significativamente el código ya
+implementado.
+
